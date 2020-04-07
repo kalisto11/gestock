@@ -5,7 +5,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="Team UVS">
-        <base href="/gestock/public/">
+        <base href="/gestock/">
         <title>Gestion de stock</title>
         <link rel="shortcut icon" type="image/png" href="images/icones/favicon.png">
         <!-- Bootstrap core CSS -->
@@ -57,6 +57,9 @@
                                 This week
                             </button>
                         </div>
+                    </div>
+                    <div>
+                    <?= $content ?> 
                     </div>
                 </main>
                 <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->

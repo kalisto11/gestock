@@ -4,7 +4,8 @@ class erreur{
     public function construct(){
 
     }
+
     public function view(){
-        echo 'erreur';
+        echo 'Page introuvable';
     }
 }

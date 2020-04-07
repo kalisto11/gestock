@@ -1,6 +1,7 @@
 <?php 
     class Dispatcher{
         public $request;
+        public $content;
 
         /**
          *constructeur du controleur Dispatcher
@@ -8,10 +9,10 @@
          *@return  
          **/
         public function __construct(){
-        $this->request = new Request();
-        Router::parse($this->request->url, $this->request);
-        $controller = $this->loadController();
-        $controller->view();
+            $this->request = new Request();
+            Router::parse($this->request->url, $this->request);
+            $controller = $this->loadController();
+            $controller->view();
         }
 
         public function loadController(){

@@ -6,6 +6,6 @@ class Home{
     }
 
     public function view(){
-        echo 'ok';
+        echo  'bienvenue';
     }
 }
