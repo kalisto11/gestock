@@ -5,7 +5,9 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="Team UVS">
+        <base href="/gestock/public/">
         <title>Gestion de stock</title>
+        <link rel="shortcut icon" type="image/png" href="images/icones/favicon.png">
         <!-- Bootstrap core CSS -->
         <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
         <!-- Fichier css  -->
