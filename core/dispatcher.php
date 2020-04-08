@@ -1,12 +1,15 @@
 <?php 
+
+    /*
+    * le dispatcher permet d'analyser la requete de l'utilisateur et fait appel au controleur
+    * qui correspond à la requete
+    */
     class Dispatcher{
         public $request;
-        public $content;
 
         /**
          *constructeur du controleur Dispatcher
-        * @param 
-         *@return  
+        * instancie le dispatcher
          **/
         public function __construct(){
             $this->request = new Request();
@@ -15,17 +18,21 @@
             $controller->view();
         }
 
+        /**
+         * permet de charger le bon controleur dynamiquement grace à l'autoloader
+         * @return  Controller instance du controleur appelé 
+         **/
         public function loadController(){
-            $name = $this->request->controller;
+            $nom = $this->request->controller;
             if ($this->request->controller == ''){
-                $name = 'Home';
+                $nom = 'Home';
             }else if (file_exists(CONTROLLER . $this->request->controller . '.php')){
-                $name = ucfirst($this->request->controller);
+                $nom = ucfirst($this->request->controller);
             }
             else{
-                $name = 'Erreur';
+                $nom = 'Erreur';
             }
-            $controller = new $name();
+            $controller = new $nom();
             return $controller;
         }
     }
