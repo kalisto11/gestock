@@ -2,7 +2,7 @@
 
 class Articles extends Controller{
 
-    public function view(){
+    public function render(){
      echo 'traiter les requetes sur les articles ici';
     } 
 }
