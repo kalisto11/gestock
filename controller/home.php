@@ -3,6 +3,6 @@
 class Home extends Controller{
 
     public function view(){
-        require VIEW . 'personnel/ajoutPersonnel.php';
+        echo 'traiter les requetes sur l\'accueil ici';
     }
 }

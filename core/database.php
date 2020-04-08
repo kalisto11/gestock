@@ -12,7 +12,8 @@
                 self::$pdo = new pdo('mysql:host=localhost; dbname=bibliotheque', 'root', '');
                 self::$pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
                 return self::$pdo; 
-            }else{
+            }
+            else{
                 return self::$pdo;
             }
         }
