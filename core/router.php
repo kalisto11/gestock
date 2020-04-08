@@ -2,8 +2,9 @@
     class Router {
         /**
          * permet de parser les url
-         * @param url à parser
-         * @return tableau contenant les parametres issus de l'url
+         * @param String url à parser
+         * @param Request attribut request du dispatcher
+         * @return bool pour valider le parsing
          */
         static function parse($url, $request){
             $url = trim($url, "/");

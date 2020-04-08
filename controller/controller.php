@@ -2,4 +2,8 @@
 
     class Controller{
         
+        public function construct(){
+        
+        }
+        
     }
