@@ -33,7 +33,9 @@
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active" href="/gestock/personnel/ajouterposte">PERSONNEL</a>
+                            PERSONNEL
+                                <a class="nav-link" href="/gestock/personnel/voirliste">VOIR LA LISTE DU PERSONNEL</a>
+                                <a href="/gestock/personnel/ajouterposte">AJOUTER UN POSTE</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/gestock/nomarticles/">ARTICLES</a>
