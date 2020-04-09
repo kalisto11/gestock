@@ -9,7 +9,7 @@
         public $nom;
 
         public function __construct($id = null){
-            if ($id === !null){
+           if ($id === !null){
                 $pdo = $bdd->getPDO();
                 $req = 'SELECT * from poste WHERE id = ?';
                 $reponse = $pdo->prepare($req);
