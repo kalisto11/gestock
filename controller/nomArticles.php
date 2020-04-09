@@ -17,11 +17,10 @@
         public function render($view){
             if ($view === ''){
                 // afficher la vue si action n'existe pas (vide)
-                echo 'ok';
             }
             else{
                 switch ($view){
-                     // inclure les vues ici selon la valeur de $view
+                     // inclure les vues ici selon la valeur de $view si action existe
                     case '':
                        
                     break;

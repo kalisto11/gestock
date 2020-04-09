@@ -8,8 +8,10 @@
         public $request;
 
         /**
-         *constructeur du controleur Dispatcher
-        * instancie le dispatcher
+        *constructeur du controleur Dispatcher
+        * instancie le dispatcher et 
+        * appelle le bon controller selon la valeur de $request->loadController
+        * instancie le controleur et execute la méthode process() de l'instance.
          **/
         public function __construct(){
             $this->request = new Request();
