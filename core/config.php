@@ -18,6 +18,7 @@ class Myautoload{
         define('MODEL', ROOT . 'model/');
         define('VIEW', ROOT . 'view/');
         define('CORE', ROOT . 'core/');
+        $bdd = new Database();
     }
 
     public static function autoload($class){

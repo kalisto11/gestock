@@ -15,7 +15,7 @@
             $this->request = new Request();
             Router::parse($this->request->url, $this->request);
             $currentController = $this->loadController();
-            $currentController->render();
+            $currentController->process();
         }
 
         /**
@@ -32,7 +32,7 @@
             else{
                 $nom = 'Erreur';
             }
-            $controller = new $nom();
+            $controller = new $nom($this->request);
             return $controller;
         }
     }
