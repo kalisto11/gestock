@@ -1,4 +1,9 @@
 <?php
+
+     /*
+    * Modele du module poste pour la gestion de la liste des postes
+    */
+
     class Poste{
         public $id;
         public $nom;

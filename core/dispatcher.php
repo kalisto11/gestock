@@ -32,7 +32,7 @@
             else{
                 $nom = 'Erreur';
             }
-            $controller = new $nom();
+            $controller = new $nom($this->request);
             return $controller;
         }
     }
