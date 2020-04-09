@@ -13,7 +13,7 @@
         * appelle le bon controller selon la valeur de $request->loadController
         * instancie le controleur et execute la méthode process() de l'instance.
          **/
-        public function __construct(){k
+        public function __construct(){
             $this->request = new Request();
             Router::parse($this->request->url, $this->request);
             $currentController = $this->loadController();
