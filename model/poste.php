@@ -7,7 +7,6 @@
     class Poste{
         public $id;
         public $nom;
-        private static $bdd = new Database();
 
         public function __construct($id = null, $nom = null){
             if ($id === !null){
@@ -25,7 +24,7 @@
         }
 
         public function save(){
-            $pdo = $bdd->getPDO();
+            $pdo = Database::getPDO();
             $req = 'INSERT INTO poste (nom) VALUES (:nom)';
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
