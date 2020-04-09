@@ -15,7 +15,7 @@
             $this->request = new Request();
             Router::parse($this->request->url, $this->request);
             $currentController = $this->loadController();
-            $currentController->render();
+            $currentController->process();
         }
 
         /**
