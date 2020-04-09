@@ -26,8 +26,8 @@ CREATE TABLE IF NOT EXISTS `gestock`.`poste` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(100) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
-ENGINE = InnoDB;
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+ENGINE = MyISAM;
 
 
 -- -----------------------------------------------------
@@ -41,14 +41,14 @@ CREATE TABLE IF NOT EXISTS `gestock`.`personnel` (
   `nom` VARCHAR(45) NULL,
   `poste_id` INT NOT NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE,
-  INDEX `fk_personnel_poste_idx` (`poste_id` ASC) VISIBLE,
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC),
+  INDEX `fk_personnel_poste_idx` (`poste_id` ASC),
   CONSTRAINT `fk_personnel_poste`
     FOREIGN KEY (`poste_id`)
     REFERENCES `gestock`.`poste` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
-ENGINE = InnoDB;
+ENGINE = MyISAM;
 
 
 -- -----------------------------------------------------
@@ -60,8 +60,8 @@ CREATE TABLE IF NOT EXISTS `gestock`.`nomarticle` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nom` VARCHAR(45) NULL,
   PRIMARY KEY (`id`),
-  UNIQUE INDEX `id_UNIQUE` (`id` ASC) VISIBLE)
-ENGINE = InnoDB;
+  UNIQUE INDEX `id_UNIQUE` (`id` ASC))
+ENGINE = MyISAM;
 
 
 SET SQL_MODE=@OLD_SQL_MODE;
