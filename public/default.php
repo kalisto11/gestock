@@ -63,7 +63,6 @@
                     </div>
                 </main>
                 <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
-
             </div>
         </div>
         <script src="bootstrap/js/jquery.min.js"></script>

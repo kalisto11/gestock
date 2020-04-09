@@ -14,8 +14,8 @@
         public function __construct(){
             $this->request = new Request();
             Router::parse($this->request->url, $this->request);
-            $controller = $this->loadController();
-            $controller->view();
+            $currentController = $this->loadController();
+            $currentController->render();
         }
 
         /**

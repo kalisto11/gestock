@@ -2,7 +2,7 @@
 
 class Erreur extends Controller{
 
-    public function view(){
+    public function render(){
         echo 'Page introuvable';
     }
 }
