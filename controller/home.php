@@ -2,7 +2,7 @@
 
 class Home extends Controller{
 
-    public function view(){
+    public function render(){
         echo 'traiter les requetes sur l\'accueil ici';
     }
 }

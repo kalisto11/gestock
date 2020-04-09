@@ -1,5 +1,5 @@
 <?php 
-    class Router {
+    class Router{
         /**
          * permet de parser les url
          * @param String url à parser
