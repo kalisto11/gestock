@@ -25,7 +25,7 @@
                     break;
     
                     case 'ajouterposte':
-                        echo 'Afficher formulaire d\'ajout de poste ici';
+                        require_once VIEW . 'personnel/ajoutposte.php';
                     break;
     
                     case 'modifierposte':
