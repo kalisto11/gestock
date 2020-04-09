@@ -14,12 +14,6 @@ class ArticlesController extends Controller{
             require 'view/nomarticles/ajoutnomArticle.php';
         
     }elseif
-        ($action === 'modifier'){
-            $id = ($_GET['id']);
-            $nomarticle = new Articles($id);
-            require 'view/nomarticles/modifnomArticle.php';
-        
-    }elseif
         ($action === 'supprimer'){
             if (isset($_GET['id'])){
                 $id = intval($_GET['id']);
