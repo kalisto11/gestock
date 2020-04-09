@@ -9,7 +9,14 @@
 
         public function process(){
             if ($this->request->method === 'POST'){
-               // traitement des donnees des formulaires ici
+               if ($this->request->action != null){
+                   switch ($this->request->action){
+                       case 'ajouterposte':
+                        $poste = new Poste(null, $_POST['nom']);
+                        $poste->save();
+                       break;
+                   }
+               }
             }
             $this->render($this->request->action);
         }

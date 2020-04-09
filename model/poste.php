@@ -7,8 +7,9 @@
     class Poste{
         public $id;
         public $nom;
+        private static $bdd = new Database();
 
-        public function __construct($id = null){
+        public function __construct($id = null, $nom = null){
             if ($id === !null){
                 $pdo = $bdd->getPDO();
                 $req = 'SELECT * from poste WHERE id = ?';
@@ -17,23 +18,36 @@
                 $poste = $reponse->fetch();
                 $this->id = $poste['id'];
                 $this->nom = $poste['nom'];
-            } 
+            }
+            else{
+                $this->nom = $nom;
+            }
         }
 
-        public function save($nom){
-
+        public function save(){
+            $pdo = $bdd->getPDO();
+            $req = 'INSERT INTO poste (nom) VALUES (:nom)';
+            $reponse = $pdo->prepare($req);
+            $reponse->execute(array(
+            'nom' => $this->nom
+            ));
         }
 
-        public function update($id){
-
+        public function update(){
+            $pdo = $bdd->getPDO();
+            $req = 'UPDATE poste SET nom = :nom, WHERE id = :id';
+            $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
+            $resultat = $reponse->execute(array(
+            'nom' => $this->nom,
+            'id' => $this->id
+            ));
         }
 
         public function delete($id){
-
-        }
-
-        public function findOne(){
-
+            $pdo = $bdd->getPDO();
+            $req = 'DELETE from poste WHERE id = ?';
+            $reponse = $pdo->prepare('DELETE from poste WHERE id = ?');
+            $reponse->execute(array($this->id));
         }
 
         public static function findAll(){
