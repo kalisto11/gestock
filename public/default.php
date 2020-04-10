@@ -29,22 +29,22 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
-                <nav class="col-md-2 d-none d-md-block bg-light sidebar mt-5">
-                    <div class="sidebar-sticky">
+                <nav class="col-md-2 d-none d-md-block bg-secondary sidebar mt-5">
+                    <div class="sidebar-sticky"> 
                         <ul class="nav flex-column">
-                            <li class="nav-item dropdown">
-                                <a class="nav-link active dropdown-toggle" data-toggle="dropdown" 
-                                  href=""><img src="images/icones/personnel.jpg" title="personnel">PERSONNEL
-                                </a>
-                                <div class="dropdown-menu">
-                                  <a class="dropdown-item" href="/gestock/personnel/voirliste">La liste du personnel</a>
-                                  <a class="dropdown-item" href="/gestock/personnel/ajouterposte">Ajouter un poste</a>
-                                </div>
+                            <li class="nav-item">
+                                PERSONNEL
+                                <a class="nav-link" href="/gestock/personnel/liste-postes">LISTE DES POSTES</a>
+                                <a href="/gestock/personnel/ajouter-poste">AJOUTER UN POSTE</a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="/gestock/nomarticles/">ARTICLES</a>
+                                <a class="nav-link text-white dropdown-toggle" data-toggle="dropdown" href="#"><img src="images\icones\dossier.png"> ARTICLES</a>
+                                <div class="dropdown-menu">
+                                <a class="dropdown-item" href="/gestock/nomarticles/liste-nom-article">Voir Liste des Articles</a>
+                                <a class="dropdown-item" href="/gestock/nomarticles/ajouter-nom-article">Ajouter un Article</a>
+                                </div>
                             </li>
-                        </ul>
+                         </ul>
                     </div>
                 </nav>
                 <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
@@ -71,8 +71,18 @@
                 <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
             </div>
         </div>
+<<<<<<< HEAD
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </body>
+=======
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+         
+</body>
+    
+>>>>>>> 018eeee156733a7330b6ac0edc6fa80ffe65b442
 </html>
