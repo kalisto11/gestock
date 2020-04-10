@@ -11,53 +11,63 @@
             if ($this->request->method === 'POST'){
                if ($this->request->action != null){
                switch ($this->request->action){
-                case 'ajouter-nom-article':
-                 $nomarticle = new Article(null, $_POST['nom']);
-                 $nomarticle->ajoutArticle();
-                 $nomarticle = Article::ajoutArticle($_POST['nom']);
-                 $nomarticles = Article::listArticles();
-                break;
-                case 'modifer-article':
-                    $nomarticle = new Article(null, $_POST['nom']);
-                    $nomarticle->modif();
-                    $id = intval($_POST['id']);
-                    $nomarticle = new Article($id);
-                    $upgrade = $nomarticle->modif($_POST['nom']);
-                    $upgrade = 0 ;
-                break;
+                    case 'traitement-article':
+                    switch ($_POST['operation']){
+                        case 'ajouter-nom-article':
+                            $nomarticle = new Article();
+                            $nomarticle->nom = $_POST['nom'];
+                            $nomarticle->ajoutArticle();
+                            $this->request->action = 'liste-nom-article';
+                            $this->render();
+                           break;
+                        break;
+                           
+                        case 'modifer-article':
+                            $nomarticle = new Article($_POST['id']);
+                            $nomarticle->nom = $_POST['nom'];
+                            $nomarticle->modif();
+                            $this->request->action = 'liste-nom-article';
+                            $this->render();
+                        break;
+                    default;
+                }
             }
-        }elseif ($this->request->method === 'GET'){
+        }
+    }
+        elseif ($this->request->method === 'GET'){
             if ($this->request->action != null){
                 switch ($this->request->action){
-                    case 'liste-nom-article':
-                        $nomarticles = Article::listArticles();
+                    case 'list-nom-article':
+                       $this->render();
                     break;
                     case 'supprimerarticle':
-                        $nomarticle = new Article($id);
-                        $nomarticle->supprime();
-                        $nomarticles = Article::listArticles();
-                        
+                        $idarticle = intval($this->request->id);
+                        $nomarticle = new Article($idarticle, null);
+                        $nomarticle->supprime(); 
+                        $this->request->action = 'list-nom-article';
+                        $this->render();
+                    break;
+
+                    case 'modifier-article':
+                        $this->render();
                     break;
                 }
             }
         }
     }  
-        $this->render($this->request->action);
-        }
+         // fin méthode process
         public function render($view){
-            if ($this->request->action === ''){
-                
-                // afficher la vue si action n'existe pas (vide)
-                echo 'Afficher la listes des articles';
-            }
-            else{
-                switch ($view){
+            
+                switch ($this->request->action){
                      // inclure les vues ici selon la valeur de $view
                     case 'list-nom-article':
-                          echo 'Liste des articles';
+                          $nomarticles = Article::listArticles();
                         require_once VIEW . 'nomarticle/listnomarticles.php';
                     break;
                     case 'modifier-article':
+                        $idarticle = intval($this->request->id);
+                        $currentArticle = new Article($idarticle);
+                        $nomarticles = Article::listArticles();
                         require_once VIEW . 'nomarticle/modifnomarticle.php';
                     break;
                     case 'ajouter-nom-article':
@@ -75,4 +85,5 @@
                 }
             }
         } 
-    }
+    
+

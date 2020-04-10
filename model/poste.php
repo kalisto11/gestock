@@ -8,8 +8,9 @@
         public $id;
         public $nom;
 
-        public function __construct($id = null, $nom = null){
-            if ($id === !null){
+        public function __construct($id = null){
+            if ($id != null){
+                $this->id = $id;
                 $pdo = Database::getPDO();
                 $req = 'SELECT * from poste WHERE id = ?';
                 $reponse = $pdo->prepare($req);
@@ -18,8 +19,10 @@
                 $this->id = $poste['id'];
                 $this->nom = $poste['nom'];
             }
-          else{
-                $this->nom = $nom;
+            else{
+                $this->id = null;
+                $this->nom = null;
+
             }
          }
         public function save(){
@@ -33,7 +36,7 @@
 
         public function update(){
             $pdo = Database::getPDO();
-            $req = 'UPDATE poste SET nom = :nom, WHERE id = :id';
+            $req = 'UPDATE poste SET nom = :nom WHERE id = :id';
             $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
             $resultat = $reponse->execute(array(
             'nom' => $this->nom,
@@ -41,7 +44,7 @@
             ));
         }
 
-        public function delete($id){
+        public function delete(){
             $pdo = Database::getPDO();
             $req = 'DELETE from poste WHERE id = ?';
             $reponse = $pdo->prepare('DELETE from poste WHERE id = ?');
