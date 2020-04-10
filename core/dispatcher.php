@@ -8,14 +8,16 @@
         public $request;
 
         /**
-         *constructeur du controleur Dispatcher
-        * instancie le dispatcher
+        *constructeur du controleur Dispatcher
+        * instancie le dispatcher et 
+        * appelle le bon controller selon la valeur de $request->loadController
+        * instancie le controleur et execute la méthode process() de l'instance.
          **/
         public function __construct(){
             $this->request = new Request();
             Router::parse($this->request->url, $this->request);
             $currentController = $this->loadController();
-            $currentController->render();
+            $currentController->process();
         }
 
         /**
@@ -32,7 +34,7 @@
             else{
                 $nom = 'Erreur';
             }
-            $controller = new $nom();
+            $controller = new $nom($this->request);
             return $controller;
         }
     }

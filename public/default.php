@@ -34,16 +34,17 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link active text-white" href="#">PERSONNEL</a>
+                                <a class="nav-link" href="/gestock/personnel/voirliste²">VOIR LA LISTE DU PERSONNEL</a>
+                                <a href="/gestock/personnel/ajouterposte">AJOUTER UN POSTE</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white dropdown-toggle" data-toggle="dropdown" href="#"><img src="images\icones\dossier.png"> ARTICLES</a>
                                 <div class="dropdown-menu">
                                 <a class="dropdown-item" href="listnomArticles.php">Voir Liste des Articles</a>
                                 <a class="dropdown-item" href="ajoutnomArticle.php">Ajouter un Article</a>
-
                                 </div>
                             </li>
-                        </ul>
+                         </ul>
                     </div>
                 </nav>
                 <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
