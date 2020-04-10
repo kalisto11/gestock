@@ -34,7 +34,7 @@
     width: 100%;
     border-collapse: collapse;
     text-align: center;  
-    margin: 0px;
+    margin-left: 20px;
 }
 th, td{
     border: 2px solid rgba(0, 4, 8, 0.719);
@@ -70,4 +70,8 @@ table a{
 
 .th-sm{
   width: 20%;
+}
+
+h2, h3, h4, h5, h6{
+  text-align: center;
 }

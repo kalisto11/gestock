@@ -19,11 +19,11 @@
             </table>
         </div>  
         <div class="col-md-4">
-            <h2>Ajouter un poste</h2>
+            <h3>Ajouter un poste</h3>
             <div class="container-fluid">
                 <form method="post" action="/gestock/postes/traitement-poste">
                     <div class="form-group">
-                        <label for="nom">nom du poste</label>
+                        <label for="nom">Nom du poste</label>
                         <input class="form-control" type="text" name="nomPoste" value="<?php if (isset($currentPoste->id)){echo $currentPoste->nom;} ?>">
                     </div>
                     <input type="hidden" name="operation" value="<?php if (isset($currentPoste->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
