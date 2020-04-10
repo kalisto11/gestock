@@ -5,16 +5,20 @@
                     <th>Nom article</th>
                     <th>Action</th>
                 </tr>
+                <?php foreach($articles as $article):?>
+
                 <tr>
+                    <td><?= $article->nom ?></td>
                     <td>
-                        <a href=""><button class="btn btn-info"><img src="images\icones\pencil.png">Modifier</button></a>
-                        <a href=""><button class="btn btn-danger"><img src="images\icones\delete.png">Supprimer</button></a>
-                    <td>
+                        <a href=""><button class="btn btn-info"><img src="images/icones/pencil.png">Modifier</button></a>
+                        <a href=""><button class="btn btn-danger"><img src="images/icones/delete.png">Supprimer</button></a>
+                    </td>
                 </tr>
+                <?php endforeach ;?>
             </table>
         </div>
         <div class="mt-5">
-            <a href="/gestock/article/ajouter-article"><button class="btn btn-success ml-5"><img src="images\icones\ajout.png">Ajouter</button></a>
+            <a href="/gestock/article/ajouter-article"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png">Ajouter</button></a>
 
         </div>
         
