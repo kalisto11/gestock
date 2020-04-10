@@ -40,7 +40,7 @@
                             <li class="nav-item">
                                 <a class="nav-link text-white dropdown-toggle" data-toggle="dropdown" href="#"><img src="images\icones\dossier.png"> ARTICLES</a>
                                 <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/gestock/nomarticles/liste-nom-article">Voir Liste des Articles</a>
+                                <a class="dropdown-item" href="/gestock/nomarticles/list-nom-article">Voir Liste des Articles</a>
                                 <a class="dropdown-item" href="/gestock/nomarticles/ajouter-nom-article">Ajouter un Article</a>
 
                                 </div>
