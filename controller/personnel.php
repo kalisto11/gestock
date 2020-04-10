@@ -11,10 +11,10 @@
             if ($this->request->method === 'POST'){
                if ($this->request->action != null){
                    switch ($this->request->action){
-                       case 'ajouterposte':
+                       case 'traitement-ajouter-poste':
                         $poste = new Poste(null, $_POST['nom']);
                         $poste->save();
-                        $this->request->action = 'listeposte';
+                        $this->request->action = 'liste-poste';
                        break;
                    }
                }
@@ -29,19 +29,19 @@
             else{
                 switch ($view){
 
-                    case 'listeposte':
+                    case 'liste-postes':
                         require_once VIEW . 'personnel/listeposte.php';
                     break;
     
-                    case 'form-ajouterposte':
+                    case 'ajouter-poste':
                         require_once VIEW . 'personnel/ajoutposte.php';
                     break;
     
-                    case 'modifierposte':
+                    case 'modifier-poste':
                         echo 'Afficher formulaire de modification de poste ici';
                     break;
     
-                    case 'supprimerposte':
+                    case 'supprimer-poste':
                         echo 'supprimer le poste ici';
                     break;
                 
