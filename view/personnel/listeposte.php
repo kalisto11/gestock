@@ -2,24 +2,15 @@
 <div>
    <table>
        <tr>
-           <th>Prénom</th>
-           <th>Nom</th>
-           <th>Poste</th>
+           <th>poste</th>
            <th>Action</th>
        </tr>
+       <?php foreach($postes as $poste): ?>
         <tr>
-            <td>
-                <a href="index.php?page=personnels&action=consulter&id=<?= $personnel->id ; ?>">
-                    <?= $personnel->prenom ; ?>
-                </a>
-            </td>
-            <td><?= $personnel->nom ; ?></td>
-            <td><?= $personnel->poste ; ?></td>
-            <td><a href="index.php?page=personnel&action=supprimer&id=<?= $personnel->id ;?>"></a></td>
+            <td><?= $poste->nom ?></td>
+            <td></td>
         </tr>
         <?php endforeach ; ?>
    </table>
 </div>
-<div class="mt-5">
-    <a class="btn btn-warning" href="index.php?page=personnels&action=ajouter"> <img src="images/icones/add.jpg" alt="Ajouter" title="Ajouter un nouvel personnel" class="icone"> Ajouter</a>
-</div>
+
