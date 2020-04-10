@@ -33,10 +33,8 @@
                     <div class="sidebar-sticky"> 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link"text-white dropdown-toggle data-toggle="dropdown" href="#"><img src="images\icones\personnel.jpg">PERSONNEL</a>
-                                <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/gestock/personnel/ajouter-poste">AJOUTER UN POSTE</a>
-                                <a class="dropdown-item" href="/gestock/personnel/liste-postes">LISTE DES POSTES</a>
+                                PERSONNEL
+                                <a class="nav-link" href="/gestock/postes/liste-postes">GERER LES POSTES</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link "text-white dropdown-toggle data-toggle="dropdown" href="#"><img src="images\icones\dossier.png"> ARTICLES</a>
@@ -64,7 +62,7 @@
                                 This week
                             </button>
                         </div>
-s                    </div>
+                    </div>
                     <div>
                     <?= $content ?> 
                     </div>
