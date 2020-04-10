@@ -9,7 +9,7 @@
         /**
          * permet de recuperer un objet de type pdo
          *@return PDO un objet PDO
-         **/
+        **/
         public static function getPDO(){
             if (self::$pdo === null){
                 self::$pdo = new pdo('mysql:host=localhost; dbname=gestock', 'root', '');

@@ -5,11 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="Team UVS">
-        <base href="/gestock/">
+        <base href="/gestock/public/">
         <title>Gestion de stock</title>
         <link rel="shortcut icon" type="image/png" href="images/icones/favicon.png">
         <!-- Bootstrap core CSS -->
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Fichier css  -->
         <link rel="stylesheet" href="css/style.css">
     </head>
@@ -33,15 +33,15 @@
                     <div class="sidebar-sticky"> 
                         <ul class="nav flex-column">
                             <li class="nav-item">
-                                <a class="nav-link active text-white" href="#">PERSONNEL</a>
-                                <a class="nav-link" href="/gestock/personnel/voirliste²">VOIR LA LISTE DU PERSONNEL</a>
-                                <a href="/gestock/personnel/ajouterposte">AJOUTER UN POSTE</a>
+                                PERSONNEL
+                                <a class="nav-link" href="/gestock/personnel/liste-postes">LISTE DES POSTES</a>
+                                <a href="/gestock/personnel/ajouter-poste">AJOUTER UN POSTE</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white dropdown-toggle" data-toggle="dropdown" href="#"><img src="images\icones\dossier.png"> ARTICLES</a>
                                 <div class="dropdown-menu">
-                                <a class="dropdown-item" href="listnomArticles.php">Voir Liste des Articles</a>
-                                <a class="dropdown-item" href="ajoutnomArticle.php">Ajouter un Article</a>
+                                <a class="dropdown-item" href="/gestock/nomarticles/liste-nom-article">Voir Liste des Articles</a>
+                                <a class="dropdown-item" href="/gestock/nomarticles/ajouter-nom-article">Ajouter un Article</a>
                                 </div>
                             </li>
                          </ul>
@@ -63,7 +63,7 @@
                                 This week
                             </button>
                         </div>
-                    </div>
+s                    </div>
                     <div>
                     <?= $content ?> 
                     </div>
@@ -71,11 +71,8 @@
                 <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
             </div>
         </div>
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-    
-         
-</body>
-    
+        <script src="bootstrap/js/jquery.min.js"></script>
+        <script src="bootstrap/js/propper.min.js"></script>
+        <script src="bootstrap/js/bootstrap.min.js"></script>
+    </body>
 </html>
