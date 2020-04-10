@@ -34,8 +34,8 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
                             PERSONNEL
-                                <a class="nav-link" href="/gestock/personnel/voirliste²">VOIR LA LISTE DU PERSONNEL</a>
-                                <a href="/gestock/personnel/ajouterposte">AJOUTER UN POSTE</a>
+                                <a class="nav-link" href="/gestock/personnel/listeposte">LISTE DES POSTES</a>
+                                <a href="/gestock/personnel/form-ajouterposte">AJOUTER UN POSTE</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/gestock/nomarticles/">ARTICLES</a>

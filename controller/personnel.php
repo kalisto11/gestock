@@ -14,6 +14,7 @@
                        case 'ajouterposte':
                         $poste = new Poste(null, $_POST['nom']);
                         $poste->save();
+                        $this->request->action = 'listeposte';
                        break;
                    }
                }
@@ -28,10 +29,11 @@
             else{
                 switch ($view){
 
-                    case 'voirpostes':
+                    case 'listeposte':
+                        require_once VIEW . 'personnel/listeposte.php';
                     break;
     
-                    case 'ajouterposte':
+                    case 'form-ajouterposte':
                         require_once VIEW . 'personnel/ajoutposte.php';
                     break;
     
