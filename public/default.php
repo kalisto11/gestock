@@ -35,7 +35,6 @@
                             <li class="nav-item">
                                 PERSONNEL
                                 <a class="nav-link" href="/gestock/personnel/liste-postes">LISTE DES POSTES</a>
-                                <a href="/gestock/personnel/ajouter-poste">AJOUTER UN POSTE</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white dropdown-toggle" data-toggle="dropdown" href="#"><img src="images\icones\dossier.png"> ARTICLES</a>

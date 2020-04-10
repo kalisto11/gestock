@@ -14,20 +14,24 @@
                        case 'traitement-ajouter-poste':
                         $poste = new Poste(null, $_POST['nom']);
                         $poste->save();
-                        $this->request->action = 'liste-poste';
+                        $this->request->action = 'liste-postes';
+                        $this->render();
                        break;
                    }
                }
             }
-            $this->render($this->request->action);
-        }
+            else if ($this->request->method === 'GET'){
+                $this->render($this->request->action);
+            }
+        } // fin méthode process
 
-        public function render($view){
+        public function render(){
             if ($this->request->action === ''){
-                echo 'afficher la liste du personnel ici';
+                $this->request->action = 'liste-personnel';
+                // recupere et afficher liste personnel
             }
             else{
-                switch ($view){
+                switch ($this->request->action){
 
                     case 'liste-postes':
                         $postes = Poste::findAll();
@@ -39,17 +43,23 @@
                     break;
     
                     case 'modifier-poste':
-                        echo 'Afficher formulaire de modification de poste ici';
+                        $idPoste = intval($this->request->id);
+                        $poste  = new Poste($idPoste);
+                        require_once VIEW . 'personnel/modifposte.php';
                     break;
     
                     case 'supprimer-poste':
-                        echo 'supprimer le poste ici';
+                        $idPoste = intval($this->request->id);
+                        $poste  = new Poste($idPoste);
+                        $poste->delete();
+                        $postes = Poste::findAll();
+                        require_once VIEW . 'personnel/listeposte.php';
                     break;
                 
-                    default: // gestion des erreurs au cas ou la valeur de action n'est pas valide
-                    $currentController = new Erreur($this->request);
-                    $currentController->render();
+                    default: // gestion des erreurs au cas ou la valeur de action 
+                        $currentController = new Erreur($this->request);
+                        $currentController->render();
                 }
-            }  
+            }
         }
     }
