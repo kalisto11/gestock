@@ -32,9 +32,14 @@
                 <nav class="col-md-2 d-none d-md-block bg-light sidebar mt-5">
                     <div class="sidebar-sticky">
                         <ul class="nav flex-column">
-                            <li class="nav-item">
-                                <a class="nav-link active" href="">PERSONNEL</a>
-                                <a href="/gestock/personnel/ajouterposte">Ajouter un poste</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link active dropdown-toggle" data-toggle="dropdown" 
+                                  href=""><img src="images/icones/personnel.jpg" title="personnel">PERSONNEL
+                                </a>
+                                <div class="dropdown-menu">
+                                  <a class="dropdown-item" href="/gestock/personnel/voirliste">La liste du personnel</a>
+                                  <a class="dropdown-item" href="/gestock/personnel/ajouterposte">Ajouter un poste</a>
+                                </div>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="/gestock/nomarticles/">ARTICLES</a>
@@ -66,8 +71,8 @@
                 <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
             </div>
         </div>
-        <script src="bootstrap/js/jquery.min.js"></script>
-        <script src="bootstrap/js/propper.min.js"></script>
-        <script src="bootstrap/js/bootstrap.js"></script>
+        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
     </body>
 </html>
