@@ -12,6 +12,7 @@
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <!-- Fichier css  -->
         <link rel="stylesheet" href="css/style.css">
+        <link rel="stylesheet" href="css/menu.css">
     </head>
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
@@ -29,20 +30,43 @@
         <div class="container-fluid">
             <div class="row">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
-                <nav class="col-md-2 d-none d-md-block bg-secondary sidebar mt-5">
-                    <div class="sidebar-sticky"> 
-                        <ul class="nav flex-column">
-                            <li class="nav-item">
-                                PERSONNEL
-                                <a class="nav-link" href="/gestock/postes/liste-postes">GERER LES POSTES</a>
-                            </li>
-                            <li class="nav-item"> ARTICLES
-                                <a class="nav-link" href="/gestock/articles/liste-articles">GERER LES ARTICLES</a>
-                               
-                            </li>
-                         </ul>
-                    </div>
-                </nav>
+                <div class="nav-side-menu">
+                <div class="brand">LOGO</div>
+                <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
+                <div class="menu-list">
+                    <ul id="menu-content" class="menu-content collapse out">
+                        <li>
+                            <a href="#">
+                            <i class="fa fa-dashboard fa-lg"></i>
+                            Tableau de bord
+                            </a>
+                        </li>
+                        <li  data-toggle="collapse" data-target="#personnel" class="collapsed">
+                            <i class="fa fa-gift fa-lg"></i>Personnel<span class="arrow"></span>
+                        </li>
+                        <ul class="sub-menu collapse" id="personnel">
+                            <li><a href="#">Agents</a></li>
+                            <li><a href="/gestock/postes/liste-postes">Postes</a></li>
+                        </ul>
+                        <li data-toggle="collapse" data-target="#bons" class="collapsed">
+                            <i class="fa fa-globe fa-lg"></i>Bons<span class="arrow"></span>
+                        </li>  
+                        <ul class="sub-menu collapse" id="bons">
+                            <li><a href="">Nom des Articles</a></li>
+                            <li><a href="">Bon d'entrée</a></li>
+                            <li><a href="">Bon de sortie</a></li>
+                        </ul>
+                        <li data-toggle="collapse" data-target="#journal" class="collapsed">
+                            <i class="fa fa-car fa-lg"></i>Journal<span class="arrow"></span>
+                        </li>
+                        <ul class="sub-menu collapse" id="journal">
+                            <li><a href="">Livre Journal</a></li>
+                            <li><a href="">Grand Livre</a></li>
+                        </ul>
+                    </ul>
+                </div>
+                </div>
+            </div>
                 <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
 
                 <!-- ZONE D'AFFICHAGE DU CONTENU -->
