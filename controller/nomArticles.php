@@ -17,18 +17,18 @@
                 break;
                 case 'modiferarticle':
                     $nomarticle = new Articles(null, $_POST['nom']);
-                    $nomarticle->modifarticle();
+                    $nomarticle->modif();
                 break;
             }
         }elseif ($this->request->method === 'GET'){
             if ($this->request->action != null){
                 switch ($this->request->action){
                     case 'voirarticle':
-                        $nomarticles = Articles::listarticles();
+                        $nomarticles = Articles::listArticles();
                     break;
                     case 'supprimerarticle':
                         $nomarticle = new Articles($id);
-                        $nomarticle->supprimer();
+                        $nomarticle->supprime();
                         $nomarticles = Articles::listArticles();
                     break;
                 }

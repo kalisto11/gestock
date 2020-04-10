@@ -5,7 +5,7 @@
     
     class Erreur extends Controller{
 
-        public function render(){
+        public function process(){
             echo 'Page introuvable';
         }
     }
