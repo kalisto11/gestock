@@ -5,7 +5,11 @@
     
     class Erreur extends Controller{
 
-        public function render(){
+        public function process(){
+            $this->render($this->request->action);
+        }
+
+        public function render($view){
             echo 'Page introuvable';
         }
     }

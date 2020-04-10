@@ -31,7 +31,7 @@
 
                     default: // gestion des erreurs au cas ou la valeur de action n'est pas valide
                     $currentController = new Erreur($this->request);
-                    $currentController->render();
+                    $currentController->process();
                 }
             }
         } 
