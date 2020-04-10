@@ -10,7 +10,7 @@
 
         public function __construct($id = null, $nom = null){
             if ($id === !null){
-                $pdo = $bdd->getPDO();
+                $pdo = Database::getPDO();
                 $req = 'SELECT * from poste WHERE id = ?';
                 $reponse = $pdo->prepare($req);
                 $reponse->execute(array($id));
@@ -32,7 +32,7 @@
         }
 
         public function update(){
-            $pdo = $bdd->getPDO();
+            $pdo = Database::getPDO();
             $req = 'UPDATE poste SET nom = :nom, WHERE id = :id';
             $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
             $resultat = $reponse->execute(array(
@@ -42,14 +42,14 @@
         }
 
         public function delete($id){
-            $pdo = $bdd->getPDO();
+            $pdo = Database::getPDO();
             $req = 'DELETE from poste WHERE id = ?';
             $reponse = $pdo->prepare('DELETE from poste WHERE id = ?');
             $reponse->execute(array($this->id));
         }
 
         public static function findAll(){
-            $pdo = $bdd->getPDO();
+            $pdo = Database::getPDO();
             $req = 'SELECT * from poste';
             $reponse = $pdo->query($req);
             $postes = array();

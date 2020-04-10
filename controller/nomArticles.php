@@ -11,7 +11,7 @@
             if ($this->request->method === 'POST'){
                if ($this->request->action != null){
                switch ($this->request->action){
-                case 'ajouterarticle':
+                case 'ajouter-nom-article':
                  $nomarticle = new Articles(null, $_POST['nom']);
                  $nomarticle->ajoutArticle();
                 break;
@@ -23,7 +23,7 @@
         }elseif ($this->request->method === 'GET'){
             if ($this->request->action != null){
                 switch ($this->request->action){
-                    case 'voirarticle':
+                    case 'liste-nom-article':
                         $nomarticles = Articles::listArticles();
                     break;
                     case 'supprimerarticle':
@@ -38,7 +38,8 @@
         $this->render($this->request->action);
         }
         public function render($view){
-            if ($view === ''){
+            if ($this->request->action === ''){
+                
                 // afficher la vue si action n'existe pas (vide)
 
 
@@ -69,7 +70,7 @@
 
                     default: // gestion des erreurs au cas ou la valeur de action n'est pas valide
                     $currentController = new Erreur($this->request);
-                    $currentController->render();
+                    $currentController->process();
                 }
             }
         } 

@@ -3,7 +3,7 @@ class Articles {
     public $id;
     public $nom;
 
-    public function __construct($id = null){
+    public function __construct($id = null, $nom = null){
         if ($id === !null){
             $pdo = Database::getPDO();
         $req = 'SELECT * FROM gestock WHERE id= ?';

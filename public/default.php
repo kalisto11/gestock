@@ -34,15 +34,15 @@
                         <ul class="nav flex-column">
                             <li class="nav-item">
                                 <a class="nav-link active text-white" href="#">PERSONNEL</a>
-                                <a class="nav-link" href="/gestock/personnel/voirliste²">VOIR LA LISTE DU PERSONNEL</a>
-
-                                <a href="/gestock/personnel/ajouterposte">AJOUTER UN POSTE</a>
+                                <a class="nav-link" href="/gestock/personnel/liste-postes">LISTE DES POSTES</a>
+                                <a href="/gestock/personnel/ajouter-poste">AJOUTER UN POSTE</a>
                             </li>
                             <li class="nav-item">
                                 <a class="nav-link text-white dropdown-toggle" data-toggle="dropdown" href="#"><img src="images\icones\dossier.png"> ARTICLES</a>
                                 <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/gestock/nomarticle/voirarticle">Voir Liste des Articles</a>
-                                <a class="dropdown-item" href="/gestock/nomarticle/ajouterarticle">Ajouter un Article</a>
+                                <a class="dropdown-item" href="/gestock/nomarticles/liste-nom-article">Voir Liste des Articles</a>
+                                <a class="dropdown-item" href="/gestock/nomarticles/ajouter-nom-article">Ajouter un Article</a>
+
                                 </div>
                             </li>
                          </ul>
