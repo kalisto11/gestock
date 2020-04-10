@@ -36,12 +36,9 @@
                                 PERSONNEL
                                 <a class="nav-link" href="/gestock/postes/liste-postes">GERER LES POSTES</a>
                             </li>
-                            <li class="nav-item">
-                                <a class="nav-link text-white dropdown-toggle" data-toggle="dropdown" href="#"><img src="images\icones\dossier.png"> ARTICLES</a>
-                                <div class="dropdown-menu">
-                                <a class="dropdown-item" href="/gestock/nomarticles/liste-nom-article">Voir Liste des Articles</a>
-                                <a class="dropdown-item" href="/gestock/nomarticles/ajouter-nom-article">Ajouter un Article</a>
-                                </div>
+                            <li class="nav-item"> ARTICLES
+                                <a class="nav-link" href="/gestock/articles/liste-articles">GERER LES ARTICLES</a>
+                               
                             </li>
                          </ul>
                     </div>

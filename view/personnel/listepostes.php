@@ -1,7 +1,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8">
-            <h2>Postes</h2>
+        <h2>Postes</h2>
             <table>
                 <tr>
                     <th class="th-md">Poste</th>
