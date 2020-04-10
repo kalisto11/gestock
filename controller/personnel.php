@@ -30,6 +30,7 @@
                 switch ($view){
 
                     case 'liste-postes':
+                        $postes = Poste::findAll();
                         require_once VIEW . 'personnel/listeposte.php';
                     break;
     
