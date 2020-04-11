@@ -6,59 +6,74 @@
     
     require_once CONTROLLER . 'controller.php';
     class NomArticles extends Controller{
-
-                    public function process(){
-                        if ($this->request->method === 'POST'){
-                             if ($this->request->action != null){
-                                switch ($this->request->action){
-                                     case 'traitement-article':
-                                        switch ($_POST['operation']){
-                                            case 'ajouter-nom-article':
-                                                $nomarticle = new Article();
-                                             
-                                                $nomarticle->nom = $_POST['nomArticle'];
-                                            
-                                                $nomarticle->ajoutArticle();
-                                                $this->request->action = 'list-nom-article';
-                                                $this->render();
-                                            break;
-                                            break;
-                                            
-                                            case 'modifier-article':
-                                                $nomarticle = new Article();
-                                                $nomarticle->nom = $_POST['nomArticle'];
-                                                $nomarticle->id = $_POST['idArticle'];
-                                                $nomarticle->modif();
-                                                $this->request->action = 'list-nom-article';
-                                                $this->render();
-                                            break;
-                                        }default;
-                                }
-                            }
-                        } elseif ($this->request->method === 'GET'){ //Si la requete vient d'un lien
-           
-                            switch ($this->request->action){
-                                case 'list-nom-article':
-                                $this->render();
-                                break;
-                                case 'supprimer-article':
-                                    $idArticle = intval($this->request->id);
-                                    $nomarticle = new Article($idArticle);
-                                    
-                                    $nomarticle->supprime(); 
+        public function process(){
+            if ($this->request->method === 'POST'){
+                if ($this->request->action != null){
+                    switch ($this->request->action){
+                        case 'traitement-article':
+                            switch ($_POST['operation']){
+                                case 'ajouter-nom-article':
+                                    if(!empty($_POST['nomArticle'])){
+                                        $nomarticle = new Article();
+                                        $nomarticle->nom = $_POST['nomArticle'];                                            
+                                        $nomarticle->ajoutArticle();
+                                        $this->message['type'] = 'success';
+                                        $this->message['contenu'] = 'Le poste a été ajouté avec succès.';
+                                    }
+                                    else{
+                                        $this->message['type'] = 'danger';
+                                        $this->message['contenu'] = "Le nom du poste ne doit pas etre vide.";
+                                    }       
                                     $this->request->action = 'list-nom-article';
-                                    $this->render();
-                                break;
-
+                                    $this->render($this->message);
+                                break;  
                                 case 'modifier-article':
-                                    $this->render();
+                                    if(!empty($_POST['nomArticle'])){
+                                        $nomarticle = new Article();
+                                        $nomarticle->nom = $_POST['nomArticle'];
+                                        $nomarticle->id = $_POST['idArticle'];
+                                        $nomarticle->modif();
+                                        $this->message['type'] = 'success';
+                                        $this->message['contenu'] = 'Le poste a été modifié avec succès.';
+                                    }
+                                    else{
+                                        $this->message['type'] = 'danger';
+                                        $this->message['contenu'] = 'Le nom du poste ne doit pas etre vide.';
+                                    }
+                                    $this->request->action = 'list-nom-article';
+                                    $this->request->id = $nomarticle->id;
+                                    $this->render($this->message);
                                 break;
+                                default:
+                                    $this->message['type'] = 'danger';
+                                    $this->message['contenu'] = 'Une erreur s\'est produite pendant le traitement des données. Veuillez rééssayer svp.';
+                                    $this->request->action = 'liste-postes';
+                                    $this->render($this->message);
                             }
-                        }
+                    }
+                }
+            } elseif ($this->request->method === 'GET'){ //Si la requete vient d'un lien
+                switch ($this->request->action){
+                    case 'list-nom-article':
+                        $this->render();
+                    break;
+                    case 'supprimer-article':
+                        $idArticle = intval($this->request->id);
+                        $nomarticle = new Article($idArticle);
+                        $nomarticle->supprime(); 
+                        $this->request->action = 'list-nom-article';
+                        $this->message['type'] = 'success';
+                        $this->message['contenu'] = 'Le poste a été supprimé avec succès.';
+                        $this->render($this->message);
+                    break;
+                    case 'modifier-article':
+                        $this->render();
+                    break;
+                }
+            }
         } 
          // fin méthode process
-        public function render(){
-            
+        public function render($message = null){
              switch ($this->request->action){
                 // inclure les vues ici selon la valeur de $view
                 case 'list-nom-article':
@@ -84,6 +99,6 @@
                     
             }
         }
-     } 
+    } 
     
 
