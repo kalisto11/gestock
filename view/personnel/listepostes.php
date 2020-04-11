@@ -1,8 +1,4 @@
-<?php if (isset($message['contenu']) && $message['contenu'] != null) : ?>
-    <div class="alert alert-<?= $message['type'] ?>" role="alert">
-    <?= $message['contenu'] ?>
-    </div>
-<?php endif ; ?>
+<?php require VIEW . 'infos/notifications.php'; ?>
 
 <div class="container-fluid">
     <div class="row">

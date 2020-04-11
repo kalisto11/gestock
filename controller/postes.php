@@ -19,11 +19,11 @@
                                     $poste->nom = $_POST['nomPoste'];
                                     $poste->save();
                                     $this->message['type'] = 'success';
-                                    $this->message['contenu'] = 'Le poste a été ajouté avec succès';
+                                    $this->message['contenu'] = 'Le poste a été ajouté avec succès.';
                                 }
                                 else{
                                     $this->message['type'] = 'danger';
-                                    $this->message['contenu'] = "Le nom du poste ne doit pas etre vide";
+                                    $this->message['contenu'] = "Le nom du poste ne doit pas etre vide.";
                                 }
                                 $this->request->action = 'liste-postes';
                                 $this->render($this->message);
@@ -32,14 +32,25 @@
                             case 'modifier':
                                 $poste = new Poste($_POST['idPoste']);
                                 $poste->nom = $_POST['nomPoste'];
-                                $poste->update();
-                                $this->request->action = 'liste-postes';
-                                $this->message['type'] = 'success';
-                                $this->message['contenu'] = 'Le poste a été modifié avec succès';
+                                if (!empty($_POST['nomPoste'])){
+                                    $poste->update();
+                                    $this->message['type'] = 'success';
+                                    $this->message['contenu'] = 'Le poste a été modifié avec succès.';
+                                }
+                                else{
+                                    $this->message['type'] = 'danger';
+                                    $this->message['contenu'] = 'Le nom du poste ne doit pas etre vide.';
+                                }
+                                $this->request->action = 'modifier-poste';
+                                $this->request->id = $poste->id;
                                 $this->render($this->message);
                             break;
 
-                            default;
+                            default:
+                            $this->message['type'] = 'danger';
+                            $this->message['contenu'] = 'Une erreur s\'est produite pendant le traitement des données. Veuillez rééssayer svp.';
+                            $this->request->action = 'liste-postes';
+                            $this->render($this->message);
                         }
                    }
                }
@@ -58,7 +69,7 @@
                         $poste->delete();
                         $this->request->action = 'liste-postes';
                         $this->message['type'] = 'success';
-                        $this->message['contenu'] = 'Le poste a été supprimé avec succès';
+                        $this->message['contenu'] = 'Le poste a été supprimé avec succès.';
                         $this->render($this->message);
                     break;
 
@@ -86,7 +97,7 @@
             
                 default: // gestion des erreurs au cas ou la valeur de action 
                     $currentController = new Erreur($this->request);
-                    $currentController->render();
+                    $currentController->process();
             }
         }
     }
