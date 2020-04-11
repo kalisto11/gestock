@@ -36,13 +36,15 @@
                                     $poste->update();
                                     $this->message['type'] = 'success';
                                     $this->message['contenu'] = 'Le poste a été modifié avec succès.';
+                                    $this->request->action = 'liste-postes';
                                 }
                                 else{
                                     $this->message['type'] = 'danger';
                                     $this->message['contenu'] = 'Le nom du poste ne doit pas etre vide.';
+                                    $this->request->action = 'modifier-poste';
+                                    $this->request->id = $poste->id;
                                 }
-                                $this->request->action = 'modifier-poste';
-                                $this->request->id = $poste->id;
+                               
                                 $this->render($this->message);
                             break;
 
