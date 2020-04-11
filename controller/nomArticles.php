@@ -18,11 +18,11 @@
                                         $nomarticle->nom = $_POST['nomArticle'];                                            
                                         $nomarticle->ajoutArticle();
                                         $this->message['type'] = 'success';
-                                        $this->message['contenu'] = 'Le poste a été ajouté avec succès.';
+                                        $this->message['contenu'] = 'L\'article a été ajouté avec succès.';
                                     }
                                     else{
                                         $this->message['type'] = 'danger';
-                                        $this->message['contenu'] = "Le nom du poste ne doit pas etre vide.";
+                                        $this->message['contenu'] = "Le nom de l\'article ne doit pas etre vide.";
                                     }       
                                     $this->request->action = 'list-nom-article';
                                     $this->render($this->message);
@@ -34,11 +34,11 @@
                                         $nomarticle->id = $_POST['idArticle'];
                                         $nomarticle->modif();
                                         $this->message['type'] = 'success';
-                                        $this->message['contenu'] = 'Le poste a été modifié avec succès.';
+                                        $this->message['contenu'] = 'L\'article a été modifié avec succès.';
                                     }
                                     else{
                                         $this->message['type'] = 'danger';
-                                        $this->message['contenu'] = 'Le nom du poste ne doit pas etre vide.';
+                                        $this->message['contenu'] = 'Le nom de l\'article ne doit pas etre vide.';
                                     }
                                     $this->request->action = 'list-nom-article';
                                     $this->request->id = $nomarticle->id;
@@ -63,7 +63,7 @@
                         $nomarticle->supprime(); 
                         $this->request->action = 'list-nom-article';
                         $this->message['type'] = 'success';
-                        $this->message['contenu'] = 'Le poste a été supprimé avec succès.';
+                        $this->message['contenu'] = 'L\article a été supprimé avec succès.';
                         $this->render($this->message);
                     break;
                     case 'modifier-article':
