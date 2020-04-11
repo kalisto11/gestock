@@ -28,26 +28,28 @@
                                     $this->render($this->message);
                                 break;  
                                 case 'modifier-article':
-                                    if(!empty($_POST['nomArticle'])){
+                                    
                                         $nomarticle = new Article();
                                         $nomarticle->nom = $_POST['nomArticle'];
                                         $nomarticle->id = $_POST['idArticle'];
+                                        if(!empty($_POST['nomArticle'])){
                                         $nomarticle->modif();
                                         $this->message['type'] = 'success';
                                         $this->message['contenu'] = 'L\'article a été modifié avec succès.';
+                                        $this->request->action = 'list-nom-article';
                                     }
                                     else{
                                         $this->message['type'] = 'danger';
                                         $this->message['contenu'] = 'Le nom de l\'article ne doit pas etre vide.';
+                                        $this->request->action = 'modifier-article';
+                                        $this->request->id = $nomarticle->id;
                                     }
-                                    $this->request->action = 'list-nom-article';
-                                    $this->request->id = $nomarticle->id;
                                     $this->render($this->message);
                                 break;
                                 default:
                                     $this->message['type'] = 'danger';
                                     $this->message['contenu'] = 'Une erreur s\'est produite pendant le traitement des données. Veuillez rééssayer svp.';
-                                    $this->request->action = 'liste-postes';
+                                    $this->request->action = 'list-nom-article';
                                     $this->render($this->message);
                             }
                     }
