@@ -52,7 +52,7 @@
                             <i class="fa fa-globe fa-lg"></i>Bons<span class="arrow"></span>
                         </li>  
                         <ul class="sub-menu collapse" id="bons">
-                            <li><a href="">Nom des Articles</a></li>
+                            <li><a href="/gestock/nomarticles/list-nom-article">Nom des Articles</a></li>
                             <li><a href="">Bon d'entrée</a></li>
                             <li><a href="">Bon de sortie</a></li>
                         </ul>

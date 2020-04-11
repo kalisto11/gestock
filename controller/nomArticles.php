@@ -35,7 +35,7 @@
         }
     }
         elseif ($this->request->method === 'GET'){
-            if ($this->request->action != null){
+           
                 switch ($this->request->action){
                     case 'list-nom-article':
                        $this->render();
@@ -53,10 +53,9 @@
                     break;
                 }
             }
-        }
-    }  
+        } 
          // fin méthode process
-        public function render($view){
+        public function render(){
             
                 switch ($this->request->action){
                      // inclure les vues ici selon la valeur de $view
@@ -68,11 +67,11 @@
                         $idarticle = intval($this->request->id);
                         $currentArticle = new Article($idarticle);
                         $nomarticles = Article::listArticles();
-                        require_once VIEW . 'nomarticle/modifnomarticle.php';
+                        require_once VIEW . 'nomarticle/listnomArticle.php';
                     break;
-                    case 'ajouter-nom-article':
+                    case 'ajouter-article':
                         echo 'Formulaire d\'ajout';
-                         require_once   VIEW . 'nomarticle/ajoutnomarticle.php';
+                         require_once   VIEW . 'nomarticle/listnomArticle.php';
                     break;
                     case 'supprimer-article':
                         require_once VIEW . 'nomarticle/listnomarticles.php';
