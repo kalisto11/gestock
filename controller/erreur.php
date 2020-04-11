@@ -9,7 +9,13 @@
             $this->render();
         }
 
-        public function render(){
-            echo 'Page introuvable';
+        public function render($message = null){
+            if ($message === null){
+                echo 'Page introuvable';
+            }
+            else{
+                require_once VIEW . 'erreur/default.php';
+            }
+            
         }
     }

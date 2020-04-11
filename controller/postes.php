@@ -14,12 +14,19 @@
                        case 'traitement-poste':
                         switch ($_POST['operation']){
                             case 'ajouter':
-                                $poste = new Poste();
-                                $poste->nom = $_POST['nomPoste'];
-                                $poste->save();
+                                if (!empty($_POST['nomPoste'])){
+                                    $poste = new Poste();
+                                    $poste->nom = $_POST['nomPoste'];
+                                    $poste->save();
+                                    $this->message['type'] = 'success';
+                                    $this->message['contenu'] = 'Le poste a été ajouté avec succès';
+                                }
+                                else{
+                                    $this->message['type'] = 'danger';
+                                    $this->message['contenu'] = "Le nom du poste ne doit pas etre vide";
+                                }
                                 $this->request->action = 'liste-postes';
-                                $this->render();
-                               break;
+                                $this->render($this->message);
                             break;
 
                             case 'modifier':
@@ -27,8 +34,9 @@
                                 $poste->nom = $_POST['nomPoste'];
                                 $poste->update();
                                 $this->request->action = 'liste-postes';
-                                $this->render();
-                               break;
+                                $this->message['type'] = 'success';
+                                $this->message['contenu'] = 'Le poste a été modifié avec succès';
+                                $this->render($this->message);
                             break;
 
                             default;
@@ -49,7 +57,9 @@
                         $poste  = new Poste($idPoste, null);
                         $poste->delete();
                         $this->request->action = 'liste-postes';
-                        $this->render();
+                        $this->message['type'] = 'success';
+                        $this->message['contenu'] = 'Le poste a été supprimé avec succès';
+                        $this->render($this->message);
                     break;
 
                     case 'modifier-poste':
@@ -59,7 +69,7 @@
             }
         } // fin méthode process
 
-        public function render(){
+        public function render($message = null){
             switch ($this->request->action){
 
                 case 'liste-postes':

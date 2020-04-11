@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div>
-                    <?= $content ?> 
+                    <?= $content ?>
                     </div>
                 </main>
                 <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->

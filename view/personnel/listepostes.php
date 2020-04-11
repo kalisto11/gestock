@@ -1,3 +1,9 @@
+<?php if (isset($message['contenu']) && $message['contenu'] != null) : ?>
+    <div class="alert alert-<?= $message['type'] ?>" role="alert">
+    <?= $message['contenu'] ?>
+    </div>
+<?php endif ; ?>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8">

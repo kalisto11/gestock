@@ -6,6 +6,7 @@
 
     class Controller{
         public $request;
+        public $message = array();
 
         public function __construct($request){
             $this->request = $request;
