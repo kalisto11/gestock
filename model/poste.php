@@ -22,9 +22,9 @@
             else{
                 $this->id = null;
                 $this->nom = null;
-            }
-        }
 
+            }
+         }
         public function save(){
             $pdo = Database::getPDO();
             $req = 'INSERT INTO poste (nom) VALUES (:nom)';
