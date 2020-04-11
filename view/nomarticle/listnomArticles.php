@@ -21,13 +21,13 @@
         <div class="col-md-4">
             <h2>Ajouter un article</h2>
             <div class="container-fluid">
-                <form method="article" action="/gestock/nomarticles/traitement-article">
+                <form method="post" action="/gestock/nomarticles/traitement-article">
                     <div class="form-group">
-                        <label for="nom">nom de article</label>
+                        <label for="nom">Nom de l'Article</label>
                         <input class="form-control" type="text" name="nomArticle" value="<?php if (isset($currentArticle->id)){echo $currentArticle->nom;} ?>">
                     </div>
-                    <input type="hidden" name="operation" value="<?php if (isset($currentArticle->id)){echo 'modifier-article';}else{echo 'ajouter-article';} ?>">
-                    <input type="hidden" name="idArticle" value="<?php if (isset($currentArticle->id)){echo $currentArticlee->id ;} ?>">
+                    <input type="hidden" name="operation" value="<?php if (isset($currentArticle->id)){echo 'modifier-article';}else{echo 'ajouter-nom-article';} ?>">
+                    <input type="hidden" name="idArticle" value="<?php if (isset($currentArticle->id)){echo $currentArticle->id ;} ?>">
                     <input type="submit" value="<?php if (isset($currentArticle->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-success">
                 </form>
             </div>     
