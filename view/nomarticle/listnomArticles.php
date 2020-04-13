@@ -21,7 +21,7 @@
             </table>
         </div>  
         <div class="col-md-4">
-            <h2>Ajouter un article</h2>
+        <h2 class="mt-5"><?php if (isset($currentArticle->id)){echo 'Modifier l\'article';}else{echo 'Ajouter un article';} ?></h2>
             <div class="container-fluid">
                 <form method="post" action="/gestock/nomarticles/traitement-article">
                     <div class="form-group">
@@ -31,6 +31,9 @@
                     <input type="hidden" name="operation" value="<?php if (isset($currentArticle->id)){echo 'modifier-article';}else{echo 'ajouter-nom-article';} ?>">
                     <input type="hidden" name="idArticle" value="<?php if (isset($currentArticle->id)){echo $currentArticle->id ;} ?>">
                     <input type="submit" value="<?php if (isset($currentArticle->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-success">
+                    <?php if (isset($currentArticle->id)): ?>
+                    <a class="btn btn-danger" href="/gestock/nomarticles/list-nom-article">Annuler</a>
+                    <?php endif ; ?>
                 </form>
             </div>     
         </div>
