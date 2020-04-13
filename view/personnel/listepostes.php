@@ -1,3 +1,5 @@
+<?php require VIEW . 'infos/notifications.php'; ?>
+
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8">
@@ -29,6 +31,9 @@
                     <input type="hidden" name="operation" value="<?php if (isset($currentPoste->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
                     <input type="hidden" name="idPoste" value="<?php if (isset($currentPoste->id)){echo $currentPoste->id ;} ?>">
                     <input type="submit" value="<?php if (isset($currentPoste->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-success">
+                    <?php if (isset($currentPoste->id)): ?>
+                    <a class="btn btn-danger" href="/gestock/postes/liste-postes">Annuler</a>
+                    <?php endif ; ?>
                 </form>
             </div>     
         </div>

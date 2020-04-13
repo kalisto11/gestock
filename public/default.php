@@ -18,7 +18,7 @@
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
                 <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">TEAM UVS KAFFRINE</a>
-                <input class="form-control form-control-dark w-100" type="text" placeholder="Recherche" aria-label="Search">
+                <input class="form-control form-control-dark w-50" type="text" placeholder="Recherche" aria-label="Search">
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
                     <a class="nav-link" href="#">Connexion</a>
@@ -52,7 +52,7 @@
                             <i class="fa fa-globe fa-lg"></i>Bons<span class="arrow"></span>
                         </li>  
                         <ul class="sub-menu collapse" id="bons">
-                            <li><a href="">Nom des Articles</a></li>
+                            <li><a href="/gestock/nomarticles/list-nom-article">Nom des Articles</a></li>
                             <li><a href="">Bon d'entrée</a></li>
                             <li><a href="">Bon de sortie</a></li>
                         </ul>
@@ -85,7 +85,7 @@
                         </div>
                     </div>
                     <div>
-                    <?= $content ?> 
+                    <?= $content ?>
                     </div>
                 </main>
                 <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
@@ -94,5 +94,6 @@
         <script src="bootstrap/js/jquery.min.js"></script>
         <script src="bootstrap/js/propper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
+        <script src="js/main.js"></script>
     </body>
 </html>
