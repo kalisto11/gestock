@@ -21,7 +21,7 @@
             </table>
         </div>  
         <div class="col-md-4">
-            <h3>Ajouter un poste</h3>
+        <h2 class="mt-5"><?php if (isset($currentPoste->id)){echo 'Modifier le poste';}else{echo 'Ajouter un poste';} ?></h2>
             <div class="container-fluid">
                 <form method="post" action="/gestock/postes/traitement-poste">
                     <div class="form-group">
@@ -31,6 +31,9 @@
                     <input type="hidden" name="operation" value="<?php if (isset($currentPoste->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
                     <input type="hidden" name="idPoste" value="<?php if (isset($currentPoste->id)){echo $currentPoste->id ;} ?>">
                     <input type="submit" value="<?php if (isset($currentPoste->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-success">
+                    <?php if (isset($currentPoste->id)): ?>
+                    <a class="btn btn-danger" href="/gestock/postes/liste-postes">Annuler</a>
+                    <?php endif ; ?>
                 </form>
             </div>     
         </div>
