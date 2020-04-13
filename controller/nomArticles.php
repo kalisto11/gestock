@@ -65,7 +65,7 @@
                         $nomarticle->supprime(); 
                         $this->request->action = 'list-nom-article';
                         $this->message['type'] = 'success';
-                        $this->message['contenu'] = 'L\article a été supprimé avec succès.';
+                        $this->message['contenu'] = 'L\'article a été supprimé avec succès.';
                         $this->render($this->message);
                     break;
                     case 'modifier-article':
