@@ -29,32 +29,18 @@
       background-color: rgb(75, 122, 223);
       text-align: center;
       width: 50%;
-  }
-  table{
-    width: 100%;
-    border-collapse: collapse;
-    text-align: center;  
-    margin-left: 20px;
-}
+    }
 th, td{
-    border: 2px solid rgba(0, 4, 8, 0.719);
     text-align: center;
 }
 th{
     font-weight: bold;
     font-size: 20px;
-    background-color:rgb(15, 4, 80);
+    background-color:rgb(133, 135, 138);
     color: #fff;
     
 }
 
-/* Pour colorer les lignes pairs et impaires des tableaux*/
-tr:nth-child(even){
-  background: #fff
-}
-tr:nth-child(odd){
-  background:rgba(183, 209, 209, 0.336)
-}
 table a{
   text-decoration: none;
 }
@@ -69,7 +55,7 @@ table a{
 }
 
 .th-sm{
-  width: 20%;
+  width: 10%;
 }
 
 h2, h3, h4, h5, h6{
