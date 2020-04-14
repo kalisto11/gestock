@@ -42,14 +42,19 @@
                             </a>
                         </li>
                         <li  data-toggle="collapse" data-target="#personnel" class="collapsed">
-                            <i class="fa fa-gift fa-lg"></i>Personnel<span class="arrow"></span>
+                            <img src="images/icones/personnel.jpg" class="fa-2x bg-white">Personnel<span class="arrow"></span>
                         </li>
                         <ul class="sub-menu collapse" id="personnel">
+<<<<<<< HEAD
                             <li><a href="#">Agents</a></li>
                             <li><a href="/gestock/postes/liste-postes"><img src="images/icones/postes.JPG" class="mr-2">Postes</a></li>
+=======
+                            <li><a href="#"><img src="images/icones/personnel.png" class="bg-light">Agents</a></li>
+                            <li><a href="/gestock/postes/liste-postes">Postes</a></li>
+>>>>>>> 94486dd1eda2ef1f9a5277448636718f4b771796
                         </ul>
                         <li data-toggle="collapse" data-target="#bons" class="collapsed">
-                            <i class="fa fa-globe fa-lg"></i>Bons<span class="arrow"></span>
+                            <img src="images/icones/bon.png"class="bg-light"></i>Bons<span class="arrow"></span>
                         </li>  
                         <ul class="sub-menu collapse" id="bons">
                             <li><a href="/gestock/nomarticles/list-nom-article"><img src="images/icones/article.png" class="bg-white">Nom des Articles</a></li>
@@ -57,7 +62,7 @@
                             <li><a href=""><img src="images/icones/sortie.JPG" class="mr-2">Bon de sortie</a></li>
                         </ul>
                         <li data-toggle="collapse" data-target="#journal" class="collapsed">
-                            <i class="fa fa-car fa-lg"></i>Journal<span class="arrow"></span>
+                            <img src="images/icones/dossier.png" class="fa-2x bg-light">Journal<span class="arrow"></span>
                         </li>
                         <ul class="sub-menu collapse" id="journal">
                             <li><a href=""><img src="images/icones/livre journal.JPG" class="mr-2">Livre Journal</a></li>

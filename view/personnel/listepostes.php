@@ -21,7 +21,7 @@
             </table>
         </div>  
         <div class="col-md-4">
-            <h3>Ajouter un poste</h3>
+        <h2 class="mt-5"><?php if (isset($currentPoste->id)){echo 'Modifier le poste';}else{echo 'Ajouter un poste';} ?></h2>
             <div class="container-fluid">
                 <form method="post" action="/gestock/postes/traitement-poste">
                     <div class="form-group">
