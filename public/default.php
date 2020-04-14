@@ -52,16 +52,16 @@
                             <i class="fa fa-globe fa-lg"></i>Bons<span class="arrow"></span>
                         </li>  
                         <ul class="sub-menu collapse" id="bons">
-                            <li><a href="/gestock/nomarticles/list-nom-article">Nom des Articles</a></li>
-                            <li><a href="">Bon d'entrée</a></li>
-                            <li><a href="">Bon de sortie</a></li>
+                            <li><a href="/gestock/nomarticles/list-nom-article"><img src="images/icones/article.png">Nom des Articles</a></li>
+                            <li><a href=""><img src="images/icones/entree.JPG">Bon d'entrée</a></li>
+                            <li><a href=""><img src="images/icones/sortie.JPG">Bon de sortie</a></li>
                         </ul>
                         <li data-toggle="collapse" data-target="#journal" class="collapsed">
                             <i class="fa fa-car fa-lg"></i>Journal<span class="arrow"></span>
                         </li>
                         <ul class="sub-menu collapse" id="journal">
-                            <li><a href="">Livre Journal</a></li>
-                            <li><a href="">Grand Livre</a></li>
+                            <li><a href=""><img src="images/icones/livre journal.JPG">Livre Journal</a></li>
+                            <li><a href=""><img src="images/icones/grand livre.JPG">Grand Livre</a></li>
                         </ul>
                     </ul>
                 </div>
