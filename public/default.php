@@ -46,22 +46,22 @@
                         </li>
                         <ul class="sub-menu collapse" id="personnel">
                             <li><a href="#">Agents</a></li>
-                            <li><a href="/gestock/postes/liste-postes">Postes</a></li>
+                            <li><a href="/gestock/postes/liste-postes"><img src="images/icones/postes.JPG" class="mr-2">Postes</a></li>
                         </ul>
                         <li data-toggle="collapse" data-target="#bons" class="collapsed">
                             <i class="fa fa-globe fa-lg"></i>Bons<span class="arrow"></span>
                         </li>  
                         <ul class="sub-menu collapse" id="bons">
-                            <li><a href="/gestock/nomarticles/list-nom-article"><img src="images/icones/article.png">Nom des Articles</a></li>
-                            <li><a href=""><img src="images/icones/entree.JPG">Bon d'entrée</a></li>
-                            <li><a href=""><img src="images/icones/sortie.JPG">Bon de sortie</a></li>
+                            <li><a href="/gestock/nomarticles/list-nom-article"><img src="images/icones/article.png" class="bg-white">Nom des Articles</a></li>
+                            <li><a href=""><img src="images/icones/entree.JPG" class="mr-2">Bon d'entrée</a></li>
+                            <li><a href=""><img src="images/icones/sortie.JPG" class="mr-2">Bon de sortie</a></li>
                         </ul>
                         <li data-toggle="collapse" data-target="#journal" class="collapsed">
                             <i class="fa fa-car fa-lg"></i>Journal<span class="arrow"></span>
                         </li>
                         <ul class="sub-menu collapse" id="journal">
-                            <li><a href=""><img src="images/icones/livre journal.JPG">Livre Journal</a></li>
-                            <li><a href=""><img src="images/icones/grand livre.JPG">Grand Livre</a></li>
+                            <li><a href=""><img src="images/icones/livre journal.JPG" class="mr-2">Livre Journal</a></li>
+                            <li><a href=""><img src="images/icones/grand livre.JPG" class="mr-2">Grand Livre</a></li>
                         </ul>
                     </ul>
                 </div>
