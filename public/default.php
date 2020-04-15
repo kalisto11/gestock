@@ -41,22 +41,22 @@
                             Tableau de bord
                             </a>
                         </li>
-                        <li  data-toggle="collapse" data-target="#personnel" class="collapsed">
+                        <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
                             <img src="images/icones/personnel.jpg"class="mr-2">Personnel<span class="arrow"></span>
                         </li>
                         <ul class="sub-menu collapse" id="personnel">
-                            <li><a href="#"><img src="images/icones/personnel.png" class="mr-2">Agents</a></li>
-                            <li><a href="/gestock/postes/liste-postes">Postes</a></li>
+                            <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2">Agents</a></li>
+                            <li><a href="/gestock/postes/liste">Postes</a></li>
                         </ul>
-                        <li data-toggle="collapse" data-target="#bons" class="collapsed">
-                            <img src="images/icones/bon.png"class="mr-2"></i>Bons<span class="arrow"></span>
+                        <li data-toggle="collapse" data-target="#bons" class="collapsed bg-info">
+                            <img src="images/icones/bon.png"class="mr-2 bg-white"></i>Bons<span class="arrow"></span>
                         </li>  
                         <ul class="sub-menu collapse" id="bons">
-                            <li><a href="/gestock/nomarticles/list-nom-article"><img src="images/icones/article.png" class="bg-white">Nom des Articles</a></li>
+                            <li><a href="/gestock/nomarticles/liste"><img src="images/icones/article.png" class="bg-white">Nom des Articles</a></li>
                             <li><a href=""><img src="images/icones/entree.JPG" class="mr-2">Bon d'entrée</a></li>
                             <li><a href=""><img src="images/icones/sortie.JPG" class="mr-2">Bon de sortie</a></li>
                         </ul>
-                        <li data-toggle="collapse" data-target="#journal" class="collapsed">
+                        <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">
                             <img src="images/icones/dossier.png" class="mr-2 bg-white">Journal<span class="arrow"></span>
                         </li>
                         <ul class="sub-menu collapse" id="journal">
@@ -71,7 +71,7 @@
 
                 <!-- ZONE D'AFFICHAGE DU CONTENU -->
                 <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  pt-3 pb-2 mb-3 border-bottom">
+                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  pt-3 pb-2 mb-3 border-bottom bg-dark">
                         <h1 class="h2">GESTION DE STOCK</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <div class="btn-group mr-2">
@@ -88,6 +88,7 @@
                     <?= $content ?>
                     </div>
                 </main>
+              
                 <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
             </div>
         </div>
