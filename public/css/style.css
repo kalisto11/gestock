@@ -72,11 +72,16 @@ table a{
   width: 20%;
 }
 
-h2, h3, h4, h5, h6{
+.h2, h3, h4, h5, h6{
   text-align: center;
+  color:white;
 }
 
 #notification button{
   width: 80%;
   margin-right: 0px;
 }
+/* fin tableau */
+
+
+
