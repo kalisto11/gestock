@@ -4,7 +4,7 @@
     <div class="card-header display-4">
     <?= $agent->prenom ?> <?= $agent->nom ?></div>
     <div class="card-body">
-        <h5 class="card-title">Poste agent: <?= $agent->poste ?></h5>
+        <h5 class="card-title">Poste: <?= $agent->poste ?></h5>
         <a href="/gestock/personnels/modifier/<?= $agent->id ?>"class="btn btn-success">Modifier</a>
         <a href="/gestock/personnels/supprimer/<?= $agent->id ?>"class="btn btn-danger">Supprimer</a>
     </div>
