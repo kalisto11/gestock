@@ -1,11 +1,11 @@
 <?php
 
     /*
-    * Controleur du module poste pour la gestion des postes
+    * Controleur du module nom personnel pour la gestion de la liste du personnel
     */
 
     require_once CONTROLLER . 'controller.php';
-    class Postes extends Controller{
+    class Personnel extends Controller{
 
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
@@ -61,11 +61,11 @@
                 
                 switch ($this->request->action){
 
-                    case 'liste-postes':
+                    case 'liste-personnel':
                         $this->render();
                     break;
 
-                    case 'supprimer-poste':
+                    case 'supprimer-personnel':
                         $idPoste = intval($this->request->id);
                         $poste  = new Poste($idPoste, null);
                         $poste->delete();
@@ -75,7 +75,7 @@
                         $this->render($this->message);
                     break;
 
-                    case 'modifier-poste':
+                    case 'modifier-personnel':
                         $this->render();
                     break;
                 }   
@@ -85,9 +85,9 @@
         public function render($message = null){
             switch ($this->request->action){
 
-                case 'liste-postes':
-                    $postes = Poste::findAll();
-                    require_once VIEW . 'personnel/listepostes.php';
+                case 'liste-personnel':
+                    $personnels = Personnels::getList();
+                    require_once VIEW . 'personnel/listagent.php';
                 break;
 
                 case 'modifier-poste':
