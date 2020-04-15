@@ -12,7 +12,7 @@
                 <tr>
                     <td><?= $agent->prenom?></td>
                     <td><?=$agent->non?></td>
-                    <td><?=$agent->post agent</td>
+                    <td><?=$agent->post?></td>
                     <td> <a href="#"><button class="btn btn-danger"><img src="images/icones/delete.png">Supprimer</button></a></td>
                         
                 
