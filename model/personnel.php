@@ -1,7 +1,7 @@
 <?php
  class Personnel{
     /* 
-    * Model du module  personnel  pour la gestion du Personnel
+    * Model du module  agent  pour la gestion du agent
     */
     public $id;
     public $prenom;
@@ -15,10 +15,10 @@
             $req = 'SELECT * from personnel WHERE id = ?';
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($id));
-            $personnel = $reponse->fetch();
-            $this->id = $personnel['id'];
-            $this->prenom = $personnel['prenom'];
-            $this->nom = $personnel['nom'];
+            $agent = $reponse->fetch();
+            $this->id = $agent['id'];
+            $this->prenom = $agent['prenom'];
+            $this->nom = $agent['nom'];
             $this->poste = null;
         }
         else{
@@ -28,7 +28,7 @@
             $this->poste  = null;
         }
     }
-    public function save(){ // fonction d'ajout d'un personnel
+    public function save(){ // fonction d'ajout d'un agent
         $pdo = Database::getPDO();
         $req = 'INSERT INTO personnel (prenom, nom) VALUES (:prenom, :nom)';
         $reponse = $pdo->prepare($req);
@@ -55,17 +55,17 @@
         $reponse = $pdo->prepare($sup);
         $reponse->execute(array($this->id));
     }
-    public static function getList(){ //Fonction permettant d'obtenir la liste du personnel
+    public static function getList(){ //Fonction permettant d'obtenir la liste du agent
         $pdo = Database::getPDO();
         $get = 'SELECT * from personnel';
         $reponse = $pdo->query($get);
         $agents  = array();
         while ($row = $reponse->fetch()){
-            $personnel = new Personnel();
-            $personnel->id     = $row['id'];
-            $personnel->prenom = $row['prenom'];
-            $personnel->nom    = $row['nom'];
-            $personnels[]      = $personnel;
+            $agent = new Personnel();
+            $agent->id     = $row['id'];
+            $agent->prenom = $row['prenom'];
+            $agent->nom    = $row['nom'];
+            $agents[]      = $agent;
         }
         return $agents;
     }
