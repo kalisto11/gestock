@@ -55,31 +55,17 @@
         $reponse = $pdo->prepare($sup);
         $reponse->execute(array($this->id));
     }
-<<<<<<< HEAD
     public static function getList(){ //Fonction permettant d'obtenir la liste du personnel
-=======
-    public static function getlist(){ //Fonction permettant d'obtenir la liste du agent
-
->>>>>>> 047cb4d4840c0117443ccf1a2480d648d269abae
         $pdo = Database::getPDO();
         $get = 'SELECT * from personnel';
         $reponse = $pdo->query($get);
         $agents  = array();
         while ($row = $reponse->fetch()){
-<<<<<<< HEAD
             $personnel = new Personnel();
             $personnel->id     = $row['id'];
             $personnel->prenom = $row['prenom'];
             $personnel->nom    = $row['nom'];
             $personnels[]      = $personnel;
-=======
-            $agent = new Personnel();
-            $agent ->id    = $row['id'];
-            $agent->prenom = $row['prenom'];
-            $agent->nom    = $row['nom'];
-            $agent->poste  = $row['poste'];
-            $agents[]      = $agent;
->>>>>>> 047cb4d4840c0117443ccf1a2480d648d269abae
         }
         return $agents;
     }
