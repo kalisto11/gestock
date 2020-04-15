@@ -13,8 +13,12 @@
                     <tr>
                         <td><?= $poste->nom ?></td>
                         <td>
-                            <a href="/gestock/postes/modifier-poste/<?= $poste->id ?>"><button class="btn btn-info btn-sm"><img src="images/icones/pencil.png" alt="Modifier" title="Modifier"></button></a>
-                            <a href="/gestock/postes/supprimer-poste/<?= $poste->id ?>"><button class="btn btn-danger btn-sm"><img src="images/icones/delete.png" alt="Supprimer" title="Supprimer"></button></a>
+                            <a class="btn btn-info btn-sm" href="/gestock/postes/modifier/<?= $poste->id ?>">
+                                <img src="images/icones/pencil.png" alt="Modifier" title="Modifier">
+                            </a>
+                            <a class="btn btn-danger btn-sm" href="/gestock/postes/supprimer/<?= $poste->id ?>">
+                                <img src="images/icones/delete.png" alt="Supprimer" title="Supprimer">
+                            </a>
                         </td>
                     </tr>
                 <?php endforeach ; ?>
@@ -29,10 +33,10 @@
                         <input class="form-control" type="text" name="nomPoste" value="<?php if (isset($currentPoste->id)){echo $currentPoste->nom;} ?>">
                     </div>
                     <input type="hidden" name="operation" value="<?php if (isset($currentPoste->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
-                    <input type="hidden" name="idPoste" value="<?php if (isset($currentPoste->id)){echo $currentPoste->id ;} ?>">
+                    <input type="hidden" name="id" value="<?php if (isset($currentPoste->id)){echo $currentPoste->id ;} ?>">
                     <input type="submit" value="<?php if (isset($currentPoste->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-success">
                     <?php if (isset($currentPoste->id)): ?>
-                    <a class="btn btn-danger" href="/gestock/postes/liste-postes">Annuler</a>
+                    <a class="btn btn-danger" href="/gestock/postes/liste">Annuler</a>
                     <?php endif ; ?>
                 </form>
             </div>     

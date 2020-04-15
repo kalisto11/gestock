@@ -8,7 +8,7 @@
     public $nom;
     public $poste;
 
-    public function __construct(){
+    public function __construct($id = null){
         if ($id != null){
             $this->id = $id;
             $pdo = Database::getPDO();
@@ -19,7 +19,7 @@
             $this->id = $personnel['id'];
             $this->prenom = $personnel['prenom'];
             $this->nom = $personnel['nom'];
-            $this->poste = $personnel['poste'];
+            $this->poste = null;
         }
         else{
             $this->id     = null;
@@ -30,22 +30,20 @@
     }
     public function save(){ // fonction d'ajout d'un personnel
         $pdo = Database::getPDO();
-        $req = 'INSERT INTO personnel (prenom, nom, poste) VALUES (:prenom, :nom, :poste)';
+        $req = 'INSERT INTO personnel (prenom, nom) VALUES (:prenom, :nom)';
         $reponse = $pdo->prepare($req);
         $reponse->execute(array(
         'prenom' => $this->prenom,
-        'nom'    => $this->nom,
-        'poste'  => $this->poste
+        'nom'    => $this->nom
         ));
     }  
     public function update(){ //fonction permettant de modifier les données d'un personnel
         $pdo = Database::getPDO();
-        $req = 'UPDATE personnel SET prenom = :prenom, nom = :nom, poste = :poste WHERE id = :id';
+        $req = 'UPDATE personnel SET prenom = :prenom, nom = :nom WHERE id = :id';
         $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
         $resultat = $reponse->execute(array(
         'prenom' => $this->prenom,
         'nom'    => $this->nom,
-        'poste'  => $this->poste,
         'id'     => $this->id
         ));
     }  
@@ -65,7 +63,6 @@
             $personnel->id     = $row['id'];
             $personnel->prenom = $row['prenom'];
             $personnel->nom    = $row['nom'];
-            $personnel->poste  = $row['poste'];
             $personnels[]      = $personnel;
         }
         return $personnels;

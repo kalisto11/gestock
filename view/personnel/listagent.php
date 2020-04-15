@@ -1,27 +1,31 @@
-<h1 class="mt-5 text-center">Liste du Personnel</h1> 
+<h2 class="mt-5 text-center">Liste du Personnel</h2> 
 <div></div>
-            <table >
+            <table class="table table-striped table-bordered table-hover">
                 <tr>
-                    <th>Prenon</th>
+                    <th>Prénon</th>
                     <th>Nom</th>
-                    <th>Poste Agent</th>
+                    <th class="th-md">Poste</th>
                     <th>Action</th>
                 </tr>
                 <?php foreach($agents as $agent):?>
-
-                <tr>
-                    <td><?= $agent->prenom?></td>
-                    <td><?=$agent->non?></td>
-                    <td><?=$agent->post_agent?></td>
-                    <td> <a href="#"><button class="btn btn-danger"><img src="images/icones/delete.png">Supprimer</button></a></td>
-                        
-                
-                </tr>
+                    <tr>
+                        <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?= $agent->prenom?></a></td>
+                        <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?=$agent->nom?></a></td>
+                        <td><?=$agent->poste?></td>
+                        <td> 
+                            <a class="btn btn-info btn-sm" href="/gestock/personnels/modifier/<?=$agent->id?>">
+                                <img src="images/icones/pencil.png" alt="Modifier" title="Modifier">
+                            </a>
+                            <a class="btn btn-danger btn-sm" href="/gestock/personnels/supprimer/<?=$agent->id?>">
+                                <img src="images/icones/delete.png" alt="Supprimer" title="Supprimer">
+                            </a>
+                        </td>   
+                    </tr>
                 <?php endforeach ;?>
             </table>
         </div>
         <div class="mt-5">
-            <a href="#"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png">Ajouter un Agent</button></a>
+            <a href="/gestock/personnels/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png"> Ajouter un Agent</button></a>
 
         </div>
     
