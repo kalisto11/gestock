@@ -45,13 +45,8 @@
                             <img src="images/icones/personnel.jpg"class="mr-2">Personnel<span class="arrow"></span>
                         </li>
                         <ul class="sub-menu collapse" id="personnel">
-<<<<<<< HEAD
                             <li><a href="#"><img src="images/icones/personnel.png" class="mr-2">Agents</a></li>
                             <li><a href="/gestock/postes/liste-postes">Postes</a></li>
-=======
-                            <li><a href="#"><img src="images/icones/personnel.png" class="bg-light">Agents</a></li>
-                            <li><a href="/gestock/postes/liste-postes"><img src="images/icones/postes.JPG" class="mr-2">Postes</a></li>
->>>>>>> 5a65262cd9304f1ddcf664bd2b88046b9bd60767
                         </ul>
                         <li data-toggle="collapse" data-target="#bons" class="collapsed">
                             <img src="images/icones/bon.png"class="mr-2"></i>Bons<span class="arrow"></span>

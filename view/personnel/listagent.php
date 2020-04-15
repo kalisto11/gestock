@@ -12,7 +12,7 @@
                 <tr>
                     <td><?= $agent->prenom?></td>
                     <td><?=$agent->non?></td>
-                    <td><?=$agent->post?></td>
+                    <td><?=$agent->post_agent?></td>
                     <td> <a href="#"><button class="btn btn-danger"><img src="images/icones/delete.png">Supprimer</button></a></td>
                         
                 
@@ -21,7 +21,7 @@
             </table>
         </div>
         <div class="mt-5">
-            <a href="/gestock/article/ajouter-article"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png">Ajouter un Agent</button></a>
+            <a href="#"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png">Ajouter un Agent</button></a>
 
         </div>
     

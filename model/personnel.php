@@ -1,7 +1,7 @@
 <?php
  class Personnel{
     /* 
-    * Model du module  Personnel pour la gestion du personnel
+    * Model du module  personnel  pour la gestion du Personnel
     */
     public $id;
     public $prenom;
@@ -15,11 +15,11 @@
             $req = 'SELECT * from personnel WHERE id = ?';
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($id));
-            $personnel = $reponse->fetch();
-            $this->id = $personnel['id'];
-            $this->prenom = $personnel['prenom'];
-            $this->nom = $personnel['nom'];
-            $this->poste = $personnel['poste'];
+            $agent = $reponse->fetch();
+            $this->id = $agent ['id'];
+            $this->prenom = $agent ['prenom'];
+            $this->nom = $agent ['nom'];
+            $this->poste = $agent ['poste'];
         }
         else{
             $this->id     = null;
@@ -28,8 +28,9 @@
             $this->poste  = null;
         }
     }
-    public function save(){ // fonction d'ajout d'un personnel
-        $pdo = Database::getPDO();
+    public function save(){ // fonction d'ajout d'un agent
+
+        $pdo = Database::getPDO(); 
         $req = 'INSERT INTO personnel (prenom, nom, poste) VALUES (:prenom, :nom, :poste)';
         $reponse = $pdo->prepare($req);
         $reponse->execute(array(
@@ -38,7 +39,8 @@
         'poste'  => $this->poste
         ));
     }  
-    public function update(){ //fonction permettant de modifier les données d'un personnel
+    public function update(){ //fonction permettant de modifier les données d'un agent
+
         $pdo = Database::getPDO();
         $req = 'UPDATE personnel SET prenom = :prenom, nom = :nom, poste = :poste WHERE id = :id';
         $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
@@ -49,26 +51,28 @@
         'id'     => $this->id
         ));
     }  
-    public function delete(){ //Fonction de suppresssion d'un personnel
+    public function delete(){ //Fonction de suppresssion d'un agent
+
         $pdo = Database::getPDO();
         $sup = 'DELETE from personnel WHERE id = ?';
         $reponse = $pdo->prepare($sup);
         $reponse->execute(array($this->id));
     }
-    public static function getlist(){ //Fonction permettant d'obtenir la liste du personnel
+    public static function getlist(){ //Fonction permettant d'obtenir la liste du agent
+
         $pdo = Database::getPDO();
         $get = 'SELECT * from personnel';
         $reponse = $pdo->query($get);
-        $personnels = array();
+        $agents  = array();
         while ($row = $reponse->fetch()){
-            $personnel = new Personnel();
-            $personnel->id     = $row['id'];
-            $personnel->prenom = $row['prenom'];
-            $personnel->nom    = $row['nom'];
-            $personnel->poste  = $row['poste'];
-            $personnels[]      = $personnel;
+            $agent = new Personnel();
+            $agent ->id    = $row['id'];
+            $agent->prenom = $row['prenom'];
+            $agent->nom    = $row['nom'];
+            $agent->poste  = $row['poste'];
+            $agents[]      = $agent;
         }
-        return $personnels;
+        return $agents;
     }
 
 }
