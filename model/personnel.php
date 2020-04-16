@@ -9,6 +9,7 @@
     public $poste;
 
     public function __construct($id = null){
+       
         if ($id != null){
             $this->id = $id;
             $pdo = Database::getPDO();
@@ -20,11 +21,14 @@
             $this->prenom = $personnel['prenom'];
             $this->nom = $personnel['nom'];
 
-            $req = 'SELECT * FROM poste JOIN personnel_poste ON poste.id = personnel_poste.id_poste WHERE personnel_poste.id_personnel = ?';
+            $req = 'SELECT id, nom FROM poste RIGHT JOIN personnel_poste ON poste.id = personnel_poste.id_poste WHERE personnel_poste.id_personnel = ?';
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($id));
-            $poste = $reponse->fetch();
-            $this->poste = $poste;
+            $postes = array();
+            while ($poste = $reponse->fetch()){
+                $postes[] = $poste;
+            }
+            $this->poste = $postes;
         }
         else{
             $this->id     = null;
@@ -91,22 +95,12 @@
     }
     public static function getList(){ //Fonction permettant d'obtenir la liste du personnel
         $pdo = Database::getPDO();
-        $get = 'SELECT * from personnel';
+        $get = 'SELECT id from personnel';
         $reponse = $pdo->query($get);
         $personnels  = array();
         while ($row = $reponse->fetch()){
-            $personnel = new Personnel();
-            $personnel->id     = $row['id'];
-            $personnel->prenom = $row['prenom'];
-            $personnel->nom    = $row['nom'];
-
-            $req = 'SELECT * FROM poste JOIN personnel_poste ON poste.id = personnel_poste.id_poste WHERE personnel_poste.id_personnel = ?';
-            $repPoste = $pdo->prepare($req);
-            $repPoste->execute(array($personnel->id ));
-            $poste = $repPoste->fetch();
-            $personnel->poste = $poste;
-           
-            $personnels[]      = $personnel;
+            $personnel = new Personnel($row['id']);
+            $personnels[] = $personnel;
         }
         return $personnels;
     }

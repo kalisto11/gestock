@@ -19,18 +19,20 @@
             <option 
                value="<?= $poste->id ?>" 
                <?php
-                  if (isset( $agent)){
-                     if ($poste->id == $agent->poste['id']){
-                        echo 'selected="selected"';
+                  if (isset($agent)){
+                     foreach ($agent->poste as $posteAgent){
+                        if($poste->id === $posteAgent['id']){
+                           echo 'selected="selected"';
+                        }
                      }
                   }
                ?>>
                <?= $poste->nom ?>
             </option>
             <?php endforeach ; ?>
-         </select>
+         </select> 
       </div>
-
+     
       <input type="hidden" name="operation" value="<?php if (isset($agent)){echo 'modifier';}else{echo 'ajouter';} ?>">
 
       <?php if (isset($agent)) : ?>

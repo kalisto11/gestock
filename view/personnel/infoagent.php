@@ -5,7 +5,12 @@
             <?= $agent->prenom ?> <?= $agent->nom ?>
         </div>
         <div class="card-body">
-            <h3 class="card-title bg-dark">Poste: <?= $agent->poste['nom'] ?></h3>
+            <h3 class="card-title bg-dark">
+                Poste: 
+                <?php foreach ($agent->poste as $poste): ?>
+                    <?= $poste['nom'] ?><br>
+                <?php endforeach ; ?>
+            </h3>
             <a href="/gestock/personnels/modifier/<?= $agent->id ?>"class="btn btn-success">Modifier</a>
             <a href="/gestock/personnels/supprimer/<?= $agent->id ?>"class="btn btn-danger">Supprimer</a>
         </div>
