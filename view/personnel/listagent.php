@@ -11,7 +11,7 @@
                     <tr>
                         <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?= $agent->prenom?></a></td>
                         <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?=$agent->nom?></a></td>
-                        <td><?=$agent->poste?></td>
+                        <td><?php if (!empty($agent->poste)){echo $agent->poste;}else{echo 'NEANT';}?></td>
                         <td> 
                             <a class="btn btn-info btn-sm" href="/gestock/personnels/modifier/<?=$agent->id?>">
                                 <img src="images/icones/pencil.png" alt="Modifier" title="Modifier">

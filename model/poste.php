@@ -49,6 +49,10 @@
             $req = 'DELETE from poste WHERE id = ?';
             $reponse = $pdo->prepare('DELETE from poste WHERE id = ?');
             $reponse->execute(array($this->id));
+
+            $sup = 'DELETE FROM personnel_poste WHERE id_poste = ?';
+            $reponse = $pdo->prepare($sup);
+            $reponse->execute(array($this->id));
         }
 
         public static function findAll(){
