@@ -20,11 +20,11 @@
             $this->prenom = $personnel['prenom'];
             $this->nom = $personnel['nom'];
 
-            $req = 'SELECT nom FROM poste JOIN personnel_poste ON poste.id = personnel_poste.id_poste WHERE personnel_poste.id_personnel = ?';
+            $req = 'SELECT * FROM poste JOIN personnel_poste ON poste.id = personnel_poste.id_poste WHERE personnel_poste.id_personnel = ?';
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($id));
             $poste = $reponse->fetch();
-            $this->poste = $poste['nom'];
+            $this->poste = $poste;
         }
         else{
             $this->id     = null;
@@ -66,15 +66,17 @@
         'id'     => $this->id
         ));
 
-       // var_dump($this->id);
-       // var_dump($this->poste);
-       // exit;
-        $req = 'UPDATE personnel_poste SET id_poste = :idPoste WHERE id_personnel = :id';
-        $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
-        $resultat = $reponse->execute(array(
-            'idPoste' => $this->poste,
-            'id'     => $this->id
-        )); 
+
+       $sup = 'DELETE FROM personnel_poste WHERE id_personnel = ?';
+       $reponse = $pdo->prepare($sup);
+       $reponse->execute(array($this->id));
+
+       $req = 'INSERT INTO personnel_poste (id_personnel, id_poste) VALUES (:id_personnel, :id_poste)';
+       $reponse = $pdo->prepare($req);
+       $reponse->execute(array(
+           'id_personnel' => $this->id,
+           'id_poste'    => $this->poste
+       ));
     }  
     public function delete(){ //Fonction de suppresssion d'un agent
 
@@ -98,11 +100,11 @@
             $personnel->prenom = $row['prenom'];
             $personnel->nom    = $row['nom'];
 
-            $req = 'SELECT nom FROM poste JOIN personnel_poste ON poste.id = personnel_poste.id_poste WHERE personnel_poste.id_personnel = ?';
+            $req = 'SELECT * FROM poste JOIN personnel_poste ON poste.id = personnel_poste.id_poste WHERE personnel_poste.id_personnel = ?';
             $repPoste = $pdo->prepare($req);
             $repPoste->execute(array($personnel->id ));
             $poste = $repPoste->fetch();
-            $personnel->poste = $poste['nom'];
+            $personnel->poste = $poste;
            
             $personnels[]      = $personnel;
         }

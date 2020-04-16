@@ -16,7 +16,17 @@
          <select name="poste" id="poste" class="form-control">
             <option value="null">----------</option>
             <?php foreach ($postes as $poste): ?>
-            <option value="<?= $poste->id ?>"><?= $poste->nom ?></option>
+            <option 
+               value="<?= $poste->id ?>" 
+               <?php
+                  if (isset( $agent)){
+                     if ($poste->id == $agent->poste['id']){
+                        echo 'selected="selected"';
+                     }
+                  }
+               ?>>
+               <?= $poste->nom ?>
+            </option>
             <?php endforeach ; ?>
          </select>
       </div>
