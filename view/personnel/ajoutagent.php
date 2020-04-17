@@ -16,11 +16,23 @@
          <select name="poste" id="poste" class="form-control">
             <option value="null">----------</option>
             <?php foreach ($postes as $poste): ?>
-            <option value="<?= $poste->id ?>"><?= $poste->nom ?></option>
+            <option 
+               value="<?= $poste->id ?>" 
+               <?php
+                  if (isset($agent)){
+                     foreach ($agent->poste as $posteAgent){
+                        if($poste->id === $posteAgent['id']){
+                           echo 'selected="selected"';
+                        }
+                     }
+                  }
+               ?>>
+               <?= $poste->nom ?>
+            </option>
             <?php endforeach ; ?>
-         </select>
+         </select> 
       </div>
-
+     
       <input type="hidden" name="operation" value="<?php if (isset($agent)){echo 'modifier';}else{echo 'ajouter';} ?>">
 
       <?php if (isset($agent)) : ?>
@@ -28,7 +40,7 @@
       <?php endif ; ?>
 
       <input  class="btn btn-success mt-5" type="submit" value="<?php if (isset($agent)){echo 'Modifier';}else{echo 'Ajouter';} ?>" >
-      <a class="btn btn-danger mt-5" href="/gestock/personnels/liste">Annuler</a>
+      <a class="btn btn-danger mt-5" href="/gestock/personnels/<?php if (isset($agent)){echo 'consulter/' . $agent->id ;}else{echo '/gestock/personnels/liste';}?>">Annuler</a>
    </form>
 </div>    
         
