@@ -17,7 +17,7 @@
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-                <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="#">TEAM UVS KAFFRINE</a>
+                <a class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#">TEAM UVS KAFFRINE</a>
                 <input class="form-control form-control-dark w-50" type="text" placeholder="Recherche" aria-label="Search">
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
@@ -42,22 +42,22 @@
                             </a>
                         </li>
                         <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
-                            <img src="images/icones/personnel.jpg"class="mr-2">Personnel<span class="arrow"></span>
+                            <img src="images/icones/personnel.jpg"class="mr-2 ml-2">Personnel<span class="arrow"></span>
                         </li>
                         <ul class="sub-menu collapse" id="personnel">
-                            <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2">Agents</a></li>
-                            <li><a href="/gestock/postes/liste">Postes</a></li>
+                            <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white">Agents</a></li>
+                            <li><a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white">Postes</a></li>
                         </ul>
                         <li data-toggle="collapse" data-target="#bons" class="collapsed bg-info">
-                            <img src="images/icones/bon.png"class="mr-2 bg-white"></i>Bons<span class="arrow"></span>
+                            <img src="images/icones/bon.png"class="mr-2 ml-2 bg-white"></i>Bons<span class="arrow"></span>
                         </li>  
                         <ul class="sub-menu collapse" id="bons">
-                            <li><a href="/gestock/nomarticles/liste"><img src="images/icones/article.png" class="bg-white">Nom des Articles</a></li>
+                            <li><a href="/gestock/nomarticles/liste"><img src="images/icones/article.png" class="bg-white mr-2">Nom des Articles</a></li>
                             <li><a href=""><img src="images/icones/entree.JPG" class="mr-2">Bon d'entrée</a></li>
                             <li><a href=""><img src="images/icones/sortie.JPG" class="mr-2">Bon de sortie</a></li>
                         </ul>
                         <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">
-                            <img src="images/icones/dossier.png" class="mr-2 bg-white">Journal<span class="arrow"></span>
+                            <img src="images/icones/dossier.png" class="mr-2 ml-2 bg-white">Journal<span class="arrow"></span>
                         </li>
                         <ul class="sub-menu collapse" id="journal">
                             <li><a href=""><img src="images/icones/livre journal.JPG" class="mr-2">Livre Journal</a></li>
