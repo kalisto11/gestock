@@ -17,7 +17,7 @@
                                 $agent = new Personnel();
                                 $agent->prenom = $_POST['prenom'];
                                 $agent->nom = $_POST['nom'];
-                                $agent->poste = $_POST['poste'];
+                                $agent->poste = (int) $_POST['poste'];
                                 $agent->save();
                                 $this->request->action = 'liste';
                             break;
