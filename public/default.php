@@ -46,7 +46,7 @@
                         </li>
                         <ul class="sub-menu collapse" id="personnel">
                             <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2">Agents</a></li>
-                            <li><a href="/gestock/postes/liste">Postes</a></li>
+                            <li><a href="/gestock/postes/liste"><img src="images/icones/postes.JPG" class="mr-2">Postes</a></li>
                         </ul>
                         <li data-toggle="collapse" data-target="#bons" class="collapsed bg-info">
                             <img src="images/icones/bon.png"class="mr-2 bg-white"></i>Bons<span class="arrow"></span>
