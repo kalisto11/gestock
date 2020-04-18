@@ -18,7 +18,7 @@
     </div>
     <div class="mt-5">
         <p>
-            <a class="btn btn-warning" href="/gestock/personnels/liste">Voir la liste du Personnel</a>
+            <a class="btn btn-warning float-right" href="/gestock/personnels/liste">Voir la liste du Personnel</a>
         </p>
     </div>
 </div>
