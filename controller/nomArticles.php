@@ -26,8 +26,7 @@
                             $this->render($this->message);
                         break;  
 
-                        case 'modifier':
-                                
+                        case 'modifier':          
                             $nomarticle = new Article();
                             $nomarticle->nom = $_POST['nomArticle'];
                             $nomarticle->id = $_POST['idArticle'];

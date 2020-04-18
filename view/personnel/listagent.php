@@ -1,3 +1,5 @@
+<?php require VIEW . 'infos/notifications.php'; ?>
+
 <h2 class="mt-5 text-center">Liste du Personnel</h2> 
 <div></div>
             <table class="table table-striped table-bordered table-hover">
