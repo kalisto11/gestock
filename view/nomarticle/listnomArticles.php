@@ -13,6 +13,7 @@
                 <?php foreach($nomarticles as $nomarticle): ?>
                     <tr>
                         <td><?= $nomarticle->nom ?></td>
+                        <td><?= $nomarticle->nom ?></td>
                         <td>
                             <a href="/gestock/nomarticles/modifier/<?= $nomarticle->id ?>"><button class="btn btn-info btn-sm"><img src="images/icones/pencil.png" alt="Modifier" title="Modifier"></button></a>
                             <a href="/gestock/nomarticles/supprimer/<?= $nomarticle->id ?>"><button class="btn btn-danger btn-sm"><img src="images/icones/delete.png" alt="Supprimer" title="Supprimer"></button></a>
