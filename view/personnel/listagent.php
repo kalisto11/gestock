@@ -2,9 +2,9 @@
 <div></div>
             <table class="table table-striped table-bordered table-hover">
                 <tr>
-                    <th>Prénon</th>
+                    <th>Prénom</th>
                     <th>Nom</th>
-                    <th class="th-md">Poste</th>
+                    <th class="th-md">Postes</th>
                     <th>Action</th>
                 </tr>
                 <?php foreach($agents as $agent):?>
