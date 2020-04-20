@@ -20,7 +20,6 @@
             $this->id = $personnel['id'];
             $this->prenom = $personnel['prenom'];
             $this->nom = $personnel['nom'];
-
             $req = 'SELECT id, nom FROM poste RIGHT JOIN personnel_poste ON poste.id = personnel_poste.id_poste WHERE personnel_poste.id_personnel = ?';
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($id));
