@@ -3,7 +3,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-8">
-            <h2>Articles</h2>
+            <h2 class="text-center">Articles</h2>
             <table class="table table-striped table-bordered table-hover">
                 <tr>
                     <th class="th-md">Articles</th>
@@ -21,7 +21,7 @@
             </table>
         </div>  
         <div class="col-md-4 bg-light">
-        <h2 class="mt-5"><?php if (isset($currentArticle->id)){echo 'Modifier l\'article';}else{echo 'Ajouter un article';} ?></h2>
+        <h2 class="mt-5 text-center"><?php if (isset($currentArticle->id)){echo 'Modifier l\'article';}else{echo 'Ajouter un article';} ?></h2>
             <div class="container-fluid">
                 <form method="post" action="/gestock/nomarticles/traitement-article">
                     <div class="form-group">

@@ -17,6 +17,7 @@
                             <?php foreach ($agent->poste as $poste): ?>
                                 <?= $poste['nom'] ?> <br>
                             <?php endforeach ; ?>
+                        </td>
                         <td> 
                             <a class="btn btn-info btn-sm" href="/gestock/personnels/modifier/<?=$agent->id?>">
                                 <img src="images/icones/pencil.png" alt="Modifier" title="Modifier">
