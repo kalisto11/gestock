@@ -10,21 +10,21 @@
         public $groupe;
 
         public function __construct($id = null){
-        if ($id != null){
-            $this->id = $id;
-            $pdo = Database::getPDO();
-            $req = 'SELECT * FROM nomarticle WHERE id= ?';
-            $reponse = $pdo->prepare($req);
-            $reponse -> execute(array($id));
-            $nomarticle = $reponse->fetch();
-            $this->id = $nomarticle['id'];
-            $this->nom = $nomarticle['nom'];
-            $this->groupe = $nomarticle['groupe'];
-        }
-        else{
+            if ($id != null){
+                $this->id = $id;
+                $pdo = Database::getPDO();
+                $req = 'SELECT * FROM nomarticle WHERE id= ?';
+                $reponse = $pdo->prepare($req);
+                $reponse -> execute(array($id));
+                $nomarticle = $reponse->fetch();
+                $this->id = $nomarticle['id'];
+                $this->nom = $nomarticle['nom'];
+                $this->groupe = $nomarticle['groupe'];
+            }
+            else{
                 $this->nom = null;
-            $this->id = null;
-            $this->groupe = null;
+                $this->id = null;
+                $this->groupe = null;
             }
         }
 
@@ -63,6 +63,7 @@
                     $nomarticle = new Article();
                     $nomarticle->id = $row['id'];
                     $nomarticle->nom = $row['nom'];
+                    $nomarticle->groupe = $row['groupe'];
                     $nomarticles[] = $nomarticle;
                 }  
                 return $nomarticles;
