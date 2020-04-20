@@ -30,14 +30,18 @@
                         <label for="nom">Nom de l'Article</label>
                         <input class="form-control" type="text" name="nomArticle" value="<?php if (isset($currentArticle->id)){echo $currentArticle->nom;} ?>">
                     </div>
-                    <label for="groupe">Groupes :</label><br/>
-                  <select name="groupe" id="groupe">
-                    <option value="1">Groupe 1</option>
-                    <option value="2">Groupe 2</option>
-                  </select><br/><br/>
+                    <label for="groupe">Groupe</label><br/>
+                    <select name="groupe" id="groupe">
+                        <option value="1" <?php if (isset($currentArticle->groupe) AND $currentArticle->groupe == 1){echo 'selected="selected"';} ?>>Groupe 1
+                        </option>
+                        <option value="2" <?php if (isset($currentArticle->groupe) AND $currentArticle->groupe == 2){echo 'selected="selected"';} ?>>Groupe 2
+                        </option>
+                    </select><br/><br/>
+
                     <input type="hidden" name="operation" value="<?php if (isset($currentArticle->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
                     <input type="hidden" name="idArticle" value="<?php if (isset($currentArticle->id)){echo $currentArticle->id ;} ?>">
                     <input type="submit" value="<?php if (isset($currentArticle->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-success">
+
                     <?php if (isset($currentArticle->id)): ?>
                     <a class="btn btn-danger" href="/gestock/nomarticles/liste">Annuler</a>
                     <?php endif ; ?>
