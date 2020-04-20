@@ -45,7 +45,7 @@
             'nom'    => $this->nom
         ));
 
-        $req = 'SELECT id FROM personnel Order By ID Desc';
+        $req = 'SELECT id FROM personnel Order By ID Desc LIMIT 1';
         $reponse = $pdo->query($req);
         $personnel = $reponse->fetch();
         $this->id = $personnel['id'];
