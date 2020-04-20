@@ -9,12 +9,12 @@
             <th>Founisseurs</th>
             <th>Actions</th>
         </tr>
-        <?php foreach($bons_entree as $bon_entree):?>
+        <?php foreach($bonentrees as $bonentree):?>
 
         <tr>
-            <td><?= $bons_entee->reference?></td>
+            <td><?= $bonentee->reference?></td>
             <td><?=$bons_entee->date?></td>
-            <td><?=$bons_entee->aricle</td>
+            <td><?=$bons_entee->aricle?></td>
             <td><?=$bons_entee->quantite?></td>
             <td><?=$bons_entee->fournisseur?></td>
             <td> 
