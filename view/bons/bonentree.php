@@ -22,8 +22,7 @@
         <label for="fournisseur">fournisseur :</label><br/>
         <input type="text" name="fournisseur" id="fournisseur"/><br/><br/>
     </form>
-
      <input type="submit" value="ajouter" />     <input type="submit" value="modifier" /> 
-       
+
      <?php endforeach ;?>
 </div>

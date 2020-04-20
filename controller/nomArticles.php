@@ -13,7 +13,8 @@
                         case 'ajouter':
                             if(!empty($_POST['nomArticle'])){
                                 $nomarticle = new Article();
-                                $nomarticle->nom = $_POST['nomArticle'];                                            
+                                $nomarticle->nom = $_POST['nomArticle'];   
+                                $nomarticle->groupe = $_POST['groupe'];                                            
                                 $nomarticle->ajoutArticle();
                                 $this->message['type'] = 'success';
                                 $this->message['contenu'] = 'L\'article a été ajouté avec succès.';
@@ -28,8 +29,9 @@
 
                         case 'modifier':          
                             $nomarticle = new Article();
-                            $nomarticle->nom = $_POST['nomArticle'];
                             $nomarticle->id = $_POST['idArticle'];
+                            $nomarticle->nom = $_POST['nomArticle'];
+                            $nomarticle->groupe = $_POST['groupe'];
                             if(!empty($_POST['nomArticle'])){
                             $nomarticle->modif();
                             $this->message['type'] = 'success';
