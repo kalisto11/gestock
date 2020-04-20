@@ -1,3 +1,4 @@
+<?php require VIEW . 'infos/notifications.php'; ?>
 <h2 class="ml-5 text-center">Informations sur un Agent</h2>
 <div class="container my-2">
     <div class="card">

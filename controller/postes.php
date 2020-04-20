@@ -1,5 +1,4 @@
 <?php
-
     /*
     * Controleur du module poste pour la gestion des postes
     */
