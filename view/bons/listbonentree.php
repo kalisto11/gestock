@@ -12,11 +12,11 @@
         <?php foreach($bonentrees as $bonentree):?>
 
         <tr>
-            <td><?= $bonentee->reference?></td>
-            <td><?=$bonentee->date?></td>
-            <td><?=$bonentee->aricle?></td>
-            <td><?=$bonentee->quantite?></td>
-            <td><?=$bonentee->fournisseur?></td>
+            <td><?= $bonentree->reference?></td>
+            <td><?=$bonentree->date?></td>
+            <td><?=$bonentree->aricle?></td>
+            <td><?=$bonentree->quantite?></td>
+            <td><?=$bonentree->fournisseur?></td>
             <td> 
                  <a href="#"><button class="btn btn-info"><img src="images/icones/pencil.png">Modifier</button></a>
                  <a href="#"><button class="btn btn-danger"><img src="images/icones/delete.png">Supprimer</button></a>
