@@ -53,7 +53,7 @@
                         </li>  
                         <ul class="sub-menu collapse" id="bons">
                             <li><a href="/gestock/nomarticles/liste"><img src="images/icones/article.png" class="bg-white mr-2">Nom des Articles</a></li>
-                            <li><a href=""><img src="images/icones/entree.JPG" class="mr-2">Bon d'entrée</a></li>
+                            <li><a href="/gestock/bonsentree/liste"><img src="images/icones/entree.JPG" class="mr-2">Bon d'entrée</a></li>
                             <li><a href=""><img src="images/icones/sortie.JPG" class="mr-2">Bon de sortie</a></li>
                         </ul>
                         <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">

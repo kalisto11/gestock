@@ -54,7 +54,7 @@
                 'groupe' => $this->groupe
             ));
         }
-        public static function listArticles(){
+        public static function getList(){
             $pdo = Database::getPDO();
                 $req = 'SELECT * from nomarticle';
                 $reponse = $pdo->query($req);

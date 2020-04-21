@@ -84,5 +84,5 @@
                     $currentController = new Erreur($this->request);
                     $currentController->process();
             }
-        }
-    }
+        } // fin méthode render
+    } // fin class

@@ -17,11 +17,11 @@
                                 $nomarticle->groupe = $_POST['groupe'];                                            
                                 $nomarticle->ajoutArticle();
                                 $this->message['type'] = 'success';
-                                $this->message['contenu'] = 'L\'article a été ajouté avec succès.';
+                                $this->message['contenu'] = "L'article a été ajouté avec succès.";
                             }
                             else{
                                 $this->message['type'] = 'danger';
-                                $this->message['contenu'] = "Le nom de l\'article ne doit pas etre vide.";
+                                $this->message['contenu'] = "Le nom de l'article ne doit pas etre vide.";
                             }       
                             $this->request->action = 'liste';
                             $this->render($this->message);
@@ -72,13 +72,13 @@
              switch ($this->request->action){
                 // inclure les vues ici selon la valeur de $view
                 case 'liste':
-                     $nomarticles = Article::listArticles();
+                     $nomarticles = Article::getList();
                      require_once VIEW . 'nomarticle/listnomArticles.php';
                 break;
                 case 'modifier':
                      $idArticle = intval($this->request->id);
                      $currentArticle = new Article($idArticle);
-                     $nomarticles = Article::listArticles();
+                     $nomarticles = Article::getList();
                      require_once VIEW . 'nomarticle/listnomArticles.php';
                 break;
                 case 'ajouter':
