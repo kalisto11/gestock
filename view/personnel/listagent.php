@@ -15,7 +15,7 @@
                         <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?=$agent->nom?></a></td>
                         <td>
                             <?php foreach ($agent->poste as $poste): ?>
-                                <?= $poste['nom'] ?> <br>
+                                <?= $poste->nom ?> <br>
                             <?php endforeach ; ?>
                         </td>
                         <td> 

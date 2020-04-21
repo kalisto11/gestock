@@ -5,35 +5,35 @@
     */
     
     require_once CONTROLLER . 'controller.php';
-    class NomArticles extends Controller{
+    class articles extends Controller{
         public function process(){
             if ($this->request->method === 'POST'){
                 if ($this->request->action === 'traitement-article'){
                     switch ($_POST['operation']){
                         case 'ajouter':
-                            if(!empty($_POST['nomArticle'])){
-                                $nomarticle = new Article();
-                                $nomarticle->nom = $_POST['nomArticle'];   
-                                $nomarticle->groupe = $_POST['groupe'];                                            
-                                $nomarticle->ajoutArticle();
+                            if(!empty($_POST['article'])){
+                                $article = new Article();
+                                $article->nom = $_POST['article'];   
+                                $article->groupe = $_POST['groupe'];                                            
+                                $article->ajoutArticle();
                                 $this->message['type'] = 'success';
-                                $this->message['contenu'] = 'L\'article a été ajouté avec succès.';
+                                $this->message['contenu'] = "L'article a été ajouté avec succès.";
                             }
                             else{
                                 $this->message['type'] = 'danger';
-                                $this->message['contenu'] = "Le nom de l\'article ne doit pas etre vide.";
+                                $this->message['contenu'] = "Le nom de l'article ne doit pas etre vide.";
                             }       
                             $this->request->action = 'liste';
                             $this->render($this->message);
                         break;  
 
                         case 'modifier':          
-                            $nomarticle = new Article();
-                            $nomarticle->id = $_POST['idArticle'];
-                            $nomarticle->nom = $_POST['nomArticle'];
-                            $nomarticle->groupe = $_POST['groupe'];
-                            if(!empty($_POST['nomArticle'])){
-                            $nomarticle->modif();
+                            $article = new Article();
+                            $article->id = $_POST['idArticle'];
+                            $article->nom = $_POST['article'];
+                            $article->groupe = $_POST['groupe'];
+                            if(!empty($_POST['article'])){
+                            $article->modif();
                             $this->message['type'] = 'success';
                             $this->message['contenu'] = 'L\'article a été modifié avec succès.';
                             $this->request->action = 'liste';
@@ -42,7 +42,7 @@
                             $this->message['type'] = 'danger';
                             $this->message['contenu'] = 'Le nom de l\'article ne doit pas etre vide.';
                             $this->request->action = 'modifier';
-                            $this->request->id = $nomarticle->id;
+                            $this->request->id = $article->id;
                             }
                             $this->render($this->message);
                         break;
@@ -58,8 +58,8 @@
             elseif ($this->request->method === 'GET'){ //Si la requete vient d'un lien
                 if ($this->request->action === 'supprimer'){
                     $idArticle = intval($this->request->id);
-                    $nomarticle = new Article($idArticle);
-                    $nomarticle->supprime(); 
+                    $article = new Article($idArticle);
+                    $article->supprime(); 
                     $this->request->action = 'liste';
                     $this->message['type'] = 'success';
                     $this->message['contenu'] = 'L\'article a été supprimé avec succès.';
@@ -72,20 +72,20 @@
              switch ($this->request->action){
                 // inclure les vues ici selon la valeur de $view
                 case 'liste':
-                     $nomarticles = Article::listArticles();
-                     require_once VIEW . 'nomarticle/listnomArticles.php';
+                     $articles = Article::getList();
+                     require_once VIEW . 'article/listarticles.php';
                 break;
                 case 'modifier':
                      $idArticle = intval($this->request->id);
                      $currentArticle = new Article($idArticle);
-                     $nomarticles = Article::listArticles();
-                     require_once VIEW . 'nomarticle/listnomArticles.php';
+                     $articles = Article::getList();
+                     require_once VIEW . 'article/listarticles.php';
                 break;
                 case 'ajouter':
-                    require_once   VIEW . 'nomarticle/listnomArticles.php';
+                    require_once   VIEW . 'article/listarticles.php';
                  break;
                 case 'supprimer':
-                    require_once VIEW . 'nomarticle/listnomArticles.php';
+                    require_once VIEW . 'article/listarticles.php';
                  break;
 
                 default: // gestion des erreurs au cas ou la valeur de action n'est pas valide

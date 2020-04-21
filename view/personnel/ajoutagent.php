@@ -21,7 +21,7 @@
                <?php
                   if (isset($agent)){
                      foreach ($agent->poste as $posteAgent){
-                        if($poste->id === $posteAgent['id']){
+                        if($poste->id === $posteAgent->id){
                            echo 'selected="selected"';
                         }
                      }

@@ -13,13 +13,13 @@
             if ($id != null){
                 $this->id = $id;
                 $pdo = Database::getPDO();
-                $req = 'SELECT * FROM nomarticle WHERE id= ?';
+                $req = 'SELECT * FROM article WHERE id= ?';
                 $reponse = $pdo->prepare($req);
                 $reponse -> execute(array($id));
-                $nomarticle = $reponse->fetch();
-                $this->id = $nomarticle['id'];
-                $this->nom = $nomarticle['nom'];
-                $this->groupe = $nomarticle['groupe'];
+                $article = $reponse->fetch();
+                $this->id = $article['id'];
+                $this->nom = $article['nom'];
+                $this->groupe = $article['groupe'];
             }
             else{
                 $this->nom = null;
@@ -30,7 +30,7 @@
 
         public  function modif(){
         $pdo = Database::getPDO();
-        $update = 'UPDATE nomarticle SET nom = :nom, groupe = :groupe WHERE id = :id';
+        $update = 'UPDATE article SET nom = :nom, groupe = :groupe WHERE id = :id';
         $sortie = $pdo->prepare($update) OR die(print_r($pdo->errorinfo()));
         $sortie->execute(array(
             'nom' => $this->nom,
@@ -41,31 +41,28 @@
         public  function supprime(){
         $pdo = Database::getPDO();
         
-        $delete = 'DELETE from nomarticle WHERE id = ?';
+        $delete = 'DELETE from article WHERE id = ?';
         $retour = $pdo->prepare($delete);
         $retour->execute(array($this->id));
     }
         public  function ajoutArticle(){
             $pdo = Database::getPDO();
-            $insert = 'INSERT INTO nomarticle (nom, groupe) VALUES (:nom, :groupe)';
+            $insert = 'INSERT INTO article (nom, groupe) VALUES (:nom, :groupe)';
             $retour = $pdo->prepare($insert);
             $retour->execute(array(
                 'nom' => $this->nom,
                 'groupe' => $this->groupe
             ));
         }
-        public static function listArticles(){
+        public static function getList(){
             $pdo = Database::getPDO();
-                $req = 'SELECT * from nomarticle';
+                $req = 'SELECT id from article';
                 $reponse = $pdo->query($req);
-                $nomarticles = array();
+                $articles = array();
                 while ($row = $reponse->fetch()){
-                    $nomarticle = new Article();
-                    $nomarticle->id = $row['id'];
-                    $nomarticle->nom = $row['nom'];
-                    $nomarticle->groupe = $row['groupe'];
-                    $nomarticles[] = $nomarticle;
+                    $article = new Article($row['id']);
+                    $articles[] = $article;
                 }  
-                return $nomarticles;
+                return $articles;
         }
     }
