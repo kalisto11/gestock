@@ -20,7 +20,7 @@
     }
   }
   
-  img{
+  .menu-icone{
     height: 20px;
     width:25px
   }
@@ -74,7 +74,3 @@ table a{
   width: 80%;
   margin-right: 0px;
 }
-/* fin tableau */
-
-
-
