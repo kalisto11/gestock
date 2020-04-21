@@ -15,7 +15,7 @@
             <td><?=$bon_entree->date?></td>
             <td><?=$bon_entree->article->nom?></td>
             <td><?=$bon_entree->quantite?></td>
-            <td><?=$bon_entree->fournisseurs?></td>
+            <td><?=$bon_entree->fournisseur?></td>
             <td> 
                 <a href="/gestock/bonsentree/modifier/<?= $bon_entree->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png"></button></a>
                 <a href="/gestock/bonsentree/supprimer/<?= $bon_entree->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png"></button></a>
