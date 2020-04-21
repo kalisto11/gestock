@@ -14,11 +14,14 @@
                              case 'ajouter':
                                  $bonEntree = new BonEntree();
                                  $bonEntree->reference = $_POST['reference'];
-                                 $bonentree->article = $_POST['article'];
+                                 $bonEntree->article = $_POST['article'];
                                  $bonEntree->quantite = $_POST['quantite'];
                                  $bonEntree->fournisseur = $_POST['fournisseur'];
                                  $bonEntree->save();
+                                 $this->message['type'] = 'success';
+                                $this->message['contenu'] = "Le bon a été ajouté avec succès.";
                                  $this->request->action = 'liste';
+
                              break;
  
                              case 'modifier':
@@ -29,9 +32,9 @@
                                 $bonEntree->article = $_POST['article'];
                                 $bonEntree->quantite = $_POST['quantite'];
                                 $bonEntree->fournisseur = $_POST['fournisseur'];
-                                //var_dump($bonEntree);
-                                //exit;
                                 $bonEntree->modify();
+                                $this->message['type'] = 'success';
+                                $this->message['contenu'] = "Le bon a été modifié avec succès.";
                                 $this->request->action = 'liste';
                             break;
  
@@ -67,7 +70,7 @@
             switch ($this->request->action){
 
                 case 'liste':
-                    $bonentrees = BonEntree::getList();
+                    $bons_entrees = BonEntree::getList();
                     require_once VIEW . 'bons/listbonentree.php';
                 break;
 

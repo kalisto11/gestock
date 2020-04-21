@@ -1,4 +1,5 @@
-<h2 class="mt-5 text-center">Bons d'entrée</h2> 
+<?php require VIEW . 'infos/notifications.php'; ?>
+<h2 class="mt-5 text-center">Bons d'Entrée</h2> 
 <div>
     <table class="table table-striped table-bordered table-hover">
         <tr>
@@ -9,16 +10,16 @@
             <th>Founisseur</th>
             <th>Actions</th>
         </tr>
-        <?php foreach($bonentrees as $bonentree):?>
+        <?php foreach($bons_entrees as $bon_entree):?>
         <tr>
-            <td><?=$bonentree->reference?></td>
-            <td><?=$bonentree->date?></td>
-            <td><?=$bonentree->aricle?></td>
-            <td><?=$bonentree->quantite?></td>
-            <td><?=$bonentree->fournisseur?></td>
+            <td><?= $bon_entree->reference?></td>
+            <td><?=$bon_entree->date?></td>
+            <td><?=$bon_entree->article->nom?></td>
+            <td><?=$bon_entree->quantite?></td>
+            <td><?=$bon_entree->fournisseur?></td>
             <td> 
-                <a href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png"></button></a>
-                <a href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png"></button></a>
+                <a href="/gestock/bonsentree/modifier/<?= $bon_entree->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png"></button></a>
+                <a href="/gestock/bonsentree/supprimer/<?= $bon_entree->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png"></button></a>
             </td>
         </tr>
         <?php endforeach ;?>
