@@ -1,4 +1,5 @@
-<h2 class="mt-5 text-center">Bons d'entrée</h2> 
+<?php require VIEW . 'infos/notifications.php'; ?>
+<h2 class="mt-5 text-center">Bons d'Entrée</h2> 
 <div>
     <table class="table table-striped table-bordered table-hover">
         <tr>
@@ -25,6 +26,6 @@
     </table>
 </div>
 <div class="mt-5">
-    <a href="/gestock/bonsentree/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png"> Ajouter un Bon d'entrée</button></a>
+    <a href="/gestock/bonsentree/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png"> Ajouter un bon d'entrée</button></a>
 </div>
 

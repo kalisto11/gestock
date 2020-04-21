@@ -18,9 +18,15 @@
     }
   }
   
+<<<<<<< HEAD
   .menu-icone{
     height: 20px;
     width:25px
+=======
+  img{
+    height: 30px;
+    width:30px
+>>>>>>> fa2e18a8b68e56ab30f40dfd5b077d6b21599c4c
   }
   .article{
       margin-top: 10px;

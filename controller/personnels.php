@@ -14,33 +14,62 @@
                        case 'traitement-agent':
                         switch ($_POST['operation']){
                             case 'ajouter':
+                            if(!empty(($_POST['prenom']) && ($_POST['nom']) )){
                                 $agent = new Personnel();
                                 $agent->prenom = $_POST['prenom'];
                                 $agent->nom = $_POST['nom'];
                                 $agent->poste = (int) $_POST['poste'];
                                 $agent->save();
+                                $this->message['type'] = 'success';                              
+                                $this->message['contenu'] = "L'agent a été bien ajouté avec succès.";
                                 $this->request->action = 'liste';
+                            }
+                            else{
+                                $this->message['type'] = 'danger';
+                                if(empty($_POST['prenom']) && empty($_POST['nom'])){ 
+                                    $this->message['contenu'] ='Le prénom et le nom de l\'agent n\'ont pas été renseignés';
+                                }elseif(empty($_POST['prenom'])){   
+                                    $this->message['contenu'] ='Le prénom de l\'agent ne doit pas etre vide';
+                                }elseif(empty($_POST['nom'])){
+                                    $this->message['contenu'] ='Le nom de l\'agent ne doit pas etre vide';
+                                }
+                                $this->request->action = 'ajouter';
+                                $this->render($this->message);
+                            }  
+                               
+                                $this->render($this->message);
+                              
                             break;
 
-                            case 'modifier':
-                                $agent = new Personnel($_POST['id']);
-                                $agent->prenom = $_POST['prenom'];
-                                $agent->nom = $_POST['nom'];
-                                $agent->poste = $_POST['poste'];
-                                $agent->update();
-                                $this->request->action = 'consulter';
-                                $this->request->id = $_POST['id'];
+                            case 'modifier': 
+                                if(!empty(($_POST['prenom']) && ($_POST['nom']))){
+                                    $agent = new Personnel($_POST['id']);
+                                    $agent->prenom = $_POST['prenom'];
+                                    $agent->nom = $_POST['nom'];
+                                    $agent->poste = $_POST['poste'];
+                                    $agent->update();  
+                                    $this->message['type'] = 'success';
+                                    $this->message['contenu'] = "Les informations de l'agent ont été bien modifiées.";
+                                    $this->request->action = 'consulter';
+                                    $this->request->id = $_POST['id']; 
+                                }
+                                else{
+                                    $this->message['type'] = 'danger';
+                                    $this->message['contenu'] = "Les informations de l'agent ne doivent pas etre vide.";
+                                    $this->request->action = 'modifier';
+                                    $this->request->id = $_POST['id']; 
+                                }
+                                $this->render($this->message);
                             break;
 
                             default:
                             $this->message['type'] = 'danger';
                             $this->message['contenu'] = 'Une erreur s\'est produite pendant le traitement des données. Veuillez rééssayer svp.';
                             $this->request->action = 'liste';
-                           
+                           $this->render($this->message);
                         }
-                        $this->render($this->message);
-                   }
-               }
+                    }
+                }
             }
             else if ($this->request->method === 'GET'){ // si la requete vient d'un lien 
 
@@ -50,7 +79,7 @@
                     $agent->delete();
                     $this->request->action = 'liste';
                     $this->message['type'] = 'success';
-                    $this->message['contenu'] = 'L\'a été supprimé avec succès.';
+                    $this->message['contenu'] = 'L\'agent a été supprimé avec succès.';
                 }
                 $this->render($this->message);
             }
@@ -58,7 +87,6 @@
 
         public function render($message = null){
             switch ($this->request->action){
-
                 case 'liste':
                     $agents = Personnel::getList();
                     require_once VIEW . 'personnel/listagent.php';
