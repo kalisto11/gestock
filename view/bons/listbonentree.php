@@ -1,4 +1,4 @@
-<h2 class="mt-5 text-center">Bons d'Entrée</h2> 
+<h2 class="mt-5 text-center">Bons d'entrée</h2> 
 <div>
     <table class="table table-striped table-bordered table-hover">
         <tr>
@@ -15,7 +15,7 @@
             <td><?=$bon_entree->date?></td>
             <td><?=$bon_entree->article->nom?></td>
             <td><?=$bon_entree->quantite?></td>
-            <td><?=$bon_entree->fournisseurs?></td>
+            <td><?=$bon_entree->fournisseur?></td>
             <td> 
                 <a href="/gestock/bonsentree/modifier/<?= $bon_entree->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png"></button></a>
                 <a href="/gestock/bonsentree/supprimer/<?= $bon_entree->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png"></button></a>
