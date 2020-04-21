@@ -59,7 +59,6 @@
                                     $this->request->action = 'modifier';
                                     $this->request->id = $_POST['id']; 
                                 }
-                            
                                 $this->render($this->message);
                             break;
 
@@ -85,6 +84,7 @@
                 $this->render($this->message);
             }
         } // fin méthode process
+
         public function render($message = null){
             switch ($this->request->action){
                 case 'liste':

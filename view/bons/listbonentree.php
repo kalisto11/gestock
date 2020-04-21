@@ -7,16 +7,16 @@
             <th>Articles</th>
             <th>Quantité</th>
             <th>Founisseurs</th>
-            <th>Actions</th>
+            <th>Action</th>
         </tr>
         <?php foreach($bonentrees as $bonentree):?>
 
         <tr>
-            <td><?= $bonentee->reference?></td>
-            <td><?=$bons_entee->date?></td>
-            <td><?=$bons_entee->aricle?></td>
-            <td><?=$bons_entee->quantite?></td>
-            <td><?=$bons_entee->fournisseur?></td>
+            <td><?=$bonentree->reference?></td>
+            <td><?=$bonentree->date?></td>
+            <td><?=$bonentree->aricle?></td>
+            <td><?=$bonentree->quantite?></td>
+            <td><?=$bonentree->fournisseur?></td>
             <td> 
                  <a href="#"><button class="btn btn-info"><img src="images/icones/pencil.png">Modifier</button></a>
                  <a href="#"><button class="btn btn-danger"><img src="images/icones/delete.png">Supprimer</button></a>
