@@ -1,4 +1,4 @@
-<h2 class="mt-5 text-center">Bons d'Entrée</h2> 
+<h2 class="mt-5 text-center">Bons d'entrée</h2> 
 <div>
     <table class="table table-striped table-bordered table-hover">
         <tr>

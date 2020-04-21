@@ -29,7 +29,7 @@
     <input type="hidden" name="operation" value="modifier">
     <input type="hidden" name="id" value="<?= $bonEntree->id ?>">
 
-    <input type="submit" value="Ajouter" class="btn btn-success">
+    <input type="submit" value="Modifier" class="btn btn-success">
     <a href="/gestock/bonsentree/liste" class="btn btn-danger">Annuler</a>    
   </form>
 </div>
