@@ -24,7 +24,8 @@
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($id));
             $postes = array();
-            while ($poste = $reponse->fetch()){
+            while ($row = $reponse->fetch()){
+                $poste = new Poste($row['id']);
                 $postes[] = $poste;
             }
             $this->poste = $postes;

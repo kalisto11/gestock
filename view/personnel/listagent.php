@@ -4,9 +4,9 @@
 <div></div>
             <table class="table table-striped table-bordered table-hover">
                 <tr>
-                    <th>Prénon</th>
+                    <th>Prénom</th>
                     <th>Nom</th>
-                    <th class="th-md">Poste</th>
+                    <th class="th-md">Postes</th>
                     <th>Action</th>
                 </tr>
                 <?php foreach($agents as $agent):?>
@@ -15,7 +15,7 @@
                         <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?=$agent->nom?></a></td>
                         <td>
                             <?php foreach ($agent->poste as $poste): ?>
-                                <?= $poste['nom'] ?> <br>
+                                <?= $poste->nom ?> <br>
                             <?php endforeach ; ?>
                         </td>
                         <td> 

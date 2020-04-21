@@ -1,6 +1,10 @@
 #logo{
   font-family: Algerian, Calibri sans-serif;
 }
+#menu{
+  color:white;
+}
+
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -38,7 +42,7 @@ th, td{
 th{
     font-weight: bold;
     font-size: 20px;
-    background-color:rgb(150, 146, 146);
+    background-color:rgb(226, 179,35);
     color: #fff;
   
     

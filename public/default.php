@@ -20,7 +20,7 @@
                 <a class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#">TEAM UVS KAFFRINE</a>
                 <input class="form-control form-control-dark w-50" type="text" placeholder="Recherche" aria-label="Search">
             <ul class="navbar-nav px-3">
-                <li class="nav-item text-nowrap">
+                <li class="nav-item text-nowrap ">
                     <a class="nav-link" href="#">Connexion</a>
                 </li>
             </ul>
