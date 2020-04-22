@@ -1,5 +1,5 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
-<h2 class="mt-5 text-center">Bons d'Entrée</h2> 
+<h2 class="mt-5 text-center">Liste des Bons d'Entrée</h2> 
 <div>
     <table class="table table-striped table-bordered table-hover">
         <tr>
@@ -18,14 +18,14 @@
             <td><?=$bon_entree->quantite?></td>
             <td><?=$bon_entree->fournisseur?></td>
             <td> 
-                <a href="/gestock/bonsentree/modifier/<?= $bon_entree->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png"></button></a>
-                <a href="/gestock/bonsentree/supprimer/<?= $bon_entree->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png"></button></a>
+                <a href="/gestock/bonsentree/modifier/<?= $bon_entree->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png" class=" menu-icone"></button></a>
+                <a href="/gestock/bonsentree/supprimer/<?= $bon_entree->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png" class=" menu-icone"></button></a>
             </td>
         </tr>
         <?php endforeach ;?>
     </table>
 </div>
 <div class="mt-5">
-    <a href="/gestock/bonsentree/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png"> Ajouter un bon d'entrée</button></a>
+    <a href="/gestock/bonsentree/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon d'entrée</button></a>
 </div>
 

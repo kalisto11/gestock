@@ -20,10 +20,10 @@
                         </td>
                         <td> 
                             <a class="btn btn-info btn-sm" href="/gestock/personnels/modifier/<?=$agent->id?>">
-                                <img src="images/icones/pencil.png" alt="Modifier" title="Modifier">
+                                <img src="images/icones/pencil.png" class=" menu-icone" alt="Modifier" title="Modifier">
                             </a>
                             <a class="btn btn-danger btn-sm" href="/gestock/personnels/supprimer/<?=$agent->id?>">
-                                <img src="images/icones/delete.png" alt="Supprimer" title="Supprimer">
+                                <img src="images/icones/delete.png" class=" menu-icone" alt="Supprimer" title="Supprimer">
                             </a>
                         </td>   
                     </tr>
@@ -31,7 +31,7 @@
             </table>
         </div>
         <div class="mt-5">
-            <a href="/gestock/personnels/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png"> Ajouter un Agent</button></a>
+            <a href="/gestock/personnels/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un Agent</button></a>
 
         </div>
     
