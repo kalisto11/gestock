@@ -5,8 +5,6 @@
         <label for="reference">Référence</label>
         <input type="text" name="reference" id="reference" class="form-control">
       </div>
-
-      <form>
         <div class="row">
           <div class="col">
               <label for="article">Articles</label>
@@ -22,10 +20,14 @@
               <input type="number" name="quantite" id="quantite" class="form-control">
           </div>
         </div>
-      </form>
       <div class="form-group mt-3">
         <label for="beneficiaire">Bénéficiaire</label>
-        <input type="text" name="beneficiaire" id="beneficiaire" class="form-control">
+        <select name="beneficiaire" id="beneficiaire" class="form-control">
+                <option value="null">----------------------------------</option>
+                <?php foreach($personnels as $personnel): ?>
+                <option value="<?= $personnel->id ?>">  <?= $personnel->prenom?>  <?= $personnel->nom ?></option>
+                <?php endforeach ; ?>
+                </select>
       </div>
   
       <input type="hidden" name="operation" value="ajouter">
