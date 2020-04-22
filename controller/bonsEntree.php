@@ -35,7 +35,7 @@
                                 $bonEntree->modify();
                                 $this->message['type'] = 'success';
                                 $this->message['contenu'] = "Le bon a été modifié avec succès.";
-                                $this->request->action = 'liste';
+                                $this->request->action = 'modifier';
                             break;
  
                              default:
