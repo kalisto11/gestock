@@ -25,7 +25,12 @@
       </form>
       <div class="form-group mt-3">
         <label for="fournisseur">Bénéficiaire</label>
-        <input type="text" name="fournisseur" id="fournisseur" class="form-control">
+        <select name="article" id="article" class="form-control">
+                <option value="null">----------------------------------</option>
+                <?php foreach($agents as $agent): ?>
+                <option value="<?= $agent->id ?>"><?= $agent->nom ?></option>
+                <?php endforeach ; ?>
+                </select>
       </div>
   
       <input type="hidden" name="operation" value="ajouter">
