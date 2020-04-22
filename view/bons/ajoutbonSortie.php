@@ -23,6 +23,167 @@
           </div>
         </div>
       </form>
+      <form>
+        <div class="row">
+          <div class="col">
+              <label for="article">Articles</label>
+              <select name="article" id="article" class="form-control">
+                <option value="null">----------------------------------</option>
+                <?php foreach($articles as $article): ?>
+                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                <?php endforeach ; ?>
+              </select>
+          </div>
+          <div class="col">
+              <label for="quantite">Quantité</label>
+              <input type="number" name="quantite" id="quantite" class="form-control">
+          </div>
+        </div>
+      </form>
+
+      <form>
+        <div class="row">
+          <div class="col">
+              <label for="article">Articles</label>
+              <select name="article" id="article" class="form-control">
+                <option value="null">----------------------------------</option>
+                <?php foreach($articles as $article): ?>
+                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                <?php endforeach ; ?>
+              </select>
+          </div>
+          <div class="col">
+              <label for="quantite">Quantité</label>
+              <input type="number" name="quantite" id="quantite" class="form-control">
+          </div>
+        </div>
+      </form>
+
+      <form>
+        <div class="row">
+          <div class="col">
+              <label for="article">Articles</label>
+              <select name="article" id="article" class="form-control">
+                <option value="null">----------------------------------</option>
+                <?php foreach($articles as $article): ?>
+                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                <?php endforeach ; ?>
+              </select>
+          </div>
+          <div class="col">
+              <label for="quantite">Quantité</label>
+              <input type="number" name="quantite" id="quantite" class="form-control">
+          </div>
+        </div>
+      </form>
+
+      <form>
+        <div class="row">
+          <div class="col">
+              <label for="article">Articles</label>
+              <select name="article" id="article" class="form-control">
+                <option value="null">----------------------------------</option>
+                <?php foreach($articles as $article): ?>
+                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                <?php endforeach ; ?>
+              </select>
+          </div>
+          <div class="col">
+              <label for="quantite">Quantité</label>
+              <input type="number" name="quantite" id="quantite" class="form-control">
+          </div>
+        </div>
+      </form>
+
+      <form>
+        <div class="row">
+          <div class="col">
+              <label for="article">Articles</label>
+              <select name="article" id="article" class="form-control">
+                <option value="null">----------------------------------</option>
+                <?php foreach($articles as $article): ?>
+                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                <?php endforeach ; ?>
+              </select>
+          </div>
+          <div class="col">
+              <label for="quantite">Quantité</label>
+              <input type="number" name="quantite" id="quantite" class="form-control">
+          </div>
+        </div>
+      </form>
+
+      <form>
+        <div class="row">
+          <div class="col">
+              <label for="article">Articles</label>
+              <select name="article" id="article" class="form-control">
+                <option value="null">----------------------------------</option>
+                <?php foreach($articles as $article): ?>
+                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                <?php endforeach ; ?>
+              </select>
+          </div>
+          <div class="col">
+              <label for="quantite">Quantité</label>
+              <input type="number" name="quantite" id="quantite" class="form-control">
+          </div>
+        </div>
+      </form>
+
+      <form>
+        <div class="row">
+          <div class="col">
+              <label for="article">Articles</label>
+              <select name="article" id="article" class="form-control">
+                <option value="null">----------------------------------</option>
+                <?php foreach($articles as $article): ?>
+                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                <?php endforeach ; ?>
+              </select>
+          </div>
+          <div class="col">
+              <label for="quantite">Quantité</label>
+              <input type="number" name="quantite" id="quantite" class="form-control">
+          </div>
+        </div>
+      </form>
+
+      <form>
+        <div class="row">
+          <div class="col">
+              <label for="article">Articles</label>
+              <select name="article" id="article" class="form-control">
+                <option value="null">----------------------------------</option>
+                <?php foreach($articles as $article): ?>
+                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                <?php endforeach ; ?>
+              </select>
+          </div>
+          <div class="col">
+              <label for="quantite">Quantité</label>
+              <input type="number" name="quantite" id="quantite" class="form-control">
+          </div>
+        </div>
+      </form>
+
+      <form>
+        <div class="row">
+          <div class="col">
+              <label for="article">Articles</label>
+              <select name="article" id="article" class="form-control">
+                <option value="null">----------------------------------</option>
+                <?php foreach($articles as $article): ?>
+                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                <?php endforeach ; ?>
+              </select>
+          </div>
+          <div class="col">
+              <label for="quantite">Quantité</label>
+              <input type="number" name="quantite" id="quantite" class="form-control">
+          </div>
+        </div>
+      </form>
       <div class="form-group mt-3">
         <label for="fournisseur">Bénéficiaire</label>
         <select name="article" id="article" class="form-control">
