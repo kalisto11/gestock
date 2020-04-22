@@ -1,6 +1,6 @@
 <h1 class="article">Ajouter un Bon de Sortie</h1>
 <div class="container"> 
-    <form method="post" action="#">
+    <form method="post" action="/gestock/bonssortie/traitement-bonsortie">
       <div class="form-group">
         <label for="reference">Référence</label>
         <input type="text" name="reference" id="reference" class="form-control">
@@ -24,14 +24,14 @@
         </div>
       </form>
       <div class="form-group mt-3">
-        <label for="fournisseur">Bénéficiaire</label>
-        <input type="text" name="fournisseur" id="fournisseur" class="form-control">
+        <label for="beneficiaire">Bénéficiaire</label>
+        <input type="text" name="beneficiaire" id="beneficiaire" class="form-control">
       </div>
   
       <input type="hidden" name="operation" value="ajouter">
   
       <input type="submit" value="Ajouter" class="btn btn-success">
-      <a href="#" class="btn btn-danger">Annuler</a>    
+      <a href="/gestock/bonssortie/liste" class="btn btn-danger">Annuler</a>    
     </form>
   </div>
 
