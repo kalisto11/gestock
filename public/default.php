@@ -49,7 +49,7 @@
                             <li><a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</a></li>
                         </ul>
                         <li data-toggle="collapse" data-target="#bons" class="collapsed bg-info">
-                            <img src="images/icones/bon.png"class="mr-2 ml-2 bg-white menu-icone"></i>Bons<span class="arrow"></span>
+                            <img src="images/icones/bon.png"class="mr-2 ml-2 bg-white menu-icone">Bons<span class="arrow"></span>
                         </li>  
                         <ul class="sub-menu collapse" id="bons">
                             <li><a href="/gestock/articles/liste"><img src="images/icones/article.png" class="bg-white mr-2 menu-icone">Nom des Articles</a></li>
