@@ -16,15 +16,13 @@
                                     $poste = new Poste();
                                     $poste->nom = $_POST['nomPoste'];
                                     $poste->save();
-                                    $this->message['type'] = 'success';
-                                    $this->message['contenu'] = 'Le poste a été ajouté avec succès.';
+                                    $this->notification = new Notification("success", "Le poste a été ajouté avec succès.");
                                 }
                                 else{
-                                    $this->message['type'] = 'danger';
-                                    $this->message['contenu'] = "Le nom du poste ne doit pas etre vide.";
+                                    $this->notification = new Notification("danger", "Le nom du poste ne doit pas etre vide.");
                                 }
                                 $this->request->action = 'liste';
-                                $this->render($this->message);
+                                $this->render($this->notification);
                             break;
 
                             case 'modifier': // cas ou on modifie un poste existant
@@ -32,25 +30,22 @@
                                     $poste = new Poste($_POST['id']);
                                     $poste->nom = $_POST['nomPoste'];
                                     $poste->update();
-                                    $this->message['type'] = 'success';
-                                    $this->message['contenu'] = 'Le poste a été modifié avec succès.';
+                                    $this->notification = new Notification("success", "Le poste a été modifié avec succès.");
                                     $this->request->action = 'liste';
                                 }
                                 else{
-                                    $this->message['type'] = 'danger';
-                                    $this->message['contenu'] = 'Le nom du poste ne doit pas etre vide.';
+                                    $this->notification = new Notification("danger", "Le nom du poste ne doit pas etre vide.");
                                     $this->request->action = 'modifier';
                                     $this->request->id = $_POST[id];
                                 }
                                
-                                $this->render($this->message);
+                                $this->render($this->notification);
                             break;
 
                             default:
-                            $this->message['type'] = 'danger';
-                            $this->message['contenu'] = 'Une erreur s\'est produite pendant le traitement des données. Veuillez rééssayer svp.';
+                            $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
                             $this->request->action = 'liste-postes';
-                            $this->render($this->message);
+                            $this->render($this->notification);
                         } // fin switch sur $_POST['operation']
                    } // fin if sur $this->request->action
                }
@@ -61,14 +56,13 @@
                     $poste  = new Poste($idPoste, null);
                     $poste->delete();
                     $this->request->action = 'liste';
-                    $this->message['type'] = 'success';
-                    $this->message['contenu'] = 'Le poste a été supprimé avec succès.';
+                    $this->notification = new Notification("success", "Le poste a été supprimé avec succès.");
                 }
-                $this->render($this->message);
+                $this->render($this->notification);
             }
         } // fin méthode process
 
-        public function render($message = null){
+        public function render($notification = null){
             switch ($this->request->action){
 
                 case 'liste':

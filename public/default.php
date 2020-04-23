@@ -52,8 +52,8 @@
                             <img src="images/icones/bon.png"class="mr-2 ml-2 bg-white menu-icone">Bons<span class="arrow"></span>
                         </li>  
                         <ul class="sub-menu collapse" id="bons">
-                            <li><a href="/gestock/nomarticles/liste"><img src="images/icones/article.png" class="bg-white mr-2 menu-icone">Nom des Articles</a></li>
-                            <li><a href=""><img src="images/icones/entree.JPG" class="mr-2 menu-icone">Bon d'entrée</a></li>
+                            <li><a href="/gestock/articles/liste"><img src="images/icones/article.png" class="bg-white mr-2 menu-icone">Articles</a></li>
+                            <li><a href="/gestock/bonsentree/liste"><img src="images/icones/entree.JPG" class="mr-2 menu-icone">Bon d'entrée</a></li>
                             <li><a href=""><img src="images/icones/sortie.JPG" class="mr-2 menu-icone">Bon de sortie</a></li>
                         </ul>
                         <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">

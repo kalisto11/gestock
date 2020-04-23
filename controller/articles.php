@@ -16,15 +16,13 @@
                                 $article->nom = $_POST['article'];   
                                 $article->groupe = $_POST['groupe'];                                            
                                 $article->ajoutArticle();
-                                $this->message['type'] = 'success';
-                                $this->message['contenu'] = "L'article a été ajouté avec succès.";
+                                $this->notification = new Notification("success", "L'article a été ajouté avec succès.");
                             }
                             else{
-                                $this->message['type'] = 'danger';
-                                $this->message['contenu'] = "Le nom de l'article ne doit pas etre vide.";
+                                $this->notification = new Notification("danger", "Le nom de l'article ne doit pas etre vide.");
                             }       
                             $this->request->action = 'liste';
-                            $this->render($this->message);
+                            $this->render($this->notification);
                         break;  
 
                         case 'modifier':          
@@ -34,24 +32,21 @@
                             $article->groupe = $_POST['groupe'];
                             if(!empty($_POST['article'])){
                             $article->modif();
-                            $this->message['type'] = 'success';
-                            $this->message['contenu'] = 'L\'article a été modifié avec succès.';
+                            $this->notification = new Notification("success", "L'article a été modifié avec succès.");
                             $this->request->action = 'liste';
                             }
                             else{
-                            $this->message['type'] = 'danger';
-                            $this->message['contenu'] = 'Le nom de l\'article ne doit pas etre vide.';
+                            $this->notification = new Notification("danger", "Le nom de l'article ne doit pas etre vide.");
                             $this->request->action = 'modifier';
                             $this->request->id = $article->id;
                             }
-                            $this->render($this->message);
+                            $this->render($this->notification);
                         break;
 
                         default:
-                        $this->message['type'] = 'danger';
-                        $this->message['contenu'] = 'Une erreur s\'est produite pendant le traitement des données. Veuillez rééssayer svp.';
+                        $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
                         $this->request->action = 'liste';
-                        $this->render($this->message);
+                        $this->render($this->notification);
                     }            
                 }  
             }  // fin traitement de la méthode post
@@ -61,14 +56,13 @@
                     $article = new Article($idArticle);
                     $article->supprime(); 
                     $this->request->action = 'liste';
-                    $this->message['type'] = 'success';
-                    $this->message['contenu'] = 'L\'article a été supprimé avec succès.';
+                    $this->notification = new Notification("success", "L'article a été supprimé avec succès.");
                 }
-                $this->render($this->message); 
+                $this->render($this->notification); 
             } // fin traitement de la méthode GET
         } // fin méthode process
          
-        public function render($message = null){
+        public function render($notification = null){
              switch ($this->request->action){
                 // inclure les vues ici selon la valeur de $view
                 case 'liste':
