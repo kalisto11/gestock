@@ -11,36 +11,11 @@
                 if ($this->request->action === 'traitement-article'){
                     switch ($_POST['operation']){
                         case 'ajouter':
-                            if(!empty($_POST['article'])){
-                                $article = new Article();
-                                $article->nom = $_POST['article'];   
-                                $article->groupe = $_POST['groupe'];                                            
-                                $article->ajoutArticle();
-                                $this->notification = new Notification("success", "L'article a été ajouté avec succès.");
-                            }
-                            else{
-                                $this->notification = new Notification("danger", "Le nom de l'article ne doit pas etre vide.");
-                            }       
-                            $this->request->action = 'liste';
-                            $this->render($this->notification);
+                            $this->traiterArticle($_POST['groupe'], $_POST['article']);
                         break;  
 
                         case 'modifier':          
-                            $article = new Article();
-                            $article->id = $_POST['idArticle'];
-                            $article->nom = $_POST['article'];
-                            $article->groupe = $_POST['groupe'];
-                            if(!empty($_POST['article'])){
-                            $article->modif();
-                            $this->notification = new Notification("success", "L'article a été modifié avec succès.");
-                            $this->request->action = 'liste';
-                            }
-                            else{
-                            $this->notification = new Notification("danger", "Le nom de l'article ne doit pas etre vide.");
-                            $this->request->action = 'modifier';
-                            $this->request->id = $article->id;
-                            }
-                            $this->render($this->notification);
+                            $this->traiterArticle($_POST['groupe'], $_POST['article'], $_POST['idArticle']);
                         break;
 
                         default:
@@ -88,4 +63,49 @@
                     
             }
         }
-    } 
+
+        public function traiterArticle($groupeArticle, $nomArticle, $idArticle = null){
+            if ($idArticle == null){
+                if(!empty($nomArticle)){
+                    $articles = Article::getList();
+                    $is_exist = false;
+                    foreach ($articles as $article) :
+                        if ($article->nom == $nomArticle){
+                            $is_exist = true;
+                        }   
+                    endforeach;
+                    if ($is_exist == true){
+                        $this->notification = new Notification("danger", "Le nom de l'article existe déja. Veuillez choisir un autre nom.");
+                    }
+                    else{
+                        $article = new Article();
+                        $article->nom = $nomArticle;   
+                        $article->groupe = $groupeArticle;                                            
+                        $article->ajoutArticle();
+                        $this->notification = new Notification("success", "L'article a été ajouté avec succès.");
+                    }
+                }
+                else{
+                    $this->notification = new Notification("danger", "Le nom de l'article ne doit pas etre vide.");
+                }       
+                $this->request->action = 'liste';
+            }
+            else{
+                $article = new Article();
+                $article->id = $idArticle;
+                $article->nom = $nomArticle;
+                $article->groupe = $groupeArticle;
+                if(!empty($_POST['article'])){
+                $article->modif();
+                $this->notification = new Notification("success", "L'article a été modifié avec succès.");
+                $this->request->action = 'liste';
+                }
+                else{
+                $this->notification = new Notification("danger", "Le nom de l'article ne doit pas etre vide.");
+                $this->request->action = 'modifier';
+                $this->request->id = $article->id;
+                }
+            }
+            $this->render($this->notification);
+        } //fin traiterArticle
+    } // fin class

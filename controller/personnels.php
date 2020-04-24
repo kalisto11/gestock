@@ -18,7 +18,7 @@
                                 $agent = new Personnel();
                                 $agent->prenom = $_POST['prenom'];
                                 $agent->nom = $_POST['nom'];
-                                $agent->poste = (int) $_POST['poste'];
+                                $agent->poste = self::ajouterPoste($_POST['poste1'], $_POST['poste2'], $_POST['poste3']);
                                 $agent->save();
                                 $this->notification = new Notification("success", "L'agent a été bien ajouté avec succès.");
                                 $this->request->action = 'liste';
@@ -44,7 +44,7 @@
                                     $agent = new Personnel($_POST['id']);
                                     $agent->prenom = $_POST['prenom'];
                                     $agent->nom = $_POST['nom'];
-                                    $agent->poste = $_POST['poste'];
+                                    $agent->poste = self::ajouterPoste($_POST['poste1'], $_POST['poste2'], $_POST['poste3']);
                                     $agent->update();  
                                     $this->notification = new Notification("success", "Les informations de l'agent ont été bien modifiées.");
                                     $this->request->action = 'consulter';
@@ -79,6 +79,10 @@
             }
         } // fin méthode process
 
+        /**
+         * permet d'afficher la vue selon la valeur de $this->request->action
+         * @param String action à fournir à la méthode pour savoir quelle vue il faut afficher
+        **/
         public function render($notification = null){
             switch ($this->request->action){
                 case 'liste':
@@ -92,13 +96,16 @@
                 break;
 
                 case 'ajouter':
-                    $postes = Poste::findAll();
+                    $postes = Poste::getListFree();
                     require_once VIEW . 'personnel/ajoutagent.php';
                 break;
 
-                case 'modifier':
+                case 'modifier': // gestion du cas ou l'utilisateur veut modifier les infos d'un agent
                     $agent = new Personnel($this->request->id);
-                    $postes = Poste::findAll();
+                    $postes = Poste::getListFree();
+                    foreach ($agent->poste as $poste){
+                        $postes[] = $poste;
+                    }
                     require_once VIEW . 'personnel/ajoutagent.php';
                 break;
             
@@ -107,4 +114,18 @@
                     $currentController->process();
             }
         } // fin méthode render
+
+        public function ajouterPoste($poste1, $poste2, $poste3){
+            $postes = array();
+            if ($poste1 != "null"){
+                $postes[] = $poste1;
+            }
+            if ($poste2 != "null"){
+                $postes[] = $poste2;
+            }
+            if ($poste3 != "null"){
+                $postes[] = $poste3;
+            }
+            return $postes;
+        }
     } // fin class

@@ -1,5 +1,5 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
-<h2 class="mt-5 text-center">Liste des Bons d'Entrée</h2> 
+<h2 class="mt-5 text-center">Liste des Bons d'entrée</h2> 
 <div>
     <table class="table table-striped table-bordered table-hover">
         <tr>

@@ -56,13 +56,13 @@
         }
         public static function getList(){
             $pdo = Database::getPDO();
-                $req = 'SELECT id from article';
-                $reponse = $pdo->query($req);
-                $articles = array();
-                while ($row = $reponse->fetch()){
-                    $article = new Article($row['id']);
-                    $articles[] = $article;
-                }  
-                return $articles;
+            $req = 'SELECT id from article';
+            $reponse = $pdo->query($req);
+            $articles = array();
+            while ($row = $reponse->fetch()){
+                $article = new Article($row['id']);
+                $articles[] = $article;
+            }  
+            return $articles;
         }
     }

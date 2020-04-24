@@ -29,6 +29,8 @@
                 $postes[] = $poste;
             }
             $this->poste = $postes;
+            //var_dump($postes);
+            //exit;
         }
         else{
             $this->id     = null;
@@ -50,16 +52,16 @@
         $reponse = $pdo->query($req);
         $personnel = $reponse->fetch();
         $this->id = $personnel['id'];
-
-        $req = 'INSERT INTO personnel_poste (id_personnel, id_poste) VALUES (:id_personnel, :id_poste)';
-        $reponse = $pdo->prepare($req);
-        $reponse->execute(array(
-            'id_personnel' => $this->id,
-            'id_poste'    => $this->poste
-        ));
-
-
+        foreach ($this->poste as $poste){
+            $req = 'INSERT INTO personnel_poste (id_personnel, id_poste) VALUES (:id_personnel, :id_poste)';
+            $reponse = $pdo->prepare($req);
+            $reponse->execute(array(
+                'id_personnel' => $this->id,
+                'id_poste'    => $poste
+            ));
+        }
     }  
+
     public function update(){ //fonction permettant de modifier les données d'un agent
         $pdo = Database::getPDO();
         $req = 'UPDATE personnel SET prenom = :prenom, nom = :nom WHERE id = :id';
@@ -71,17 +73,19 @@
         ));
 
 
-       $sup = 'DELETE FROM personnel_poste WHERE id_personnel = ?';
-       $reponse = $pdo->prepare($sup);
-       $reponse->execute(array($this->id));
-
-       $req = 'INSERT INTO personnel_poste (id_personnel, id_poste) VALUES (:id_personnel, :id_poste)';
-       $reponse = $pdo->prepare($req);
-       $reponse->execute(array(
-           'id_personnel' => $this->id,
-           'id_poste'    => $this->poste
-       ));
+        $sup = 'DELETE FROM personnel_poste WHERE id_personnel = ?';
+        $reponse = $pdo->prepare($sup);
+        $reponse->execute(array($this->id));
+        foreach ($this->poste as $poste){
+            $req = 'INSERT INTO personnel_poste (id_personnel, id_poste) VALUES (:id_personnel, :id_poste)';
+            $reponse = $pdo->prepare($req);
+            $reponse->execute(array(
+               'id_personnel' => $this->id,
+               'id_poste'    => $poste
+            ));
+        }
     }  
+
     public function delete(){ //Fonction de suppresssion d'un agent
 
         $pdo = Database::getPDO();
@@ -93,6 +97,7 @@
         $reponse = $pdo->prepare($sup);
         $reponse->execute(array($this->id));
     }
+
     public static function getList(){ //Fonction permettant d'obtenir la liste du personnel
         $pdo = Database::getPDO();
         $get = 'SELECT id from personnel';

@@ -22,9 +22,9 @@
             else{
                 $this->id = null;
                 $this->nom = null;
-
             }
-         }
+        }
+
         public function save(){
             $pdo = Database::getPDO();
             $req = 'INSERT INTO poste (nom) VALUES (:nom)';
@@ -54,17 +54,27 @@
             $reponse->execute(array($this->id));
         }
 
-        public static function findAll(){
+        public static function getList(){
             $pdo = Database::getPDO();
             $req = 'SELECT * from poste';
             $reponse = $pdo->query($req);
             $postes = array();
             while ($row = $reponse->fetch()){
-                $poste = new Poste();
-                $poste->id = $row['id'];
-                $poste->nom = $row['nom'];
+                $poste = new Poste($row['id']);
                 $postes[] = $poste;
             }
+            return $postes;
+        }
+
+        public static function getListFree(){
+            $pdo = Database::getPDO();
+            $req = 'SELECT id FROM poste LEFT JOIN personnel_poste ON poste.id = personnel_poste.id_poste WHERE personnel_poste.id_poste IS NULL AND personnel_poste.id_personnel IS NULL';
+            $reponse = $pdo->query($req);
+            $postes = array();
+            while ($row = $reponse->fetch()){
+                $poste = new Poste($row['id']);
+                $postes[] = $poste;
+            }  
             return $postes;
         }
     }
