@@ -9,34 +9,18 @@
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
                 switch ($_POST['operation']){
                     case 'ajouter':
-                        $bonEntree = new BonEntree();
-                        $bonEntree->reference = strip_tags($_POST['reference']);
-                        $bonEntree->article = strip_tags($_POST['article']);
-                        $bonEntree->quantite = intval(strip_tags($_POST['quantite']));
-                        $bonEntree->fournisseur = strip_tags($_POST['fournisseur']);
-                        $bonEntree->save();
-                        $this->notification = new Notification("success", "Le bon a été ajouté avec succès.");
-                        $this->request->action = 'liste';
+                        $this->traiterBonEntree($_POST['reference'], $_POST['article'], $_POST['quantite'], $_POST['fournisseur']);
                     break;
-
+                    
                     case 'modifier':
-                        $idBonEntree = intval($_POST['id']);
-                        $bonEntree  = new BonEntree();
-                        $bonEntree->id = $idBonEntree;
-                        $bonEntree->reference = strip_tags($_POST['reference']);
-                        $bonEntree->article = strip_tags($_POST['article']);
-                        $bonEntree->quantite = intval(strip_tags($_POST['quantite']));
-                        $bonEntree->fournisseur = strip_tags($_POST['fournisseur']);
-                        $bonEntree->modify();
-                        $this->notification = new Notification("success", "Le bon a été modifié avec succès.");
-                        $this->request->action = 'liste';
+                        $this->traiterBonEntree($_POST['reference'], $_POST['article'], $_POST['quantite'], $_POST['fournisseur'], $_POST['id']);
                     break;
 
                     default:
                         $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
-                        $this->request->action = 'liste';
                 }
-                        $this->render($this->notification);
+                $this->request->action = 'liste';
+                $this->render($this->notification);
             }
             elseif ($this->request->method === 'GET'){ // si la requete vient d'un lien 
                 if ($this->request->action === 'supprimer'){
@@ -85,7 +69,56 @@
             }
         } //fin méthode render
 
-        public function traiterBonEntree(){
-
-        }
+        public function traiterBonEntree($reference, $article, $quantite, $fournisseur, $id =null){
+            $erreur = false;
+            $notification = [];
+            if (empty($reference)){
+                $erreur = true;
+                $notification [] = "La référence ne doit pas etre vide.";
+            }
+            if ($article == 'null'){
+                $erreur = true;
+                $notification [] = "Vous devez choisir un article.";
+            }
+            if ($quantite <= 0 ){
+                $erreur = true;
+                $notification [] = "La quantité ne doit pas etre inférieure ou égale à zéro."; 
+            }
+            if (empty($fournisseur)){
+                $erreur = true;
+                $notification [] = "Le nom du fournisseur ne doit pas etre vide."; 
+            }
+            if ($erreur == false){
+                if ($id == null){
+                    if ($erreur == false){
+                        $bonEntree = new BonEntree();
+                        $bonEntree->reference = strip_tags($reference);
+                        $bonEntree->article = strip_tags($article);
+                        $bonEntree->quantite = intval(strip_tags($quantite));
+                        $bonEntree->fournisseur = strip_tags($fournisseur);
+                        $bonEntree->save();
+                        $this->notification = new Notification("success", "Le bon a été ajouté avec succès.");
+                        $this->request->action = 'liste';
+                    }
+                    else{
+                        $this->notification = new Notification("danger", "afficher tab notifs");
+                    } 
+                }
+                else{ // cas modifier 
+                $id = intval($id);
+                $bonEntree  = new BonEntree();
+                $bonEntree->id = $id;
+                $bonEntree->reference = strip_tags($reference);
+                $bonEntree->article = strip_tags($article);
+                $bonEntree->quantite = intval(strip_tags($quantite));
+                $bonEntree->fournisseur = strip_tags($fournisseur);
+                $bonEntree->modify();
+                $this->notification = new Notification("success", "Le bon a été modifié avec succès.");
+                }
+            }
+            else{
+                $this->notification = new Notification("danger", "Afficher les erreurs ici");
+            }
+           
+        } // fin méthode traiterBonEntree
     } // fin class
