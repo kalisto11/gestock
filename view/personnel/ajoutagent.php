@@ -3,12 +3,12 @@
    <form method="post" action="/gestock/personnels/traitement-agent" class="form-sm">
       <div class="form-group">
             <label for="prenom">Prénom </label>
-         <input class="form-control" type="text" name="prenom" id="prenom" value="<?php if (isset($agent)){echo $agent->prenom;} ?>">
+         <input class="form-control" type="text" name="prenom" id="prenom" value="<?php if (isset($agent)){echo $agent->prenom ;} ?>">
       </div>
       
       <div class="form-group">
          <label for="nom">Nom</label>
-         <input class="form-control" type="text" name="nom" id="nom" value="<?php if (isset($agent)){echo $agent->nom;} ?>">
+         <input class="form-control" type="text" name="nom" id="nom" value="<?php if (isset($agent)){echo $agent->nom ;} ?>">
       </div>
       <div class="row">
          <!-- debut poste 1 -->

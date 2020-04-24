@@ -7,41 +7,36 @@
     class BonsEntree extends Controller{
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
-                if ($this->request->action != null){
-                    switch ($this->request->action){
-                        case 'traitement-bonentree':
-                            switch ($_POST['operation']){
-                                case 'ajouter':
-                                    $bonEntree = new BonEntree();
-                                    $bonEntree->reference = $_POST['reference'];
-                                    $bonEntree->article = $_POST['article'];
-                                    $bonEntree->quantite = $_POST['quantite'];
-                                    $bonEntree->fournisseur = $_POST['fournisseur'];
-                                    $bonEntree->save();
-                                    $this->notification = new Notification("success", "Le bon a été ajouté avec succès.");
-                                    $this->request->action = 'liste';
-                                break;
- 
-                                case 'modifier':
-                                    $idBonEntree = intval($_POST['id']);
-                                    $bonEntree  = new BonEntree();
-                                    $bonEntree->id = $idBonEntree;
-                                    $bonEntree->reference = $_POST['reference'];
-                                    $bonEntree->article = $_POST['article'];
-                                    $bonEntree->quantite = $_POST['quantite'];
-                                    $bonEntree->fournisseur = $_POST['fournisseur'];
-                                    $bonEntree->modify();
-                                    $this->notification = new Notification("success", "Le bon a été modifié avec succès.");
-                                    $this->request->action = 'liste';
-                                break;
- 
-                                default:
-                                    $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
-                                    $this->request->action = 'liste';
-                            }
-                         $this->render($this->notification);
-                    }
+                switch ($_POST['operation']){
+                    case 'ajouter':
+                        $bonEntree = new BonEntree();
+                        $bonEntree->reference = strip_tags($_POST['reference']);
+                        $bonEntree->article = strip_tags($_POST['article']);
+                        $bonEntree->quantite = intval(strip_tags($_POST['quantite']));
+                        $bonEntree->fournisseur = strip_tags($_POST['fournisseur']);
+                        $bonEntree->save();
+                        $this->notification = new Notification("success", "Le bon a été ajouté avec succès.");
+                        $this->request->action = 'liste';
+                    break;
+
+                    case 'modifier':
+                        $idBonEntree = intval($_POST['id']);
+                        $bonEntree  = new BonEntree();
+                        $bonEntree->id = $idBonEntree;
+                        $bonEntree->reference = strip_tags($_POST['reference']);
+                        $bonEntree->article = strip_tags($_POST['article']);
+                        $bonEntree->quantite = intval(strip_tags($_POST['quantite']));
+                        $bonEntree->fournisseur = strip_tags($_POST['fournisseur']);
+                        $bonEntree->modify();
+                        $this->notification = new Notification("success", "Le bon a été modifié avec succès.");
+                        $this->request->action = 'liste';
+                    break;
+
+                    default:
+                        $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
+                        $this->request->action = 'liste';
                 }
+                        $this->render($this->notification);
             }
             elseif ($this->request->method === 'GET'){ // si la requete vient d'un lien 
                 if ($this->request->action === 'supprimer'){
@@ -88,5 +83,9 @@
                     $currentController = new Erreur($this->request);
                     $currentController->process();
             }
+        } //fin méthode render
+
+        public function traiterBonEntree(){
+            
         }
     }

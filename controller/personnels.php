@@ -16,8 +16,8 @@
                             case 'ajouter':
                             if(!empty(($_POST['prenom']) && ($_POST['nom']) )){
                                 $agent = new Personnel();
-                                $agent->prenom = $_POST['prenom'];
-                                $agent->nom = $_POST['nom'];
+                                $agent->prenom = strip_tags($_POST['prenom']);
+                                $agent->nom = strip_tags($_POST['nom']);
                                 $agent->poste = self::ajouterPoste($_POST['poste1'], $_POST['poste2'], $_POST['poste3']);
                                 $agent->save();
                                 $this->notification = new Notification("success", "L'agent a été bien ajouté avec succès.");
@@ -42,8 +42,8 @@
                             case 'modifier': 
                                 if(!empty(($_POST['prenom']) && ($_POST['nom']))){
                                     $agent = new Personnel($_POST['id']);
-                                    $agent->prenom = $_POST['prenom'];
-                                    $agent->nom = $_POST['nom'];
+                                    $agent->prenom = strip_tags($_POST['prenom']);
+                                    $agent->nom = strip_tags($_POST['nom']);
                                     $agent->poste = self::ajouterPoste($_POST['poste1'], $_POST['poste2'], $_POST['poste3']);
                                     $agent->update();  
                                     $this->notification = new Notification("success", "Les informations de l'agent ont été bien modifiées.");
@@ -118,13 +118,13 @@
         public function ajouterPoste($poste1, $poste2, $poste3){
             $postes = array();
             if ($poste1 != "null"){
-                $postes[] = $poste1;
+                $postes[] = strip_tags($poste1);
             }
             if ($poste2 != "null"){
-                $postes[] = $poste2;
+                $postes[] = strip_tags($poste2);
             }
             if ($poste3 != "null"){
-                $postes[] = $poste3;
+                $postes[] = strip_tags($poste3);
             }
             return $postes;
         }

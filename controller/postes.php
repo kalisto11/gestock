@@ -14,7 +14,7 @@
                             case 'ajouter': // cas ou on ajoute un nouveau poste
                                 if (!empty($_POST['nomPoste'])){
                                     $poste = new Poste();
-                                    $poste->nom = $_POST['nomPoste'];
+                                    $poste->nom = strip_tags($_POST['nomPoste']);
                                     $poste->save();
                                     $this->notification = new Notification("success", "Le poste a été ajouté avec succès.");
                                 }
@@ -27,8 +27,8 @@
 
                             case 'modifier': // cas ou on modifie un poste existant
                                 if (!empty($_POST['nomPoste'])){
-                                    $poste = new Poste($_POST['id']);
-                                    $poste->nom = $_POST['nomPoste'];
+                                    $poste = new Poste(intval($_POST['id']));
+                                    $poste->nom = strip_tags($_POST['nomPoste']);
                                     $poste->update();
                                     $this->notification = new Notification("success", "Le poste a été modifié avec succès.");
                                     $this->request->action = 'liste';
@@ -36,7 +36,7 @@
                                 else{
                                     $this->notification = new Notification("danger", "Le nom du poste ne doit pas etre vide.");
                                     $this->request->action = 'modifier';
-                                    $this->request->id = $_POST[id];
+                                    $this->request->id = $_POST['id'];
                                 }
                                
                                 $this->render($this->notification);
@@ -73,7 +73,7 @@
                 case 'modifier':
                     $idPoste = intval($this->request->id);
                     $currentPoste = new Poste($idPoste);
-                    $postes = Poste::findAll();
+                    $postes = Poste::getList();
                     require_once VIEW . 'personnel/listepostes.php';
                 break;
             

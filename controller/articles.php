@@ -65,8 +65,18 @@
         }
 
         public function traiterArticle($groupeArticle, $nomArticle, $idArticle = null){
-            if ($idArticle == null){
-                if(!empty($nomArticle)){
+            if (empty($nomArticle)){
+                $this->notification = new Notification("danger", "Le nom de l'article ne doit pas etre vide.");
+                if ($idArticle == null){
+                    $this->request->action = 'liste';
+                }
+                else{
+                    $this->request->action = 'modifier';
+                    $this->request->id = $idArticle;
+                }
+            }
+            else{
+                if ($idArticle == null){ // cas ou on ajoute un nouveau article
                     $articles = Article::getList();
                     $is_exist = false;
                     foreach ($articles as $article) :
@@ -74,38 +84,28 @@
                             $is_exist = true;
                         }   
                     endforeach;
-                    if ($is_exist == true){
-                        $this->notification = new Notification("danger", "Le nom de l'article existe déja. Veuillez choisir un autre nom.");
-                    }
-                    else{
-                        $article = new Article();
-                        $article->nom = $nomArticle;   
-                        $article->groupe = $groupeArticle;                                            
-                        $article->ajoutArticle();
-                        $this->notification = new Notification("success", "L'article a été ajouté avec succès.");
-                    }
+                        if ($is_exist == true){
+                            $this->notification = new Notification("danger", "Le nom de l'article existe déja. Veuillez choisir un autre nom.");
+                        }
+                        else{
+                            $article = new Article();
+                            $article->nom = strip_tags($nomArticle);   
+                            $article->groupe = strip_tags($groupeArticle);                                            
+                            $article->ajoutArticle();
+                            $this->notification = new Notification("success", "L'article a été ajouté avec succès.");
+                        }   
+                    $this->request->action = 'liste';
                 }
-                else{
-                    $this->notification = new Notification("danger", "Le nom de l'article ne doit pas etre vide.");
-                }       
-                $this->request->action = 'liste';
-            }
-            else{
-                $article = new Article();
-                $article->id = $idArticle;
-                $article->nom = $nomArticle;
-                $article->groupe = $groupeArticle;
-                if(!empty($_POST['article'])){
-                $article->modif();
-                $this->notification = new Notification("success", "L'article a été modifié avec succès.");
-                $this->request->action = 'liste';
-                }
-                else{
-                $this->notification = new Notification("danger", "Le nom de l'article ne doit pas etre vide.");
-                $this->request->action = 'modifier';
-                $this->request->id = $article->id;
+                else{ // idArticle n'est pas nul, donc on veut modifier un article déja existant
+                    $article = new Article();
+                    $article->id = (int) $idArticle;
+                    $article->nom = strip_tags($nomArticle);
+                    $article->groupe = strip_tags($groupeArticle);
+                    $article->modif();
+                    $this->notification = new Notification("success", "L'article a été modifié avec succès.");
+                    $this->request->action = 'liste';
                 }
             }
             $this->render($this->notification);
-        } //fin traiterArticle
+        } //fin méthode traiterArticle
     } // fin class
