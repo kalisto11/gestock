@@ -7,10 +7,12 @@
     class Home extends Controller{
         
         public function process(){
-            $this->render();
+            $message[] = "Page d'accueil en cours de travaux, bientot disponible";
+            $this->notification = new Notification("info", $message);
+            $this->render($this->notification);
         }
 
-        public function render(){
-            echo 'traiter les requetes sur l\'accueil ici';
+        public function render($notification = null){
+            require_once VIEW . 'infos/notifications.php';
         }
     }

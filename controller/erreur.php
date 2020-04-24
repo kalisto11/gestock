@@ -6,11 +6,12 @@
     class Erreur extends Controller{
 
         public function process(){
-            $this->message = "Désolé la page à laquelle vous tentez d'accéder est introuvable";
-            $this->render();
+            $message[] = "Désolé la page à laquelle vous tentez d'accéder est introuvable";
+            $this->notification = new Notification("danger", $message);
+            $this->render($this->notification);
         }
 
-        public function render($message = null){
+        public function render($notification = null){
             require_once VIEW . 'infos/default.php';
         }
     }
