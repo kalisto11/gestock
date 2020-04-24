@@ -7,7 +7,8 @@
     class Home extends Controller{
         
         public function process(){
-            $this->notification = new Notification("info", "Page d'accueil en cours de travaux, bientot disponible");
+            $message[] = "Page d'accueil en cours de travaux, bientot disponible";
+            $this->notification = new Notification("info", $message);
             $this->render($this->notification);
         }
 

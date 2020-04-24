@@ -6,7 +6,8 @@
     class Erreur extends Controller{
 
         public function process(){
-            $this->notification = new Notification("danger", "Désolé la page à laquelle vous tentez d'accéder est introuvable");
+            $message[] = "Désolé la page à laquelle vous tentez d'accéder est introuvable";
+            $this->notification = new Notification("danger", $message);
             $this->render($this->notification);
         }
 

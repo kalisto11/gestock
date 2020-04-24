@@ -17,9 +17,9 @@
                     break;
 
                     default:
-                        $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
+                        $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
+                        $this->notification = new Notification("danger", $message);
                 }
-                $this->request->action = 'liste';
                 $this->render($this->notification);
             }
             elseif ($this->request->method === 'GET'){ // si la requete vient d'un lien 
@@ -28,7 +28,8 @@
                     $bonEntree  = new BonEntree($idBonEntree);
                     $bonEntree->delete();
                     $this->request->action = 'liste';
-                    $this->notification = new Notification("success", "Le bon a été supprimé avec succès.");
+                    $message[] = "Le bon a été supprimé avec succès.";
+                    $this->notification = new Notification("success", $message);
                 }
                 $this->render($this->notification);
             }
@@ -71,53 +72,58 @@
 
         public function traiterBonEntree($reference, $article, $quantite, $fournisseur, $id =null){
             $erreur = false;
-            $notification = [];
             if (empty($reference)){
                 $erreur = true;
-                $notification [] = "La référence ne doit pas etre vide.";
+                $message[] = "La référence ne doit pas etre vide.";
             }
             if ($article == 'null'){
                 $erreur = true;
-                $notification [] = "Vous devez choisir un article.";
+                $message[] = "Vous devez choisir un article.";
             }
             if ($quantite <= 0 ){
                 $erreur = true;
-                $notification [] = "La quantité ne doit pas etre inférieure ou égale à zéro."; 
+                $message[] = "La quantité ne doit pas etre inférieure ou égale à zéro."; 
             }
             if (empty($fournisseur)){
                 $erreur = true;
-                $notification [] = "Le nom du fournisseur ne doit pas etre vide."; 
+                $message[] = "Le nom du fournisseur ne doit pas etre vide."; 
             }
             if ($erreur == false){
-                if ($id == null){
-                    if ($erreur == false){
-                        $bonEntree = new BonEntree();
-                        $bonEntree->reference = strip_tags($reference);
-                        $bonEntree->article = strip_tags($article);
-                        $bonEntree->quantite = intval(strip_tags($quantite));
-                        $bonEntree->fournisseur = strip_tags($fournisseur);
-                        $bonEntree->save();
-                        $this->notification = new Notification("success", "Le bon a été ajouté avec succès.");
-                        $this->request->action = 'liste';
-                    }
-                    else{
-                        $this->notification = new Notification("danger", "afficher tab notifs");
-                    } 
+                if ($id == null){ // cas ajouter
+                    $bonEntree = new BonEntree();
+                    $bonEntree->reference = strip_tags($reference);
+                    $bonEntree->article = strip_tags($article);
+                    $bonEntree->quantite = intval(strip_tags($quantite));
+                    $bonEntree->fournisseur = strip_tags($fournisseur);
+                    $bonEntree->save();
+                    $message[] = "Le bon a été ajouté avec succès.";
+                    $this->notification = new Notification("success", $message);
+                    $this->request->action = 'liste';
                 }
                 else{ // cas modifier 
-                $id = intval($id);
-                $bonEntree  = new BonEntree();
-                $bonEntree->id = $id;
-                $bonEntree->reference = strip_tags($reference);
-                $bonEntree->article = strip_tags($article);
-                $bonEntree->quantite = intval(strip_tags($quantite));
-                $bonEntree->fournisseur = strip_tags($fournisseur);
-                $bonEntree->modify();
-                $this->notification = new Notification("success", "Le bon a été modifié avec succès.");
+                    $id = intval($id);
+                    $bonEntree  = new BonEntree();
+                    $bonEntree->id = $id;
+                    $bonEntree->reference = strip_tags($reference);
+                    $bonEntree->article = strip_tags($article);
+                    $bonEntree->quantite = intval(strip_tags($quantite));
+                    $bonEntree->fournisseur = strip_tags($fournisseur);
+                    $bonEntree->modify();
+                    $message[] = "Le bon a été modifié avec succès.";
+                    $this->notification = new Notification("success", $message);
+                    $this->request->action = 'liste';
                 }
             }
-            else{
-                $this->notification = new Notification("danger", "Afficher les erreurs ici");
+            else{ // cas ou $erreur egale a true
+                $this->notification = new Notification("danger", $message);
+                if ($id == null){
+                    $this->request->action = 'ajouter';
+                }
+                else{
+                    $this->request->action = 'modifier';
+                    $this->request->id = $id;
+                }
+               
             }
            
         } // fin méthode traiterBonEntree

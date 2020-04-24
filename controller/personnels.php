@@ -9,61 +9,22 @@
 
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
-               if ($this->request->action != null){
-                   switch ($this->request->action){
-                       case 'traitement-agent':
-                        switch ($_POST['operation']){
-                            case 'ajouter':
-                            if(!empty(($_POST['prenom']) && ($_POST['nom']) )){
-                                $agent = new Personnel();
-                                $agent->prenom = strip_tags($_POST['prenom']);
-                                $agent->nom = strip_tags($_POST['nom']);
-                                $agent->poste = self::ajouterPoste($_POST['poste1'], $_POST['poste2'], $_POST['poste3']);
-                                $agent->save();
-                                $this->notification = new Notification("success", "L'agent a été bien ajouté avec succès.");
-                                $this->request->action = 'liste';
-                            }
-                            else{
-                                if(empty($_POST['prenom']) && empty($_POST['nom'])){ 
-                                    $this->notification = new Notification("danger", "Le prénom et le nom de l'agent n'ont pas été renseignés.");
-                                }elseif(empty($_POST['prenom'])){ 
-                                    $this->notification = new Notification("danger", "Le prénom de l'agent ne doit pas etre vide.");
-                                }elseif(empty($_POST['nom'])){
-                                    $this->notification = new Notification("danger", "Le nom de l'agent ne doit pas etre vide.");
-                                }
-                                $this->request->action = 'ajouter';
-                                $this->render($this->notification);
-                            }  
-                               
-                                $this->render($this->notification);
-                              
-                            break;
+                switch ($_POST['operation']){
+                    case 'ajouter':
+                        $this->traiterPersonnel($_POST['prenom'], $_POST['nom'], $_POST['poste1'], $_POST['poste2'], $_POST['poste3']);
+                        $this->render($this->notification);
+                    break;
 
-                            case 'modifier': 
-                                if(!empty(($_POST['prenom']) && ($_POST['nom']))){
-                                    $agent = new Personnel($_POST['id']);
-                                    $agent->prenom = strip_tags($_POST['prenom']);
-                                    $agent->nom = strip_tags($_POST['nom']);
-                                    $agent->poste = self::ajouterPoste($_POST['poste1'], $_POST['poste2'], $_POST['poste3']);
-                                    $agent->update();  
-                                    $this->notification = new Notification("success", "Les informations de l'agent ont été bien modifiées.");
-                                    $this->request->action = 'consulter';
-                                    $this->request->id = (int) $_POST['id']; 
-                                }
-                                else{
-                                    $this->notification = new Notification("danger", "Les informations de l'agent ne doivent pas etre vide.");
-                                    $this->request->action = 'modifier';
-                                    $this->request->id = (int) $_POST['id']; 
-                                }
-                                $this->render($this->notification);
-                            break;
+                    case 'modifier': 
+                        $this->traiterPersonnel($_POST['prenom'], $_POST['nom'], $_POST['poste1'], $_POST['poste2'], $_POST['poste3'], $_POST['id']);
+                        $this->render($this->notification);
+                    break;
 
-                            default:
-                            $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
-                            $this->request->action = 'liste';
-                           $this->render($this->notification);
-                        }
-                    }
+                    default:
+                    $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
+                    $this->notification = new Notification("danger", $message);
+                    $this->request->action = 'liste';
+                    $this->render($this->notification);
                 }
             }
             else if ($this->request->method === 'GET'){ // si la requete vient d'un lien 
@@ -73,7 +34,8 @@
                     $agent  = new Personnel($this->request->id);
                     $agent->delete();
                     $this->request->action = 'liste';
-                    $this->notification = new Notification("success", "L'agent a été supprimé avec succès.");
+                    $message[] = "L'agent a été supprimé avec succès.";
+                    $this->notification = new Notification("success", $message);
                 }
                 $this->render($this->notification);
             }
@@ -114,6 +76,54 @@
                     $currentController->process();
             }
         } // fin méthode render
+
+        public function traiterPersonnel($prenom, $nom, $poste1, $poste2, $poste3, $id = null){
+            $erreurs = false;
+            if (empty($prenom)){
+                $erreurs = true;
+                $message[] = "Le prénom ne doit pas etre vide";
+            }
+            if (empty($nom)){
+                $erreurs = true;
+                $message[] = "Le nom ne doit pas etre vide";
+            }
+
+            if ($erreurs == false){ // cas sans erreur
+                if ($id == null){ // cas ajouter personnel
+                    $agent = new Personnel();
+                    $agent->prenom = strip_tags($prenom);
+                    $agent->nom = strip_tags($nom);
+                    $agent->poste = $this->ajouterPoste($poste1, $poste2, $poste3);
+                    $agent->save();
+                    $message[] = "L'agent a été bien ajouté.";
+                    $this->notification = new Notification("success", $message);
+                    $this->request->action = 'liste';
+                }
+                else{ // cas modifier personnel
+                    $id = intval($id);
+                    $agent = new Personnel($id);
+                    $agent->prenom = strip_tags($prenom);
+                    $agent->nom = strip_tags($nom);
+                    $agent->poste = self::ajouterPoste($poste1, $poste2, $poste3);
+                    $agent->update();  
+                    $message[] = "Les informations de l'agent ont été bien modifiées.";
+                    $this->notification = new Notification("success", $message);
+                    $this->request->action = 'consulter';
+                    $this->request->id = $id; 
+                }
+               
+            }
+            else{ // cas avec erreur(s)
+                $this->notification = new Notification("danger", $message);
+                if ($id == null){
+                    $this->request->action = 'ajouter';
+                }
+                else{
+                    $this->request->action = 'modifier';
+                    $this->request->id = $id;
+                }
+            }
+        } // fin méthode traiterPersonnel
 
         public function ajouterPoste($poste1, $poste2, $poste3){
             $postes = array();
