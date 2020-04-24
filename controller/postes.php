@@ -66,7 +66,7 @@
             switch ($this->request->action){
 
                 case 'liste':
-                    $postes = Poste::findAll();
+                    $postes = Poste::getList();
                     require_once VIEW . 'personnel/listepostes.php';
                 break;
 
