@@ -88,7 +88,7 @@
          <input type="hidden" name="id" value="<?php if (isset($agent)){echo $agent->id;} ?>">
       <?php endif ; ?>
 
-      <input  class="btn btn-success mt-5" type="submit" value="<?php if (isset($agent)){echo 'Modifier';}else{echo 'Ajouter';} ?>" >
+      <input  class="btn btn-<?php if(isset($agent)){echo 'info';}else{echo 'success';} ?> mt-5" type="submit" value="<?php if (isset($agent)){echo 'Modifier';}else{echo 'Ajouter';} ?>" >
       <a class="btn btn-danger mt-5" href="/gestock/personnels/<?php if (isset($agent)){echo 'consulter/' . $agent->id ;}else{echo '/liste';}?>">Annuler</a>
    </form>
 </div>    

@@ -41,7 +41,7 @@
 
                     <input type="hidden" name="operation" value="<?php if (isset($currentArticle->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
                     <input type="hidden" name="idArticle" value="<?php if (isset($currentArticle->id)){echo $currentArticle->id ;} ?>">
-                    <input type="submit" value="<?php if (isset($currentArticle->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-success">
+                    <input type="submit" value="<?php if (isset($currentArticle->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-<?php if(isset($currentArticle->id)){echo 'info';}else{echo 'success';}?>">
 
                     <?php if (isset($currentArticle->id)): ?>
                     <a class="btn btn-danger" href="/gestock/articles/liste">Annuler</a>
