@@ -52,7 +52,7 @@
 
         /**
          * Permet d'afficher les vues du module bons d'entrée
-         * @param array permet de stocker les messgaes de notification s à afficher dans la vue en cas de reussite ou d'echec d'une opération
+         * @param Notification permet de stocker les messgaes de notification s à afficher dans la vue en cas de reussite ou d'echec d'une opération
         **/
         public function render($notification = null){
             switch ($this->request->action){
@@ -86,6 +86,6 @@
         } //fin méthode render
 
         public function traiterBonEntree(){
-            
+
         }
-    }
+    } // fin class
