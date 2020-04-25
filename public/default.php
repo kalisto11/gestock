@@ -20,11 +20,11 @@
                 <a class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#">TEAM UVS KAFFRINE</a>
                 <input class="form-control form-control-dark w-50" type="text" placeholder="Recherche" aria-label="Search">
             <ul class="navbar-nav px-3">
-                <li class="nav-item text-nowrap ">
+                <li class="nav-item text-nowrap">
                     <a class="nav-link" href="#">Connexion</a>
                 </li>
             </ul>
-        </nav>
+        </nav> 
         <!-- FIN BARRE DU LOGO ET ZONE DE RECHERCHE -->
 
         <div class="container-fluid">
@@ -75,10 +75,10 @@
                         <h1 class="h2">GESTION DE STOCK</h1>
                         <div class="btn-toolbar mb-2 mb-md-0">
                             <div class="btn-group mr-2">
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Imprimer</button>
-                                <button type="button" class="btn btn-sm btn-outline-secondary">Exporter</button>
+                                <button type="button" class="btn btn-sm btn-light">Imprimer</button>
+                                <button type="button" class="btn btn-sm btn-light">Exporter</button>
                             </div>
-                            <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle">
+                            <button type="button" class="btn btn-sm btn-light dropdown-toggle">
                                 <span data-feather="calendar"></span>
                                 This week
                             </button>
