@@ -10,63 +10,56 @@
                 if ($this->request->action != null){
                     switch ($this->request->action){
                         case 'traitement-bonentree':
-                         switch ($_POST['operation']){
-                             case 'ajouter':
-                                 $bonEntree = new BonEntree();
-                                 $bonEntree->reference = $_POST['reference'];
-                                 $bonEntree->article = $_POST['article'];
-                                 $bonEntree->quantite = $_POST['quantite'];
-                                 $bonEntree->fournisseur = $_POST['fournisseur'];
-                                 $bonEntree->save();
-                                 $this->message['type'] = 'success';
-                                $this->message['contenu'] = "Le bon a été ajouté avec succès.";
-                                 $this->request->action = 'liste';
+                            switch ($_POST['operation']){
+                                case 'ajouter':
+                                    $bonEntree = new BonEntree();
+                                    $bonEntree->reference = $_POST['reference'];
+                                    $bonEntree->article = $_POST['article'];
+                                    $bonEntree->quantite = $_POST['quantite'];
+                                    $bonEntree->fournisseur = $_POST['fournisseur'];
+                                    $bonEntree->save();
+                                    $this->notification = new Notification("success", "Le bon a été ajouté avec succès.");
+                                    $this->request->action = 'liste';
+                                break;
+                                case 'modifier':
+                                    $idBonEntree = intval($_POST['id']);
+                                    $bonEntree  = new BonEntree();
+                                    $bonEntree->id = $idBonEntree;
+                                    $bonEntree->reference = $_POST['reference'];
+                                    $bonEntree->article = $_POST['article'];
+                                    $bonEntree->quantite = $_POST['quantite'];
+                                    $bonEntree->fournisseur = $_POST['fournisseur'];
+                                    $bonEntree->modify();
+                                    $this->notification = new Notification("success", "Le bon a été modifié avec succès.");
+                                    $this->request->action = 'liste';
+                                break;
 
-                             break;
  
-                             case 'modifier':
-                                $idBonEntree = intval($_POST['id']);
-                                $bonEntree  = new BonEntree();
-                                $bonEntree->id = $idBonEntree;
-                                $bonEntree->reference = $_POST['reference'];
-                                $bonEntree->article = $_POST['article'];
-                                $bonEntree->quantite = $_POST['quantite'];
-                                $bonEntree->fournisseur = $_POST['fournisseur'];
-                                $bonEntree->modify();
-                                $this->message['type'] = 'success';
-                                $this->message['contenu'] = "Le bon a été modifié avec succès.";
-                                $this->request->action = 'modifier';
-                            break;
- 
-                             default:
-                             $this->message['type'] = "danger";
-                             $this->message['contenu'] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
-                             $this->request->action = 'liste';
-                            
-                         }
-                         $this->render($this->message);
+                                default:
+                                    $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
+                                    $this->request->action = 'liste';
+                            }
+                         $this->render($this->notification);
                     }
                 }
-             }
-             else if ($this->request->method === 'GET'){ // si la requete vient d'un lien 
- 
-                 if ($this->request->action === 'supprimer'){
-                     $idBonEntree = intval($this->request->id);
-                     $bonEntree  = new BonEntree($idBonEntree);
-                     $bonEntree->delete();
-                     $this->request->action = 'liste';
-                     $this->message['type'] = 'success';
-                     $this->message['contenu'] = "Le bon a été supprimé avec succès.";
-                 }
-                 $this->render($this->message);
-             }
+            }
+            elseif ($this->request->method === 'GET'){ // si la requete vient d'un lien 
+                if ($this->request->action === 'supprimer'){
+                    $idBonEntree = intval($this->request->id);
+                    $bonEntree  = new BonEntree($idBonEntree);
+                    $bonEntree->delete();
+                    $this->request->action = 'liste';
+                    $this->notification = new Notification("success", "Le bon a été supprimé avec succès.");
+                }
+                $this->render($this->notification);
+            }
         } // fin méthode process
 
         /**
          * Permet d'afficher les vues du module bons d'entrée
          * @param array permet de stocker les messgaes de notification s à afficher dans la vue en cas de reussite ou d'echec d'une opération
         **/
-        public function render($message = null){
+        public function render($notification = null){
             switch ($this->request->action){
 
                 case 'liste':

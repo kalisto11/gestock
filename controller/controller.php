@@ -6,7 +6,7 @@
 
     class Controller{
         public $request;
-        public $message;
+        public $notification;
 
         public function __construct($request){
             $this->request = $request;

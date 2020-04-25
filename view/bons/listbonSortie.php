@@ -14,7 +14,13 @@
         <tr>
             <td><?= $bon_sortie->reference?></td>
             <td><?=$bon_sortie->date?></td>
-            <td><?=$bon_sortie->article->nom?></td>
+            <td>
+            <?php foreach ($bon_sortie->article as $article): ?>
+                                <?= $article->nom ?> <br>
+                        
+            <?php endforeach ; ?>
+            
+            </td>
             <td><?=$bon_sortie->quantite?></td>
             <td><?=$bon_sortie->beneficiaire->prenom?>  <?=$bon_sortie->beneficiaire->nom?></td>
             <td> 

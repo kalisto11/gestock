@@ -11,47 +11,17 @@
                 if ($this->request->action === 'traitement-article'){
                     switch ($_POST['operation']){
                         case 'ajouter':
-                            if(!empty($_POST['article'])){
-                                $article = new Article();
-                                $article->nom = $_POST['article'];   
-                                $article->groupe = $_POST['groupe'];                                            
-                                $article->ajoutArticle();
-                                $this->message['type'] = 'success';
-                                $this->message['contenu'] = "L'article a été ajouté avec succès.";
-                            }
-                            else{
-                                $this->message['type'] = 'danger';
-                                $this->message['contenu'] = "Le nom de l'article ne doit pas etre vide.";
-                            }       
-                            $this->request->action = 'liste';
-                            $this->render($this->message);
+                            $this->traiterArticle($_POST['groupe'], $_POST['article']);
                         break;  
 
                         case 'modifier':          
-                            $article = new Article();
-                            $article->id = $_POST['idArticle'];
-                            $article->nom = $_POST['article'];
-                            $article->groupe = $_POST['groupe'];
-                            if(!empty($_POST['article'])){
-                            $article->modif();
-                            $this->message['type'] = 'success';
-                            $this->message['contenu'] = 'L\'article a été modifié avec succès.';
-                            $this->request->action = 'liste';
-                            }
-                            else{
-                            $this->message['type'] = 'danger';
-                            $this->message['contenu'] = 'Le nom de l\'article ne doit pas etre vide.';
-                            $this->request->action = 'modifier';
-                            $this->request->id = $article->id;
-                            }
-                            $this->render($this->message);
+                            $this->traiterArticle($_POST['groupe'], $_POST['article'], $_POST['idArticle']);
                         break;
 
                         default:
-                        $this->message['type'] = 'danger';
-                        $this->message['contenu'] = 'Une erreur s\'est produite pendant le traitement des données. Veuillez rééssayer svp.';
+                        $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
                         $this->request->action = 'liste';
-                        $this->render($this->message);
+                        $this->render($this->notification);
                     }            
                 }  
             }  // fin traitement de la méthode post
@@ -61,14 +31,13 @@
                     $article = new Article($idArticle);
                     $article->supprime(); 
                     $this->request->action = 'liste';
-                    $this->message['type'] = 'success';
-                    $this->message['contenu'] = 'L\'article a été supprimé avec succès.';
+                    $this->notification = new Notification("success", "L'article a été supprimé avec succès.");
                 }
-                $this->render($this->message); 
+                $this->render($this->notification); 
             } // fin traitement de la méthode GET
         } // fin méthode process
          
-        public function render($message = null){
+        public function render($notification = null){
              switch ($this->request->action){
                 // inclure les vues ici selon la valeur de $view
                 case 'liste':
@@ -94,4 +63,49 @@
                     
             }
         }
-    } 
+
+        public function traiterArticle($groupeArticle, $nomArticle, $idArticle = null){
+            if ($idArticle == null){
+                if(!empty($nomArticle)){
+                    $articles = Article::getList();
+                    $is_exist = false;
+                    foreach ($articles as $article) :
+                        if ($article->nom == $nomArticle){
+                            $is_exist = true;
+                        }   
+                    endforeach;
+                    if ($is_exist == true){
+                        $this->notification = new Notification("danger", "Le nom de l'article existe déja. Veuillez choisir un autre nom.");
+                    }
+                    else{
+                        $article = new Article();
+                        $article->nom = $nomArticle;   
+                        $article->groupe = $groupeArticle;                                            
+                        $article->ajoutArticle();
+                        $this->notification = new Notification("success", "L'article a été ajouté avec succès.");
+                    }
+                }
+                else{
+                    $this->notification = new Notification("danger", "Le nom de l'article ne doit pas etre vide.");
+                }       
+                $this->request->action = 'liste';
+            }
+            else{
+                $article = new Article();
+                $article->id = $idArticle;
+                $article->nom = $nomArticle;
+                $article->groupe = $groupeArticle;
+                if(!empty($_POST['article'])){
+                $article->modif();
+                $this->notification = new Notification("success", "L'article a été modifié avec succès.");
+                $this->request->action = 'liste';
+                }
+                else{
+                $this->notification = new Notification("danger", "Le nom de l'article ne doit pas etre vide.");
+                $this->request->action = 'modifier';
+                $this->request->id = $article->id;
+                }
+            }
+            $this->render($this->notification);
+        } //fin traiterArticle
+    } // fin class
