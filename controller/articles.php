@@ -64,14 +64,20 @@
             }
         }
 
-        public function traiterArticle($groupeArticle, $nomArticle, $id = null){
+        public function traiterArticle($groupeArticle, $nomArticle, $idArticle = null){
+            // mettre la premiere lettre du nom en majuscule
+            $nomArticle = ucfirst(mb_convert_case($nomArticle, MB_CASE_LOWER));
+
             $erreurs = false;
-            $articles = Article::getList();
+
+            
             if (empty($nomArticle)){
                 $erreurs = true;
                 $message[] = "Le nom de l'article ne doit pas etre vide.";
             }
-            if ($id == null){ // cas ajout
+
+            $articles = Article::getList();
+            if ($idArticle == null){ // cas ajout
                 foreach ($articles as $article){
                     if ($article->nom == $nomArticle){
                         $erreurs = true;
@@ -84,7 +90,7 @@
                 foreach ($articles as $article){
                     $noms[] = $article->nom;
                 }
-                $article = new Article($id);
+                $article = new Article($idArticle);
                 foreach ($noms as $nom){
                     if ($nom == $article->nom){
                         unset($noms[array_search($article->nom, $noms)]);
@@ -97,7 +103,7 @@
             }
                 
             if ($erreurs == false){ // si pas d'erreurs
-                if ($id == null){ // cas ajouter article
+                if ($idArticle == null){ // cas ajouter article
                     $article = new Article();
                     $article->nom = strip_tags($nomArticle);   
                     $article->groupe = strip_tags($groupeArticle);                                            
@@ -108,24 +114,24 @@
                 }
                 else{ // cas modifier article
                     $article = new Article();
-                    $article->id = (int) $id;
+                    $article->id = (int) $idArticle;
                     $article->nom = strip_tags($nomArticle);
                     $article->groupe = strip_tags($groupeArticle);
                     $article->modif();
                     $message[] = "L'article a été modifié avec succès.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'liste';
-                    $this->request->id = $id;
+                    $this->request->id = $idArticle;
                 }
             }
             else{ // cas ou il y a des erreurs
                 $this->notification = new Notification("danger", $message);
-                if ($id == null){
+                if ($idArticle == null){
                     $this->request->action = 'liste';
                 }
                 else{
                     $this->request->action = 'modifier';
-                    $this->request->id = $id;
+                    $this->request->id = $idArticle;
                 }
             }
         } //fin méthode traiterArticle

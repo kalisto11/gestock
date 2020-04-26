@@ -61,13 +61,17 @@
         }
 
         public function traiterPoste($nomPoste, $idPoste = null){
+            // mettre la premiere lettre du nom en majuscule
+            $nomPoste = ucfirst(mb_convert_case($nomPoste, MB_CASE_LOWER));
+
             $erreurs = false;
+
             if (empty($nomPoste)){
                 $erreurs = true;
                 $message[] = "Le nom du poste ne doit pas etre vide.";
             }
+
             $postes = Poste::getList();
-            
             if ($idPoste == null){ // cas ajout
                 foreach ($postes as $poste){
                     if ($poste->nom == $nomPoste){
