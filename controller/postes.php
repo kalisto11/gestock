@@ -25,7 +25,7 @@
                 } // fin switch sur $_POST['operation']
                 $this->render($this->notification);
             } // fin traitement POST
-            
+
             else if ($this->request->method === 'GET'){ // si la requete vient d'un lien 
                 if ($this->request->action === 'supprimer'){
                     $idPoste = intval($this->request->id);
@@ -67,12 +67,33 @@
                 $message[] = "Le nom du poste ne doit pas etre vide.";
             }
             $postes = Poste::getList();
-            foreach ($postes as $poste){
-                if ($poste->nom == $nomPoste){
+            
+            if ($idPoste == null){ // cas ajout
+                foreach ($postes as $poste){
+                    if ($poste->nom == $nomPoste){
+                        $erreurs = true;
+                        $message[] = "Le nom du poste existe déja. Veuillez choisir un autre nom.";
+                    }
+                }
+            }
+            else{ // cas modification
+                $noms = [] ;
+                foreach ($postes as $poste){
+                    $noms[] = $poste->nom;
+                }
+                $poste = new poste($idPoste);
+                foreach ($noms as $nom){
+                    if ($nom == $poste->nom){
+                        unset($noms[array_search($poste->nom, $noms)]);
+                    }
+                }
+                if (in_array($nomPoste, $noms)){
                     $erreurs = true;
                     $message[] = "Le nom du poste existe déja. Veuillez choisir un autre nom.";
                 }
             }
+
+
             if ($erreurs == false){
                 if ($idPoste == null){ // cas ajouter poste
                     $poste = new Poste();
