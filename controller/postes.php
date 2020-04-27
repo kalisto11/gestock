@@ -10,47 +10,22 @@
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
                 switch ($_POST['operation']){
                     case 'ajouter': // cas ou on ajoute un nouveau poste
-                        if (!empty($_POST['nomPoste'])){
-                            $poste = new Poste();
-                            $poste->nom = strip_tags($_POST['nomPoste']);
-                            $poste->save();
-                            $message[] =  "Le poste a été ajouté avec succès.";
-                            $this->notification = new Notification("success", $message);
-                        }
-                        else{
-                            $message[] = "Le nom du poste ne doit pas etre vide.";
-                            $this->notification = new Notification("danger", $message);
-                        }
-                        $this->request->action = 'liste';
-                        $this->render($this->notification);
+                        $this->traiterPoste($_POST['nomPoste']);
                     break;
 
                     case 'modifier': // cas ou on modifie un poste existant
-                        if (!empty($_POST['nomPoste'])){
-                            $poste = new Poste(intval($_POST['id']));
-                            $poste->nom = strip_tags($_POST['nomPoste']);
-                            $poste->update();
-                            $message[] = "Le poste a été modifié avec succès.";
-                            $this->notification = new Notification("success", $message);
-                            $this->request->action = 'liste';
-                        }
-                        else{
-                            $message[] = "Le nom du poste ne doit pas etre vide.";
-                            $this->notification = new Notification("danger", $message);
-                            $this->request->action = 'modifier';
-                            $this->request->id = $_POST['id'];
-                        }
-                        
-                        $this->render($this->notification);
+                        $this->traiterPoste($_POST['nomPoste'], $_POST['id']);
                     break;
 
                     default:
                     $message[] =  "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
                     $this->notification = new Notification("danger", $message);
                     $this->request->action = 'liste';
-                    $this->render($this->notification);
+                    
                 } // fin switch sur $_POST['operation']
-            }
+                $this->render($this->notification);
+            } // fin traitement POST
+
             else if ($this->request->method === 'GET'){ // si la requete vient d'un lien 
                 if ($this->request->action === 'supprimer'){
                     $idPoste = intval($this->request->id);
@@ -84,4 +59,71 @@
                     $currentController->process();
             }
         }
+
+        public function traiterPoste($nomPoste, $idPoste = null){
+            // mettre la premiere lettre du nom en majuscule
+            $nomPoste = ucfirst(mb_convert_case($nomPoste, MB_CASE_LOWER));
+
+            $erreurs = false;
+
+            if (empty($nomPoste)){
+                $erreurs = true;
+                $message[] = "Le nom du poste ne doit pas etre vide.";
+            }
+
+            $postes = Poste::getList();
+            if ($idPoste == null){ // cas ajout
+                foreach ($postes as $poste){
+                    if ($poste->nom == $nomPoste){
+                        $erreurs = true;
+                        $message[] = "Le nom du poste existe déja. Veuillez choisir un autre nom.";
+                    }
+                }
+            }
+            else{ // cas modification
+                $noms = [] ;
+                foreach ($postes as $poste){
+                    $noms[] = $poste->nom;
+                }
+                $poste = new poste($idPoste);
+                foreach ($noms as $nom){
+                    if ($nom == $poste->nom){
+                        unset($noms[array_search($poste->nom, $noms)]);
+                    }
+                }
+                if (in_array($nomPoste, $noms)){
+                    $erreurs = true;
+                    $message[] = "Le nom du poste existe déja. Veuillez choisir un autre nom.";
+                }
+            }
+
+
+            if ($erreurs == false){
+                if ($idPoste == null){ // cas ajouter poste
+                    $poste = new Poste();
+                    $poste->nom = strip_tags($nomPoste);
+                    $poste->save();
+                    $message[] =  "Le poste a été ajouté avec succès.";
+                    $this->notification = new Notification("success", $message);
+                }
+                else{
+                    $poste = new Poste(intval($idPoste));
+                    $poste->nom = strip_tags($nomPoste);
+                    $poste->update();
+                    $message[] = "Le poste a été modifié avec succès.";
+                    $this->notification = new Notification("success", $message);
+                }
+                $this->request->action = 'liste';
+            }
+            else{
+                $this->notification = new Notification("danger", $message);
+                if ($idPoste == null){
+                    $this->request->action = 'liste';
+                }
+                else{
+                    $this->request->action = 'modifier';
+                    $this->request->id = $idPoste;
+                }
+            }   
+        } // fin méthode traiterPoste
     } // fin classe

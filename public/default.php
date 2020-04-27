@@ -16,9 +16,9 @@
     </head>
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
-        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
+        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
                 <a class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#">TEAM UVS KAFFRINE</a>
-                <input class="form-control form-control-dark w-50" type="text" placeholder="Recherche" aria-label="Search">
+                <input class="form-control form-control-dark w-25" type="text" placeholder="Recherche" aria-label="Search">
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
                     <a class="nav-link" href="#">Connexion</a>
@@ -27,12 +27,11 @@
         </nav> 
         <!-- FIN BARRE DU LOGO ET ZONE DE RECHERCHE -->
 
+        <!-- DEBUT CONTENEUR MENU LATERAL ET ZONE PRINCIPAL -->
         <div class="container-fluid">
             <div class="row">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
                 <div class="nav-side-menu">
-                <div class="brand">LOGO</div>
-                <i class="fa fa-bars fa-2x toggle-btn" data-toggle="collapse" data-target="#menu-content"></i>
                 <div class="menu-list">
                     <ul id="menu-content" class="menu-content collapse out">
                         <li>
@@ -65,33 +64,34 @@
                         </ul>
                     </ul>
                 </div>
-                </div>
-            </div>
-                <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
+            
 
-                <!-- ZONE D'AFFICHAGE DU CONTENU -->
-                <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
-                    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  pt-3 pb-2 mb-3 border-bottom bg-dark">
-                        <h1 class="h2">GESTION DE STOCK</h1>
-                        <div class="btn-toolbar mb-2 mb-md-0">
-                            <div class="btn-group mr-2">
-                                <button type="button" class="btn btn-sm btn-light">Imprimer</button>
-                                <button type="button" class="btn btn-sm btn-light">Exporter</button>
-                            </div>
-                            <button type="button" class="btn btn-sm btn-light dropdown-toggle">
-                                <span data-feather="calendar"></span>
-                                This week
-                            </button>
-                        </div>
-                    </div>
-                    <div>
-                    <?= $content ?>
-                    </div>
-                </main>
-              
-                <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
             </div>
         </div>
+        <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
+
+        <!-- ZONE D'AFFICHAGE DU CONTENU -->
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
+            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  pt-3 pb-2 mb-3 border-bottom bg-dark">
+                <h1 class="h2">GESTION DE STOCK</h1>
+                <div class="btn-toolbar mb-2 mb-md-0">
+                    <div class="btn-group mr-2">
+                        <button type="button" class="btn btn-sm btn-light">Imprimer</button>
+                        <button type="button" class="btn btn-sm btn-light">Exporter</button>
+                    </div>
+                </div>
+            </div>
+            <div>
+            <?= $content ?>
+            </div>
+            <footer>
+                <p>
+                 Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
+                </p>
+            </footer>
+        </main>     
+        <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
+       
         <script src="bootstrap/js/jquery.min.js"></script>
         <script src="bootstrap/js/propper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
