@@ -7,6 +7,9 @@
     require_once CONTROLLER . 'controller.php';
     class Personnels extends Controller{
 
+         /**
+         * permet de traiter les différentes requetes adressées au controleur personnels
+         */
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
                 switch ($_POST['operation']){
@@ -43,7 +46,7 @@
 
         /**
          * permet d'afficher la vue selon la valeur de $this->request->action
-         * @param String action à fournir à la méthode pour savoir quelle vue il faut afficher
+         * @param Notification notification : objet de type notification qui contient le type et le message
         **/
         public function render($notification = null){
             switch ($this->request->action){
@@ -77,7 +80,16 @@
             }
         } // fin méthode render
 
-        public function traiterPersonnel($prenom, $nom, $poste1, $poste2, $poste3, $id = null){
+        /**
+         * permet de traiter les infos saisies par l'utilisateur depuis un formulaire vers le controleur Personnels
+         * @param String $prenom : prénom de l'agent
+         * @param String $nom : nom de l'agent
+         * @param int $poste1 : poste 1 de l'agent
+         * @param int $poste2 : poste 2 de l'agent
+         * @param int $poste3 : poste 3 de l'agent
+         * @param int $idPersonnel : id de l'agent en cas de modification
+         */
+        public function traiterPersonnel($prenom, $nom, $poste1, $poste2, $poste3, $idPersonnel = null){
             $erreurs = false;
             if (empty($prenom)){
                 $erreurs = true;
@@ -89,7 +101,7 @@
             }
 
             if ($erreurs == false){ // cas sans erreur
-                if ($id == null){ // cas ajouter personnel
+                if ($idPersonnel == null){ // cas ajouter personnel
                     $agent = new Personnel();
                     $agent->prenom = strip_tags($prenom);
                     $agent->nom = strip_tags($nom);
@@ -100,7 +112,7 @@
                     $this->request->action = 'liste';
                 }
                 else{ // cas modifier personnel
-                    $id = intval($id);
+                    $id = intval($idPersonnel);
                     $agent = new Personnel($id);
                     $agent->prenom = strip_tags($prenom);
                     $agent->nom = strip_tags($nom);
@@ -109,7 +121,7 @@
                     $message[] = "Les informations de l'agent ont été bien modifiées.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'consulter';
-                    $this->request->id = $id; 
+                    $this->request->id = $idPersonnel; 
                 }
                
             }
@@ -120,7 +132,7 @@
                 }
                 else{
                     $this->request->action = 'modifier';
-                    $this->request->id = $id;
+                    $this->request->id = $idPersonnel;
                 }
             }
         } // fin méthode traiterPersonnel
