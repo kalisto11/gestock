@@ -17,8 +17,8 @@
           <?php endforeach ; ?>
         </select>
       </div>
-      
-      <?php for ($i = 0; $i < 10; $i++) :?>
+
+      <?php for ($i = 1; $i <= 0; $i++) :?>
         <div class="row">
           <div class="col">
             <div class="form-group">
@@ -34,7 +34,7 @@
           <div class="col">
             <div class="form-group">
               <label for="quantite">Quantité</label>
-              <input type="number" name="quantite<?= $i + 1 ?>" id="quantite" class="form-control">
+              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control">
             </div>
           </div>
         </div> 

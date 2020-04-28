@@ -87,13 +87,13 @@
 			$req = 'DELETE FROM sortie_article WHERE id_bon_sortie = ?';
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array($this->id));
-			foreach ($this->articles as $article){
+			foreach ($this->dotations as $dotation){
 			$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, quantite) VALUES (:id_bon_sortie, :id_article, :quantite)';
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array(
 				'id_bon_sortie' => $this->id,
-				'id_article'    => $dotation->article->id,
-				'quantite'    => $dotation->quantite,
+				'id_article'    => $dotation->article,
+				'quantite'    => $dotation->quantite
 			));
 		}
 		}
