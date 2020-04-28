@@ -24,8 +24,9 @@
 }
   
 .menu-icone{
-  height: 20px;
-  width:25px
+  height: 30px;
+  width:30px;
+  margin: 0px;
 }
 .article{
     margin-top: 10px;
@@ -75,10 +76,10 @@ table a{
 /* fin tableau */
 
 footer{
-  margin-top: 80px;
   margin-bottom: 0px;
   height: 30px;
   background-color: rgb(236, 241, 241);
+  margin-top: 400px ;
   
 }
 
@@ -88,6 +89,8 @@ footer p{
 
 main{
   padding-bottom: 0px;
+  
+  
 }
 
 

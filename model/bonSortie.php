@@ -4,8 +4,7 @@
 		public $id;
 		public $reference;
 		public $date;
-		public $article;
-		public $quantite;
+		public $dotations;
 		public $beneficiaire;
 
 		public function __construct($id = null) {//constructeur du bon de sortie
@@ -20,21 +19,22 @@
 				$this->reference   = $bonsortie['reference'];
 				$this->date        = $bonsortie['date'];
 				$this->beneficiaire = new Personnel($bonsortie['beneficiaire']);
-				$req = 'SELECT id, nom FROM article RIGHT JOIN sortie_article ON article.id = sortie_article.id_article WHERE sortie_article.id_bon_sortie = ?';
+				$req = 'SELECT * FROM article RIGHT JOIN sortie_article ON article.id = sortie_article.id_article WHERE sortie_article.id_bon_sortie = ?';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));
-				$articles = array();
+				$dotations = [];
 				while ($row = $reponse->fetch()){
-					$article = new Article( $row['id']);
-					$articles[] = $article;
+					$article = new Article($row['id']);
+					$dotation = new Dotation($article, $row['quantite']);
+					$dotations[] = $dotation;
 				}
-				$this->article = $articles;	
+				$this->dotations = $dotations;	
 			}	
 			else{
 				$this->id          = null;
 				$this->reference   = null;
 				$this->date        = null;
-				$this->article     = null;
+				$this->dotations     = null;
 				$this->quantite    = null;
 				$this->beneficiaire = null;
 			}
@@ -52,13 +52,14 @@
         	$reponse = $pdo->query($req);
 			$bonsortie = $reponse->fetch();
 			$this->id = $bonsortie['id'];
-			foreach ($this->article as $article){
-				$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article) VALUES (:id_bon_sortie, :id_article)';
+			foreach ($this->dotations as $dotation){
+				$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, quantite) VALUES (:id_bon_sortie, :id_article, :quantite)';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array(
 					'id_bon_sortie' => $this->id,
-					'id_article'    => $article
-           		 ));
+					'id_article'    => $dotation->article,
+					'quantite'    => $dotation->quantite
+           		));
         	}
 		}
 
@@ -86,12 +87,13 @@
 			$req = 'DELETE FROM sortie_article WHERE id_bon_sortie = ?';
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array($this->id));
-			foreach ($this->article as $article){
-			$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article) VALUES (:id_bon_sortie, :id_article)';
+			foreach ($this->articles as $article){
+			$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, quantite) VALUES (:id_bon_sortie, :id_article, :quantite)';
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array(
 				'id_bon_sortie' => $this->id,
-				'id_article'    => $article
+				'id_article'    => $dotation->article->id,
+				'quantite'    => $dotation->quantite,
 			));
 		}
 		}
