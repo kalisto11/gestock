@@ -10,7 +10,7 @@
           <div class="col">
             <div class="form-group">
               <label for="article1">Article </label>
-              <select name="article<?php $i+1 ?>" id="article" class="form-control">
+              <select name="article<?= $i+1 ?>" id="article" class="form-control">
                 <option value="null">-----------------------------------------------</option>
                 <?php foreach($articles as $article): ?>
                 <option value="<?= $article->id ?>"><?= $article->nom ?></option>

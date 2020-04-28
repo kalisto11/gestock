@@ -87,10 +87,6 @@
                 $erreur = true;
                 $message[] = "La référence ne doit pas etre vide.";
             }
-            if ($article == 'null'){
-                $erreur = true;
-                $message[] = "Vous devez choisir un article.";
-            }
             if ($quantite <= 0 ){
                 $erreur = true;
                 $message[] = "La quantité ne doit pas etre inférieure ou égale à zéro."; 
