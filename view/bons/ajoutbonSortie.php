@@ -18,7 +18,7 @@
         </select>
       </div>
 
-      <?php for ($i = 1; $i <= 0; $i++) :?>
+      <?php for ($i = 1; $i <= 10; $i++) :?>
         <div class="row">
           <div class="col">
             <div class="form-group">
