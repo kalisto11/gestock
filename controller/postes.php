@@ -6,6 +6,9 @@
     require_once CONTROLLER . 'controller.php';
     class Postes extends Controller{
 
+        /**
+         * permet de traiter les différentes requetes adressées au controleur postes
+        */
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
                 switch ($_POST['operation']){
@@ -39,9 +42,13 @@
             }
         } // fin méthode process
 
+
+         /**
+         * permet d'afficher les vues du module postes
+         * @param Notification notification : objet contenant le type et le message de notification à afficher en cas d'echec ou de reussite d'une opération
+         */
         public function render($notification = null){
             switch ($this->request->action){
-
                 case 'liste':
                     $postes = Poste::getList();
                     require_once VIEW . 'personnel/listepostes.php';
@@ -54,7 +61,7 @@
                     require_once VIEW . 'personnel/listepostes.php';
                 break;
             
-                default: // gestion des erreurs au cas ou la valeur de action 
+                default: // gestion des erreurs au cas ou la valeur de $this->request->action est inconnue 
                     $currentController = new Erreur($this->request);
                     $currentController->process();
             }
@@ -97,8 +104,7 @@
                 }
             }
 
-
-            if ($erreurs == false){
+            if ($erreurs == false){ // cas ou on a pas d'erreur
                 if ($idPoste == null){ // cas ajouter poste
                     $poste = new Poste();
                     $poste->nom = strip_tags($nomPoste);
@@ -115,12 +121,12 @@
                 }
                 $this->request->action = 'liste';
             }
-            else{
+            else{ // cas ou il y a un ou plusieurs erreurs
                 $this->notification = new Notification("danger", $message);
-                if ($idPoste == null){
+                if ($idPoste == null){ // cas ajout poste
                     $this->request->action = 'liste';
                 }
-                else{
+                else{ // cas modification poste
                     $this->request->action = 'modifier';
                     $this->request->id = $idPoste;
                 }

@@ -37,7 +37,7 @@
             </table>
         </div>
         <div class="mt-5">
-            <a href="/gestock/personnels/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un Agent</button></a>
+            <a href="/gestock/personnels/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un agent</button></a>
 
         </div>
     

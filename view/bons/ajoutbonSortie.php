@@ -1,195 +1,34 @@
-<h1 class="article">Ajouter un Bon de Sortie</h1>
+<h1 class="text-center">Ajouter un Bon de Sortie</h1>
 <div class="container"> 
-    <form method="post" action="#">
+    <form method="post" action="/gestock/bonssortie/traitement-bonsortie">
       <div class="form-group">
         <label for="reference">Référence</label>
         <input type="text" name="reference" id="reference" class="form-control">
       </div>
-
-      <form>
+        <?php for ($i = 0; $i < 10; $i++) :?>
         <div class="row">
           <div class="col">
-              <label for="article">Articles</label>
-              <select name="article" id="article" class="form-control">
-                <option value="null">----------------------------------</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+            <div class="form-groupe">
+               <label for="article1">Article </label>
+               <select name="article<?php $i+1 ?>" id="article" class="form-control">
+               <?php foreach($articles as $article): ?>
+               <option value="null">---------------------------</option>
                 <?php endforeach ; ?>
               </select>
+            </div> 
           </div>
-          <div class="col">
-              <label for="quantite">Quantité</label>
+         <div class="col">
+              <label for="quantite">Quantité 1</label>
               <input type="number" name="quantite" id="quantite" class="form-control">
           </div>
-        </div>
-      </form>
-      <form>
-        <div class="row">
-          <div class="col">
-              <label for="article">Articles</label>
-              <select name="article" id="article" class="form-control">
-                <option value="null">----------------------------------</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
-                <?php endforeach ; ?>
-              </select>
-          </div>
-          <div class="col">
-              <label for="quantite">Quantité</label>
-              <input type="number" name="quantite" id="quantite" class="form-control">
-          </div>
-        </div>
-      </form>
-
-      <form>
-        <div class="row">
-          <div class="col">
-              <label for="article">Articles</label>
-              <select name="article" id="article" class="form-control">
-                <option value="null">----------------------------------</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
-                <?php endforeach ; ?>
-              </select>
-          </div>
-          <div class="col">
-              <label for="quantite">Quantité</label>
-              <input type="number" name="quantite" id="quantite" class="form-control">
-          </div>
-        </div>
-      </form>
-
-      <form>
-        <div class="row">
-          <div class="col">
-              <label for="article">Articles</label>
-              <select name="article" id="article" class="form-control">
-                <option value="null">----------------------------------</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
-                <?php endforeach ; ?>
-              </select>
-          </div>
-          <div class="col">
-              <label for="quantite">Quantité</label>
-              <input type="number" name="quantite" id="quantite" class="form-control">
-          </div>
-        </div>
-      </form>
-
-      <form>
-        <div class="row">
-          <div class="col">
-              <label for="article">Articles</label>
-              <select name="article" id="article" class="form-control">
-                <option value="null">----------------------------------</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
-                <?php endforeach ; ?>
-              </select>
-          </div>
-          <div class="col">
-              <label for="quantite">Quantité</label>
-              <input type="number" name="quantite" id="quantite" class="form-control">
-          </div>
-        </div>
-      </form>
-
-      <form>
-        <div class="row">
-          <div class="col">
-              <label for="article">Articles</label>
-              <select name="article" id="article" class="form-control">
-                <option value="null">----------------------------------</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
-                <?php endforeach ; ?>
-              </select>
-          </div>
-          <div class="col">
-              <label for="quantite">Quantité</label>
-              <input type="number" name="quantite" id="quantite" class="form-control">
-          </div>
-        </div>
-      </form>
-
-      <form>
-        <div class="row">
-          <div class="col">
-              <label for="article">Articles</label>
-              <select name="article" id="article" class="form-control">
-                <option value="null">----------------------------------</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
-                <?php endforeach ; ?>
-              </select>
-          </div>
-          <div class="col">
-              <label for="quantite">Quantité</label>
-              <input type="number" name="quantite" id="quantite" class="form-control">
-          </div>
-        </div>
-      </form>
-
-      <form>
-        <div class="row">
-          <div class="col">
-              <label for="article">Articles</label>
-              <select name="article" id="article" class="form-control">
-                <option value="null">----------------------------------</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
-                <?php endforeach ; ?>
-              </select>
-          </div>
-          <div class="col">
-              <label for="quantite">Quantité</label>
-              <input type="number" name="quantite" id="quantite" class="form-control">
-          </div>
-        </div>
-      </form>
-
-      <form>
-        <div class="row">
-          <div class="col">
-              <label for="article">Articles</label>
-              <select name="article" id="article" class="form-control">
-                <option value="null">----------------------------------</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
-                <?php endforeach ; ?>
-              </select>
-          </div>
-          <div class="col">
-              <label for="quantite">Quantité</label>
-              <input type="number" name="quantite" id="quantite" class="form-control">
-          </div>
-        </div>
-      </form>
-
-      <form>
-        <div class="row">
-          <div class="col">
-              <label for="article">Articles</label>
-              <select name="article" id="article" class="form-control">
-                <option value="null">----------------------------------</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
-                <?php endforeach ; ?>
-              </select>
-          </div>
-          <div class="col">
-              <label for="quantite">Quantité</label>
-              <input type="number" name="quantite" id="quantite" class="form-control">
-          </div>
-        </div>
-      </form>
+        </div> 
+        <?php endfor ; ?>
       <div class="form-group mt-3">
-        <label for="fournisseur">Bénéficiaire</label>
-        <select name="article" id="article" class="form-control">
+        <label for="beneficiaire">Bénéficiaire</label>
+        <select name="beneficiaire" id="beneficiaire" class="form-control">
                 <option value="null">----------------------------------</option>
-                <?php foreach($agents as $agent): ?>
-                <option value="<?= $agent->id ?>"><?= $agent->nom ?></option>
+                <?php foreach($personnels as $personnel): ?>
+                <option value="<?= $personnel->id ?>">  <?= $personnel->prenom?>  <?= $personnel->nom ?></option>
                 <?php endforeach ; ?>
                 </select>
       </div>
@@ -197,7 +36,7 @@
       <input type="hidden" name="operation" value="ajouter">
   
       <input type="submit" value="Ajouter" class="btn btn-success">
-      <a href="#" class="btn btn-danger">Annuler</a>    
+      <a href="/gestock/bonssortie/liste" class="btn btn-danger">Annuler</a>    
     </form>
   </div>
 
