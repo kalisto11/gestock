@@ -103,9 +103,9 @@ ENGINE = InnoDB;
 DROP TABLE IF EXISTS `gestock`.`sortie_article` ;
 
 CREATE TABLE IF NOT EXISTS `gestock`.`sortie_article` (
-  `id_bon_sortie` INT NULL AUTO_INCREMENT,
+  `id_bon_sortie` INT NULL ,
   `id_article` INT NULL,
-  `quantite` VARCHAR(45) NULL)
+  `quantite` INT NULL)
 ENGINE = MyISAM;
 
 
@@ -117,7 +117,7 @@ DROP TABLE IF EXISTS `gestock`.`entree_article` ;
 CREATE TABLE IF NOT EXISTS `gestock`.`entree_article` (
   `id_bon_entree` INT NULL,
   `id_article` INT NULL,
-  `quantite` VARCHAR(45) NULL)
+  `quantite` INT NULL)
 ENGINE = MyISAM;
 
 

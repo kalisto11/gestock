@@ -12,16 +12,23 @@
 			if ($id != null){
 				$this->id = $id;
 				$pdo = Database::getPDO();
-				$req = "SELECT id, reference, DATE_FORMAT(date, '%d/%m/%Y') AS date, article, quantite, fournisseur FROM bon_entree WHERE id = ?";
+				$req = "SELECT id, reference, DATE_FORMAT(date, '%d/%m/%Y') AS date,  fournisseur FROM bon_entree WHERE id = ?";
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));
 				$bonentree         = $reponse->fetch();
 				$this->id          = $bonentree['id'];
 				$this->reference   = $bonentree['reference'];
 				$this->date        = $bonentree['date'];
-				$this->article     = new Article($bonentree['article']);
-				$this->quantite    = $bonentree['quantite'];
 				$this->fournisseur = $bonentree['fournisseur'];
+				$req = 'SELECT id, nom FROM article RIGHT JOIN entree_article ON article.id = entree_article.id_article WHERE entree_article.id_bon_entree = ?';
+				$reponse = $pdo->prepare($req);
+				$reponse->execute(array($id));
+				$articles = array();
+				while ($row = $reponse->fetch()){
+					$article = new Article( $row['id']);
+					$articles[] = $article;
+				}
+				$this->article = $articles;	
 			}
 			else{
 				$this->id          = null;
@@ -35,19 +42,34 @@
 
 		public function save() {// Méthode permettant d'insérer un bon d'entrée
 			$pdo = Database::getPDO();
-            $req = 'INSERT INTO bon_entree (reference, date, article, quantite, fournisseur) VALUES (:reference, CURDATE(), :article, :quantite, :fournisseur)';
+            $req = 'INSERT INTO bon_entree (reference, date, fournisseur) VALUES (:reference, CURDATE(), :fournisseur)';
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
 			'reference'   => $this->reference,
-			'article'     => $this->article,
-			'quantite'    => $this->quantite,
 			'fournisseur' => $this->fournisseur
 			));
+			$req = 'SELECT id FROM bon_entree Order By ID Desc LIMIT 1';
+        	$reponse = $pdo->query($req);
+			$bonentree = $reponse->fetch();
+			$this->id = $bonentree['id'];
+			foreach ($this->article as $article){
+				$req = 'INSERT INTO entree_article (id_bon_entree, id_article) VALUES (:id_bon_entree, :id_article)';
+				$reponse = $pdo->prepare($req);
+				$reponse->execute(array(
+					'id_bon_entree' => $this->id,
+					'id_article'    => $article
+           		 ));
+        	}
 		}
 
 		public function delete() { //Méthode qui permet de supprimer un bon d'entrée
 			$pdo = Database::getPDO();
 			$req = 'DELETE FROM bon_entree WHERE id = ?';
+			$reponse = $pdo->prepare($req);
+			$reponse->execute(array($this->id));
+
+			
+			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array($this->id));
 		}
@@ -58,17 +80,27 @@
             $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
             $resultat = $reponse->execute(array(
 			'reference'   => $this->reference,
-			'article'     =>$this->article,
-			'quantite'    =>$this->quantite,
 			'fournisseur' =>$this->fournisseur,
             'id'          => $this->id
-            ));
+			));
+			
+			
+			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
+			$reponse = $pdo->prepare($req);
+			$reponse->execute(array($this->id));
+			foreach ($this->article as $article){
+			$req = 'INSERT INTO entree_article (id_bon_entree, id_article) VALUES (:id_bon_entree, :id_article)';
+			$reponse = $pdo->prepare($req);
+			$reponse->execute(array(
+				'id_bon_entree' => $this->id,
+				'id_article'    => $article
+			));
 		}
 
 		/**
 		  * permet de récupérer la liste des bons d'entrée
 		  */
-		public static function getList() {
+	}	public static function getList() {
 			$pdo = Database::getPDO();
 			$req = 'SELECT id from bon_entree';
 			$reponse = $pdo->query($req);
