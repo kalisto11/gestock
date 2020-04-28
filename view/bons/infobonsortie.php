@@ -1,4 +1,4 @@
-<h1 class="article">Informations sur le Bon de Sortie</h1>
+<h1 class="article">Informations sur le bon de sortie</h1>
 <div class="container"> 
       <div class="form-group">
         <label for="reference">Référence</label>
@@ -16,22 +16,22 @@
       
         <tr>
             <td>
-                <?php if ($bonsortie->article != null): ?>
-                    <?php foreach ($bonsortie->article as $article): ?>
-                   <input type="" nom= "article" class="form-control"  value= "<?= htmlspecialchars($article->nom) ?>" disabled>
+                <?php if ($bonsortie->dotations != null): ?>
+                    <?php foreach ($bonsortie->dotations as $dotation): ?>
+                    <input type="" nom= "article" class="form-control"  value= "<?= htmlspecialchars($dotation->article->nom) ?>" disabled>
                     <?php endforeach ; ?>
-                    <?php else : ?>
+                <?php else : ?>
                     <?php echo 'NEANT'; ?>
                 <?php endif ; ?>
             </td>
             <td>
-            <?php if ($bonsortie->quantite != null): ?>
-                    <?php foreach ($bonsortie->quantite as $quantite): ?>
-                    <input type="" name= "quantite" class= "form-control" value= "<?= htmlspecialchars($quantite->quantite) ?>" disabled>
-                    <?php endforeach ; ?>
-                    <?php else : ?>
-                    <?php echo 'NEANT'; ?>
-                <?php endif ; ?>      
+            <?php if ($bonsortie->dotations != null): ?>
+                <?php foreach ($bonsortie->dotations as $dotation): ?>
+                <input type="" name= "quantite" class= "form-control" value= "<?= htmlspecialchars($dotation->quantite) ?>" disabled>
+                <?php endforeach ; ?>
+                <?php else : ?>
+                <?php echo 'NEANT'; ?>
+            <?php endif ; ?>      
             </td>                
         </tr>
         

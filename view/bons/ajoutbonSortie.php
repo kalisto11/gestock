@@ -10,7 +10,7 @@
           <div class="col">
             <div class="form-group">
               <label for="article1">Article </label>
-              <select name="article<?php $i+1 ?>" id="article" class="form-control">
+              <select name="article<?= $i + 1 ?>" id="article" class="form-control">
                 <option value="null">-----------------------------------------------</option>
                 <?php foreach($articles as $article): ?>
                 <option value="<?= $article->id ?>"><?= $article->nom ?></option>
@@ -21,7 +21,7 @@
           <div class="col">
             <div class="form-group">
               <label for="quantite">Quantité</label>
-              <input type="number" name="quantite" id="quantite" class="form-control">
+              <input type="number" name="quantite<?= $i + 1 ?>" id="quantite" class="form-control">
             </div>
           </div>
         </div> 
@@ -37,9 +37,11 @@
       </div>
   
       <input type="hidden" name="operation" value="ajouter">
-  
-      <input type="submit" value="Ajouter" class="btn btn-success">
-      <a href="/gestock/bonssortie/liste" class="btn btn-danger">Annuler</a>    
+      
+      <div class="mt-5">
+        <input type="submit" value="Ajouter" class="btn btn-success">
+        <a href="/gestock/bonssortie/liste" class="btn btn-danger">Annuler</a>
+      </div>    
     </form>
   </div>
 
