@@ -55,22 +55,21 @@
                 break;
 
                 case 'consulter':
+                    $articles = Article::getListArticle();
                     $bonsortie = new BonSortie($this->request->id);  
                     require_once VIEW . 'bons/infobonsortie.php';
                 break;
 
                 case 'ajouter':
-                    $articles = Article::getListArticle();
+                    $articles = Article::getList();
                     $personnels = Personnel::getList();
                     require_once VIEW . 'bons/ajoutbonSortie.php';
                 break;
 
                 case 'modifier':
                     $bonsortie  = new BonSortie($this->request->id);
-                    $articles = Article::getListArticle();
-                    foreach ($bonsortie->article as $article){
-                        $articles[] = $article;
-                    }
+                    $articles = Article::getList();
+                    $personnels = Personnel::getList();
                     require_once VIEW . 'bons/modifbonsortie.php';
                 break;
             

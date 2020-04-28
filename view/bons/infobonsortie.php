@@ -9,18 +9,17 @@
         <input  name="beneficiaire" id="beneficiaire" class="form-control"value=" <?= $bonsortie->beneficiaire->prenom  ?> <?=$bonsortie->beneficiaire->nom ?>" disabled>        
     </div>
     <div>
+        <label for="">Dotations</label>
         <?php if ($bonsortie->dotations != null): ?>
         <?php foreach ($bonsortie->dotations as $dotation): ?>
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <label for="">Article</label>
                     <input type="" nom= "article" class="form-control"  value= "<?= htmlspecialchars($dotation->article->nom) ?>" disabled>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <label for="">Quantité</label>
                     <input type="" name= "quantite" class= "form-control" value= "<?= htmlspecialchars($dotation->quantite) ?>" disabled>
                 </div>
             </div> 
