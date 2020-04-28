@@ -25,7 +25,7 @@
         <div class="row">
           <div class="col">
             <div class="form-group">
-              <label for="article1">Article</label>
+              <label for="article<?= $i ?>">Article</label>
               <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control">
                 <option value="null">-----------------------------------------------</option>
                 <?php foreach($articles as $article): ?>
@@ -36,14 +36,39 @@
           </div>
           <div class="col">
             <div class="form-group">
-              <label for="quantite">Quantité</label>
-              <input type="number" name="quantite" id="quantite" value="<?= $dotation->quantite ?>" class="form-control">
+              <label for="quantite<?= $i ?>">Quantité</label>
+              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" value="<?= $dotation->quantite ?>" class="form-control">
             </div>
           </div>
         </div> 
       <?php 
       $i++;
       endforeach ; ?>
+
+      <?php if ($i < 10){
+        for ($i = $i ; $i <= 10; $i ++) : ?>
+          <div class="row">
+          <div class="col">
+            <div class="form-group">
+              <label for="article<?= $i ?>">Article</label>
+              <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control">
+                <option value="null">-----------------------------------------------</option>
+                <?php foreach($articles as $article): ?>
+                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                <?php endforeach ; ?>
+              </select>
+            </div> 
+          </div>
+          <div class="col">
+            <div class="form-group">
+              <label for="quantite<?= $i ?>">Quantité</label>
+              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control">
+            </div>
+          </div>
+        </div> 
+        <?php endfor ;
+      }
+      ?>
       
       <input type="hidden" name="operation" value="modifier">
       <input type="hidden" name="id" value="<?= $bonsortie->id ?>">

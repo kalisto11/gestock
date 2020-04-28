@@ -17,13 +17,13 @@
           <?php endforeach ; ?>
         </select>
       </div>
-      
-      <?php for ($i = 0; $i < 10; $i++) :?>
+
+      <?php for ($i = 1; $i <= 10; $i++) :?>
         <div class="row">
           <div class="col">
             <div class="form-group">
               <label for="article1">Article </label>
-              <select name="article<?= $i + 1 ?>" id="article" class="form-control">
+              <select name="article<?= $i ?>" id="article" class="form-control">
                 <option value="null">-----------------------------------------------</option>
                 <?php foreach($articles as $article): ?>
                 <option value="<?= $article->id ?>"><?= $article->nom ?></option>
@@ -34,7 +34,7 @@
           <div class="col">
             <div class="form-group">
               <label for="quantite">Quantité</label>
-              <input type="number" name="quantite<?= $i + 1 ?>" id="quantite" class="form-control">
+              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control">
             </div>
           </div>
         </div> 

@@ -115,12 +115,16 @@
                 }
                 else{ // cas modifier bon de sortie
                     $id = intval($id);
-                    $bonsortie = new Bonsortie($id);
+                    $bonsortie = new BonSortie();
+                    $bonsortie->id = $id;
                     $bonsortie->reference = strip_tags($reference);
-                    $bonsortie->beneficiaire = strip_tags($beneficiaire);
-                    $bonsortie->article = self::ajoutArticle(
-                        $article1, $article2, $article3, $article4, $article5,
-                        $article6, $article7, $article8, $article9, $article10);
+                    $bonsortie->beneficiaire= strip_tags($beneficiaire);
+                    $dotations = [];
+                    foreach ($articles as $article){
+                        $dotation = new Dotation($article['id'], $article['quantite']);
+                        $dotations[] = $dotation;
+                    }
+                    $bonsortie->dotations =  $dotations;
                     $bonsortie->modify();  
                     $message[] = "Les données du bon de sortie ont été bien modifiées.";
                     $this->notification = new Notification("success", $message);
