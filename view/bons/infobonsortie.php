@@ -4,6 +4,10 @@
         <label for="reference">Référence</label>
         <input type="text" name="reference" id="reference" class="form-control" value="<?= $bonsortie->reference ?>" disabled>
     </div>
+    <div class="form-group">
+        <label for="reference">Date</label>
+        <input type="text" name="date" id="date" class="form-control" value="<?= $bonsortie->date ?>" disabled>
+    </div>
     <div class="form-group mt-3">
         <label for="beneficiaire">Bénéficiaire</label>
         <input  name="beneficiaire" id="beneficiaire" class="form-control"value=" <?= $bonsortie->beneficiaire->prenom  ?> <?=$bonsortie->beneficiaire->nom ?>" disabled>        
