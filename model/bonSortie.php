@@ -57,7 +57,7 @@
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array(
 					'id_bon_sortie' => $this->id,
-					'id_article'    => $dotation->article->id,
+					'id_article'    => $dotation->article,
 					'quantite'    => $dotation->quantite
            		));
         	}

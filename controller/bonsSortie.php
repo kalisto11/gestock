@@ -12,20 +12,12 @@
                         case 'traitement-bonsortie':
                          switch ($_POST['operation']){
                              case 'ajouter':
-                                $articles = $this->ajoutArticle($_POST['article1'], $_POST['quantite1'],
-                                $_POST['article2'], $_POST['quantite2'], $_POST['article3'], $_POST['quantite3'], $_POST['article4'], $_POST['quantite4'], $_POST['article5'], $_POST['quantite5'], $_POST['article6'], $_POST['quantite6'], $_POST['article7'], $_POST['quantite7'], $_POST['article8'], $_POST['quantite8'], $_POST['article9'], $_POST['quantite9'], $_POST['article10'], $_POST['quantite10']);
-                                  
-
-                                $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire'], $articles);
+                                $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire']);
                                 $this->render($this->notification);
                             break;
  
-                             case 'modifier':
-                                $articles = $this->ajoutArticle($_POST['article1'], $_POST['quantite1'],
-                                $_POST['article2'], $_POST['quantite2'], $_POST['article3'], $_POST['quantite3'], $_POST['article4'], $_POST['quantite4'], $_POST['article5'], $_POST['quantite5'], $_POST['article6'], $_POST['quantite6'], $_POST['article7'], $_POST['quantite7'], $_POST['article8'], $_POST['quantite8'], $_POST['article9'], $_POST['quantite9'], $_POST['article10'], $_POST['quantite10']);
-                                
-
-                                $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire'], $articles, $_POST['id']);
+                             case 'modifier': 
+                                $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire'], $_POST['id']);
                                 $this->render($this->notification);
                             break;
  
@@ -87,29 +79,33 @@
                     $currentController->process();
             }
         }
-        public function traitementBon_sortie($reference, $beneficiaire, $articles, $id = null){
+        public function traitementBon_sortie($reference, $beneficiaire, $id = null){
+
+            $articles = $this->ajoutArticle($_POST['article1'], $_POST['quantite1'],
+                $_POST['article2'], $_POST['quantite2'], $_POST['article3'], $_POST['quantite3'], $_POST['article4'], $_POST['quantite4'], $_POST['article5'], $_POST['quantite5'], $_POST['article6'], $_POST['quantite6'], $_POST['article7'], $_POST['quantite7'], $_POST['article8'], $_POST['quantite8'], $_POST['article9'], $_POST['quantite9'], $_POST['article10'], $_POST['quantite10']);
+
             $erreurs = false;
             if (empty($reference)){
                 $erreurs = true;
-                $message[] = "La référence ne doit pas etre vide";
+                $message[] = "La référence ne doit pas etre vide.";
             }
             if (empty($beneficiaire)){
                 $erreurs = true;
-                $message[] = "Le beneficiaire ne doit pas etre vide";
+                $message[] = "Le bénéficiaire ne doit pas etre vide.";
             }
             if (empty($articles)){
                 $erreurs = true;
-                $message[] = "Il faut choisir au minimum un article et sa quantité";
+                $message[] = "Il faut choisir au minimum un article et sa quantité.";
             }
             if ($erreurs == false){ // cas sans erreur
                 if ($id == null){ // cas ajouter bon de sortie
                     $bonsortie = new BonSortie();
                     $bonsortie->reference = strip_tags($reference);
                     $bonsortie->beneficiaire= strip_tags($beneficiaire);
+                    $dotations = [];
                     foreach ($articles as $article){
-                        $dotation = [];
                         $dotation = new Dotation($article['id'], $article['quantite']);
-                        $dotations[] = $dotations;
+                        $dotations[] = $dotation;
                     }
                     $bonsortie->dotations =  $dotations;
                     
@@ -147,6 +143,7 @@
         } // fin méthode traitementBon_sortie
 
         public function ajoutArticle($article1, $quantite1, $article2, $quantite2, $article3, $quantite3, $article4, $quantite4, $article5, $quantite5, $article6, $quantite6, $article7, $quantite7, $article8, $quantite8, $article9, $quantite9, $article10, $quantite10){
+            $articles = [];
             if ($article1 != "null" AND !empty($quantite1)){
                 $articles[] = [
                     'id' => strip_tags($article1),
