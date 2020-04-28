@@ -5,27 +5,17 @@
         <tr>
             <th>Référence</th>
             <th>Date</th>
-            <th>Articles</th>
-            <th>Quantité</th>
             <th>Bénéficiaire</th>
             <th>Actions</th>
         </tr>
-        <?php foreach($bons_sorties as $bon_sortie):?>
+        <?php foreach($bonssorties as $bonsortie):?>
         <tr>
-            <td><?= $bon_sortie->reference?></td>
-            <td><?=$bon_sortie->date?></td>
-            <td>
-            <?php foreach ($bon_sortie->article as $article): ?>
-                                <?= $article->nom ?> <br>
-                        
-            <?php endforeach ; ?>
-            
-            </td>
-            <td><?=$bon_sortie->quantite?></td>
-            <td><?=$bon_sortie->beneficiaire->prenom?>  <?=$bon_sortie->beneficiaire->nom?></td>
+            <td><a href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><?= $bonsortie->reference?></a></td>
+            <td><a href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><?=$bonsortie->date?></a></td>
+            <td><a href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><?=$bonsortie->beneficiaire->prenom?>  <?=$bonsortie->beneficiaire->nom?></a></td>
             <td> 
-                <a href="/gestock/bonssortie/modifier/<?= $bon_sortie->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png" class=" menu-icone">Modifier</button></a>
-                <a href="/gestock/bonssortie/supprimer/<?= $bon_sortie->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png" class=" menu-icone">Supprimer</button></a>
+                <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png" class=" menu-icone">Modifier</button></a>
+                <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png" class=" menu-icone">Supprimer</button></a>
             </td>
         </tr>
         <?php endforeach ;?>

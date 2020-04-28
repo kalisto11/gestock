@@ -11,6 +11,8 @@
         **/
         public function __construct($type, $contenu){
             $this->type = $type;
-            $this->contenu = $contenu;
+            foreach($contenu as $message){
+                $this->contenu[] = $message;
+            }
         }
     }

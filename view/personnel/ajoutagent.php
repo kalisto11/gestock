@@ -1,14 +1,16 @@
+<?php require VIEW . 'infos/notifications.php'; ?>
+
 <h2 class="text-center mt-5"><?php if (isset($agent)){echo 'Modifier les informations de l\'agent';}else{echo 'Ajouter un nouvel agent';} ?></h2> 
 <div class="container mt-2">
    <form method="post" action="/gestock/personnels/traitement-agent" class="form-sm">
       <div class="form-group">
             <label for="prenom">Prénom </label>
-         <input class="form-control" type="text" name="prenom" id="prenom" value="<?php if (isset($agent)){echo $agent->prenom;} ?>">
+         <input class="form-control" type="text" name="prenom" id="prenom" value="<?php if (isset($agent)){echo $agent->prenom ;} ?>">
       </div>
       
       <div class="form-group">
          <label for="nom">Nom</label>
-         <input class="form-control" type="text" name="nom" id="nom" value="<?php if (isset($agent)){echo $agent->nom;} ?>">
+         <input class="form-control" type="text" name="nom" id="nom" value="<?php if (isset($agent)){echo $agent->nom ;} ?>">
       </div>
       <div class="row">
          <!-- debut poste 1 -->
@@ -88,8 +90,8 @@
          <input type="hidden" name="id" value="<?php if (isset($agent)){echo $agent->id;} ?>">
       <?php endif ; ?>
 
-      <input  class="btn btn-success mt-5" type="submit" value="<?php if (isset($agent)){echo 'Modifier';}else{echo 'Ajouter';} ?>" >
-      <a class="btn btn-danger mt-5" href="/gestock/personnels/<?php if (isset($agent)){echo 'consulter/' . $agent->id ;}else{echo '/liste';}?>">Annuler</a>
+      <input  class="btn btn-<?php if(isset($agent)){echo 'info';}else{echo 'success';} ?> mt-5" type="submit" value="<?php if (isset($agent)){echo 'Modifier';}else{echo 'Ajouter';} ?>" >
+      <a class="btn btn-danger mt-5" href="/gestock/personnels/<?php if (isset($agent)){echo 'consulter/' . $agent->id ;}else{echo 'liste';}?>">Annuler</a>
    </form>
 </div>    
         

@@ -34,7 +34,7 @@
                     </div>
                     <input type="hidden" name="operation" value="<?php if (isset($currentPoste->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
                     <input type="hidden" name="id" value="<?php if (isset($currentPoste->id)){echo $currentPoste->id ;} ?>">
-                    <input type="submit" value="<?php if (isset($currentPoste->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-success">
+                    <input type="submit" value="<?php if (isset($currentPoste->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn <?php if (isset($currentPoste->id)){echo 'btn-info' ; }else{echo 'btn-success';}?>">
                     <?php if (isset($currentPoste->id)): ?>
                     <a class="btn btn-danger" href="/gestock/postes/liste">Annuler</a>
                     <?php endif ; ?>

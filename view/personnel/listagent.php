@@ -11,12 +11,12 @@
                 </tr>
                 <?php foreach($agents as $agent):?>
                     <tr>
-                        <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?= $agent->prenom?></a></td>
-                        <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?=$agent->nom?></a></td>
+                        <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?= $agent->prenom ?></a></td>
+                        <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?= $agent->nom ?></a></td>
                         <td>
                             <?php if ($agent->poste != null): ?>
                                 <?php foreach ($agent->poste as $poste): ?>
-                                <?= $poste->nom ?> <br>
+                                <?= htmlspecialchars($poste->nom) ?> <br>
                                 <?php endforeach ; ?>
                             <?php else : ?>
                                 <?php echo 'NEANT'; ?>

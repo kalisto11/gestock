@@ -13,7 +13,7 @@
                 <?php foreach($articles as $article): ?>
                     <tr>
                         <td><?= $article->nom ?></td>
-                        <td><?= $article->groupe ?></td>
+                        <td><?php if($article->groupe == 0){echo 'néant';}else{echo $article->groupe ;} ?></td>
                         <td>
                             <a href="/gestock/articles/modifier/<?= $article->id ?>"><button class="btn btn-info btn-sm"><img src="images/icones/pencil.png" class=" menu-icone" alt="Modifier" title="Modifier"></button></a>
                             <a href="/gestock/articles/supprimer/<?= $article->id ?>"><button class="btn btn-danger btn-sm"><img src="images/icones/delete.png" class=" menu-icone" alt="Supprimer" title="Supprimer"></button></a>
@@ -31,7 +31,8 @@
                         <input class="form-control" type="text" name="article" value="<?php if (isset($currentArticle->id)){echo $currentArticle->nom;} ?>">
                     </div>
                     <label for="groupe">Groupe</label><br/>
-                    <select name="groupe" id="groupe">
+                    <select name="groupe" id="groupe" class="form-control">
+                        <option value="0">-----------------------------------</option>
                         <option value="1" <?php if (isset($currentArticle->groupe) AND $currentArticle->groupe == 1){echo 'selected="selected"';} ?>>Groupe 1
                         </option>
                         <option value="2" <?php if (isset($currentArticle->groupe) AND $currentArticle->groupe == 2){echo 'selected="selected"';} ?>>Groupe 2
@@ -40,7 +41,7 @@
 
                     <input type="hidden" name="operation" value="<?php if (isset($currentArticle->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
                     <input type="hidden" name="idArticle" value="<?php if (isset($currentArticle->id)){echo $currentArticle->id ;} ?>">
-                    <input type="submit" value="<?php if (isset($currentArticle->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-success">
+                    <input type="submit" value="<?php if (isset($currentArticle->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-<?php if(isset($currentArticle->id)){echo 'info';}else{echo 'success';}?>">
 
                     <?php if (isset($currentArticle->id)): ?>
                     <a class="btn btn-danger" href="/gestock/articles/liste">Annuler</a>
