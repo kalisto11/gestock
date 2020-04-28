@@ -85,8 +85,8 @@
             <?= $content ?>
             </div>
             <footer>
-                <p>
-                 Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
+                <p class="text-light bg-secondary ml-4 m-0 py-2">
+                &copy;Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
                 </p>
             </footer>
         </main>     
