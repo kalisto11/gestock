@@ -9,11 +9,19 @@
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
                 switch ($_POST['operation']){
                     case 'ajouter':
-                        $this->traiterBonEntree($_POST['reference'], $_POST['article'], $_POST['quantite'], $_POST['fournisseur']);
+                        $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur'], $_POST['article1'],
+                            $_POST['article2'], $_POST['article3'],$_POST['article4'], 
+                            $_POST['article5'], $_POST['article6'],$_POST['article7'],
+                            $_POST['article8'], $_POST['article9'],$_POST['article10']);
+                        $this->render($this->notification);
                     break;
                     
                     case 'modifier':
-                        $this->traiterBonEntree($_POST['reference'], $_POST['article'], $_POST['quantite'], $_POST['fournisseur'], $_POST['id']);
+                        $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur'], $_POST['article1'],
+                            $_POST['article2'], $_POST['article3'],$_POST['article4'], 
+                            $_POST['article5'], $_POST['article6'],$_POST['article7'],
+                            $_POST['article8'], $_POST['article9'],$_POST['article10'], $_POST['id']);
+                        $this->render($this->notification);
                     break;
 
                     default:
@@ -48,19 +56,21 @@
                 break;
 
                 case 'consulter':
-                    $agent = new Personnel($this->request->id);
-                    require_once VIEW . 'personnel/infoagent.php';
+                    $bonEntree = new BonEntree($this->request->id);
+                    require_once VIEW . 'bons/infobonentree.php';
                 break;
 
                 case 'ajouter':
-                    $articles = article::getList();
+                    $articles = Article::getListArticle();
                     require_once VIEW . 'bons/ajoutbonentree.php';
                 break;
 
                 case 'modifier':
-                    $idBonEntree = intval($this->request->id);
-                    $bonEntree  = new BonEntree($idBonEntree);
-                    $articles = article::getList();
+                    $bonEntree  = new BonEntree($this->request->id);
+                    $articles = Article::getListArticle();
+                    foreach ($bonEntree->article as $article){
+                        $articles[] = $article;
+                    }
                     require_once VIEW . 'bons/modifbonentree.php';
                 break;
             
@@ -70,7 +80,8 @@
             }
         } //fin méthode render
 
-        public function traiterBonEntree($reference, $article, $quantite, $fournisseur, $id =null){
+        public function traiterBonEntree($reference, $fournisseur, $article1, $article2, $article3, $article4, $article5,
+        $article6, $article7, $article8, $article9, $article10, $id = null){
             $erreur = false;
             if (empty($reference)){
                 $erreur = true;
@@ -92,26 +103,30 @@
                 if ($id == null){ // cas ajouter
                     $bonEntree = new BonEntree();
                     $bonEntree->reference = strip_tags($reference);
-                    $bonEntree->article = strip_tags($article);
-                    $bonEntree->quantite = intval(strip_tags($quantite));
-                    $bonEntree->fournisseur = strip_tags($fournisseur);
+                    $bonEntree->fournisseur= strip_tags($fournisseur);
+                    $bonEntree->article = $this->ajoutArticle(
+                        $article1, $article2, $article3, $article4, $article5,
+                        $article6, $article7, $article8, $article9, $article10);
+                       
                     $bonEntree->save();
-                    $message[] = "Le bon a été ajouté avec succès.";
+                    $message[] = "Le bon d'entrée a été bien ajouté.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'liste';
+
                 }
                 else{ // cas modifier 
                     $id = intval($id);
-                    $bonEntree  = new BonEntree();
-                    $bonEntree->id = $id;
+                    $bonEntree = new BonEntree($id);
                     $bonEntree->reference = strip_tags($reference);
-                    $bonEntree->article = strip_tags($article);
-                    $bonEntree->quantite = intval(strip_tags($quantite));
                     $bonEntree->fournisseur = strip_tags($fournisseur);
-                    $bonEntree->modify();
-                    $message[] = "Le bon a été modifié avec succès.";
+                    $bonEntree->article = self::ajoutArticle(
+                        $article1, $article2, $article3, $article4, $article5,
+                        $article6, $article7, $article8, $article9, $article10);
+                    $bonEntree->modify();  
+                    $message[] = "Les données du bon d'entrée ont été bien modifiées.";
                     $this->notification = new Notification("success", $message);
-                    $this->request->action = 'liste';
+                    $this->request->action = 'consulter';
+                    $this->request->id = $id; 
                 }
             }
             else{ // cas ou $erreur egale a true
@@ -127,4 +142,40 @@
             }
            
         } // fin méthode traiterBonEntree
+        public function ajoutArticle($article1, $article2, $article3,$article4, $article5, 
+        $article6, $article7, $article8, $article9, $article10){
+            $articles = array();
+            if ($article1 != "null"){
+                $articles[] = strip_tags($article1);
+            }
+            if ($article2 != "null"){
+                $articles[] = strip_tags($article2);
+            }
+            if ($article3 != "null"){
+                $articles[] = strip_tags ($article3);
+            }
+            if ($article4 != "null"){
+                $articles[] = strip_tags($article4);
+            }
+            if ($article5 != "null"){
+                $articles[] = strip_tags($article5);
+            }
+            if ($article6 != "null"){
+                $articles[] = strip_tags($article6);
+            }
+            if ($article7 != "null"){
+                $articles[] = strip_tags($article7);
+            }
+            if ($article8 != "null"){
+                $articles[] = strip_tags($article8);
+            }
+            if ($article9 != "null"){
+                $articles[] = strip_tags($article9);
+            }
+            if ($article10 != "null"){
+                $articles[] = strip_tags($article10);
+            }
+            
+            return $articles;
+    }//Fin méthode ajouterArticle!!!
     } // fin class

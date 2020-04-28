@@ -30,9 +30,6 @@
                              default:
                              $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
                              $this->notification = new Notification("danger", $message);
-                             $this->request->action = 'liste';
-                             $this->render($this->notification);
-                            
                         }
                     }
                 }
@@ -47,7 +44,7 @@
                      $message[] = "Le bon de sortie a été supprimé avec succès.";
                      $this->notification = new Notification("success", $message);
                  }
-                 $this->render($this->message);
+                 $this->render($this->notification);
              }
         } // fin méthode process
 
@@ -64,8 +61,7 @@
                 break;
 
                 case 'consulter':
-                    $bonsortie = new BonSortie($this->request->id);
-                    
+                    $bonsortie = new BonSortie($this->request->id);  
                     require_once VIEW . 'bons/infobonsortie.php';
                 break;
 
@@ -96,6 +92,14 @@
                 $erreurs = true;
                 $message[] = "La référence ne doit pas etre vide";
             }
+            if ($article == 'null'){
+                $erreur = true;
+                $message[] = "Vous devez choisir un article.";
+            }
+            if ($quantite <= 0 ){
+                $erreur = true;
+                $message[] = "La quantité ne doit pas etre inférieure ou égale à zéro."; 
+            }
             if (empty($beneficiaire)){
                 $erreurs = true;
                 $message[] = "Le beneficiaire ne doit pas etre vide";
@@ -109,8 +113,7 @@
                     $bonsortie->article = $this->ajoutArticle(
                         $article1, $article2, $article3, $article4, $article5,
                         $article6, $article7, $article8, $article9, $article10);
-                       // var_dump($bonsortie->article);
-                       // exit;
+                       
                     $bonsortie->save();
                     $message[] = "Le bon de sortie a été bien ajouté.";
                     $this->notification = new Notification("success", $message);
