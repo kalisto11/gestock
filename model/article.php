@@ -65,4 +65,15 @@
             }  
             return $articles;
         }
+        public static function getListArticle(){
+            $pdo = Database::getPDO();
+            $req = 'SELECT id FROM article LEFT JOIN sortie_article ON article.id = sortie_article.id_article WHERE sortie_article.id_article IS NULL AND sortie_article.id_bon_sortie IS NULL';
+            $reponse = $pdo->query($req);
+            $articles = array();
+            while ($row = $reponse->fetch()){
+                $article = new Article($row['id']);
+                $articles[] = $article;
+            }  
+            return $articles;
+        }
     }
