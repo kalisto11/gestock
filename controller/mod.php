@@ -4,14 +4,15 @@
 		public $id;
 		public $reference;
 		public $date;
-		public $dotations;
+		public $article;
+		public $quantite;
 		public $fournisseur;
 
 		public function __construct($id = null) {//constructeur du bon d'entrée
 			if ($id != null){
 				$this->id = $id;
 				$pdo = Database::getPDO();
-				$req = "SELECT id, reference, DATE_FORMAT(date, '%d/%m/%Y') AS date, fournisseur FROM bon_entree WHERE id = ?";
+				$req = "SELECT id, reference, DATE_FORMAT(date, '%d/%m/%Y') AS date,  fournisseur FROM bon_entree WHERE id = ?";
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));
 				$bonentree         = $reponse->fetch();
@@ -19,7 +20,7 @@
 				$this->reference   = $bonentree['reference'];
 				$this->date        = $bonentree['date'];
 				$this->fournisseur = $bonentree['fournisseur'];
-				$req = 'SELECT * FROM article RIGHT JOIN entree_article ON article.id = entree_article.id_article WHERE entree_article.id_bon_entree = ?';
+				$req = 'SELECT id, nom FROM article RIGHT JOIN entree_article ON article.id = entree_article.id_article WHERE entree_article.id_bon_entree = ?';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));
 				$dotations = [];
@@ -28,13 +29,14 @@
 					$dotation = new Dotation($article, $row['quantite']);
 					$dotations[] = $dotation;
 				}
-				$this->dotations = $dotations;	
+				$this->dotations = $dotations;
 			}
 			else{
 				$this->id          = null;
 				$this->reference   = null;
 				$this->date        = null;
-				$this->dotations   = null;
+				$this->article     = null;
+				$this->quantite    = null;
 				$this->fournisseur = null;
 			}
 		}
@@ -51,14 +53,14 @@
         	$reponse = $pdo->query($req);
 			$bonentree = $reponse->fetch();
 			$this->id = $bonentree['id'];
-			foreach ($this->dotations as $dotation){
+			foreach ($this->article as $article){
 				$req = 'INSERT INTO entree_article (id_bon_entree, id_article, quantite) VALUES (:id_bon_entree, :id_article, :quantite)';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array(
 					'id_bon_entree' => $this->id,
-					'id_article'    => $dotation->article,
+					'id_article'    => $article,
 					'quantite'    => $dotation->quantite
-           		));
+           		 ));
         	}
 		}
 
@@ -67,37 +69,41 @@
 			$req = 'DELETE FROM bon_entree WHERE id = ?';
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array($this->id));
+
+			
 			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
 			$reponse = $pdo->prepare($req);
-			$reponse->execute(array( $this->id));
+			$reponse->execute(array($this->id));
 		}
 
 		public function modify() {//Méthode permettant de modifier le bon d'entrée
 			$pdo = Database::getPDO();
             $req = 'UPDATE bon_entree SET reference = :reference, fournisseur = :fournisseur WHERE id = :id';
             $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
-			$resultat = $reponse->execute(array( 
+            $resultat = $reponse->execute(array(
 			'reference'   => $this->reference,
 			'fournisseur' =>$this->fournisseur,
-			'id'           =>$this->id
-			));	
+            'id'          => $this->id
+			));
+			
+			
 			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array($this->id));
-			foreach ($this->dotations as $dotation){
+			foreach ($this->article as $article){
 			$req = 'INSERT INTO entree_article (id_bon_entree, id_article, quantite) VALUES (:id_bon_entree, :id_article, :quantite)';
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array(
 				'id_bon_entree' => $this->id,
-				'id_article'    => $dotation->article,
+				'id_article'    => $article,
 				'quantite'    => $dotation->quantite
 			));
-			}
 		}
+
 		/**
 		  * permet de récupérer la liste des bons d'entrée
 		  */
-		public static function getList() {
+	}	public static function getList() {
 			$pdo = Database::getPDO();
 			$req = 'SELECT id from bon_entree';
 			$reponse = $pdo->query($req);
