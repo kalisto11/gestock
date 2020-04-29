@@ -15,7 +15,7 @@
     <div class="row">
       <div class="col">
         <div class="form-group">
-          <label for="article">Article</label>
+          <label for="article<?= $i ?>">Article</label>
           <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control">
             <option value="null">----------------------------------</option>
             <?php foreach ($articles as $article) : ?>
@@ -25,8 +25,8 @@
         </div>
       </div>
       <div class="col">
-        <label for="quantite">Quantité</label>
-        <input type="number" name="quantite" id="quantite" class="form-control">
+        <label for="quantite<?= $i ?>">Quantité</label>
+        <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control">
       </div>
     </div>
     <?php endfor ; ?>
