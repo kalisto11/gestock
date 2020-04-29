@@ -11,8 +11,8 @@
                 </tr>
                 <?php foreach($agents as $agent):?>
                     <tr>
-                        <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?= $agent->prenom ?></a></td>
-                        <td><a href="/gestock/personnels/consulter/<?=$agent->id?>"><?= $agent->nom ?></a></td>
+                        <td><?= $agent->prenom ?></td>
+                        <td><?= $agent->nom ?></td>
                         <td>
                             <?php if ($agent->poste != null): ?>
                                 <?php foreach ($agent->poste as $poste): ?>
@@ -26,7 +26,7 @@
                         </td>
                         <td>
                             <a class="btn btn-secondary btn-sm" href="/gestock/personnels/consulter/<?=$agent->id?>">
-                                <img src="images/icones/consult.jpg" class=" menu-icone" alt="Modifier" title="Modifier">
+                                <img src="images/icones/consult.png" class=" menu-icone" alt="Modifier" title="Modifier">
                             </a>
                             <a class="btn btn-info btn-sm" href="/gestock/personnels/modifier/<?=$agent->id?>">
                                 <img src="images/icones/pencil.png" class=" menu-icone" alt="Modifier" title="Modifier">
