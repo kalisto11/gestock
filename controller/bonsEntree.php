@@ -65,11 +65,8 @@
 
                 case 'modifier':
 
-                    $bonEntree  = new BonEntree($this->request->id);
+                    $bonentree  = new BonEntree($this->request->id);
                     $articles = Article::getList();
-                    foreach ($bonEntree->article as $article){
-                        $articles[] = $article;
-                    }
                     require_once VIEW . 'bons/modifbonentree.php';
                 break;
             
