@@ -1,18 +1,18 @@
-<h1 class="article">Informations sur le bon de sortie</h1>
+<h2>Informations sur le bon de sortie</h2>
 <div class="container"> 
     <div class="form-group">
         <label for="reference">Référence</label>
-        <div class="zonegrise">
+        <p class="zonegrise">
         <?= $bonsortie->reference ?>
-        </div>
+        </p>
     </div>
     <div class="form-group">
         <label for="reference">Date</label>
-        <input type="text" name="date" id="date" class="form-control" value="<?= $bonsortie->date ?>" disabled>
+        <p class="zonegrise"><?= $bonsortie->date ?></p>
     </div>
     <div class="form-group mt-3">
         <label for="beneficiaire">Bénéficiaire</label>
-        <input  name="beneficiaire" id="beneficiaire" class="form-control"value=" <?= $bonsortie->beneficiaire->prenom  ?> <?=$bonsortie->beneficiaire->nom ?>" disabled>        
+        <p class="zonegrise"><?= $bonsortie->beneficiaire->prenom  ?> <?=$bonsortie->beneficiaire->nom ?></p>        
     </div>
     <div>
         <label for="">Dotations</label>
@@ -21,12 +21,12 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                    <input type="" nom= "article" class="form-control"  value= "<?= htmlspecialchars($dotation->article->nom) ?>" disabled>
+                <p class="zonegrise"><?= htmlspecialchars($dotation->article->nom) ?></p>
                 </div>
             </div>
             <div class="col">
                 <div class="form-group">
-                    <input type="" name= "quantite" class= "form-control" value= "<?= htmlspecialchars($dotation->quantite) ?>" disabled>
+                <p class="zonegrise"><?= htmlspecialchars($dotation->quantite) ?></p>
                 </div>
             </div> 
         </div>

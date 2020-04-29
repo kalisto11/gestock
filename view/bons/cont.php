@@ -4,136 +4,122 @@
     * Controleur du module des Bons d'netrée pour la gestion des bons d'entrée
     */
     
-    class BonsSortie extends Controller{
+    class BonsEntree extends Controller{
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
                 if ($this->request->action != null){
                     switch ($this->request->action){
-                        case 'traitement-bonsortie':
-                         switch ($_POST['operation']){
-                             case 'ajouter':
-                                $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire']);
-                                $this->render($this->notification);
-                            break;
- 
-                             case 'modifier': 
-                                $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire'], $_POST['id']);
-                                $this->render($this->notification);
-                            break;
- 
-                             default:
-                             $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
-                             $this->notification = new Notification("danger", $message);
-                        }
+                        case 'traitement-bonentree':
+                            switch ($_POST['operation']){
+                                case 'ajouter':
+                                    $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur']);
+                                    $this->render($this->notification);
+                                break;
+                                case 'modifier':
+                                    $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur'],  $_POST['id']);
+                                    $this->render($this->notification);
+                                break;
+                                default:
+                                    $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
+                                    $this->notification = new Notification("danger", $message);
+                            }
                     }
                 }
+            }elseif ($this->request->method === 'GET'){ // si la requete vient d'un lien 
+                if ($this->request->action === 'supprimer'){
+                    $idBonEntree = intval($this->request->id);
+                    $bonentree  = new BonEntree($idBonEntree);
+                    $bonentree->delete();
+                    $this->request->action = 'liste';
+                    $message[] = "Le bon a été supprimé avec succès.";
+                    $this->notification = new Notification("success", $message);
+                }
             }
-             else if ($this->request->method === 'GET'){ // si la requete vient d'un lien 
- 
-                 if ($this->request->action === 'supprimer'){
-                     $idbonSortie = intval($this->request->id);
-                     $bonsortie  = new BonSortie($this->request->id);
-                     $bonsortie->delete();
-                     $this->request->action = 'liste';
-                     $message[] = "Le bon de sortie a été supprimé avec succès.";
-                     $this->notification = new Notification("success", $message);
-                 }
-                 $this->render($this->notification);
-             }
         } // fin méthode process
 
         /**
-         * Permet d'afficher les vues du module bons de sortie
-         * @param array permet de stocker les messgaes de notification s à afficher dans la vue en cas de reussite ou d'echec d'une opération
+         * Permet d'afficher les vues du module bons d'entrée
+         * @param Notification permet de stocker les messgaes de notification s à afficher dans la vue en cas de reussite ou d'echec d'une opération
         **/
         public function render($notification = null){
             switch ($this->request->action){
-
                 case 'liste':
-                    $bonssorties = BonSortie::getList();
-                    require_once VIEW . 'bons/listbonSortie.php';
+                    $bonsentrees = BonEntree::getList();
+                    require_once VIEW . 'bons/listbonentree.php';
                 break;
-
                 case 'consulter':
-                    $articles = Article::getListArticle();
-                    $bonsortie = new BonSortie($this->request->id);  
-                    require_once VIEW . 'bons/infobonsortie.php';
+                    $bonentree = new BonEntree($this->request->id);
+                    require_once VIEW . 'bons/infobonentree.php';
                 break;
-
                 case 'ajouter':
-                    $articles = Article::getList();
-                    $personnels = Personnel::getList();
-                    require_once VIEW . 'bons/ajoutbonSortie.php';
+                    $articles = Article::getListArticle();
+                    require_once VIEW . 'bons/ajoutbonentree.php';
                 break;
-
                 case 'modifier':
-                    $bonsortie  = new BonSortie($this->request->id);
-                    $articles = Article::getList();
-                    $personnels = Personnel::getList();
-                    require_once VIEW . 'bons/modifbonsortie.php';
+                    $bonentree  = new BonEntree($this->request->id);
+                    $articles = Article::getListArticle();
+                    foreach ($bonentree->article as $article){
+                        $articles[] = $article;
+                    }
+                    require_once VIEW . 'bons/modifbonentree.php';
                 break;
-            
                 default: // gestion des erreurs au cas ou la valeur de action 
                     $currentController = new Erreur($this->request);
                     $currentController->process();
             }
-        }
-        public function traitementBon_sortie($reference, $beneficiaire, $id = null){
+        } //fin méthode render
 
+        public function traiterBonEntree($reference, $fournisseur, $id = null){
             $articles = $this->ajoutArticle($_POST['article1'], $_POST['quantite1'],
                 $_POST['article2'], $_POST['quantite2'], $_POST['article3'], $_POST['quantite3'], $_POST['article4'], $_POST['quantite4'], $_POST['article5'], $_POST['quantite5'], $_POST['article6'], $_POST['quantite6'], $_POST['article7'], $_POST['quantite7'], $_POST['article8'], $_POST['quantite8'], $_POST['article9'], $_POST['quantite9'], $_POST['article10'], $_POST['quantite10']);
-
-            $erreurs = false;
+            $erreur = false;
             if (empty($reference)){
-                $erreurs = true;
+                $erreur = true;
                 $message[] = "La référence ne doit pas etre vide.";
             }
-            if (empty($beneficiaire)){
-                $erreurs = true;
-                $message[] = "Le bénéficiaire ne doit pas etre vide.";
+            if (empty($fournisseur)){
+                $erreur = true;
+                $message[] = "Le nom du fournisseur ne doit pas etre vide."; 
             }
             if (empty($articles)){
                 $erreurs = true;
                 $message[] = "Il faut choisir au minimum un article et sa quantité.";
             }
-            if ($erreurs == false){ // cas sans erreur
-                if ($id == null){ // cas ajouter bon de sortie
-                    $bonsortie = new BonSortie();
-                    $bonsortie->reference = strip_tags($reference);
-                    $bonsortie->beneficiaire= strip_tags($beneficiaire);
+            if ($erreur == false){
+                if ($id == null){ // cas ajouter
+                    $bonentree = new BonEntree();
+                    $bonentree->reference = strip_tags($reference);
+                    $bonentree->fournisseur= strip_tags($fournisseur);
                     $dotations = [];
                     foreach ($articles as $article){
                         $dotation = new Dotation($article['id'], $article['quantite']);
                         $dotations[] = $dotation;
                     }
                     $bonsortie->dotations =  $dotations;
-                    
-                    $bonsortie->save();
-                    $message[] = "Le bon de sortie a été bien ajouté.";
+                    $bonentree->save();
+                    $message[] = "Le bon d'entrée a été bien ajouté.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'liste';
                 }
-                else{ // cas modifier bon de sortie
+                else{ // cas modifier 
                     $id = intval($id);
-                    $bonsortie = new BonSortie();
-                    $bonsortie->id = $id;
-                    $bonsortie->reference = strip_tags($reference);
-                    $bonsortie->beneficiaire= strip_tags($beneficiaire);
+                    $bonentree = new BonEntree($id);
+                    $bonentree->reference = strip_tags($reference);
+                    $bonentree->fournisseur = strip_tags($fournisseur);
                     $dotations = [];
                     foreach ($articles as $article){
                         $dotation = new Dotation($article['id'], $article['quantite']);
                         $dotations[] = $dotation;
                     }
                     $bonsortie->dotations =  $dotations;
-                    $bonsortie->modify();  
-                    $message[] = "Les données du bon de sortie ont été bien modifiées.";
+                    $bonentree->modify();  
+                    $message[] = "Les données du bon d'entrée ont été bien modifiées.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'consulter';
                     $this->request->id = $id; 
                 }
-               
             }
-            else{ // cas avec erreur(s)
+            else{ // cas ou $erreur egale a true
                 $this->notification = new Notification("danger", $message);
                 if ($id == null){
                     $this->request->action = 'ajouter';
@@ -141,10 +127,9 @@
                 else{
                     $this->request->action = 'modifier';
                     $this->request->id = $id;
-                }
-            }
-        } // fin méthode traitementBon_sortie
-
+                }  
+            } 
+        } // fin méthode traiterBonEntree
         public function ajoutArticle($article1, $quantite1, $article2, $quantite2, $article3, $quantite3, $article4, $quantite4, $article5, $quantite5, $article6, $quantite6, $article7, $quantite7, $article8, $quantite8, $article9, $quantite9, $article10, $quantite10){
             $articles = [];
             if ($article1 != "null" AND !empty($quantite1)){
@@ -208,5 +193,5 @@
                 ];
             }
             return $articles;
-        }//Fin méthode ajoutArticle!!!
+    }//Fin méthode ajoutArticle!!!
     } // fin class

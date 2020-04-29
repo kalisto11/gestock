@@ -32,9 +32,15 @@
 }
 .article{
     margin-top: 10px;
-    background-color: grey
+    background-color: grey;
     width: 50%;
   text-align: center;
+}
+.zonegrise{
+  font-weight: bold ;
+  background-color: rgb(216, 211, 211);
+  font-size: 20px;
+  padding-left: 20px;
 }
 .liste{
   margin-top: 10px;
@@ -73,6 +79,12 @@ table a{
 
 h2, h3, h4, h5, h6{
   text-align: center;
+  margin-top: 40px;
+
+}
+h1{
+color: white;
+margin-left: 30px;
 }
 /* fin tableau */
 

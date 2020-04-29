@@ -6,7 +6,6 @@
       <label for="reference">Référence</label>
       <input type="text" name="reference" id="reference" class="form-control">
     </div>
-
     <div class="form-group">
       <label for="fournisseur">Fournisseur</label>
       <input type="text" name="fournisseur" id="fournisseur" class="form-control">
@@ -32,12 +31,9 @@
     </div>
     <?php endfor ; ?>
 
+       
     <input type="hidden" name="operation" value="ajouter">
-    
-    <div class="mt-5">
-      <input type="submit" value="Ajouter" class="btn btn-success">
-      <a href="/gestock/bonsentree/liste" class="btn btn-danger">Annuler</a>
-    </div>  
-    
+    <input type="submit" value="Ajouter" class="btn btn-success">
+    <a href="/gestock/bonsentree/liste" class="btn btn-danger">Annuler</a>    
   </form>
 </div>
