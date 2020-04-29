@@ -1,4 +1,4 @@
-<h1 class="text-center">Informations sur le Bon d'Entrée</h1>
+<h1 class="text-center">Informations sur le bon d'entrée</h1>
 <div class="container"> 
       <div class="form-group">
         <label for="reference">Référence</label>
