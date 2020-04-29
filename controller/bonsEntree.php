@@ -106,6 +106,7 @@
                         $dotation = new Dotation($article['id'], $article['quantite']);
                         $dotations[] = $dotation;
                     }
+                    $bonentree->dotations= $dotations;
                     $bonentree->save();
                     $message[] = "Le bon a été ajouté avec succès.";
                     $this->notification = new Notification("success", $message);
@@ -202,6 +203,7 @@
                     'quantite' => strip_tags($quantite10)
                 ];
             }
+           
             return $articles;
         }//Fin méthode ajoutArticle!!!
     } // fin class
