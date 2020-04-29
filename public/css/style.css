@@ -97,7 +97,8 @@ main{
 .zonegrise{
   font-weight: bold;
   background-color: rgb(241, 244, 247);
-  font-size: 18px;
+  font-size: 17px;
   padding-left: 20px;
+  margin: auto;
 }
 
