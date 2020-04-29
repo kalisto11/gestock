@@ -2,9 +2,11 @@
   font-family: Algerian, Calibri sans-serif;
 }
 .info{
-  width: 800px;
-  display: inline-block;
+  width: 900px;
   margin: auto;
+}
+.info img{
+  width: 900px;
 }
 
 
