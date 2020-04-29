@@ -2,7 +2,9 @@
 <div class="container"> 
     <div class="form-group">
         <label for="reference">Référence</label>
-        <input type="text" name="reference" id="reference" class="form-control" value="<?= $bonsortie->reference ?>" disabled>
+        <div class="zonegrise">
+        <?= $bonsortie->reference ?>
+        </div>
     </div>
     <div class="form-group">
         <label for="reference">Date</label>
