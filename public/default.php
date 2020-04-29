@@ -17,7 +17,7 @@
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap">
-                <a class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#">TEAM UVS KAFFRINE</a>
+                <a class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#"><img src="images/icones/ministére.JPG" class="icone">IA KAFFRINE</a>
                 <h1 class="h2">GESTION DE STOCK</h1>
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
