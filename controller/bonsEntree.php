@@ -61,13 +61,13 @@
                 break;
 
                 case 'ajouter':
-                    $articles = Article::getListArticle();
+                    $articles = Article::getList();
                     require_once VIEW . 'bons/ajoutbonentree.php';
                 break;
 
                 case 'modifier':
                     $bonEntree  = new BonEntree($this->request->id);
-                    $articles = Article::getListArticle();
+                    $articles = Article::getList();
                     foreach ($bonEntree->article as $article){
                         $articles[] = $article;
                     }

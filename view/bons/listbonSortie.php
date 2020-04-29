@@ -10,18 +10,19 @@
         </tr>
         <?php foreach($bonssorties as $bonsortie):?>
         <tr>
-            <td><a href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><?= $bonsortie->reference?></a></td>
-            <td><a href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><?=$bonsortie->date?></a></td>
-            <td><a href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><?=$bonsortie->beneficiaire->prenom?>  <?=$bonsortie->beneficiaire->nom?></a></td>
-            <td> 
-                <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png" class=" menu-icone">Modifier</button></a>
-                <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png" class=" menu-icone">Supprimer</button></a>
+            <td><?= $bonsortie->reference?></td>
+            <td><?=$bonsortie->date?></td>
+            <td><a href="/gestock/personnels/consulter/<?= $bonsortie->beneficiaire->id ?>"><?=$bonsortie->beneficiaire->prenom?>  <?=$bonsortie->beneficiaire->nom?></a></td>
+            <td>
+            <a class="btn btn-warning" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.jpg" class="menu-icone" title="Consulter les informations du bon de sortie"></a> 
+                <a class="btn btn-info" href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>"><img src="images/icones/pencil.png" class="menu-icone" title="Modifier les informations du bon de sortie"></a>
+                <a  class="btn btn-danger" href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>"><img src="images/icones/delete.png" class="menu-icone" title="Supprimer le bon de sortie"></a>
             </td>
         </tr>
         <?php endforeach ;?>
     </table>
 </div>
 <div class="mt-5">
-    <a href="/gestock/bonssortie/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon de Sortie</button></a>
+    <a href="/gestock/bonssortie/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon de sortie</button></a>
 </div>
 

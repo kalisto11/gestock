@@ -2,9 +2,15 @@
 <h2>Modification du bon d'entrée</h2>
 <div> 
   <form method="post" action="/gestock/bonsentree/traitement-bonentree">
+
     <div class="form-group">
       <label for="reference">Référence</label>
       <input type="text" name="reference" id="reference" class="form-control" value="<?= $bonEntree->reference ?>">
+    </div>
+
+    <div class="form-group">
+      <label for="fournisseur">Fournisseur</label>
+      <input type="text" name="fournisseur" id="fournisseur" class="form-control" value="<?= $bonEntree->fournisseur ?>">
     </div>
 
     <div class="form-group">
@@ -20,11 +26,6 @@
     <div class="form-group">
       <label for="quantite">Quantité</label><br/>
       <input type="number" name="quantite" id="quantite" class="form-control" value="<?= $bonEntree->quantite ?>">
-    </div>
-
-    <div class="form-group">
-      <label for="fournisseur">Fournisseur</label>
-      <input type="text" name="fournisseur" id="fournisseur" class="form-control" value="<?= $bonEntree->fournisseur ?>">
     </div>
 
     <input type="hidden" name="operation" value="modifier">
