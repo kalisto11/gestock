@@ -2,11 +2,11 @@
 <div class="container"> 
       <div class="form-group">
         <label for="reference">Référence</label>
-        <input type="text" name="reference" id="reference" class="form-control" value="<?= $bonEntree->reference ?>" disabled>
+        <p class="ref" ><?= $bonEntree->reference ?></p>
       </div>
       <div class="form-group mt-3">
         <label for="fournisseur">Fournisseur</label>
-        <input  name="fournisseur" id="fournisseur" class="form-control"value=" <?= $bonEntree->fournisseur ?>" disabled>        
+        <p class="four"><?= $bonEntree->fournisseur ?></p>      
       </div>
       <table class="table table-striped table-bordered table-hover">
         <tr>
@@ -18,7 +18,7 @@
             <td>
                 <?php if ($bonEntree->article != null): ?>
                     <?php foreach ($bonEntree->article as $article): ?>
-                   <input type="" nom= "article" class="form-control"  value= "<?= htmlspecialchars($article->nom) ?>" disabled>
+                   <p class="art"><?= htmlspecialchars($article->nom) ?></p>
                     <?php endforeach ; ?>
                     <?php else : ?>
                     <?php echo 'NEANT'; ?>
@@ -27,7 +27,7 @@
             <td>
             <?php if ($bonEntree->quantite != null): ?>
                     <?php foreach ($bonEntree->quantite as $quantite): ?>
-                    <input type="" name= "quantite" class= "form-control" value= "<?= htmlspecialchars($quantite->quantite) ?>" disabled>
+                    <p class="quant"><?= htmlspecialchars($quantite->quantite) ?></p>
                     <?php endforeach ; ?>
                     <?php else : ?>
                     <?php echo 'NEANT'; ?>
