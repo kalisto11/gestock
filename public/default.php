@@ -17,8 +17,8 @@
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-                <a class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#">TEAM UVS KAFFRINE</a>
-                <input class="form-control form-control-dark w-25" type="text" placeholder="Recherche" aria-label="Search">
+                <a  class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 ml-2 menu-icone logoedu">IA KAFFRINE</a>
+
             <ul class="navbar-nav px-3">
                 <li class="nav-item text-nowrap">
                     <a class="nav-link" href="#">Connexion</a>
@@ -74,14 +74,15 @@
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
             <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  pt-3 pb-2 mb-3 border-bottom bg-dark">
                 <h1 class="h2">GESTION DE STOCK</h1>
-                <div class="btn-toolbar mb-2 mb-md-0">
-                    <div class="btn-group mr-2">
-                        <button type="button" class="btn btn-sm btn-light">Imprimer</button>
-                        <button type="button" class="btn btn-sm btn-light">Exporter</button>
+                     <div class="input-group mr-2">
+                     <input class="form-control form-control-dark w-25" type="text" placeholder="Recherche" aria-label="Search">
+                     <div class="btn-toolbar mb-2 mb-md-0">
+                 <button type="button" class="btn bg-light"><img src="images/icones/recherche.png" class="mr-2 ml-2 menu-icone"></button>
                     </div>
-                </div>
-            </div>
+             </div>
+            </div> 
             <div>
+
             <?= $content ?>
             </div>
             <footer>
