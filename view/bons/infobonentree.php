@@ -1,45 +1,40 @@
-<h1 class="">Informations sur le Bon d'Entrée</h1>
+<h1 class="text-center">Informations sur le Bon d'Entrée</h1>
 <div class="container"> 
       <div class="form-group">
         <label for="reference">Référence</label>
-        <p class="ref" ><?= $bonEntree->reference ?></p>
+        <p class="zonegrise" ><?= $bonentree->reference ?></p>
       </div>
+      <div class="form-group">
+        <label for="reference">Date</label>
+        <p class="zonegrise"><?= $bonentree->date ?></p>
+    </div>
       <div class="form-group mt-3">
         <label for="fournisseur">Fournisseur</label>
-        <p class="four"><?= $bonEntree->fournisseur ?></p>      
+        <p class="zonegrise"><?= $bonentree->fournisseur ?></p>      
       </div>
-      <table class="table table-striped table-bordered table-hover">
-        <tr>
-            <th>Articles</th>
-            <th>Quantités</th>
-        </tr>
-      
-        <tr>
-            <td>
-                <?php if ($bonEntree->article != null): ?>
-                    <?php foreach ($bonEntree->article as $article): ?>
-                   <p class="art"><?= htmlspecialchars($article->nom) ?></p>
-                    <?php endforeach ; ?>
-                    <?php else : ?>
-                    <?php echo 'NEANT'; ?>
-                <?php endif ; ?>
-            </td>
-            <td>
-            <?php if ($bonEntree->quantite != null): ?>
-                    <?php foreach ($bonEntree->quantite as $quantite): ?>
-                    <p class="quant"><?= htmlspecialchars($quantite->quantite) ?></p>
-                    <?php endforeach ; ?>
-                    <?php else : ?>
-                    <?php echo 'NEANT'; ?>
-                <?php endif ; ?>      
-            </td>                
-        </tr>
-        
-    </table>
+      <div>
+        <label for="">Dotations</label>
+        <?php if ($bonentree->dotations != null): ?>
+        <?php foreach ($bonentree->dotations as $dotation): ?>
+        <div class="row">
+            <div class="col">
+                <div class="form-group">
+                <p class="zonegrise"><?= htmlspecialchars($dotation->article->nom) ?></p>
+                </div>
+            </div>
+            <div class="col">
+                <div class="form-group">
+                <p class="zonegrise"><?= htmlspecialchars($dotation->quantite) ?></p>
+                </div>
+            </div> 
+        </div>
+        <?php endforeach ; ?>
+        <?php endif ; ?>         
+    </div>
 
       <div>
-        <a href="/gestock/bonsentree/modifier/<?= $bonEntree->id ?>"class="btn btn-info">Modifier</a>
-        <a href="/gestock/bonsentree/supprimer/<?= $bonEntree->id ?>"class="btn btn-danger">Supprimer</a>
+        <a href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"class="btn btn-info">Modifier</a>
+        <a href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"class="btn btn-danger">Supprimer</a>
     </div>
     </div>
     <div class="mt-5">
