@@ -3,14 +3,16 @@
   
   
 }
-.logoedu{
-  height: 200px;
-  width: 100px;
+.icone{
+  height: 50px;
+  width: 50%;
 }
 .info{
-  width: 800px;
-  display: inline-block;
+  width: 900px;
   margin: auto;
+}
+.info img{
+  width: 900px;
 }
 
 
@@ -30,21 +32,19 @@
 }
   
 .menu-icone{
-  height: 20px;
-  width:20px;
+  height: 30px;
+  width:30px;
   margin: 0px;
+}
+.bouton{
+  height: 15px;
+  width: 15px;
 }
 .article{
     margin-top: 10px;
-    background-color: grey;
+    background-color: grey
     width: 50%;
   text-align: center;
-}
-.zonegrise{
-  font-weight: bold ;
-  background-color: rgb(216, 211, 211);
-  font-size: 20px;
-  padding-left: 20px;
 }
 .liste{
   margin-top: 10px;
@@ -81,14 +81,9 @@ table a{
   width: 15%;
 }
 
-h2, h3, h4, h5, h6{
+.h2, h3, h4, h5, h6{
   text-align: center;
-  margin-top: 40px;
-
-}
-h1{
-color: white;
-margin-left: 30px;
+  color:white;
 }
 /* fin tableau */
 
@@ -109,6 +104,11 @@ main{
   
   
 }
-
-
+.zonegrise{
+  font-weight: bold;
+  background-color: rgb(241, 244, 247);
+  font-size: 17px;
+  padding-left: 20px;
+  margin: auto;
+}
 

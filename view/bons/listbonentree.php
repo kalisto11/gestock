@@ -11,10 +11,12 @@
         </tr>
         <?php foreach($bonsentrees as $bonentree):?>
         <tr>
-            <td><a href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><?= $bonentree->reference?></a></td>
-            <td><a href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><?=$bonentree->date?></a></td>
-            <td><a href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><?=$bonentree->fournisseur?></a></td>
+            <td><?= $bonentree->reference?></td>
+            <td><?=$bonentree->date?></td>
+            <td><?=$bonentree->fournisseur?></td>
+            
             <td> 
+            <a href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><button class="btn btn-warning"><img src="images/icones/consult.png" class=" menu-icone"></button></a>
                 <a href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png" class=" menu-icone"></button></a>
                 <a href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png" class=" menu-icone"></button></a>
             </td>

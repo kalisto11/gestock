@@ -1,46 +1,16 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
-<<<<<<< HEAD
-
-<h1 class="text-center">Modifier le un bon d'entrée</h1>
-=======
 <h2>Modification du bon d'entrée</h2>
-<div> 
-  <form method="post" action="/gestock/bonsentree/traitement-bonentree">
-
-    <div class="form-group">
-      <label for="reference">Référence</label>
-      <input type="text" name="reference" id="reference" class="form-control" value="<?= $bonEntree->reference ?>">
-    </div>
-
-    <div class="form-group">
-      <label for="fournisseur">Fournisseur</label>
-      <input type="text" name="fournisseur" id="fournisseur" class="form-control" value="<?= $bonEntree->fournisseur ?>">
-    </div>
-
-    <div class="form-group">
-      <label for="article">Articles</label>
-      <select name="article" id="article" class="form-control">
-        <option value="null">----------------------------------</option>
-        <?php foreach($articles as $article): ?>
-        <option value="<?= $article->id ?>" <?php if($bonEntree->article->id == $article->id){echo 'selected="selected"';}?>><?= $article->nom ?></option>
-        <?php endforeach ; ?>
-      </select>
-    </div>
->>>>>>> 16fd91f8ecb3f458092bdfdb64b8a864d873a627
-
 <div class="container"> 
     <form method="post" action="/gestock/bonsentree/traitement-bonentree">
       <div class="form-group">
         <label for="reference">Référence</label>
         <input type="text" name="reference" id="reference" class="form-control" value="<?= $bonentree->reference ?>">
       </div>
-
-<<<<<<< HEAD
+    
       <div class="form-group mt-3">
         <label for="fournisseur">Fournisseur</label>
         <input type="text" name="fournisseur" id="fournisseur" class="form-control" value="<?= $bonentree->fournisseur ?>">
-      </div>
-      
+      </div> 
       <?php 
       $i = 1;
       foreach ($bonentree->dotations as $dotation) : ?>
@@ -101,9 +71,4 @@
       </div>    
     </form>
   </div>
-
-=======
-    <input type="hidden" name="operation" value="modifier">
-    <input type="hidden" name="id" value="<?= $bonEntree->id ?>">
->>>>>>> 16fd91f8ecb3f458092bdfdb64b8a864d873a627
 

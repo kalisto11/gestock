@@ -17,28 +17,29 @@
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-                <a  class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 ml-2 menu-icone logoedu">IA KAFFRINE</a>
+                <a  class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone">IA KAFFRINE</a>
+                <h1 class="h2">GESTION DE STOCK</h1>
 
-            <ul class="navbar-nav px-3">
-                <li class="nav-item text-nowrap">
-                    <a class="nav-link" href="#">Connexion</a>
-                </li>
-            </ul>
+                <form class="form-inline mr-4">
+                  <input class="form-control form-control-dark w-10" type="text" placeholder="Recherche" aria-label="Search">
+                  <button  type="submit" class="btn bg-info my-2 my-sm-0 "><img src="images/icones/recherche.png" class="bouton"></button>
+                </form>
+
         </nav> 
         <!-- FIN BARRE DU LOGO ET ZONE DE RECHERCHE -->
 
         <!-- DEBUT CONTENEUR MENU LATERAL ET ZONE PRINCIPAL -->
-        <div class="container-fluid">
+        <div class="container-fluid mt-5">
             <div class="row">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
-                <div class="nav-side-menu">
-                <div class="menu-list">
+                <div class="nav-side-menu mt-5">
+                <div class="menu-list mt-5">
                     <ul id="menu-content" class="menu-content collapse out">
                         <li>
-                            <a href="#">
-                            <i class="fa fa-dashboard fa-lg"></i>
-                            Tableau de bord
-                            </a>
+                            <p class="text-center">Tableau de bord</p> 
+                        </li>
+                        <li class="nav-item text-nowrap text-center">
+                            <a class="nav-link" href="#">Connexion</a>
                         </li>
                         <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
                             <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel<span class="arrow"></span>
@@ -64,25 +65,13 @@
                         </ul>
                     </ul>
                 </div>
-            
-
             </div>
         </div>
         <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
 
         <!-- ZONE D'AFFICHAGE DU CONTENU -->
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
-            <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center  pt-3 pb-2 mb-3 border-bottom bg-dark">
-                <h1 class="h2">GESTION DE STOCK</h1>
-                     <div class="input-group mr-2">
-                     <input class="form-control form-control-dark w-25" type="text" placeholder="Recherche" aria-label="Search">
-                     <div class="btn-toolbar mb-2 mb-md-0">
-                 <button type="button" class="btn bg-light"><img src="images/icones/recherche.png" class="mr-2 ml-2 menu-icone"></button>
-                    </div>
-             </div>
-            </div> 
-            <div>
-
+            <div class="mt-5">
             <?= $content ?>
             </div>
             <footer>
