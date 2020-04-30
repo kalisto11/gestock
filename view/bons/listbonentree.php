@@ -13,7 +13,7 @@
         <tr>
             <td><?= $bonentree->reference?></td>
             <td><?=$bonentree->date?></td>
-            <td><?=$bonentree->fournisseur?></td>
+            <td><?=$bonentree->fournisseur->nom?></td>
             
             <td> 
             <a href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><button class="btn btn-secondary"><img src="images/icones/consult.png" class=" menu-icone"></button></a>

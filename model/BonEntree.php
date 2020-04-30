@@ -18,7 +18,7 @@
 				$this->id          = $bonentree['id'];
 				$this->reference   = $bonentree['reference'];
 				$this->date        = $bonentree['date'];
-				$this->fournisseur = $bonentree['fournisseur'];
+				$this->fournisseur = new Fournisseur($bonentree['fournisseur']);
 				$req = 'SELECT * FROM article RIGHT JOIN entree_article ON article.id = entree_article.id_article WHERE entree_article.id_bon_entree = ?';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));

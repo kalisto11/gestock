@@ -60,13 +60,14 @@
 
                 case 'ajouter':
                     $articles = Article::getList();
+                    $fournisseurs = Fournisseur::getList();
                     require_once VIEW . 'bons/ajoutbonentree.php';
                 break;
 
                 case 'modifier':
-
                     $bonentree  = new BonEntree($this->request->id);
                     $articles = Article::getList();
+                    $fournisseurs = Fournisseur::getList();
                     require_once VIEW . 'bons/modifbonentree.php';
                 break;
             
@@ -77,6 +78,7 @@
         } //fin méthode render
 
         public function traiterBonEntree($reference, $fournisseur, $id =null){
+
             $articles = $this->ajoutArticle($_POST['article1'], $_POST['quantite1'],
             $_POST['article2'], $_POST['quantite2'], $_POST['article3'], $_POST['quantite3'], $_POST['article4'], $_POST['quantite4'], $_POST['article5'], $_POST['quantite5'], $_POST['article6'], $_POST['quantite6'], $_POST['article7'], $_POST['quantite7'], $_POST['article8'], $_POST['quantite8'], $_POST['article9'], $_POST['quantite9'], $_POST['article10'], $_POST['quantite10']);
 
@@ -89,15 +91,15 @@
                 $erreurs = true;
                 $message[] = "Il faut choisir au minimum un article et sa quantité.";
             }
-            if (empty($fournisseur)){
+            if ($fournisseur == "null"){
                 $erreur = true;
-                $message[] = "Le nom du fournisseur ne doit pas etre vide."; 
+                $message[] = "Il faut choisir un fournisseur sur la liste de fournisseurs."; 
             }
             if ($erreur == false){
                 if ($id == null){ // cas ajouter
                     $bonentree = new BonEntree();
                     $bonentree->reference = strip_tags($reference);
-                    $bonentree->fournisseur = strip_tags($fournisseur);
+                    $bonentree->fournisseur = intval($fournisseur);
                     $dotations = [];
                     foreach ($articles as $article){
                         $dotation = new Dotation($article['id'], $article['quantite']);
