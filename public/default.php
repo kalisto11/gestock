@@ -31,38 +31,37 @@
         <div class="container-fluid mt-5">
             <div class="row">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
-                <div class="nav-side-menu mt-5">
-                <div class="menu-list mt-5">
-                    <ul id="menu-content" class="menu-content collapse out">
-                        <li>
-                            <p class="text-center">Tableau de bord</p> 
-                        </li>
-                        <li class="nav-item text-nowrap text-center">
-                            <a class="nav-link" href="#">Connexion</a>
-                        </li>
-                        <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
-                            <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel<span class="arrow"></span>
-                        </li>
-                        <ul class="sub-menu collapse" id="personnel">
-                            <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white menu-icone">Agents</a></li>
-                            <li><a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</a></li>
+                <div class="nav-side-menu mt-5 col-3">
+                    <div class="text-center mt-5">TABLEAU DE BORD</div> 
+                    <div>
+                        <p class="text-center">Espace utilisateur</p>
+                    </div>
+                    <div class="menu-list mt-5">
+                        <ul id="menu-content" class="menu-content collapse out">
+                            <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
+                                <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel
+                            </li>
+                            <ul class="sub-menu collapse" id="personnel">
+                                <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white menu-icone">Agents</a></li>
+                                <li><a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</a></li>
+                            </ul>
+                            <li data-toggle="collapse" data-target="#bons" class="collapsed bg-info">
+                                <img src="images/icones/bon.png"class="mr-2 ml-2 bg-white menu-icone">Bons
+                            </li>  
+                            <ul class="sub-menu collapse" id="bons">
+                                <li><a href="/gestock/articles/liste"><img src="images/icones/article.png" class="bg-white mr-2 ml-2 menu-icone">Articles</a></li>
+                                <li><a href="/gestock/bonsentree/liste"><img src="images/icones/entree.JPG" class="mr-2 ml-2 menu-icone">Bon d'entrée</a></li>
+                                <li><a href="/gestock/bonssortie/liste"><img src="images/icones/sortie.JPG" class="mr-2 ml-2 menu-icone">Bon de sortie</a></li>
+                            </ul>
+                            <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">
+                                <img src="images/icones/dossier.png" class="mr-2 ml-2 bg-white menu-icone">Journal
+                            </li>
+                            <ul class="sub-menu collapse" id="journal">
+                                <li><a href=""><img src="images/icones/livre journal.JPG" class="mr-2 menu-icone">Livre Journal</a></li>
+                                <li><a href=""><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
+                            </ul>
                         </ul>
-                        <li data-toggle="collapse" data-target="#bons" class="collapsed bg-info">
-                            <img src="images/icones/bon.png"class="mr-2 ml-2 bg-white menu-icone">Bons<span class="arrow"></span>
-                        </li>  
-                        <ul class="sub-menu collapse" id="bons">
-                            <li><a href="/gestock/articles/liste"><img src="images/icones/article.png" class="bg-white mr-2 ml-2 menu-icone">Articles</a></li>
-                            <li><a href="/gestock/bonsentree/liste"><img src="images/icones/entree.JPG" class="mr-2 ml-2 menu-icone">Bon d'entrée</a></li>
-                            <li><a href="/gestock/bonssortie/liste"><img src="images/icones/sortie.JPG" class="mr-2 ml-2 menu-icone">Bon de sortie</a></li>
-                        </ul>
-                        <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">
-                            <img src="images/icones/dossier.png" class="mr-2 ml-2 bg-white menu-icone">Journal<span class="arrow"></span>
-                        </li>
-                        <ul class="sub-menu collapse" id="journal">
-                            <li><a href=""><img src="images/icones/livre journal.JPG" class="mr-2 menu-icone">Livre Journal</a></li>
-                            <li><a href=""><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
-                        </ul>
-                    </ul>
+                    </div>
                 </div>
             </div>
         </div>
@@ -80,7 +79,7 @@
             </footer>
         </main>     
         <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
-       
+    
         <script src="bootstrap/js/jquery.min.js"></script>
         <script src="bootstrap/js/propper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
