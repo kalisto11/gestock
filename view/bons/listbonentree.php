@@ -16,7 +16,7 @@
             <td><?=$bonentree->fournisseur->nom?></td>
             
             <td> 
-            <a href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><button class="btn btn-secondary"><img src="images/icones/consult.png" class=" menu-icone"></button></a>
+            <a href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><button class="btn btn-warning"><img src="images/icones/consult.png" class=" menu-icone"></button></a>
                 <a href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png" class=" menu-icone"></button></a>
                 <a href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png" class=" menu-icone"></button></a>
             </td>

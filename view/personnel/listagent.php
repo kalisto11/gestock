@@ -25,7 +25,7 @@
                            
                         </td>
                         <td>
-                            <a class="btn btn-secondary btn-sm" href="/gestock/personnels/consulter/<?=$agent->id?>">
+                            <a class="btn btn-warning btn-sm" href="/gestock/personnels/consulter/<?=$agent->id?>">
                                 <img src="images/icones/consult.png" class=" menu-icone" alt="Modifier" title="Modifier">
                             </a>
                             <a class="btn btn-info btn-sm" href="/gestock/personnels/modifier/<?=$agent->id?>">
