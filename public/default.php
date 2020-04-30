@@ -76,7 +76,7 @@
             </div>
             <footer>
                 <p class="text-light bg-secondary m-0">
-                &copy;Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
+                &copy;Copyright IA Kaffrine 2020 - Powered by TEAM STAGIAIRES UVS/MAI/P4
                 </p>
             </footer>
         </main>     
