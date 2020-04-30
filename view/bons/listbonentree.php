@@ -1,6 +1,6 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
-<h2 class="mt-5 text-center"> Bons d'entrée</h2> 
+<h2 class="mt-5 text-center">Bons d'entrée</h2> 
 <div>
     <table class="table table-striped table-bordered table-hover">
         <tr>
@@ -16,7 +16,7 @@
             <td><?=$bonentree->fournisseur?></td>
             
             <td> 
-            <a href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><button class="btn btn-warning"><img src="images/icones/consult.png" class=" menu-icone"></button></a>
+            <a href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><button class="btn btn-secondary"><img src="images/icones/consult.png" class=" menu-icone"></button></a>
                 <a href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"><button class="btn btn-info"><img src="images/icones/pencil.png" class=" menu-icone"></button></a>
                 <a href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"><button class="btn btn-danger"><img src="images/icones/delete.png" class=" menu-icone"></button></a>
             </td>

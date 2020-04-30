@@ -1,4 +1,6 @@
-<h1 class="text-center">Informations sur le Bon d'Entrée</h1>
+<?php require VIEW . 'infos/notifications.php'; ?>
+
+<h2 class="mt-5 text-center">Information sur le Bon d'entrée</h2>
 <div class="container"> 
       <div class="form-group">
         <label for="reference">Référence</label>

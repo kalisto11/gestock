@@ -1,5 +1,6 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
-<h2 class="text-center">Ajouter un bon d'entrée</h2>
+
+<h2 class="mt-5 text-center">Ajouter un bon d'entrée</h2>
 <div> 
   <form method="post" action="/gestock/bonsentree/traitement-bonentree">
     <div class="form-group">
