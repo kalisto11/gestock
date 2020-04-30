@@ -34,7 +34,7 @@
       </div>
       <div class="col">
         <label for="quantite<?= $i ?>">Quantité</label>
-        <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control" placeholder="Quantité de l'article">
+        <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control" placeholder="Saisir un nombre">
       </div>
     </div>
     <?php endfor ; ?>

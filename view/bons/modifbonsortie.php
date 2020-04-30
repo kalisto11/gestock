@@ -37,7 +37,7 @@
           <div class="col">
             <div class="form-group">
               <label for="quantite<?= $i ?>">Quantité</label>
-              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" value="<?= $dotation->quantite ?>" class="form-control" placeholder="Quantité de l'article">
+              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" value="<?= $dotation->quantite ?>" class="form-control" placeholder="Saisir un nombre">
             </div>
           </div>
         </div> 
@@ -62,7 +62,7 @@
           <div class="col">
             <div class="form-group">
               <label for="quantite<?= $i ?>">Quantité</label>
-              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control" placeholder="Quantité de l'article">
+              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control" placeholder="Saisir un nombre">
             </div>
           </div>
         </div> 
