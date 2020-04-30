@@ -34,7 +34,7 @@
                     </div>
                     <input type="hidden" name="operation" value="<?php if (isset($currentFournisseur->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
                     <input type="hidden" name="id" value="<?php if (isset($currentFournisseur->id)){echo $currentFournisseur->id ;} ?>">
-                    <input type="submit" value="<?php if (isset($currentFournisseur->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn <?php if (isset($currentfournisseur->id)){echo 'btn-info' ; }else{echo 'btn-success';}?>">
+                    <input type="submit" value="<?php if (isset($currentFournisseur->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn <?php if (isset($currentFournisseur->id)){echo 'btn-info' ; }else{echo 'btn-success';}?>">
                     <?php if (isset($currentFournisseur->id)): ?>
                     <a class="btn btn-danger" href="/gestock/fournisseurs/liste">Annuler</a>
                     <?php endif ; ?>

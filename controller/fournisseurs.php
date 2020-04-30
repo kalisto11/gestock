@@ -13,7 +13,7 @@
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
                 switch ($_POST['operation']){
                     case 'ajouter': // cas ou on ajoute un nouveau fournisseur
-                        $this->traiterFournisseur($_POST['nomFournisseur']);
+                        $this->traiterFournisseur($_POST['nom']);
                     break;
 
                     case 'modifier': // cas ou on modifie un fournisseur existant
@@ -69,7 +69,7 @@
 
         public function traiterFournisseur($nomFournisseur, $idFournisseur = null){
             // mettre la premiere lettre du nom en majuscule
-            $nomFournisseur = ucfirst(mb_convert_case($nomFournisseur, MB_CASE_LOWER));
+            $nomFournisseur = mb_convert_case($nomFournisseur, MB_CASE_UPPER);
 
             $erreurs = false;
 
@@ -83,7 +83,7 @@
                 foreach ($fournisseurs as $fournisseur){
                     if ($fournisseur->nom == $nomFournisseur){
                         $erreurs = true;
-                        $message[] = "Le nom du Fournisseur existe déja. Veuillez choisir un autre nom.";
+                        $message[] = "Le nom du fournisseur existe déja. Veuillez choisir un autre nom.";
                     }
                 }
             }
@@ -100,7 +100,7 @@
                 }
                 if (in_array($nomFournisseur, $noms)){
                     $erreurs = true;
-                    $message[] = "Le nom du Fournisseur existe déja. Veuillez choisir un autre nom.";
+                    $message[] = "Le nom du fournisseur existe déja. Veuillez choisir un autre nom.";
                 }
             }
 
@@ -109,14 +109,14 @@
                     $fournisseur = new Fournisseur();
                     $fournisseur->nom = strip_tags($nomFournisseur);
                     $fournisseur->save();
-                    $message[] =  "Le Fournisseur a été ajouté avec succès.";
+                    $message[] =  "Le fournisseur a été ajouté avec succès.";
                     $this->notification = new Notification("success", $message);
                 }
                 else{
                     $fournisseur = new Fournisseur(intval($idFournisseur));
                     $fournisseur->nom = strip_tags($nomFournisseur);
                     $fournisseur->update();
-                    $message[] = "Le Fournisseur a été modifié avec succès.";
+                    $message[] = "Le fournisseur a été modifié avec succès.";
                     $this->notification = new Notification("success", $message);
                 }
                 $this->request->action = 'liste';

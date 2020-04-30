@@ -126,7 +126,8 @@
                     $bonentree->modify();
                     $message[] = "Le bon a été modifié avec succès.";
                     $this->notification = new Notification("success", $message);
-                    $this->request->action = 'liste';
+                    $this->request->action = 'consulter';
+                    $this->request->id = $bonentree->id;
                 }
             }
             else{ // cas ou $erreur egale a true
