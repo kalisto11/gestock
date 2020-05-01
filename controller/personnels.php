@@ -90,17 +90,33 @@
          * @param int $idPersonnel : id de l'agent en cas de modification
          */
         public function traiterPersonnel($prenom, $nom, $poste1, $poste2, $poste3, $idPersonnel = null){
-            $erreurs = false;
+            $erreur = false;
             if (empty($prenom)){
-                $erreurs = true;
-                $message[] = "Le prénom ne doit pas etre vide";
+                $erreur = true;
+                $message[] = "Le prénom ne doit pas etre vide.";
             }
             if (empty($nom)){
-                $erreurs = true;
-                $message[] = "Le nom ne doit pas etre vide";
+                $erreur = true;
+                $message[] = "Le nom ne doit pas etre vide.";
+            }
+            $postes = $this->ajouterPoste($poste1, $poste2, $poste3);
+            if ($postes != null){
+                $nbPostes = count($postes);
+                if ($nbPostes == 2){
+                    if ($postes[0] == $postes[1]){
+                        $erreur = true;
+                        $message[] = "Il n y a eu doublon de postes.";
+                    }
+                }
+                elseif ($nbPostes == 3){
+                    if ($postes[0] == $postes[1] OR $postes[1] == $postes[2] OR $postes[0] == $postes[2]){
+                        $erreur = true;
+                        $message[] = "Il n y a eu doublon de postes.";
+                    }
+                }
             }
 
-            if ($erreurs == false){ // cas sans erreur
+            if ($erreur == false){ // cas sans erreur
                 if ($idPersonnel == null){ // cas ajouter personnel
                     $agent = new Personnel();
                     $agent->prenom = mb_convert_case(strip_tags($prenom), MB_CASE_UPPER);
@@ -116,7 +132,7 @@
                     $agent = new Personnel($id);
                     $agent->prenom = mb_convert_case(strip_tags($prenom), MB_CASE_UPPER);
                     $agent->nom = mb_convert_case(strip_tags($nom), MB_CASE_UPPER);
-                    $agent->poste = self::ajouterPoste($poste1, $poste2, $poste3);
+                    $agent->poste = $postes;
                     $agent->update();  
                     $message[] = "Les informations de l'agent ont été bien modifiées.";
                     $this->notification = new Notification("success", $message);

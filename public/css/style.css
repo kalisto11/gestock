@@ -52,6 +52,8 @@
 th, td{
   text-align: center;
   vertical-align: middle;
+  padding-top: 0px;
+  padding-bottom: 0px;;
 }
 th{
   font-weight: bold;
@@ -60,7 +62,6 @@ th{
   color: #fff;  
   line-height: 10px;; 
 }
- 
 
 table a{
   text-decoration: none;

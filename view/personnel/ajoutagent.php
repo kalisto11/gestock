@@ -18,7 +18,7 @@
             <div class="form-group">
                <label for="poste1">Poste 1</label>
                <select name="poste1" id="poste1" class="form-control">
-                  <option value="null">----------</option>
+                  <option value="null">Choisir un poste</option>
                   <?php foreach ($postes as $poste): ?>
                   <option 
                      value="<?= $poste->id ?>" 
@@ -41,7 +41,7 @@
             <div class="form-group">
                <label for="poste2">Poste 2</label>
                <select name="poste2" id="poste2" class="form-control">
-                  <option value="null">----------</option>
+                  <option value="null">Choisir un poste</option>
                   <?php foreach ($postes as $poste): ?>
                   <option 
                      value="<?= $poste->id ?>" 
@@ -64,7 +64,7 @@
             <div class="form-group">
                <label for="poste3">Poste 3</label>
                <select name="poste3" id="poste3" class="form-control">
-                  <option value="null">----------</option>
+                  <option value="null">Choisir un poste</option>
                   <?php foreach ($postes as $poste): ?>
                   <option 
                      value="<?= $poste->id ?>" 

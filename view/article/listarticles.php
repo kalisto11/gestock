@@ -32,7 +32,7 @@
                     </div>
                     <label for="groupe">Groupe</label><br/>
                     <select name="groupe" id="groupe" class="form-control">
-                        <option value="0">-----------------------------------</option>
+                        <option value="0">Choisir un groupe</option>
                         <option value="1" <?php if (isset($currentArticle->groupe) AND $currentArticle->groupe == 1){echo 'selected="selected"';} ?>>Groupe 1
                         </option>
                         <option value="2" <?php if (isset($currentArticle->groupe) AND $currentArticle->groupe == 2){echo 'selected="selected"';} ?>>Groupe 2
