@@ -28,7 +28,7 @@
                 <form method="post" action="/gestock/articles/traitement-article">
                     <div class="form-group">
                         <label for="nom">Nom de l'article</label>
-                        <input class="form-control" type="text" name="article" value="<?php if (isset($currentArticle->id)){echo $currentArticle->nom;} ?>">
+                        <input class="form-control" type="text" name="article" value="<?php if (isset($currentArticle->id)){echo $currentArticle->nom;} ?>" placeholder="Saisir le nom du nouvel article ici">
                     </div>
                     <label for="groupe">Groupe</label><br/>
                     <select name="groupe" id="groupe" class="form-control">

@@ -83,6 +83,7 @@
             $_POST['article2'], $_POST['quantite2'], $_POST['article3'], $_POST['quantite3'], $_POST['article4'], $_POST['quantite4'], $_POST['article5'], $_POST['quantite5'], $_POST['article6'], $_POST['quantite6'], $_POST['article7'], $_POST['quantite7'], $_POST['article8'], $_POST['quantite8'], $_POST['article9'], $_POST['quantite9'], $_POST['article10'], $_POST['quantite10']);
 
             $erreur = false;
+
             if (empty($reference)){
                 $erreur = true;
                 $message[] = "La référence ne doit pas etre vide.";
@@ -94,6 +95,16 @@
             if (empty($articles)){
                 $erreur = true;
                 $message[] = "Il faut choisir au minimum un article et sa quantité.";
+            }
+
+            $idArticles = [];
+            foreach ($articles as $article){
+                $idArticles[] = $article['id'];
+            }
+            $noDoublons = array_unique($idArticles);
+            if (count($noDoublons) < count($idArticles)){
+                $erreur = true;
+                $message[] = "Il y a eu doublon sur les articles choisis.";
             }
            
             if ($erreur == false){
