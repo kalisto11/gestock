@@ -60,7 +60,7 @@
 					'quantite'    => $dotation->quantite
            		));
         	}
-		}
+		 }
 
 		public function delete() { //Méthode qui permet de supprimer un bon d'entrée
 			$pdo = Database::getPDO();
