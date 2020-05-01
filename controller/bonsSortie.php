@@ -85,19 +85,22 @@
 
             $erreur = false;
 
+             // verifier si reference n'est pas vide
             if (empty($reference)){
                 $erreur = true;
                 $message[] = "La référence ne doit pas etre vide.";
             }
+            // Verifier si bénéficiaire n'est pas vide
             if ($beneficiaire == "null"){
                 $erreur = true;
                 $message[] = "Il faut choisir un bénéficiaire";
             }
+            // Verifier si au moins un article et sa quantité ont été choisis
             if (empty($articles)){
                 $erreur = true;
                 $message[] = "Il faut choisir au minimum un article et sa quantité.";
             }
-
+            // Verifier si un article n'a pas été choisi 2 fois (doublons)
             $idArticles = [];
             foreach ($articles as $article){
                 $idArticles[] = $article['id'];
