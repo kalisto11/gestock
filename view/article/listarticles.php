@@ -15,8 +15,8 @@
                         <td><?= $article->nom ?></td>
                         <td><?php if($article->groupe == 0){echo 'néant';}else{echo $article->groupe ;} ?></td>
                         <td>
-                            <a href="/gestock/articles/modifier/<?= $article->id ?>"><button class="btn btn-info btn-sm"><img src="images/icones/pencil.png" class=" menu-icone" alt="Modifier" title="Modifier"></button></a>
-                            <a href="/gestock/articles/supprimer/<?= $article->id ?>"><button class="btn btn-danger btn-sm"><img src="images/icones/delete.png" class=" menu-icone" alt="Supprimer" title="Supprimer"></button></a>
+                            <a class="btn btn-info btn-sm" href="/gestock/articles/modifier/<?= $article->id ?>"><img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier"></a>
+                            <a class="btn btn-info btn-sm" href="/gestock/articles/supprimer/<?= $article->id ?>"><img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer"></a>
                         </td>
                     </tr>
                 <?php endforeach ; ?>
