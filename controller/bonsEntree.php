@@ -87,14 +87,15 @@
                 $erreur = true;
                 $message[] = "La référence ne doit pas etre vide.";
             }
-            if (empty($articles)){
-                $erreurs = true;
-                $message[] = "Il faut choisir au minimum un article et sa quantité.";
-            }
             if ($fournisseur == "null"){
                 $erreur = true;
                 $message[] = "Il faut choisir un fournisseur sur la liste de fournisseurs."; 
             }
+            if (empty($articles)){
+                $erreur = true;
+                $message[] = "Il faut choisir au minimum un article et sa quantité.";
+            }
+           
             if ($erreur == false){
                 if ($id == null){ // cas ajouter
                     $bonentree = new BonEntree();

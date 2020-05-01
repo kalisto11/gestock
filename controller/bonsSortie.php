@@ -88,9 +88,9 @@
                 $erreurs = true;
                 $message[] = "La référence ne doit pas etre vide.";
             }
-            if (empty($beneficiaire)){
+            if ($beneficiaire == "null"){
                 $erreurs = true;
-                $message[] = "Le bénéficiaire ne doit pas etre vide.";
+                $message[] = "Il faut choisir un bénéficiaire";
             }
             if (empty($articles)){
                 $erreurs = true;
