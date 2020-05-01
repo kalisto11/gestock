@@ -35,7 +35,7 @@
                     $Fournisseur  = new Fournisseur($idFournisseur, null);
                     $Fournisseur->delete();
                     $this->request->action = 'liste';
-                    $message[] = "Le Fournisseur a été supprimé avec succès.";
+                    $message[] = "Le fournisseur a été supprimé avec succès.";
                     $this->notification = new Notification("success", $message);
                 }
                 $this->render($this->notification);
@@ -75,7 +75,7 @@
 
             if (empty($nomFournisseur)){
                 $erreurs = true;
-                $message[] = "Le nom du Fournisseur ne doit pas etre vide.";
+                $message[] = "Le nom du fournisseur ne doit pas etre vide.";
             }
 
             $fournisseurs = Fournisseur::getList();
