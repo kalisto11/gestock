@@ -127,7 +127,7 @@
             }
             else{ // cas avec erreur(s)
                 $this->notification = new Notification("danger", $message);
-                if ($id == null){
+                if ($idPersonnel == null){
                     $this->request->action = 'ajouter';
                 }
                 else{
