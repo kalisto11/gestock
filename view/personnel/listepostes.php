@@ -30,7 +30,7 @@
                 <form method="post" action="/gestock/postes/traitement-poste">
                     <div class="form-group">
                         <label for="nom">Nom du poste</label>
-                        <input class="form-control" type="text" name="nomPoste" value="<?php if (isset($currentPoste->id)){echo $currentPoste->nom;} ?>" placeholder="Saisir le nom du poste ici" required>
+                        <input class="form-control" type="text" name="nomPoste" value="<?php if (isset($currentPoste->id)){echo $currentPoste->nom;} ?>" placeholder="Saisir le nom du nouveau poste ici" required>
                     </div>
                     <input type="hidden" name="operation" value="<?php if (isset($currentPoste->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
                     <input type="hidden" name="id" value="<?php if (isset($currentPoste->id)){echo $currentPoste->id ;} ?>">
