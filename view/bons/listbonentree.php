@@ -16,9 +16,9 @@
             <td><?=$bonentree->fournisseur->nom?></td>
             
             <td> 
-                <a class="btn btn-info btn-sm" href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><img src="images/icones/consult.png" class="menu-icone"></a>
-                <a class="btn btn-info btn-sm" href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"><img src="images/icones/pencil.png" class=" menu-icone"></a>
-                <a class="btn btn-info btn-sm" href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"><img src="images/icones/delete.png" class=" menu-icone"></a>
+                <a class="btn btn-info btn-sm" href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon d'entrée"></a>
+                <a class="btn btn-info btn-sm" href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"><img src="images/icones/pencil.png" class=" menu-icone" title="Modifier les informations du bon d'entrée"></a>
+                <a class="btn btn-info btn-sm" href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"><img src="images/icones/delete.png" class=" menu-icone" title="Supprimer le bon d'entrée"></a>
             </td>
         </tr>
         <?php endforeach ;?>
