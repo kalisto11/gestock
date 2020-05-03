@@ -48,8 +48,18 @@
             switch ($this->request->action){
 
                 case 'liste':
-                    $bonsentrees = BonEntree::getList();
-                    require_once VIEW . 'bons/listbonentree.php';
+                    case 'liste':
+                        $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
+                        $perpage = 10;
+                        $count = BonSortie::getNbrBon();
+                        $pages = ceil($count/$perpage);
+                        if ($currentPage > $pages){
+                            $message[] = "Cette page n'existe pas";
+                                $this->notification = new Notification("success", $message);
+                        }
+                        $offset = $perpage * ($currentPage - 1);
+                        $bonsentrees = BonEntree::getList($perpage, $offset);
+                        require_once VIEW . 'bons/listbonentree.php';
                 break;
 
                 case 'consulter':
