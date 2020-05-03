@@ -93,19 +93,35 @@
             $_POST['article2'], $_POST['quantite2'], $_POST['article3'], $_POST['quantite3'], $_POST['article4'], $_POST['quantite4'], $_POST['article5'], $_POST['quantite5'], $_POST['article6'], $_POST['quantite6'], $_POST['article7'], $_POST['quantite7'], $_POST['article8'], $_POST['quantite8'], $_POST['article9'], $_POST['quantite9'], $_POST['article10'], $_POST['quantite10']);
 
             $erreur = false;
+
+            // Verifier si reference n'est pas vide
             if (empty($reference)){
                 $erreur = true;
                 $message[] = "La référence ne doit pas etre vide.";
             }
-            if (empty($articles)){
-                $erreurs = true;
-                $message[] = "Il faut choisir au minimum un article et sa quantité.";
-            }
+            //Verifier si fournisseur n'est pas vide
             if ($fournisseur == "null"){
                 $erreur = true;
                 $message[] = "Il faut choisir un fournisseur sur la liste de fournisseurs."; 
             }
-            if ($erreur == false){
+            //Verifier si au moins un article et sa quantité ont été choisis
+            if (empty($articles)){
+                $erreur = true;
+                $message[] = "Il faut choisir au minimum un article et sa quantité.";
+            }
+            // Verifier si un article n'a pas été choisi 2 fois (doublons)
+            $idArticles = [];
+            foreach ($articles as $article){
+                $idArticles[] = $article['id'];
+            }
+            $noDoublons = array_unique($idArticles);
+            if (count($noDoublons) < count($idArticles)){
+                $erreur = true;
+                $message[] = "Il y a eu doublon sur les articles choisis.";
+            }
+           
+            
+            if ($erreur == false){ // si pas d'erreur
                 if ($id == null){ // cas ajouter
                     $bonentree = new BonEntree();
                     $bonentree->reference = strip_tags($reference);
@@ -140,7 +156,7 @@
                     $this->request->id = $bonentree->id;
                 }
             }
-            else{ // cas ou $erreur egale a true
+            else{ // En cas d'erreur
                 $this->notification = new Notification("danger", $message);
                 if ($id == null){
                     $this->request->action = 'ajouter';
@@ -151,6 +167,7 @@
                 }     
             }
         } // fin méthode traiterBonEntree
+        
         public function ajoutArticle($article1, $quantite1, $article2, $quantite2, $article3, $quantite3, $article4, $quantite4, $article5, $quantite5, $article6, $quantite6, $article7, $quantite7, $article8, $quantite8, $article9, $quantite9, $article10, $quantite10){
             $articles = [];
             if ($article1 != "null" AND !empty($quantite1)){

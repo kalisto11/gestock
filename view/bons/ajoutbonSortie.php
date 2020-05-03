@@ -5,7 +5,7 @@
     <form method="post" action="/gestock/bonssortie/traitement-bonsortie">
       <div class="form-group">
         <label for="reference">Référence</label>
-        <input type="text" name="reference" id="reference" class="form-control">
+        <input type="text" name="reference" id="reference" class="form-control" placeholder="référence du bon de sortie" required>
       </div>
 
       <div class="form-group mt-3">

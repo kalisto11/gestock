@@ -3,10 +3,9 @@
 <h2 class="mt-5 text-center">Ajouter un bon d'entrée</h2>
 <div> 
   <form method="post" action="/gestock/bonsentree/traitement-bonentree">
-  
     <div class="form-group">
       <label for="reference">Référence</label>
-      <input type="text" name="reference" id="reference" class="form-control" placeholder="référence du bon d'entrée">
+      <input type="text" name="reference" id="reference" class="form-control" placeholder="référence du bon d'entrée" required>
     </div>
 
     <div class="form-group">

@@ -1,7 +1,5 @@
 #logo{
-  font-family: Algerian, Calibri sans-serif;
-  
-  
+  font-family: Algerian, Calibri, sans-serif;
 }
 .icone{
   height: 50px;
@@ -14,7 +12,6 @@
 .info img{
   width: 900px;
 }
-
 
 .bd-placeholder-img {
     font-size: 1.125rem;
@@ -34,7 +31,7 @@
 .menu-icone{
   height: 30px;
   width:30px;
-  margin: 0px;
+  margin: -8px;
 }
 .bouton{
   height: 15px;
@@ -53,16 +50,18 @@
   width: 50%;
 }
 th, td{
-    text-align: center;
-    vertical-align: middle;
+  text-align: center;
+  vertical-align: middle;
+  padding-top: 0px;
+  padding-bottom: 0px;;
 }
 th{
-    font-weight: bold;
-    font-size: 20px;
-    background-color:grey;
-    color: #fff;   
+  font-weight: bold;
+  font-size: 18px;
+  background-color:grey;
+  color: #fff;  
+  line-height: 10px;; 
 }
- 
 
 table a{
   text-decoration: none;
@@ -81,9 +80,12 @@ table a{
   width: 15%;
 }
 
-.h2, h3, h4, h5, h6{
+h1{
+  color: white;
+}
+h2, h3{
   text-align: center;
-  color:white;
+  margin-bottom: 30px;
 }
 /* fin tableau */
 
@@ -97,10 +99,6 @@ footer{
 
 footer p{
   text-align: center;
-}
-
-main{
-  
 }
 
 .zonegrise{

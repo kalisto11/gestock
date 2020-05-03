@@ -14,10 +14,10 @@
                         <td><?= $fournisseur->nom ?></td>
                         <td>
                             <a class="btn btn-info btn-sm" href="/gestock/fournisseurs/modifier/<?= $fournisseur->id ?>">
-                                <img src="images/icones/pencil.png" class=" menu-icone" alt="Modifier" title="Modifier">
+                                <img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier">
                             </a>
-                            <a class="btn btn-danger btn-sm" href="/gestock/fournisseurs/supprimer/<?= $fournisseur->id ?>">
-                                <img src="images/icones/delete.png" class=" menu-icone" alt="Supprimer" title="Supprimer">
+                            <a class="btn btn-info btn-sm" href="/gestock/fournisseurs/supprimer/<?= $fournisseur->id ?>">
+                                <img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer">
                             </a>
                         </td>
                     </tr>
@@ -30,7 +30,7 @@
                 <form method="post" action="/gestock/Fournisseurs/traitement-fournisseur">
                     <div class="form-group">
                         <label for="nom">Nom du fournisseur</label>
-                        <input class="form-control" type="text" name="nom" value="<?php if (isset($currentFournisseur->id)){echo $currentFournisseur->nom;} ?>">
+                        <input class="form-control" type="text" name="nom" value="<?php if (isset($currentFournisseur->id)){echo $currentFournisseur->nom;} ?>" placeholder="Saisir le nom du nouveau founisseur ici" required>
                     </div>
                     <input type="hidden" name="operation" value="<?php if (isset($currentFournisseur->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
                     <input type="hidden" name="id" value="<?php if (isset($currentFournisseur->id)){echo $currentFournisseur->id ;} ?>">
