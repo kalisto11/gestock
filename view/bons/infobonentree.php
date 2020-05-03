@@ -5,22 +5,22 @@
   <div class="row">
     <div class="col">
       <div class="form-group">
-        <label for="reference">Référence</label>
+        <h5>Référence</h5>
         <p class="zonegrise" ><?= $bonentree->reference ?></p>
       </div>
       <div class="form-group">
-        <label for="reference">Date</label>
+        <h5>Date</h5>
         <p class="zonegrise"><?= $bonentree->date ?></p>
       </div>
       <div class="form-group mt-3">
-        <label for="fournisseur">Fournisseur</label>
+        <h5>Fournisseur</h5>
         <p class="zonegrise"><?= $bonentree->fournisseur->nom ?></p>      
       </div>
     </div>
     
     <div class="col">
       <div>
-        <label for="">Dotations</label>
+        <h5>Dotations</h5>
         <?php if ($bonentree->dotations != null): ?>
         <?php foreach ($bonentree->dotations as $dotation): ?>
         <div class="row">

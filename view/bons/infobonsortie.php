@@ -5,22 +5,22 @@
     <div class="row">
         <div class="col">
             <div class="form-group">
-                <label for="reference">Référence</label>
+                <h5>Référence</h5>
                 <p class="zonegrise">
                 <?= $bonsortie->reference ?>
                 </p>
             </div>
             <div class="form-group">
-                <label for="reference">Date</label>
+                <h5>Date</h5>
                 <p class="zonegrise"><?= $bonsortie->date ?></p>
             </div>
             <div class="form-group mt-3">
-                <label for="beneficiaire">Bénéficiaire</label>
+                <h5>Bénéficiaire</h5>
                 <p class="zonegrise"><?= $bonsortie->beneficiaire->prenom  ?> <?=$bonsortie->beneficiaire->nom ?></p>        
             </div>
         </div>
         <div class="col">
-            <label for="">Dotations</label>
+            <h5>Dotations</h5>
             <?php if ($bonsortie->dotations != null): ?>
             <?php foreach ($bonsortie->dotations as $dotation): ?>
             <div class="row">

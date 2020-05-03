@@ -91,28 +91,35 @@
          */
         public function traiterPersonnel($prenom, $nom, $poste1, $poste2, $poste3, $idPersonnel = null){
             $erreur = false;
+
+            // Verifier si prénom n'est pas vide
             if (empty($prenom)){
                 $erreur = true;
                 $message[] = "Le prénom ne doit pas etre vide.";
             }
+            // verifier si nom n'est pas vide
             if (empty($nom)){
                 $erreur = true;
                 $message[] = "Le nom ne doit pas etre vide.";
             }
+            // Verifier s'il n y a pas de doublon de poste (un poste slectionné 2 fois)
             $postes = $this->ajouterPoste($poste1, $poste2, $poste3);
             if ($postes != null){
+                $doublon =false;
                 $nbPostes = count($postes);
                 if ($nbPostes == 2){
                     if ($postes[0] == $postes[1]){
-                        $erreur = true;
-                        $message[] = "Il n y a eu doublon de postes.";
+                        $doublon = true;
                     }
                 }
                 elseif ($nbPostes == 3){
                     if ($postes[0] == $postes[1] OR $postes[1] == $postes[2] OR $postes[0] == $postes[2]){
-                        $erreur = true;
-                        $message[] = "Il n y a eu doublon de postes.";
+                       $doublon = true;
                     }
+                }
+                if ($doublon == true){
+                    $erreur = true;
+                    $message[] = "Il y a eu doublon de postes.";
                 }
             }
 
