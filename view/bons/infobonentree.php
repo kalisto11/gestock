@@ -1,6 +1,6 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
-<h2 class="mt-5 text-center">Information sur le Bon d'entrée</h2>
+<h2 class="mt-5 text-center">Information sur le bon d'entrée</h2>
 <div class="container"> 
       <div class="form-group">
         <label for="reference">Référence</label>
@@ -12,7 +12,7 @@
     </div>
       <div class="form-group mt-3">
         <label for="fournisseur">Fournisseur</label>
-        <p class="zonegrise"><?= $bonentree->fournisseur ?></p>      
+        <p class="zonegrise"><?= $bonentree->fournisseur->nom ?></p>      
       </div>
       <div>
         <label for="">Dotations</label>
@@ -21,7 +21,7 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                <p class="zonegrise"><?= htmlspecialchars($dotation->article->nom) ?></p>
+                <p class="zonegrise text-right"><?= htmlspecialchars($dotation->article->nom) ?></p>
                 </div>
             </div>
             <div class="col">

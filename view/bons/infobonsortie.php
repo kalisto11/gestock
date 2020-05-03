@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col">
                 <div class="form-group">
-                <p class="zonegrise"><?= htmlspecialchars($dotation->article->nom) ?></p>
+                <p class="zonegrise text-right"><?= htmlspecialchars($dotation->article->nom) ?></p>
                 </div>
             </div>
             <div class="col">

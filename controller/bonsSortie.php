@@ -50,8 +50,18 @@
             switch ($this->request->action){
 
                 case 'liste':
-                    $bonssorties = BonSortie::getList();
+                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
+                    $perpage = 10;
+                    $count = BonSortie::getNbrBon();
+                    $pages = ceil($count/$perpage);
+                    if ($currentPage > $pages){
+                        $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("success", $message);
+                    }
+                    $offset = $perpage * ($currentPage - 1);
+                    $bonssorties = BonSortie::getList($perpage, $offset);
                     require_once VIEW . 'bons/listbonSortie.php';
+                            
                 break;
 
                 case 'consulter':
@@ -64,6 +74,7 @@
                     $articles = Article::getList();
                     $personnels = Personnel::getList();
                     require_once VIEW . 'bons/ajoutbonSortie.php';
+                    
                 break;
 
                 case 'modifier':

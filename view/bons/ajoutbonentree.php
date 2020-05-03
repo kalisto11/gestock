@@ -3,13 +3,20 @@
 <h2 class="mt-5 text-center">Ajouter un bon d'entrée</h2>
 <div> 
   <form method="post" action="/gestock/bonsentree/traitement-bonentree">
+  
     <div class="form-group">
       <label for="reference">Référence</label>
-      <input type="text" name="reference" id="reference" class="form-control">
+      <input type="text" name="reference" id="reference" class="form-control" placeholder="référence du bon d'entrée">
     </div>
+
     <div class="form-group">
       <label for="fournisseur">Fournisseur</label>
-      <input type="text" name="fournisseur" id="fournisseur" class="form-control">
+      <select name="fournisseur" id="fournisseur" class="form-control">
+        <option value="null">Choisir un fournisseur</option>
+        <?php foreach ($fournisseurs as $fournisseur) : ?>
+        <option value="<?= $fournisseur->id ?>"><?= $fournisseur->nom ?></option>
+        <?php endforeach ; ?>
+      </select>
     </div>
 
     <?php for ($i = 1; $i <= 10; $i++) : ?>
@@ -18,7 +25,7 @@
         <div class="form-group">
           <label for="article<?= $i ?>">Article</label>
           <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control">
-            <option value="null">----------------------------------</option>
+            <option value="null">Choisir un article</option>
             <?php foreach ($articles as $article) : ?>
             <option value="<?= $article->id ?>"><?= $article->nom ?></option>
             <?php endforeach ; ?>
@@ -27,14 +34,14 @@
       </div>
       <div class="col">
         <label for="quantite<?= $i ?>">Quantité</label>
-        <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control">
+        <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control" placeholder="Saisir un nombre">
       </div>
     </div>
     <?php endfor ; ?>
-
-       
-    <input type="hidden" name="operation" value="ajouter">
-    <input type="submit" value="Ajouter" class="btn btn-success">
-    <a href="/gestock/bonsentree/liste" class="btn btn-danger">Annuler</a>    
+    <div class="mt-5">
+      <input type="hidden" name="operation" value="ajouter">
+      <input type="submit" value="Ajouter" class="btn btn-success">
+      <a href="/gestock/bonsentree/liste" class="btn btn-danger">Annuler</a>    
+    </div>
   </form>
 </div>

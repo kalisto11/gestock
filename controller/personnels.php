@@ -103,8 +103,8 @@
             if ($erreurs == false){ // cas sans erreur
                 if ($idPersonnel == null){ // cas ajouter personnel
                     $agent = new Personnel();
-                    $agent->prenom = strip_tags($prenom);
-                    $agent->nom = strip_tags($nom);
+                    $agent->prenom = mb_convert_case(strip_tags($prenom), MB_CASE_UPPER);
+                    $agent->nom = mb_convert_case(strip_tags($nom), MB_CASE_UPPER);
                     $agent->poste = $this->ajouterPoste($poste1, $poste2, $poste3);
                     $agent->save();
                     $message[] = "L'agent a été bien ajouté.";
@@ -114,8 +114,8 @@
                 else{ // cas modifier personnel
                     $id = intval($idPersonnel);
                     $agent = new Personnel($id);
-                    $agent->prenom = strip_tags($prenom);
-                    $agent->nom = strip_tags($nom);
+                    $agent->prenom = mb_convert_case(strip_tags($prenom), MB_CASE_UPPER);
+                    $agent->nom = mb_convert_case(strip_tags($nom), MB_CASE_UPPER);
                     $agent->poste = self::ajouterPoste($poste1, $poste2, $poste3);
                     $agent->update();  
                     $message[] = "Les informations de l'agent ont été bien modifiées.";

@@ -1,7 +1,6 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
-<h1 class="mt-5 text-center">Ajouter un bon de sortie</h1>
-
+<h2 class="text-center">Ajouter un bon de sortie</h2>
 <div class="container"> 
     <form method="post" action="/gestock/bonssortie/traitement-bonsortie">
       <div class="form-group">
@@ -12,7 +11,7 @@
       <div class="form-group mt-3">
         <label for="beneficiaire">Bénéficiaire</label>
         <select name="beneficiaire" id="beneficiaire" class="form-control">
-          <option value="null">----------------------------------</option>
+          <option value="null">Choisir un bénéficiare</option>
           <?php foreach($personnels as $personnel): ?>
           <option value="<?= $personnel->id ?>">  <?= $personnel->prenom?>  <?= $personnel->nom ?></option>
           <?php endforeach ; ?>
@@ -23,9 +22,9 @@
         <div class="row">
           <div class="col">
             <div class="form-group">
-              <label for="article1">Article </label> 
-              <select name="article<?php $i+1 ?>" id="article" class="form-control">
-                <option value="null">-----------------------------------------------</option>
+              <label for="article<?= $i ?>">Article</label> 
+              <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control">
+                <option value="null">Choisir un article</option>
                 <?php foreach($articles as $article): ?>
                 <option value="<?= $article->id ?>"><?= $article->nom ?></option>
                 <?php endforeach ; ?>
@@ -35,7 +34,7 @@
           <div class="col">
             <div class="form-group">
               <label for="quantite">Quantité</label>
-              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control">
+              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control" placeholder="Saisir un nombre">
             </div>
           </div>
         </div> 
