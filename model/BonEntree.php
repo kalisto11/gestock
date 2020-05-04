@@ -60,7 +60,7 @@
 					'quantite'    => $dotation->quantite
            		));
         	}
-		}
+		 }
 
 		public function delete() { //Méthode qui permet de supprimer un bon d'entrée
 			$pdo = Database::getPDO();
@@ -97,9 +97,9 @@
 		/**
 		  * permet de récupérer la liste des bons d'entrée
 		  */
-		public static function getList() {
+		public static function getList($perpage, $offset) {
 			$pdo = Database::getPDO();
-			$req = 'SELECT id from bon_entree';
+			$req = "SELECT id from bon_entree ORDER BY date DESC LIMIT $perpage OFFSET $offset";
 			$reponse = $pdo->query($req);
 			$bonsentrees = array();
 			while ($row = $reponse->fetch()){
@@ -107,6 +107,13 @@
 				$bonsentrees[] = $bonentree;
 			}
 			return $bonsentrees;
+		}
+		public static function getNbrBon(){
+			$pdo = Database::getPDO();
+			$req = "SELECT COUNT(id) FROM bon_entree";
+			$reponse = $pdo->query($req);
+			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
+			 return  $count;
 		}
 
 	}// fin class

@@ -100,9 +100,9 @@
 		/**
 		  * permet de récupérer la liste des bons de sortie
 		  */ 
-		public static function getList() {
+		public static function getList($perpage, $offset) {
 			$pdo = Database::getPDO();
-			$req = 'SELECT id from bon_sortie';
+			$req = "SELECT id from bon_sortie ORDER BY date DESC LIMIT $perpage OFFSET $offset";
 			$reponse = $pdo->query($req);
 			$bonssorties = array();
 			while ($row = $reponse->fetch()){
@@ -110,6 +110,14 @@
 				$bonssorties[] = $bonsortie;
 			}
 			return $bonssorties;
+			
 		}
-
+		public static function getNbrBon(){
+			$pdo = Database::getPDO();
+			$req = "SELECT COUNT(id) FROM bon_sortie";
+			$reponse = $pdo->query($req);
+			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
+			 return  $count;
+		}
+		
 	}// fin class
