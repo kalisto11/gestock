@@ -3,8 +3,8 @@
 <h2 class="ml-5 text-center">Informations de l'agent</h2>
 <div class="container my-2">
     <div class="card">
-        <div class="card-header display-4">
-            <?= $agent->prenom ?> <?= $agent->nom ?>
+        <div class="card-header">
+            <h3><?= $agent->prenom ?> <?= $agent->nom ?></h3>
         </div>
         <div class="card-body">
             <h3 class="card-title text-dark"> Poste(s): </h3>
