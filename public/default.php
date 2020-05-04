@@ -33,9 +33,9 @@
             <div class="row">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
                 <div class="nav-side-menu mt-5 col-3">
-                    <div class="text-center mt-5">TABLEAU DE BORD</div> 
+                    <div class="text-center mt-5"><img src="images/icones/tableau de bord.JPG" class="menu-icone"> TABLEAU DE BORD</div><br/> 
                     <div>
-                        <p class="text-center">Espace utilisateur</p>
+                        <p class="text-center"><img src="images/icones/utilisateur.JPG" class="menu-icone"> Espace utilisateur</p>
                     </div>
                     <div class="menu-list mt-5">
                         <ul id="menu-content" class="menu-content collapse out">
