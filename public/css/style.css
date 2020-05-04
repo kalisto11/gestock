@@ -16,6 +16,7 @@
 }
 
 
+
 .bd-placeholder-img {
     font-size: 1.125rem;
     text-anchor: middle;
@@ -35,6 +36,11 @@
   height: 30px;
   width:30px;
   margin: 0px;
+}
+.user{
+  height: 25;
+  width: 25%;
+  background-color:grey
 }
 .bouton{
   height: 15px;
