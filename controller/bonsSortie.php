@@ -50,8 +50,18 @@
             switch ($this->request->action){
 
                 case 'liste':
-                    $bonssorties = BonSortie::getList();
+                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
+                    $perpage = 10;
+                    $count = BonSortie::getNbrBon();
+                    $pages = ceil($count/$perpage);
+                    if ($currentPage > $pages){
+                        $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("success", $message);
+                    }
+                    $offset = $perpage * ($currentPage - 1);
+                    $bonssorties = BonSortie::getList($perpage, $offset);
                     require_once VIEW . 'bons/listbonSortie.php';
+                            
                 break;
 
                 case 'consulter':
@@ -64,6 +74,7 @@
                     $articles = Article::getList();
                     $personnels = Personnel::getList();
                     require_once VIEW . 'bons/ajoutbonSortie.php';
+                    
                 break;
 
                 case 'modifier':
@@ -83,20 +94,35 @@
             $articles = $this->ajoutArticle($_POST['article1'], $_POST['quantite1'],
                 $_POST['article2'], $_POST['quantite2'], $_POST['article3'], $_POST['quantite3'], $_POST['article4'], $_POST['quantite4'], $_POST['article5'], $_POST['quantite5'], $_POST['article6'], $_POST['quantite6'], $_POST['article7'], $_POST['quantite7'], $_POST['article8'], $_POST['quantite8'], $_POST['article9'], $_POST['quantite9'], $_POST['article10'], $_POST['quantite10']);
 
-            $erreurs = false;
+            $erreur = false;
+
+             // verifier si reference n'est pas vide
             if (empty($reference)){
-                $erreurs = true;
+                $erreur = true;
                 $message[] = "La référence ne doit pas etre vide.";
             }
-            if (empty($beneficiaire)){
-                $erreurs = true;
-                $message[] = "Le bénéficiaire ne doit pas etre vide.";
+            // Verifier si bénéficiaire n'est pas vide
+            if ($beneficiaire == "null"){
+                $erreur = true;
+                $message[] = "Il faut choisir un bénéficiaire";
             }
+            // Verifier si au moins un article et sa quantité ont été choisis
             if (empty($articles)){
-                $erreurs = true;
+                $erreur = true;
                 $message[] = "Il faut choisir au minimum un article et sa quantité.";
             }
-            if ($erreurs == false){ // cas sans erreur
+            // Verifier si un article n'a pas été choisi 2 fois (doublons)
+            $idArticles = [];
+            foreach ($articles as $article){
+                $idArticles[] = $article['id'];
+            }
+            $noDoublons = array_unique($idArticles);
+            if (count($noDoublons) < count($idArticles)){
+                $erreur = true;
+                $message[] = "Il y a eu doublon sur les articles choisis.";
+            }
+
+            if ($erreur == false){ // cas sans erreur
                 if ($id == null){ // cas ajouter bon de sortie
                     $bonsortie = new BonSortie();
                     $bonsortie->reference = strip_tags($reference);

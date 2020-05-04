@@ -48,8 +48,18 @@
             switch ($this->request->action){
 
                 case 'liste':
-                    $bonsentrees = BonEntree::getList();
-                    require_once VIEW . 'bons/listbonentree.php';
+                    case 'liste':
+                        $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
+                        $perpage = 10;
+                        $count = BonEntree::getNbrBon();
+                        $pages = ceil($count/$perpage);
+                        if ($currentPage > $pages){
+                            $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("success", $message);
+                        }
+                        $offset = $perpage * ($currentPage - 1);
+                        $bonsentrees = BonEntree::getList($perpage, $offset);
+                        require_once VIEW . 'bons/listbonentree.php';
                 break;
 
                 case 'consulter':
@@ -60,13 +70,14 @@
 
                 case 'ajouter':
                     $articles = Article::getList();
+                    $fournisseurs = Fournisseur::getList();
                     require_once VIEW . 'bons/ajoutbonentree.php';
                 break;
 
                 case 'modifier':
-
                     $bonentree  = new BonEntree($this->request->id);
                     $articles = Article::getList();
+                    $fournisseurs = Fournisseur::getList();
                     require_once VIEW . 'bons/modifbonentree.php';
                 break;
             
@@ -77,27 +88,44 @@
         } //fin méthode render
 
         public function traiterBonEntree($reference, $fournisseur, $id =null){
+
             $articles = $this->ajoutArticle($_POST['article1'], $_POST['quantite1'],
             $_POST['article2'], $_POST['quantite2'], $_POST['article3'], $_POST['quantite3'], $_POST['article4'], $_POST['quantite4'], $_POST['article5'], $_POST['quantite5'], $_POST['article6'], $_POST['quantite6'], $_POST['article7'], $_POST['quantite7'], $_POST['article8'], $_POST['quantite8'], $_POST['article9'], $_POST['quantite9'], $_POST['article10'], $_POST['quantite10']);
 
             $erreur = false;
+
+            // Verifier si reference n'est pas vide
             if (empty($reference)){
                 $erreur = true;
                 $message[] = "La référence ne doit pas etre vide.";
             }
+            //Verifier si fournisseur n'est pas vide
+            if ($fournisseur == "null"){
+                $erreur = true;
+                $message[] = "Il faut choisir un fournisseur sur la liste de fournisseurs."; 
+            }
+            //Verifier si au moins un article et sa quantité ont été choisis
             if (empty($articles)){
-                $erreurs = true;
+                $erreur = true;
                 $message[] = "Il faut choisir au minimum un article et sa quantité.";
             }
-            if (empty($fournisseur)){
-                $erreur = true;
-                $message[] = "Le nom du fournisseur ne doit pas etre vide."; 
+            // Verifier si un article n'a pas été choisi 2 fois (doublons)
+            $idArticles = [];
+            foreach ($articles as $article){
+                $idArticles[] = $article['id'];
             }
-            if ($erreur == false){
+            $noDoublons = array_unique($idArticles);
+            if (count($noDoublons) < count($idArticles)){
+                $erreur = true;
+                $message[] = "Il y a eu doublon sur les articles choisis.";
+            }
+           
+            
+            if ($erreur == false){ // si pas d'erreur
                 if ($id == null){ // cas ajouter
                     $bonentree = new BonEntree();
                     $bonentree->reference = strip_tags($reference);
-                    $bonentree->fournisseur = strip_tags($fournisseur);
+                    $bonentree->fournisseur = intval($fournisseur);
                     $dotations = [];
                     foreach ($articles as $article){
                         $dotation = new Dotation($article['id'], $article['quantite']);
@@ -124,10 +152,11 @@
                     $bonentree->modify();
                     $message[] = "Le bon a été modifié avec succès.";
                     $this->notification = new Notification("success", $message);
-                    $this->request->action = 'liste';
+                    $this->request->action = 'consulter';
+                    $this->request->id = $bonentree->id;
                 }
             }
-            else{ // cas ou $erreur egale a true
+            else{ // En cas d'erreur
                 $this->notification = new Notification("danger", $message);
                 if ($id == null){
                     $this->request->action = 'ajouter';
@@ -138,6 +167,7 @@
                 }     
             }
         } // fin méthode traiterBonEntree
+        
         public function ajoutArticle($article1, $quantite1, $article2, $quantite2, $article3, $quantite3, $article4, $quantite4, $article5, $quantite5, $article6, $quantite6, $article7, $quantite7, $article8, $quantite8, $article9, $quantite9, $article10, $quantite10){
             $articles = [];
             if ($article1 != "null" AND !empty($quantite1)){

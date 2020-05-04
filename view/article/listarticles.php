@@ -15,8 +15,8 @@
                         <td><?= $article->nom ?></td>
                         <td><?php if($article->groupe == 0){echo 'néant';}else{echo $article->groupe ;} ?></td>
                         <td>
-                            <a href="/gestock/articles/modifier/<?= $article->id ?>"><button class="btn btn-info btn-sm"><img src="images/icones/pencil.png" class=" menu-icone" alt="Modifier" title="Modifier"></button></a>
-                            <a href="/gestock/articles/supprimer/<?= $article->id ?>"><button class="btn btn-danger btn-sm"><img src="images/icones/delete.png" class=" menu-icone" alt="Supprimer" title="Supprimer"></button></a>
+                            <a class="btn btn-info btn-sm" href="/gestock/articles/modifier/<?= $article->id ?>"><img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier"></a>
+                            <a class="btn btn-info btn-sm" href="/gestock/articles/supprimer/<?= $article->id ?>"><img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer"></a>
                         </td>
                     </tr>
                 <?php endforeach ; ?>
@@ -28,11 +28,11 @@
                 <form method="post" action="/gestock/articles/traitement-article">
                     <div class="form-group">
                         <label for="nom">Nom de l'article</label>
-                        <input class="form-control" type="text" name="article" value="<?php if (isset($currentArticle->id)){echo $currentArticle->nom;} ?>">
+                        <input class="form-control" type="text" name="article" value="<?php if (isset($currentArticle->id)){echo $currentArticle->nom;} ?>" placeholder="Saisir le nom du nouvel article ici" required>
                     </div>
                     <label for="groupe">Groupe</label><br/>
                     <select name="groupe" id="groupe" class="form-control">
-                        <option value="0">-----------------------------------</option>
+                        <option value="0">Choisir un groupe</option>
                         <option value="1" <?php if (isset($currentArticle->groupe) AND $currentArticle->groupe == 1){echo 'selected="selected"';} ?>>Groupe 1
                         </option>
                         <option value="2" <?php if (isset($currentArticle->groupe) AND $currentArticle->groupe == 2){echo 'selected="selected"';} ?>>Groupe 2

@@ -12,7 +12,7 @@
       <div class="form-group mt-3">
         <label for="beneficiaire">Bénéficiaire</label>
         <select name="beneficiaire" id="beneficiaire" class="form-control">
-          <option value="null">----------------------------------</option>
+          <option value="null">Choisir un bénéficiaire</option>
           <?php foreach($personnels as $personnel): ?>
           <option value="<?= $personnel->id ?>" <?php if ($personnel->id == $bonsortie->beneficiaire->id){echo 'selected="selected"';}?>><?= $personnel->prenom?> <?= $personnel->nom ?></option>
           <?php endforeach ; ?>
@@ -27,7 +27,7 @@
             <div class="form-group">
               <label for="article<?= $i ?>">Article</label>
               <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control">
-                <option value="null">-----------------------------------------------</option>
+                <option value="null">Choisir un article</option>
                 <?php foreach($articles as $article): ?>
                 <option value="<?= $article->id ?>" <?php if ($article->id == $dotation->article->id){echo 'selected="selected"';} ?>><?= $article->nom ?></option>
                 <?php endforeach ; ?>
@@ -37,7 +37,7 @@
           <div class="col">
             <div class="form-group">
               <label for="quantite<?= $i ?>">Quantité</label>
-              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" value="<?= $dotation->quantite ?>" class="form-control">
+              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" value="<?= $dotation->quantite ?>" class="form-control" placeholder="Saisir un nombre">
             </div>
           </div>
         </div> 
@@ -52,7 +52,7 @@
             <div class="form-group">
               <label for="article<?= $i ?>">Article</label>
               <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control">
-                <option value="null">-----------------------------------------------</option>
+                <option value="null">Choisir un article</option>
                 <?php foreach($articles as $article): ?>
                 <option value="<?= $article->id ?>"><?= $article->nom ?></option>
                 <?php endforeach ; ?>
@@ -62,7 +62,7 @@
           <div class="col">
             <div class="form-group">
               <label for="quantite<?= $i ?>">Quantité</label>
-              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control">
+              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control" placeholder="Saisir un nombre">
             </div>
           </div>
         </div> 

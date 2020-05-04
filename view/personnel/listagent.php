@@ -6,14 +6,14 @@
                 <tr>
                     <th>Prénom</th>
                     <th>Nom</th>
-                    <th class="th-md">Postes</th>
-                    <th>Action</th>
+                    <th>Postes</th>
+                    <th class="th-sm">Action</th>
                 </tr>
                 <?php foreach($agents as $agent):?>
                     <tr>
-                        <td><?= $agent->prenom ?></td>
-                        <td><?= $agent->nom ?></td>
-                        <td>
+                        <td class="align-middle"><?= $agent->prenom ?></td>
+                        <td class="align-middle"><?= $agent->nom ?></td>
+                        <td class="align-middle">
                             <?php if ($agent->poste != null): ?>
                                 <?php foreach ($agent->poste as $poste): ?>
                                 <?= htmlspecialchars($poste->nom) ?> <br>
@@ -24,14 +24,14 @@
                          
                            
                         </td>
-                        <td>
-                            <a class="btn btn-secondary btn-sm" href="/gestock/personnels/consulter/<?=$agent->id?>">
+                        <td class="align-middle">
+                            <a class="btn btn-info btn-sm" href="/gestock/personnels/consulter/<?=$agent->id?>">
                                 <img src="images/icones/consult.png" class=" menu-icone" alt="Modifier" title="Modifier">
                             </a>
                             <a class="btn btn-info btn-sm" href="/gestock/personnels/modifier/<?=$agent->id?>">
                                 <img src="images/icones/pencil.png" class=" menu-icone" alt="Modifier" title="Modifier">
                             </a>
-                            <a class="btn btn-danger btn-sm" href="/gestock/personnels/supprimer/<?=$agent->id?>">
+                            <a class="btn btn-info btn-sm" href="/gestock/personnels/supprimer/<?=$agent->id?>">
                                 <img src="images/icones/delete.png" class=" menu-icone" alt="Supprimer" title="Supprimer">
                             </a>
                         </td>   
@@ -40,7 +40,7 @@
             </table>
         </div>
         <div class="mt-5">
-            <a href="/gestock/personnels/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un agent</button></a>
+            <a class="btn btn-success" href="/gestock/personnels/ajouter"><img src="images/icones/ajout.png" class="menu-icone">  Ajouter un agent</a>
 
         </div>
     

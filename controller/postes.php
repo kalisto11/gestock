@@ -69,7 +69,7 @@
 
         public function traiterPoste($nomPoste, $idPoste = null){
             // mettre la premiere lettre du nom en majuscule
-            $nomPoste = ucfirst(mb_convert_case($nomPoste, MB_CASE_LOWER));
+            $nomPoste = mb_convert_case($nomPoste, MB_CASE_UPPER);
 
             $erreurs = false;
 
