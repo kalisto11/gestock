@@ -110,7 +110,7 @@
 		}
 		public static function getNbrBon(){
 			$pdo = Database::getPDO();
-			$req = "SELECT COUNT(id) FROM bon_sortie";
+			$req = "SELECT COUNT(id) FROM bon_entree";
 			$reponse = $pdo->query($req);
 			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
 			 return  $count;

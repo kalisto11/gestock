@@ -51,11 +51,11 @@
                     case 'liste':
                         $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
                         $perpage = 10;
-                        $count = BonSortie::getNbrBon();
+                        $count = BonEntree::getNbrBon();
                         $pages = ceil($count/$perpage);
                         if ($currentPage > $pages){
                             $message[] = "Cette page n'existe pas";
-                                $this->notification = new Notification("success", $message);
+                            $this->notification = new Notification("success", $message);
                         }
                         $offset = $perpage * ($currentPage - 1);
                         $bonsentrees = BonEntree::getList($perpage, $offset);
