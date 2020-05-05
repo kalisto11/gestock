@@ -1,3 +1,8 @@
+body{
+  margin: 0px;
+  padding: 0px;
+}
+
 #logo{
   font-family: Algerian, Calibri, sans-serif;
 }
@@ -27,12 +32,15 @@
     font-size: 3.5rem;
   }
 }
+
+
   
 .menu-icone{
   height: 30px;
   width:30px;
   margin: -8px;
 }
+
 .bouton{
   height: 15px;
   width: 15px;
@@ -90,11 +98,10 @@ h2, h3{
 /* fin tableau */
 
 footer{
-  margin-bottom: 0px;
-  height: 30px;
+  line-height: 40px;
   background-color: rgb(236, 241, 241);
-  margin-top: 400px ;
-  
+  margin: 0px;
+  margin-top: 200px ;
 }
 
 footer p{

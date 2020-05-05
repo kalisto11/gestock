@@ -1,0 +1,33 @@
+body{
+    background-image: url('../images/photos/academie.jpg');
+    background-repeat: no-repeat center fixed;
+    -webkit-background-size: cover;
+   }
+
+  .blanc{
+    text-align: center;
+    margin-top: 100px;
+    background-color:rgb(50, 190, 245)
+  }
+  .connexion{
+      width: 50%;
+      margin-top: 100px;
+      opacity: 0.9;
+  }
+
+  .cle{
+    height: 30px;
+    width: 40px;
+    
+  }
+
+  .user{
+    height: 40px;
+    width: 40px;
+  }
+
+  .icone{
+    height: 50px;
+    width: 7%;
+  }
+ 
