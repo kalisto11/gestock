@@ -17,10 +17,10 @@
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-                <a  class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone">IA KAFFRINE</a>
+                <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone">IA KAFFRINE</a>
                 <h1 class="h2">GESTION DE STOCK</h1>
 
-                <form class="form-inline mr-4">
+                <form class="form-inline mr-4" action="/gestock/recherche">
                   <input class="form-control form-control-dark w-10" type="text" placeholder="Recherche" aria-label="Search">
                   <button  type="submit" class="btn bg-info my-2 my-sm-0 "><img src="images/icones/recherche.png" class="bouton"></button>
                 </form>
@@ -30,7 +30,7 @@
 
         <!-- DEBUT CONTENEUR MENU LATERAL ET ZONE PRINCIPAL -->
         <div class="container-fluid mt-5">
-            <div class="row">
+            <div class="row mt-5">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
                 <div class="nav-side-menu mt-5 col-3">
                     <div class="text-center mt-5"><img src="images/icones/tableau de bord.JPG" class="mr-1 ml-1 menu-icone"> TABLEAU DE BORD</div><br/> 
@@ -44,16 +44,13 @@
                     </div>
                     <div class="menu-list">
                         <ul id="menu-content" class="menu-content collapse out">
-                            <li data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
+
+                            <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
                                 <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel
                             </li>
-                            <ul class="sub-menu" id="personnel">
-                                <li>
-                                    <a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white menu-icone">Agents</a>
-                                </li>
-                                <li>
-                                    <a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</a>
-                                </li>
+                            <ul class="sub-menu collapse" id="personnel">
+                                <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white menu-icone">Agents</a></li>
+                                <li><a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</a></li>
                             </ul>
                             <li data-toggle="collapse" data-target="#bons" class="collapsed bg-info">
                                 <img src="images/icones/bon.png"class="mr-2 ml-2 bg-white menu-icone">Bons
@@ -75,7 +72,7 @@
                             <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">
                                 <img src="images/icones/dossier.png" class="mr-2 ml-2 bg-white menu-icone">Journal
                             </li>
-                            <ul class="sub-menu" id="journal">
+                            <ul class="sub-menu collapse" id="journal">
                                 <li><a href=""><img src="images/icones/livre journal.JPG" class="mr-2 menu-icone">Livre Journal</a></li>
                                 <li><a href=""><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
                             </ul>
@@ -87,13 +84,13 @@
         <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
 
         <!-- ZONE D'AFFICHAGE DU CONTENU -->
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
-            <div class="mt-5">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 mt-5">
+            <div class="mt-5 px-4">
             <?= $content ?>
             </div>
             <footer>
                 <p class="text-light bg-secondary m-0">
-                &copy; Copyright IA Kaffrine 2020 - Powered by TEAM STAGIAIRES UVS/MAI/P4
+                &copy;Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
                 </p>
             </footer>
         </main>     
