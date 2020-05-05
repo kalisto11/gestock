@@ -74,12 +74,13 @@
             <div class="mt-5 px-4">
             <?= $content ?>
             </div>
-            <footer>
-                <p class="text-light bg-secondary m-0">
+        </main>
+        <footer class="m-0 p-0 bg-dark">
+            <p class="text-light m-0">
                 &copy;Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
-                </p>
-            </footer>
-        </main>     
+            </p>
+        </footer> 
+          
         <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
     
         <script src="bootstrap/js/jquery.min.js"></script>
