@@ -1,13 +1,32 @@
 body{
-    background-image: url('../images/photos/ia.jpg');
-    background-repeat: no-repeat;
-  }
+    background-image: url('../images/photos/academie.jpg');
+    background-repeat: no-repeat center fixed;
+    -webkit-background-size: cover;
+   }
+
   .blanc{
     text-align: center;
-    margin-top: 25px;
-    background-color:gray
+    margin-top: 100px;
+    background-color:rgb(50, 190, 245)
   }
   .connexion{
       width: 50%;
       margin-top: 100px;
   }
+
+  .cle{
+    height: 30px;
+    width:20px;
+    
+  }
+
+  .user{
+    height: 40px;
+    width:40px;
+  }
+
+  .icone{
+    height: 50px;
+    width: 7%;
+  }
+ 
