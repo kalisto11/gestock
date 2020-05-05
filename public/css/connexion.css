@@ -6,13 +6,13 @@ body{
 
   .blanc{
     text-align: center;
-    margin-top: 100px;
+    margin-top: 10px;
     background-color:rgb(50, 190, 245);
     color: #fff;
   }
   .connexion{
       width: 50%;
-      margin-top: 100px;
+      margin-top: 50px;
       opacity: 0.9;
   }
 
