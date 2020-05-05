@@ -20,7 +20,7 @@
                 <a  class="navbar-brand col-sm-3 col-md-2 mr-0" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone">IA KAFFRINE</a>
                 <h1 class="h2">GESTION DE STOCK</h1>
 
-                <form class="form-inline mr-4" action="/gestock/recherche" method="post">
+                <form class="form-inline mr-4" action="/gestock/recherche">
                   <input class="form-control form-control-dark w-10" type="text" placeholder="Recherche" aria-label="Search">
                   <button  type="submit" class="btn bg-info my-2 my-sm-0 "><img src="images/icones/recherche.png" class="bouton"></button>
                 </form>
@@ -82,8 +82,8 @@
         <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
 
         <!-- ZONE D'AFFICHAGE DU CONTENU -->
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4 mt-5">
-            <div class="mt-5">
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 mt-5">
+            <div class="mt-5 px-4">
             <?= $content ?>
             </div>
             <footer>
