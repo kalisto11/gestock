@@ -33,11 +33,16 @@
             <div class="row mt-5">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
                 <div class="nav-side-menu mt-5 col-3">
-                    <div class="text-center mt-5">TABLEAU DE BORD</div> 
-                    <div>
-                        <p class="text-center">Espace utilisateur</p>
+                    <div class="text-center mt-5"><img src="images/icones/tableau de bord.JPG" class="mr-1 ml-1 menu-icone"> TABLEAU DE BORD</div><br/> 
+                    <div class="row justify-content-center">
+                        <div class="col-3">
+                                 <img src="images/icones/utilisateur.png" class=" mr-1 ml-1 sous-menu">
+                        </div>
+                        <div class="col-9">
+                                 <p>Salimata Wade GUEYE <br/><a href="/gestock/public/Salimata Wade Gueye">Connexion</a></p>
+                        </div>
                     </div>
-                    <div class="menu-list mt-5">
+                    <div class="menu-list">
                         <ul id="menu-content" class="menu-content collapse out">
 
                             <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
@@ -50,10 +55,19 @@
                             <li data-toggle="collapse" data-target="#bons" class="collapsed bg-info">
                                 <img src="images/icones/bon.png"class="mr-2 ml-2 bg-white menu-icone">Bons
                             </li>  
-                            <ul class="sub-menu collapse" id="bons">
-                                <li><a href="/gestock/articles/liste"><img src="images/icones/article.png" class="bg-white mr-2 ml-2 menu-icone">Articles</a></li>
-                                <li><a href="/gestock/bonsentree/liste"><img src="images/icones/entree.JPG" class="mr-2 ml-2 menu-icone">Bon d'entrée</a></li>
-                                <li><a href="/gestock/bonssortie/liste"><img src="images/icones/sortie.JPG" class="mr-2 ml-2 menu-icone">Bon de sortie</a></li>
+                            <ul class="sub-menu" id="bons">
+                                <li>
+                                    <a href="/gestock/fournisseurs/liste"><img src="images/icones/fournisseur.png" class="bg-white mr-2 ml-2 menu-icone">Fournisseurs</a>
+                                </li>
+                                <li>
+                                    <a href="/gestock/articles/liste"><img src="images/icones/article.png" class="bg-white mr-2 ml-2 menu-icone">Articles</a>
+                                </li>
+                                <li>
+                                    <a href="/gestock/bonsentree/liste"><img src="images/icones/entree.JPG" class="mr-2 ml-2 menu-icone">Bon d'entrée</a>
+                                </li>
+                                <li>
+                                    <a href="/gestock/bonssortie/liste"><img src="images/icones/sortie.JPG" class="mr-2 ml-2 menu-icone">Bon de sortie</a>
+                                </li>
                             </ul>
                             <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">
                                 <img src="images/icones/dossier.png" class="mr-2 ml-2 bg-white menu-icone">Journal
