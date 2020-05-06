@@ -98,10 +98,15 @@ h2, h3{
 /* fin tableau */
 
 footer{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   line-height: 40px;
-  background-color: rgb(236, 241, 241);
-  margin: 0px;
-  margin-top: 200px ;
+}
+
+main{
+  margin-bottom: 200px;
 }
 
 footer p{

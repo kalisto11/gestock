@@ -33,13 +33,13 @@
             <div class="row mt-5">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
                 <div class="nav-side-menu mt-5 col-3">
-                    <div class="text-center mt-5"><img src="images/icones/tableau de bord.JPG" class="mr-1 ml-1 menu-icone"> TABLEAU DE BORD</div><br/> 
                     <div class="row justify-content-center">
-                        <div class="col-3">
+                        <div class="col-3 mt-5 ml-1">
                                  <img src="images/icones/utilisateur.png" class=" mr-1 ml-1 sous-menu">
                         </div>
-                        <div class="col-9">
-                                 <p>Salimata Wade GUEYE <br/><a href="/gestock/public/Salimata Wade Gueye">Connexion</a></p>
+                        <div class="col-9 mt-2 text-center">
+                                 <p>Salimata Wade GUEYE<br/>
+                                 <a href="/gestock/public/Salimata Wade Gueye">Déconnexion</a></p>
                         </div>
                     </div>
                     <div class="menu-list">
@@ -88,12 +88,13 @@
             <div class="mt-5 px-4">
             <?= $content ?>
             </div>
-            <footer>
-                <p class="text-light bg-secondary m-0">
+        </main>
+        <footer class="m-0 p-0 bg-dark">
+            <p class="text-light m-0">
                 &copy;Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
-                </p>
-            </footer>
-        </main>     
+            </p>
+        </footer> 
+          
         <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
     
         <script src="bootstrap/js/jquery.min.js"></script>
