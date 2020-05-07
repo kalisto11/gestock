@@ -113,10 +113,11 @@ footer p{
 
 .zonegrise{
   font-weight: bold;
-  background-color: rgb(241, 244, 247);
+  background-color: rgb(213, 217, 221);
   font-size: 17px;
   padding: 13px;
   margin: auto;
+  margin-bottom: 20px;
 }
 
 .icone{
@@ -131,5 +132,13 @@ footer p{
 }
 
 .row-color:nth-child(odd) {
-  background-color:rgb(201, 218, 238);
+  background-color:rgb(219, 222, 224);
+}
+
+td a {
+  color: black;
+}
+
+td a:hover{
+  text-decoration: none;
 }

@@ -52,7 +52,7 @@
   </div>
   <div>
       <p>
-          <a class="btn btn-warning float-right" href="/gestock/bonsentree/liste">Voir la liste des Bons d'entrée</a>
+          <a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des Bons d'entrée</a>
       </p>
   </div>
 </div>

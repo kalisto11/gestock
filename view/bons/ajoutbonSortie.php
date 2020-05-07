@@ -50,7 +50,7 @@
           <div class="col">
             <div class="form-group">
               <label for="total<?= $i ?>">Prix total</label>
-              <input type="number" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" value="">
+              <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" value="" disabled>
             </div>
           </div>
 

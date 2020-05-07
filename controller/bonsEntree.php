@@ -169,6 +169,69 @@
         } // fin méthode traiterBonEntree
         
         public function ajoutArticle($article1, $quantite1, $prix1, $article2, $quantite2, $prix2, $article3, $quantite3, $prix3, $article4, $quantite4, $prix4, $article5, $quantite5, $prix5, $article6, $quantite6, $prix6, $article7, $quantite7, $prix7, $article8, $quantite8, $prix8, $article9, $quantite9, $prix9, $article10, $quantite10, $prix10){
+
+            if ($prix1 == null){
+                $prix1 = 0;
+            }
+            if ($prix2 == null){
+                $prix2 = 0;
+            }
+            if ($prix3 == null){
+                $prix3 = 0;
+            }
+            if ($prix4 == null){
+                $prix4 = 0;
+            }
+            if ($prix5 == null){
+                $prix5 = 0;
+            }
+            if ($prix6 == null){
+                $prix6 = 0;
+            }
+            if ($prix7 == null){
+                $prix7 = 0;
+            }
+            if ($prix8 == null){
+                $prix8 = 0;
+            }
+            if ($prix9 == null){
+                $prix9 = 0;
+            }
+            if ($prix10 == null){
+                $prix10 = 0;
+            }
+
+            if ($quantite1 == null){
+                $quantite1 = 0;
+            }
+            if ($quantite2 == null){
+                $quantite2 = 0;
+            }
+            if ($quantite3 == null){
+                $quantite3 = 0;
+            }
+            if ($quantite4 == null){
+                $quantite4 = 0;
+            }
+            if ($quantite5 == null){
+                $quantite5 = 0;
+            }
+            if ($quantite6 == null){
+                $quantite6 = 0;
+            }
+            if ($quantite7 == null){
+                $quantite7 = 0;
+            }
+            if ($quantite8 == null){
+                $quantite8 = 0;
+            }
+            if ($quantite9 == null){
+                $quantite9 = 0;
+            }
+            if ($quantite10 == null){
+                $quantite10 = 0;
+            }
+            
             $articles = [];
             if ($article1 != "null" AND !empty($quantite1)){
                 $articles[] = [
