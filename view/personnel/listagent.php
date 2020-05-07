@@ -26,7 +26,7 @@
                         </td>
                         <td class="align-middle">
                             <a class="btn btn-info btn-sm" href="/gestock/personnels/consulter/<?=$agent->id?>">
-                                <img src="images/icones/consult.png" class=" menu-icone" alt="Modifier" title="Modifier">
+                                <img src="images/icones/consult.png" class=" menu-icone" alt="Consulter" title="Consulter">
                             </a>
                             <a class="btn btn-info btn-sm" href="/gestock/personnels/modifier/<?=$agent->id?>">
                                 <img src="images/icones/pencil.png" class=" menu-icone" alt="Modifier" title="Modifier">
