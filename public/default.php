@@ -1,3 +1,7 @@
+<?php
+require_once '../controller/auth.php';
+ user_connecte();
+ ?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -36,6 +40,11 @@
                     <div class="text-center "> TABLEAU DE BORD</div> 
                     <div>
                         <p class="text-center"> Espace utilisateur</p>
+                        <ul>
+                        <?php if (connected()): ?>
+                            <li class="nav-item"><a href= "/logout.php">Se déconnecter</a></li>
+                        <?php endif ?>
+                        </ul>
                     </div>
                     <div class="menu-list mt-5">
                         <ul id="menu-content" class="menu-content collapse out">
@@ -72,7 +81,7 @@
         <!-- ZONE D'AFFICHAGE DU CONTENU -->
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 mt-5">
             <div class="mt-5 px-4">
-            <?= $content ?>
+            <?= $content ?> 
             </div>
             <footer>
                 <p class="text-light bg-secondary m-0">
