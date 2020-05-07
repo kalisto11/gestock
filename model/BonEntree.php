@@ -6,6 +6,7 @@
 		public $date;
 		public $dotations;
 		public $fournisseur;
+		public $totalGeneral;
 
 		public function __construct($id = null) {//constructeur du bon d'entrée
 			if ($id != null){

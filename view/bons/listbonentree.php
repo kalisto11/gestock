@@ -23,6 +23,7 @@
         </tr>
         <?php endforeach ;?>
     </table>
+    
 </div>
 <div class="d-flex justify-content-between my-4">
 	<?php if ($currentPage > 1):?>

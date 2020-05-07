@@ -23,6 +23,7 @@
         <div>
         <h5>Dotations</h5>
         <?php if ($bonsortie->dotations != null): ?>
+
           <table class="table table-striped table-bordered table-hover">
           <tr>
             <th class="th-md">Article</th>
@@ -39,6 +40,9 @@
             </tr>
           <?php endforeach ; ?>  
           </table>
+          <div class="zonegrise">
+            <p>TOTAL GENERAL</p>
+          </div>
         <?php endif ; ?>    
       </div>
         </div>      
