@@ -25,7 +25,7 @@
 				$dotations = [];
 				while ($row = $reponse->fetch()){
 					$article = new Article($row['id']);
-					$dotation = new Dotation($article, $row['quantite']);
+					$dotation = new Dotation($article, $row['quantite'], $row['prix'], $row['total']);
 					$dotations[] = $dotation;
 				}
 				$this->dotations = $dotations;	
@@ -51,15 +51,7 @@
         	$reponse = $pdo->query($req);
 			$bonentree = $reponse->fetch();
 			$this->id = $bonentree['id'];
-			foreach ($this->dotations as $dotation){
-				$req = 'INSERT INTO entree_article (id_bon_entree, id_article, quantite) VALUES (:id_bon_entree, :id_article, :quantite)';
-				$reponse = $pdo->prepare($req);
-				$reponse->execute(array(
-					'id_bon_entree' => $this->id,
-					'id_article'    => $dotation->article,
-					'quantite'    => $dotation->quantite
-           		));
-        	}
+			$this->saveArticles();
 		 }
 
 		public function delete() { //Méthode qui permet de supprimer un bon d'entrée
@@ -81,18 +73,7 @@
 			'fournisseur' =>$this->fournisseur,
 			'id'           =>$this->id
 			));	
-			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
-			$reponse = $pdo->prepare($req);
-			$reponse->execute(array($this->id));
-			foreach ($this->dotations as $dotation){
-			$req = 'INSERT INTO entree_article (id_bon_entree, id_article, quantite) VALUES (:id_bon_entree, :id_article, :quantite)';
-			$reponse = $pdo->prepare($req);
-			$reponse->execute(array(
-				'id_bon_entree' => $this->id,
-				'id_article'    => $dotation->article,
-				'quantite'    => $dotation->quantite
-			));
-			}
+			$this->saveArticles($this->id);
 		}
 		/**
 		  * permet de récupérer la liste des bons d'entrée
@@ -114,6 +95,24 @@
 			$reponse = $pdo->query($req);
 			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
 			 return  $count;
+		}
+
+		public function saveArticles(){
+			$pdo = Database::getPDO();
+			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
+			$reponse = $pdo->prepare($req);
+			$reponse->execute(array($this->id));
+			foreach ($this->dotations as $dotation){
+				$req = 'INSERT INTO entree_article (id_bon_entree, id_article, quantite, prix, total) VALUES (:id_bon_entree, :id_article, :quantite, :prix, :total)';
+				$reponse = $pdo->prepare($req);
+				$reponse->execute(array(
+					'id_bon_entree' => $this->id,
+					'id_article'    => $dotation->article,
+					'quantite'    => $dotation->quantite,
+					'prix'		=> $dotation->prix,
+					'total'		=> $dotation->total
+           		));
+        	}
 		}
 
 	}// fin class

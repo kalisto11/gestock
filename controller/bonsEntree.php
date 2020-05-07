@@ -89,8 +89,8 @@
 
         public function traiterBonEntree($reference, $fournisseur, $id =null){
 
-            $articles = $this->ajoutArticle($_POST['article1'], $_POST['quantite1'],
-            $_POST['article2'], $_POST['quantite2'], $_POST['article3'], $_POST['quantite3'], $_POST['article4'], $_POST['quantite4'], $_POST['article5'], $_POST['quantite5'], $_POST['article6'], $_POST['quantite6'], $_POST['article7'], $_POST['quantite7'], $_POST['article8'], $_POST['quantite8'], $_POST['article9'], $_POST['quantite9'], $_POST['article10'], $_POST['quantite10']);
+            $articles = $this->ajoutArticle($_POST['article1'], $_POST['quantite1'], $_POST['prix1'], $_POST['total1'],
+            $_POST['article2'], $_POST['quantite2'], $_POST['prix2'], $_POST['total2'], $_POST['article3'], $_POST['quantite3'], $_POST['prix3'], $_POST['total3'], $_POST['article4'], $_POST['quantite4'], $_POST['prix4'], $_POST['total4'], $_POST['article5'], $_POST['quantite5'], $_POST['prix5'], $_POST['total5'], $_POST['article6'], $_POST['quantite6'], $_POST['prix6'], $_POST['total6'], $_POST['article7'], $_POST['quantite7'], $_POST['prix7'], $_POST['total7'], $_POST['article8'], $_POST['quantite8'], $_POST['prix8'], $_POST['total8'], $_POST['article9'], $_POST['quantite9'], $_POST['prix9'], $_POST['total9'], $_POST['article10'], $_POST['quantite10'], $_POST['prix10'], $_POST['total10']);
 
             $erreur = false;
 
@@ -128,7 +128,7 @@
                     $bonentree->fournisseur = intval($fournisseur);
                     $dotations = [];
                     foreach ($articles as $article){
-                        $dotation = new Dotation($article['id'], $article['quantite']);
+                        $dotation = new Dotation($article['id'], $article['quantite'], $article['prix'], $article['total']);
                         $dotations[] = $dotation;
                     }
                     $bonentree->dotations= $dotations;
@@ -145,7 +145,7 @@
                     $bonentree->fournisseur = strip_tags($fournisseur);
                     $dotations = [];
                     foreach ($articles as $article){
-                        $dotation = new Dotation($article['id'], $article['quantite']);
+                        $dotation = new Dotation($article['id'], $article['quantite'], $article['prix'], $article['total']);
                         $dotations[] = $dotation;
                     }
                     $bonentree->dotations =  $dotations;
@@ -168,66 +168,86 @@
             }
         } // fin méthode traiterBonEntree
         
-        public function ajoutArticle($article1, $quantite1, $article2, $quantite2, $article3, $quantite3, $article4, $quantite4, $article5, $quantite5, $article6, $quantite6, $article7, $quantite7, $article8, $quantite8, $article9, $quantite9, $article10, $quantite10){
+        public function ajoutArticle($article1, $quantite1, $prix1, $total1, $article2, $quantite2, $prix2, $total2, $article3, $quantite3, $prix3, $total3, $article4, $quantite4, $prix4, $total4, $article5, $quantite5, $prix5, $total5, $article6, $quantite6, $prix6, $total6, $article7, $quantite7, $prix7, $total7, $article8, $quantite8, $prix8, $total8, $article9, $quantite9, $prix9, $total9, $article10, $quantite10, $prix10, $total10){
             $articles = [];
             if ($article1 != "null" AND !empty($quantite1)){
                 $articles[] = [
-                    'id' => strip_tags($article1),
-                    'quantite' => strip_tags($quantite1)
+                    'id' => intval(strip_tags($article1)),
+                    'quantite' => intval(strip_tags($quantite1)),
+                    'prix' => intval(strip_tags($prix1)),
+                    'total' => intval(strip_tags($total1))
                 ];
             }
             if ($article2 != "null" AND !empty($quantite2)){
                 $articles[] = [
-                    'id' => strip_tags($article2),
-                    'quantite' => strip_tags($quantite2)
+                    'id' => intval(strip_tags($article2)),
+                    'quantite' => intval(strip_tags($quantite2)),
+                    'prix' => intval(strip_tags($prix2)),
+                    'total' => intval(strip_tags($total2))
                 ];
             }
             if ($article3 != "null" AND !empty($quantite3)){
                 $articles[] = [
-                    'id' => strip_tags($article3),
-                    'quantite' => strip_tags($quantite3)
+                    'id' => intval(strip_tags($article3)),
+                    'quantite' => intval(strip_tags($quantite3)),
+                    'prix' => intval(strip_tags($prix2)),
+                    'total' => intval(strip_tags($total3))
                 ];
             }
             if ($article4 != "null" AND !empty($quantite4)){
                 $articles[] = [
-                    'id' => strip_tags($article4),
-                    'quantite' => strip_tags($quantite4)
+                    'id' => intval(strip_tags($article4)),
+                    'quantite' => intval(strip_tags($quantite4)),
+                    'prix' => intval(strip_tags($prix4)),
+                    'total' => intval(strip_tags($total4))
                 ];
             }
             if ($article5 != "null" AND !empty($quantite5)){
                 $articles[] = [
-                    'id' => strip_tags($article5),
-                    'quantite' => strip_tags($quantite5)
+                    'id' => intval(strip_tags($article5)),
+                    'quantite' => intval(strip_tags($quantite5)),
+                    'prix' => intval(strip_tags($prix5)),
+                    'total' => intval(strip_tags($total5))
                 ];
             }
             if ($article6 != "null" AND !empty($quantite6)){
                 $articles[] = [
-                    'id' => strip_tags($article6),
-                    'quantite' => strip_tags($quantite6)
+                    'id' => intval(strip_tags($article6)),
+                    'quantite' => intval(strip_tags($quantite6)),
+                    'prix' => intval(strip_tags($prix6)),
+                    'total' => intval(strip_tags($total6))
                 ];
             }
             if ($article7 != "null" AND !empty($quantite7)){
                 $articles[] = [
-                    'id' => strip_tags($article7),
-                    'quantite' => strip_tags($quantite7)
+                    'id' => intval(strip_tags($article7)),
+                    'quantite' => intval(strip_tags($quantite7)),
+                    'prix' => intval(strip_tags($prix7)),
+                    'total' => intval(strip_tags($total7))
                 ];
             }
             if ($article8 != "null" AND !empty($quantite8)){
                 $articles[] = [
-                    'id' => strip_tags($article8),
-                    'quantite' => strip_tags($quantite8)
+                    'id' => intval(strip_tags($article8)),
+                    'quantite' => intval(strip_tags($quantite8)),
+                    'prix' => intval(strip_tags($prix8)),
+                    'total' => intval(strip_tags($total8))
                 ];
             }
             if ($article9 != "null" AND !empty($quantite9)){
                 $articles[] = [
-                    'id' => strip_tags($article9),
-                    'quantite' => strip_tags($quantite9)
+                    'id' => intval(strip_tags($article9)),
+                    'quantite' => intval(strip_tags($quantite9)),
+                    'prix' => intval(strip_tags($prix9)),
+                    'total' => intval(strip_tags($total9))
                 ];
             }
             if ($article10 != "null" AND !empty($quantite10)){
                 $articles[] = [
-                    'id' => strip_tags($article10),
-                    'quantite' => strip_tags($quantite10)
+                    'id' => intval(strip_tags($article10)),
+                    'quantite' => intval(strip_tags($quantite10)),
+                    'prix' => intval(strip_tags($prix10)),
+                    'total' => intval(strip_tags($total10))
                 ];
             }
            
