@@ -96,10 +96,12 @@
         </footer> 
           
         <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
-    
+        
         <script src="bootstrap/js/jquery.min.js"></script>
         <script src="bootstrap/js/propper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
+        <script src="js/notification.js"></script>
+        
     </body>
 </html>

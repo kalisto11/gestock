@@ -33,8 +33,6 @@ body{
   }
 }
 
-
-  
 .menu-icone{
   height: 30px;
   width:30px;
@@ -130,4 +128,12 @@ footer p{
   height: 40px;
   width:40px;
   margin: -8px;
+}
+
+.row-color:nth-child(odd) {
+  background-color:rgb(201, 218, 238);
+}
+
+tr:nth-child(old){
+  background-color: rgb(157, 162, 163);
 }

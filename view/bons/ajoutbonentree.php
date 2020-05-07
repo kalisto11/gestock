@@ -19,7 +19,7 @@
     </div>
 
     <?php for ($i = 1; $i <= 10; $i++) : ?>
-    <div class="row">
+    <div class="row row-color">
 
       <div class="col">
         <div class="form-group">
@@ -44,14 +44,14 @@
       <div class="col">
         <div class="form-group">
           <label for="prix<?= $i ?>">Prix unitaire</label>
-          <input type="number" name="prix<?= $i ?>" id="prix<?= $i ?>" class="form-control" placeholder="Saisir le prix unitaire">
+          <input type="number" name="prix<?= $i ?>" id="prix<?= $i ?>" class="form-control" placeholder="Saisir le prix unitaire" class="text-center font-weight-bold">
         </div>
       </div>
 
       <div class="col">
         <div class="form-group">
           <label for="total<?= $i ?>">Prix total</label>
-          <input type="number" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" value="">
+          <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" value="" disabled>
         </div>
       </div>
       

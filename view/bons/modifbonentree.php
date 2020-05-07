@@ -20,7 +20,7 @@
       <?php 
       $i = 1;
       foreach ($bonentree->dotations as $dotation) : ?>
-        <div class="row">
+        <div class="row row-color">
 
           <div class="col">
             <div class="form-group">
@@ -51,7 +51,7 @@
           <div class="col">
             <div class="form-group">
               <label for="total<?= $i ?>">Total</label>
-              <input type="number" name="total<?= $i ?>" id="total<?= $i ?>" value="<?= $dotation->total ?>" class="form-control" placeholder="Saisir le total de l'article">
+              <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" value="<?= $dotation->total ?>" class="form-control" disabled>
             </div>
           </div>
         <!-- fin row -->
@@ -63,7 +63,7 @@
 
       <?php if ($i < 10){
         for ($i = $i ; $i <= 10; $i ++) : ?>
-          <div class="row">
+          <div class="row row-color">
 
             <div class="col-sm-3">
               <div class="form-group">
@@ -94,7 +94,7 @@
             <div class="col-sm-3">
               <div class="form-group">
                 <label for="total<?= $i ?>">Total</label>
-                <input type="number" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" placeholder="Saisir le total">
+                <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" disabled>
               </div>
             </div>
 
