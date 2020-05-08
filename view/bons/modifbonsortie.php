@@ -118,7 +118,7 @@
       
       <div class="mt-5">
         <input type="submit" value="Modifier" class="btn btn-info">
-        <a href="/gestock/bonssortie/liste" class="btn btn-danger">Annuler</a>
+        <a href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>" class="btn btn-danger">Annuler</a>
       </div>    
     </form>
   </div>
