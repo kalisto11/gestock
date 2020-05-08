@@ -135,7 +135,8 @@
                     $bonentree->save();
                     $message[] = "Le bon a été ajouté avec succès.";
                     $this->notification = new Notification("success", $message);
-                    $this->request->action = 'liste';
+                    $this->request->action = 'consulter';
+                    $this->request->id = $bonentree->id;
                 }
                 else{ // cas modifier 
                     $id = intval($id);

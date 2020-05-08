@@ -23,6 +23,7 @@
       <div>
         <h5>Dotations</h5>
         <?php if ($bonentree->dotations != null): ?>
+          
           <table class="table table-striped table-bordered table-hover">
           <tr>
             <th class="th-md">Article</th>
@@ -37,8 +38,13 @@
               <td><?= htmlspecialchars($dotation->prix) ?></td>
               <td><?= htmlspecialchars($dotation->total) ?></td>
             </tr>
-          <?php endforeach ; ?>  
+          <?php endforeach ; ?> 
+            <tr class="font-weight-bold">
+              <td colspan="3">Total général</td>
+              <td><?= $bonentree->totalGeneral ?></td>
+            </tr>  
           </table>
+
         <?php endif ; ?>    
       </div>
 
@@ -52,7 +58,7 @@
   </div>
   <div>
       <p>
-          <a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des Bons d'entrée</a>
+          <a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des bons d'entrée</a>
       </p>
   </div>
 </div>
