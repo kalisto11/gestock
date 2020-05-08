@@ -16,7 +16,7 @@
                             <a class="btn btn-info btn-sm" href="/gestock/fournisseurs/modifier/<?= $fournisseur->id ?>">
                                 <img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier">
                             </a>
-                            <a class="btn btn-info btn-sm" href="/gestock/fournisseurs/supprimer/<?= $fournisseur->id ?>">
+                            <a class="btn btn-info btn-sm suppr" href="/gestock/fournisseurs/supprimer/<?= $fournisseur->id ?>">
                                 <img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer">
                             </a>
                         </td>

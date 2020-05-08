@@ -158,6 +158,3 @@ prix10.addEventListener('mouseup', function(){
     total10.value = quantite10.value * prix10.value;
 });
 
-
-
-

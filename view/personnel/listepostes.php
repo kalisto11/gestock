@@ -16,7 +16,7 @@
                             <a class="btn btn-info btn-sm" href="/gestock/postes/modifier/<?= $poste->id ?>">
                                 <img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier">
                             </a>
-                            <a class="btn btn-info btn-sm" href="/gestock/postes/supprimer/<?= $poste->id ?>">
+                            <a class="btn btn-info btn-sm suppr" href="/gestock/postes/supprimer/<?= $poste->id ?>">
                                 <img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer">
                             </a>
                         </td>
