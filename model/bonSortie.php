@@ -6,6 +6,7 @@
 		public $date;
 		public $dotations;
 		public $beneficiaire;
+		public $totalGeneral;
 
 		public function __construct($id = null) {//constructeur du bon de sortie
 			if ($id != null){
@@ -27,6 +28,7 @@
 					$article = new Article($row['id']);
 					$dotation = new Dotation($article, $row['quantite'], $row['prix'], $row['total']);
 					$dotations[] = $dotation;
+					$this->totalGeneral += $dotation->total;
 				}
 				$this->dotations = $dotations;	
 			}	

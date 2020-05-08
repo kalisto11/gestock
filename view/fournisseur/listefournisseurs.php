@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-8">
         <h2 class="mt-5 text-center">Fournisseurs</h2>
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover table-sm">
                 <tr>
                     <th class="th-md">Fournisseur</th>
                     <th class="th-sm">Action</th>

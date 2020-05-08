@@ -1,7 +1,7 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 <h2 class="mt-5 text-center">Bons de sortie</h2> 
 <div>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover table-sm">
         <tr>
             <th class="th-sm">Référence</th>
             <th class="th-sm">Date</th>
@@ -31,6 +31,6 @@
 	<?php endif ?>
 </div>
 <div class="mt-5">
-    <a href="/gestock/bonssortie/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon de sortie</button></a>
+    <a class="btn btn-success ml-5" href="/gestock/bonssortie/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon de sortie</a>
 </div>
 

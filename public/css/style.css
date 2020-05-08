@@ -34,9 +34,8 @@ body{
 }
 
 .menu-icone{
-  height: 30px;
-  width:30px;
-  margin: -8px;
+  width: 20px;
+  margin: -5px;
 }
 
 .bouton{
@@ -59,8 +58,9 @@ th, td{
   text-align: center;
   vertical-align: middle;
   padding-top: 0px;
-  padding-bottom: 0px;;
+  padding-bottom: 0px;
 }
+
 th{
   font-weight: bold;
   font-size: 18px;
@@ -113,11 +113,12 @@ footer p{
 
 .zonegrise{
   font-weight: bold;
-  background-color: rgb(213, 217, 221);
+  background-color: rgb(242, 245, 247);
   font-size: 17px;
   padding: 13px;
   margin: auto;
   margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .icone{
@@ -141,4 +142,10 @@ td a {
 
 td a:hover{
   text-decoration: none;
+}
+
+input[disabled]{
+  background-color: rgb(69, 194, 243);
+  border: 1px solid rgb(75, 15, 216);
+  text-align: right;
 }

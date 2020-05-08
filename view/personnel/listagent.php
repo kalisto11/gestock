@@ -2,7 +2,7 @@
 
 <h2 class="mt-5 text-center">Personnel</h2> 
 <div></div>
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover table-sm">
                 <tr>
                     <th>Prénom</th>
                     <th>Nom</th>
