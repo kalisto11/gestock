@@ -24,7 +24,7 @@
         <h5>Dotations</h5>
         <?php if ($bonentree->dotations != null): ?>
           
-          <table class="table table-striped table-bordered table-hover">
+          <table class="table table-striped table-bordered table-hover table-sm">
           <tr>
             <th class="th-md">Article</th>
             <th>Quantité</th>
