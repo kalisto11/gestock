@@ -28,6 +28,7 @@
 					$article = new Article($row['id']);
 					$dotation = new Dotation($article, $row['quantite'], $row['prix'], $row['total']);
 					$dotations[] = $dotation;
+					$this->totalGeneral += $dotation->total;
 				}
 				$this->dotations = $dotations;	
 			}
@@ -37,6 +38,7 @@
 				$this->date        = null;
 				$this->dotations   = null;
 				$this->fournisseur = null;
+				$this->totalGeneral = null;
 			}
 		}
 

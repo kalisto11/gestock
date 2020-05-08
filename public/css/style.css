@@ -113,11 +113,12 @@ footer p{
 
 .zonegrise{
   font-weight: bold;
-  background-color: rgb(213, 217, 221);
+  background-color: rgb(242, 245, 247);
   font-size: 17px;
   padding: 13px;
   margin: auto;
   margin-bottom: 20px;
+  border-radius: 10px;
 }
 
 .icone{

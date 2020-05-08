@@ -38,12 +38,13 @@
               <td><?= htmlspecialchars($dotation->prix) ?></td>
               <td><?= htmlspecialchars($dotation->total) ?></td>
             </tr>
-          <?php endforeach ; ?>  
+          <?php endforeach ; ?> 
+            <tr class="font-weight-bold">
+              <td colspan="3">Total général</td>
+              <td><?= $bonentree->totalGeneral ?></td>
+            </tr>  
           </table>
 
-          <div class="zonegrise">
-            <p>TOTAL GENERAL</p>
-          </div>
         <?php endif ; ?>    
       </div>
 
@@ -57,7 +58,7 @@
   </div>
   <div>
       <p>
-          <a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des Bons d'entrée</a>
+          <a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des bons d'entrée</a>
       </p>
   </div>
 </div>

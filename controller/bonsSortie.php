@@ -133,11 +133,11 @@
                         $dotations[] = $dotation;
                     }
                     $bonsortie->dotations =  $dotations;
-                    
                     $bonsortie->save();
                     $message[] = "Le bon de sortie a été bien ajouté.";
                     $this->notification = new Notification("success", $message);
-                    $this->request->action = 'liste';
+                    $this->request->action = 'consulter';
+                    $this->request->id = $bonsortie->id;
                 }
                 else{ // cas modifier bon de sortie
                     $id = intval($id);
