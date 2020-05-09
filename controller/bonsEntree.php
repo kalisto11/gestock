@@ -94,6 +94,11 @@
 
             $erreur = false;
 
+            if ($articles == false){
+                $erreur = true;
+                $message[] = "Les valeurs négatives ne peuvent pas etre utilisées.";
+            }
+
             // Verifier si reference n'est pas vide
             if (empty($reference)){
                 $erreur = true;
@@ -105,22 +110,24 @@
                 $message[] = "Il faut choisir un fournisseur sur la liste de fournisseurs."; 
             }
             //Verifier si au moins un article et sa quantité ont été choisis
-            if (empty($articles)){
-                $erreur = true;
-                $message[] = "Il faut choisir au minimum un article et sa quantité.";
-            }
-            // Verifier si un article n'a pas été choisi 2 fois (doublons)
-            $idArticles = [];
-            foreach ($articles as $article){
-                $idArticles[] = $article['id'];
-            }
-            $noDoublons = array_unique($idArticles);
-            if (count($noDoublons) < count($idArticles)){
-                $erreur = true;
-                $message[] = "Il y a eu doublon sur les articles choisis.";
+            if($articles != false){
+                if (empty($articles)){
+                    $erreur = true;
+                    $message[] = "Il faut choisir au minimum un article et sa quantité.";
+                }
+
+                 // Verifier si un article n'a pas été choisi 2 fois (doublons)
+                $idArticles = [];
+                foreach ($articles as $article){
+                    $idArticles[] = $article['id'];
+                }
+                $noDoublons = array_unique($idArticles);
+                if (count($noDoublons) < count($idArticles)){
+                    $erreur = true;
+                    $message[] = "Il y a eu doublon sur les articles choisis.";
+                }
             }
            
-            
             if ($erreur == false){ // si pas d'erreur
                 if ($id == null){ // cas ajouter
                     $bonentree = new BonEntree();
@@ -177,10 +184,12 @@
             $varPrix = "prix";
 
             for ($i = 1; $i <= 10; $i++){
-                if (${$varQuantite . $i} == null){
-                    ${$varQuantite . $i} = 0 ;
+
+                if (${$varPrix . $i} < 0 OR ${$varQuantite . $i} < 0){
+                    return false;
                 }
-                if (${$varPrix . $i} == null){
+
+                if (empty(${$varPrix . $i})){
                     ${$varPrix . $i} = 0 ;
                 }
 

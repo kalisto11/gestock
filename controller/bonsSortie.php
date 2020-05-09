@@ -96,6 +96,13 @@
 
             $erreur = false;
 
+            if ($articles == false){
+                $erreur = true;
+                $message[] = "Les valeurs négatives ne peuvent pas etre utilisées.";
+            }
+
+           
+
              // verifier si reference n'est pas vide
             if (empty($reference)){
                 $erreur = true;
@@ -106,20 +113,23 @@
                 $erreur = true;
                 $message[] = "Il faut choisir un bénéficiaire";
             }
-            // Verifier si au moins un article et sa quantité ont été choisis
-            if (empty($articles)){
-                $erreur = true;
-                $message[] = "Il faut choisir au minimum un article et sa quantité.";
-            }
-            // Verifier si un article n'a pas été choisi 2 fois (doublons)
-            $idArticles = [];
-            foreach ($articles as $article){
-                $idArticles[] = $article['id'];
-            }
-            $noDoublons = array_unique($idArticles);
-            if (count($noDoublons) < count($idArticles)){
-                $erreur = true;
-                $message[] = "Il y a eu doublon sur les articles choisis.";
+
+            if ($articles != false){
+                // Verifier si au moins un article et sa quantité ont été choisis
+                if (empty($articles)){
+                    $erreur = true;
+                    $message[] = "Il faut choisir au minimum un article et sa quantité.";
+                }
+                // Verifier si un article n'a pas été choisi 2 fois (doublons)
+                $idArticles = [];
+                foreach ($articles as $article){
+                    $idArticles[] = $article['id'];
+                }
+                $noDoublons = array_unique($idArticles);
+                if (count($noDoublons) < count($idArticles)){
+                    $erreur = true;
+                    $message[] = "Il y a eu doublon sur les articles choisis.";
+                }
             }
 
             if ($erreur == false){ // cas sans erreur
@@ -152,7 +162,7 @@
                     }
                     $bonsortie->dotations =  $dotations;
                     $bonsortie->modify();  
-                    $message[] = "Les données du bon de sortie ont été bien modifiées.";
+                    $message[] = "Le bon de sortie a été bien modifié.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'consulter';
                     $this->request->id = $id; 
@@ -179,10 +189,10 @@
             $varPrix = "prix";
 
             for ($i = 1; $i <= 10; $i++){
-                if (${$varQuantite . $i} == null){
-                    ${$varQuantite . $i} = 0 ;
+                if (${$varPrix . $i} < 0 OR ${$varQuantite . $i} < 0){
+                    return false;
                 }
-                if (${$varPrix . $i} == null){
+                if (empty(${$varPrix . $i})){
                     ${$varPrix . $i} = 0 ;
                 }
 
