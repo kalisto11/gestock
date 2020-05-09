@@ -173,148 +173,27 @@
 
         public function ajoutArticle($article1, $quantite1, $prix1, $article2, $quantite2, $prix2, $article3, $quantite3, $prix3, $article4, $quantite4, $prix4, $article5, $quantite5, $prix5, $article6, $quantite6, $prix6, $article7, $quantite7, $prix7, $article8, $quantite8, $prix8, $article9, $quantite9, $prix9, $article10, $quantite10, $prix10){
 
-            if ($prix1 == null){
-                $prix1 = 0;
-            }
-            if ($prix2 == null){
-                $prix2 = 0;
-            }
-            if ($prix3 == null){
-                $prix3 = 0;
-            }
-            if ($prix4 == null){
-                $prix4 = 0;
-            }
-            if ($prix5 == null){
-                $prix5 = 0;
-            }
-            if ($prix6 == null){
-                $prix6 = 0;
-            }
-            if ($prix7 == null){
-                $prix7 = 0;
-            }
-            if ($prix8 == null){
-                $prix8 = 0;
-            }
-            if ($prix9 == null){
-                $prix9 = 0;
-            }
-            if ($prix10 == null){
-                $prix10 = 0;
-            }
-
-            if ($quantite1 == null){
-                $quantite1 = 0;
-            }
-            if ($quantite2 == null){
-                $quantite2 = 0;
-            }
-            if ($quantite3 == null){
-                $quantite3 = 0;
-            }
-            if ($quantite4 == null){
-                $quantite4 = 0;
-            }
-            if ($quantite5 == null){
-                $quantite5 = 0;
-            }
-            if ($quantite6 == null){
-                $quantite6 = 0;
-            }
-            if ($quantite7 == null){
-                $quantite7 = 0;
-            }
-            if ($quantite8 == null){
-                $quantite8 = 0;
-            }
-            if ($quantite9 == null){
-                $quantite9 = 0;
-            }
-            if ($quantite10 == null){
-                $quantite10 = 0;
-            }
-
             $articles = [];
-            if ($article1 != "null" AND !empty($quantite1)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article1)),
-                    'quantite' => intval(strip_tags($quantite1)),
-                    'prix' => intval(strip_tags($prix1)),
-                    'total' => $quantite1 * $prix1 
-                ];
-            }
-            if ($article2 != "null" AND !empty($quantite2)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article2)),
-                    'quantite' => intval(strip_tags($quantite2)),
-                    'prix' => intval(strip_tags($prix2)),
-                    'total' => $quantite2 * $prix2 
-                ];
-            }
-            if ($article3 != "null" AND !empty($quantite3)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article3)),
-                    'quantite' => intval(strip_tags($quantite3)),
-                    'prix' => intval(strip_tags($prix2)),
-                    'total' => $quantite3 * $prix3 
-                ];
-            }
-            if ($article4 != "null" AND !empty($quantite4)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article4)),
-                    'quantite' => intval(strip_tags($quantite4)),
-                    'prix' => intval(strip_tags($prix4)),
-                    'total' => $quantite4 * $prix4 
-                ];
-            }
-            if ($article5 != "null" AND !empty($quantite5)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article5)),
-                    'quantite' => intval(strip_tags($quantite5)),
-                    'prix' => intval(strip_tags($prix5)),
-                    'total' => $quantite5 * $prix5 
-                ];
-            }
-            if ($article6 != "null" AND !empty($quantite6)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article6)),
-                    'quantite' => intval(strip_tags($quantite6)),
-                    'prix' => intval(strip_tags($prix6)),
-                    'total' => $quantite6 * $prix6 
-                ];
-            }
-            if ($article7 != "null" AND !empty($quantite7)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article7)),
-                    'quantite' => intval(strip_tags($quantite7)),
-                    'prix' => intval(strip_tags($prix7)),
-                    'total' => $quantite7 * $prix7 
-                ];
-            }
-            if ($article8 != "null" AND !empty($quantite8)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article8)),
-                    'quantite' => intval(strip_tags($quantite8)),
-                    'prix' => intval(strip_tags($prix8)),
-                    'total' => $quantite8 * $prix8 
-                ];
-            }
-            if ($article9 != "null" AND !empty($quantite9)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article9)),
-                    'quantite' => intval(strip_tags($quantite9)),
-                    'prix' => intval(strip_tags($prix9)),
-                    'total' => $quantite9 * $prix9 
-                ];
-            }
-            if ($article10 != "null" AND !empty($quantite10)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article10)),
-                    'quantite' => intval(strip_tags($quantite10)),
-                    'prix' => intval(strip_tags($prix10)),
-                    'total' => $quantite10 * $prix10 
-                ];
+            $varArticle = "article";
+            $varQuantite = "quantite";
+            $varPrix = "prix";
+
+            for ($i = 1; $i <= 10; $i++){
+                if (${$varQuantite . $i} == null){
+                    ${$varQuantite . $i} = 0 ;
+                }
+                if (${$varPrix . $i} == null){
+                    ${$varPrix . $i} = 0 ;
+                }
+
+                if (${$varArticle . $i} != null AND !empty(${$varQuantite . $i})){
+                    $articles[] = [
+                        'id' => intval(strip_tags(${$varArticle . $i})),
+                        'quantite' => intval(strip_tags(${$varQuantite . $i})),
+                        'prix' => intval(strip_tags(${$varPrix . $i})),
+                        'total' => intval(${$varQuantite . $i} * ${$varPrix . $i})
+                    ];
+                } 
             }
            
             return $articles;
