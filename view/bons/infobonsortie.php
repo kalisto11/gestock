@@ -50,8 +50,8 @@
         </div>      
     </div>
     <div class="mt-5">
-        <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>"class="btn btn-info">Modifier</a>
-        <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>"class="btn btn-danger suppr">Supprimer</a>
+        <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>" class="btn btn-info">Modifier</a>
+        <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>" class="btn btn-danger suppr">Supprimer</a>
     </div>
     <div>
         <p>

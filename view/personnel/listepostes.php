@@ -24,8 +24,9 @@
                 <?php endforeach ; ?>
             </table>
         </div>  
+
         <div class="col-md-4 bg-light">
-        <h2 class="mt-5 text-center"><?php if (isset($currentPoste->id)){echo 'Modifier le poste';}else{echo 'Ajouter un poste';} ?></h2>
+            <h2 class="mt-5 text-center"><?php if (isset($currentPoste->id)){echo 'Modifier le poste';}else{echo 'Ajouter un poste';} ?></h2>
             <div class="container-fluid">
                 <form method="post" action="/gestock/postes/traitement-poste">
                     <div class="form-group">
