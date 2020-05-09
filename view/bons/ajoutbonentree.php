@@ -19,7 +19,7 @@
     </div>
 
     <?php for ($i = 1; $i <= 10; $i++) : ?>
-    <div class="row row-color">
+    <div class="row row-color m-2">
 
       <div class="col">
         <div class="form-group">

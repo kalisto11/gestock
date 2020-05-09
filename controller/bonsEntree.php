@@ -193,7 +193,7 @@
                     ${$varPrix . $i} = 0 ;
                 }
 
-                if (${$varArticle . $i} != null AND !empty(${$varQuantite . $i})){
+                if (${$varArticle . $i} != 'null' AND !empty(${$varQuantite . $i})){
                     $articles[] = [
                         'id' => intval(strip_tags(${$varArticle . $i})),
                         'quantite' => intval(strip_tags(${$varQuantite . $i})),

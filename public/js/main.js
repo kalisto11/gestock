@@ -31,96 +31,209 @@ var quantite10 = document.querySelector('#quantite10');
 var prix10 = document.querySelector('#prix10');
 var total10 = document.querySelector('#total10');
 
-
 quantite1.addEventListener('change', function(){
-    total1.value = parseInt(quantite1.value * prix1.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (quantite1.value <= 0){
+        alert('La valeur de la quantité ne peut etre négative ou nulle.');
+        quantite1.value = "";
+    }
+    else{
+        total1.value = parseInt(quantite1.value * prix1.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 prix1.addEventListener('change', function(){
-    total1.value = parseInt(quantite1.value * prix1.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (prix1.value < 0){
+        alert('Le prix ne peut pas etre négatif');
+        prix1.value = "";
+    }
+    else{
+        total1.value = parseInt(quantite1.value * prix1.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 
 quantite2.addEventListener('change', function(){
-    total2.value = parseInt(quantite2.value * prix2.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (quantite2.value <= 0){
+        alert('La valeur de la quantité ne peut etre négative ou nulle.');
+        quantite2.value = "" ;
+    }
+    else{
+        total2.value = parseInt(quantite2.value * prix2.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 prix2.addEventListener('change', function(){
-    total2.value = parseInt(quantite2.value * prix2.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (prix2.value < 0){
+        alert('Le prix ne peut pas etre négatif');
+        prix2.value = "";
+    }
+    else{
+        total2.value = parseInt(quantite2.value * prix2.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 
 quantite3.addEventListener('change', function(){
-    total3.value = parseInt(quantite3.value * prix3.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (quantite3.value <= 0){
+        alert('La valeur de la quantité ne peut etre négative ou nulle.');
+        quantite3.value = "" ;
+    }
+    else{
+        total3.value = parseInt(quantite3.value * prix3.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 prix3.addEventListener('change', function(){
-    total3.value = parseInt(quantite3.value * prix3.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (prix3.value < 0){
+        alert('Le prix ne peut pas etre négatif');
+    }
+    else{
+        total3.value = parseInt(quantite3.value * prix3.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 
 quantite4.addEventListener('change', function(){
-    total4.value = parseInt(quantite4.value * prix4.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (quantite4.value <= 0){
+        alert('La valeur de la quantité ne peut etre négative ou nulle.');
+        quantite4.value = "" ;
+    }
+    else{
+        total4.value = parseInt(quantite4.value * prix4.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 prix4.addEventListener('change', function(){
-    total4.value = parseInt(quantite4.value * prix4.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (prix4.value < 0){
+        alert('Le prix ne peut pas etre négatif');
+    }
+    else{
+        total4.value = parseInt(quantite4.value * prix4.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 
 quantite5.addEventListener('change', function(){
-    total5.value = parseInt(quantite5.value * prix5.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (quantite5.value <= 0){
+        alert('La valeur de la quantité ne peut etre négative ou nulle.');
+        quantite5.value = "" ;
+    }
+    else{
+        total5.value = parseInt(quantite5.value * prix5.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 prix5.addEventListener('change', function(){
-    total5.value = parseInt(quantite5.value * prix5.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (prix5.value < 0){
+        alert('Le prix ne peut pas etre négatif');
+    }
+    else{
+        total5.value = parseInt(quantite5.value * prix5.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 
 quantite6.addEventListener('change', function(){
-    total6.value = parseInt(quantite6.value * prix6.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (quantite6.value <= 0){
+        alert('La valeur de la quantité ne peut etre négative ou nulle.');
+        quantite6.value = "" ;
+    }
+    else{
+        total6.value = parseInt(quantite6.value * prix6.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 prix6.addEventListener('change', function(){
-    total6.value = parseInt(quantite6.value * prix6.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (prix6.value < 0){
+        alert('Le prix ne peut pas etre négatif');
+    }
+    else{
+        total6.value = parseInt(quantite6.value * prix6.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 
 quantite7.addEventListener('change', function(){
-    total7.value = parseInt(quantite7.value * prix7.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (quantite7.value <= 0){
+        alert('La valeur de la quantité ne peut etre négative ou nulle.');
+        quantite7.value = "" ;
+    }
+    else{
+        total7.value = parseInt(quantite7.value * prix7.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 prix7.addEventListener('change', function(){
-    total7.value = parseInt(quantite7.value * prix7.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (prix7.value < 0){
+        alert('Le prix ne peut pas etre négatif');
+    }
+    else{
+        total7.value = parseInt(quantite7.value * prix7.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 
 quantite8.addEventListener('change', function(){
-    total8.value = parseInt(quantite8.value * prix8.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (quantite8.value <= 0){
+        alert('La valeur de la quantité ne peut etre négative ou nulle.');
+        quantite8.value = "" ;
+    }
+    else{
+        total8.value = parseInt(quantite8.value * prix8.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 prix8.addEventListener('change', function(){
-    total8.value = parseInt(quantite8.value * prix8.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (prix8.value < 0){
+        alert('Le prix ne peut pas etre négatif');
+    }
+    else{
+        total8.value = parseInt(quantite8.value * prix8.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 
 quantite9.addEventListener('change', function(){
-    total9.value = parseInt(quantite9.value * prix9.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (quantite9.value <= 0){
+        alert('La valeur de la quantité ne peut etre négative ou nulle.');
+        quantite9.value = "" ;
+    }
+    else{
+        total9.value = parseInt(quantite9.value * prix9.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 prix9.addEventListener('change', function(){
-    total9.value = parseInt(quantite9.value * prix9.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (prix9.value < 0){
+        alert('Le prix ne peut pas etre négatif');
+    }
+    else{
+        total9.value = parseInt(quantite9.value * prix9.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 
 quantite10.addEventListener('change', function(){
-    total10.value = parseInt(quantite10.value * prix10.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (quantite10.value <= 0){
+        alert('La valeur de la quantité ne peut etre négative ou nulle.');
+        quantite10.value = "" ;
+    }
+    else{
+        total10.value = parseInt(quantite10.value * prix10.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
 prix10.addEventListener('change', function(){
-    total10.value = parseInt(quantite10.value * prix10.value);
-    totalGeneral.innerHTML = sommeTotalgeneral();
+    if (prix10.value < 0){
+        alert('Le prix ne peut pas etre négatif');
+    }
+    else{
+        total10.value = parseInt(quantite10.value * prix10.value);
+        totalGeneral.innerHTML = sommeTotalgeneral();
+    }
 });
+
+
 
 function sommeTotalgeneral(){
     let somme;
@@ -128,3 +241,26 @@ function sommeTotalgeneral(){
     return somme;
 }
 
+/*
+var i ;
+for (i = 1; i <= 10; i++){
+    eval('quantite' + i).addEventListener('change', function(){
+        if (eval('quantite' + i).value <= 0){
+            alert('La valeur de la quantité ne peut etre négative ou nulle.');
+        }
+        else{
+            eval('total' + i).value = parseInt(eval('quantie' + i).value * eval('prix' + i).value);
+            totalGeneral.innerHTML = sommeTotalgeneral();
+        }
+    });
+    eval('prix' + i).addEventListener('change', function(){
+        if (eval('prix' + i).value < 0){
+            alert('Le prix ne peut pas etre négatif');
+        }
+        else{
+            eval('total' + i).value = parseInt(eval('quantite' + i).value * eval('prix' + i).value);
+            totalGeneral.innerHTML = sommeTotalgeneral();
+        }
+    });
+}
+*/
