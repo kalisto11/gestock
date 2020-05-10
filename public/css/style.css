@@ -132,8 +132,12 @@ footer p{
   margin: -8px;
 }
 
+.row-color:nth-child(even) {
+  background-color:rgba(157, 205, 238, 0.4);
+}
+
 .row-color:nth-child(odd) {
-  background-color:rgb(219, 222, 224);
+  background-color:rgba(189, 190, 192, 0.4);
 }
 
 td a {

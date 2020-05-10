@@ -96,7 +96,7 @@
 
             if ($articles == false){
                 $erreur = true;
-                $message[] = "Les valeurs négatives ne peuvent pas etre utilisées.";
+                $message[] = "Les valeurs négatives ou vides ne peuvent pas etre utilisées.";
             }
 
             // Verifier si reference n'est pas vide
@@ -140,7 +140,7 @@
                     }
                     $bonentree->dotations= $dotations;
                     $bonentree->save();
-                    $message[] = "Le bon a été ajouté avec succès.";
+                    $message[] = "Le bon a été bien ajouté.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'consulter';
                     $this->request->id = $bonentree->id;
@@ -158,7 +158,7 @@
                     }
                     $bonentree->dotations =  $dotations;
                     $bonentree->modify();
-                    $message[] = "Le bon a été modifié avec succès.";
+                    $message[] = "Le bon a été bien modifié.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'consulter';
                     $this->request->id = $bonentree->id;

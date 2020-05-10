@@ -18,6 +18,8 @@
       </select>
     </div>
 
+    <h6>Dotations</h6>
+    
     <?php for ($i = 1; $i <= 10; $i++) : ?>
     <div class="row row-color m-2">
 

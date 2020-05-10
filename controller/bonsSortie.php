@@ -98,7 +98,7 @@
 
             if ($articles == false){
                 $erreur = true;
-                $message[] = "Les valeurs négatives ne peuvent pas etre utilisées.";
+                $message[] = "Les valeurs négatives ou vides ne peuvent pas etre utilisées.";
             }
 
            

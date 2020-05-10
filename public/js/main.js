@@ -43,7 +43,7 @@ quantite1.addEventListener('change', function(){
 });
 prix1.addEventListener('change', function(){
     if (prix1.value < 0){
-        alert('Le prix ne peut pas etre négatif');
+        alert('Le prix ne peut pas etre négatif.');
         prix1.value = "";
     }
     else{
@@ -64,7 +64,7 @@ quantite2.addEventListener('change', function(){
 });
 prix2.addEventListener('change', function(){
     if (prix2.value < 0){
-        alert('Le prix ne peut pas etre négatif');
+        alert('Le prix ne peut pas etre négatif.');
         prix2.value = "";
     }
     else{
@@ -85,7 +85,8 @@ quantite3.addEventListener('change', function(){
 });
 prix3.addEventListener('change', function(){
     if (prix3.value < 0){
-        alert('Le prix ne peut pas etre négatif');
+        alert('Le prix ne peut pas etre négatif.');
+        prix3.value = "";
     }
     else{
         total3.value = parseInt(quantite3.value * prix3.value);
@@ -105,7 +106,8 @@ quantite4.addEventListener('change', function(){
 });
 prix4.addEventListener('change', function(){
     if (prix4.value < 0){
-        alert('Le prix ne peut pas etre négatif');
+        alert('Le prix ne peut pas etre négatif.');
+        prix4.value = "";
     }
     else{
         total4.value = parseInt(quantite4.value * prix4.value);
@@ -125,7 +127,8 @@ quantite5.addEventListener('change', function(){
 });
 prix5.addEventListener('change', function(){
     if (prix5.value < 0){
-        alert('Le prix ne peut pas etre négatif');
+        alert('Le prix ne peut pas etre négatif.');
+        prix5.value = "";
     }
     else{
         total5.value = parseInt(quantite5.value * prix5.value);
@@ -145,7 +148,8 @@ quantite6.addEventListener('change', function(){
 });
 prix6.addEventListener('change', function(){
     if (prix6.value < 0){
-        alert('Le prix ne peut pas etre négatif');
+        alert('Le prix ne peut pas etre négatif.');
+        prix6.value = "";
     }
     else{
         total6.value = parseInt(quantite6.value * prix6.value);
@@ -165,7 +169,8 @@ quantite7.addEventListener('change', function(){
 });
 prix7.addEventListener('change', function(){
     if (prix7.value < 0){
-        alert('Le prix ne peut pas etre négatif');
+        alert('Le prix ne peut pas etre négatif.');
+        prix7.value = "";
     }
     else{
         total7.value = parseInt(quantite7.value * prix7.value);
@@ -185,7 +190,8 @@ quantite8.addEventListener('change', function(){
 });
 prix8.addEventListener('change', function(){
     if (prix8.value < 0){
-        alert('Le prix ne peut pas etre négatif');
+        alert('Le prix ne peut pas etre négatif.');
+        prix8.value = "";
     }
     else{
         total8.value = parseInt(quantite8.value * prix8.value);
@@ -205,7 +211,8 @@ quantite9.addEventListener('change', function(){
 });
 prix9.addEventListener('change', function(){
     if (prix9.value < 0){
-        alert('Le prix ne peut pas etre négatif');
+        alert('Le prix ne peut pas etre négatif.');
+        prix9.value = "";
     }
     else{
         total9.value = parseInt(quantite9.value * prix9.value);
@@ -225,7 +232,8 @@ quantite10.addEventListener('change', function(){
 });
 prix10.addEventListener('change', function(){
     if (prix10.value < 0){
-        alert('Le prix ne peut pas etre négatif');
+        alert('Le prix ne peut pas etre négatif.');
+        prix10.value = "";
     }
     else{
         total10.value = parseInt(quantite10.value * prix10.value);
@@ -255,7 +263,7 @@ for (i = 1; i <= 10; i++){
     });
     eval('prix' + i).addEventListener('change', function(){
         if (eval('prix' + i).value < 0){
-            alert('Le prix ne peut pas etre négatif');
+            alert('Le prix ne peut pas etre négatif.');
         }
         else{
             eval('total' + i).value = parseInt(eval('quantite' + i).value * eval('prix' + i).value);
