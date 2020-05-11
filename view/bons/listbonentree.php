@@ -35,15 +35,8 @@
 		<a href="/gestock/bonsentree/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante </a>
 	<?php endif ?>
 </div>
-<<<<<<< HEAD
 <?php if($_SESSION['user']['niveau'] >= 2) : ?>
     <div class="mt-5">
-        <a href="/gestock/bonsentree/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon d'entrée</button></a>
+        <a class="btn btn-success ml-5" href="/gestock/bonsentree/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon d'entrée</a>
     </div>
 <?php endif; ?>
-=======
-<div class="mt-5">
-    <a class="btn btn-success ml-5" href="/gestock/bonsentree/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon d'entrée</a>
-</div>
-
->>>>>>> f4ed2699ba6eaee12ec556ceea15d2783a223854

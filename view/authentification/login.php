@@ -2,10 +2,11 @@
 <html lang="fr">
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1">
+        <base href="/gestock/public/">
         <link rel="shortcut icon" type="image/png" href="public/images/icones/favicon.png">
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/connexion.css">
-        <base href="/gestock/public/">  
+         
     </head>
     <body>
       <h2 class="ml-3 mt-3"><img src="images/icones/education.png" class="icone  mr-2">IA KAFFRINE</h2>

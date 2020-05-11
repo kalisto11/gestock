@@ -24,6 +24,7 @@
         <?php endforeach ;?>
     </table>
 </div>
+
 <div class="d-flex justify-content-between my-4">
 	<?php if ($currentPage > 1):?>
 		<a href=" /gestock/bonssortie/liste/?page=<?= $currentPage - 1 ?>" class="btn btn-primary">Page précédente</a>
@@ -32,9 +33,10 @@
 		<a href="/gestock/bonssortie/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante </a>
 	<?php endif ?>
 </div>
+
 <?php if($_SESSION['user']['niveau'] >= 2) : ?>
     <div class="mt-5">
-        <a href="/gestock/bonssortie/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon de sortie</button></a>
+        <a class="btn btn-success ml-5" href="/gestock/bonssortie/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon de sortie</a>
     </div>
 <?php endif; ?>
 

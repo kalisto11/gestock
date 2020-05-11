@@ -21,8 +21,6 @@
                             <?php else : ?>
                                 <?php echo 'NEANT'; ?>
                             <?php endif ; ?>
-                         
-                           
                         </td>
                         <td class="align-middle">
                             <a class="btn btn-info btn-sm" href="/gestock/personnels/consulter/<?=$agent->id?>">
