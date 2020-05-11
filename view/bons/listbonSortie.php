@@ -1,7 +1,7 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 <h2 class="mt-5 text-center">Bons de sortie</h2> 
 <div>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered table-hover table-sm">
         <tr>
             <th class="th-sm">Référence</th>
             <th class="th-sm">Date</th>
@@ -17,7 +17,7 @@
                 <a class="btn btn-info btn-sm" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon de sortie"></a> 
                 <?php if($_SESSION['user']['niveau'] >= 2) : ?>
                     <a class="btn btn-info btn-sm" href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>"><img src="images/icones/pencil.png" class="menu-icone" title="Modifier les informations du bon de sortie"></a>
-                    <a class="btn btn-info btn-sm" href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>"><img src="images/icones/delete.png" class="menu-icone" title="Supprimer le bon de sortie"></a>
+                    <a class="btn btn-info btn-sm suppr" href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>"><img src="images/icones/delete.png" class="menu-icone" title="Supprimer le bon de sortie"></a>
                 <?php endif; ?>
             </td>
         </tr>

@@ -2,7 +2,7 @@
 
 <h2 class="mt-5 text-center">Personnel</h2> 
 <div></div>
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover table-sm">
                 <tr>
                     <th>Prénom</th>
                     <th>Nom</th>
@@ -26,7 +26,7 @@
                         </td>
                         <td class="align-middle">
                             <a class="btn btn-info btn-sm" href="/gestock/personnels/consulter/<?=$agent->id?>">
-                                <img src="images/icones/consult.png" class=" menu-icone" alt="Consulter" title="Consulter">
+                                <img src="images/icones/consult.png" class="menu-icone" alt="Consulter" title="Consulter">
                             </a>
                             <?php if($_SESSION['user']['niveau'] >= 2) : ?>
                                 <a class="btn btn-info btn-sm" href="/gestock/personnels/modifier/<?=$agent->id?>">

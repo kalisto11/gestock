@@ -94,7 +94,7 @@
             <div class="col-sm-3">
               <div class="form-group">
                 <label for="total<?= $i ?>">Total</label>
-                <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" disabled>
+                <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" value="0" disabled>
               </div>
             </div>
 
@@ -102,13 +102,22 @@
         <?php endfor ;
       }
       ?>
+
+      <div class="row zonegrise">
+        <div class="col-sm-8">
+          <p>Total général</p>
+        </div>
+        <div class="col-sm-4 text-right">
+          <p class="totalgeneral" id="totalGeneral"><?= $bonentree->totalGeneral ?></p>
+        </div>
+      </div> 
       
       <input type="hidden" name="operation" value="modifier">
       <input type="hidden" name="id" value="<?= $bonentree->id ?>">
       
       <div class="mt-5">
         <input type="submit" value="Modifier" class="btn btn-info">
-        <a href="/gestock/bonsentree/liste" class="btn btn-danger">Annuler</a>
+        <a href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>" class="btn btn-danger">Annuler</a>
       </div>    
     </form>
   </div>

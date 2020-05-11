@@ -18,8 +18,10 @@
       </select>
     </div>
 
+    <h6>Dotations</h6>
+    
     <?php for ($i = 1; $i <= 10; $i++) : ?>
-    <div class="row row-color">
+    <div class="row row-color m-2">
 
       <div class="col">
         <div class="form-group">
@@ -51,12 +53,22 @@
       <div class="col">
         <div class="form-group">
           <label for="total<?= $i ?>">Prix total</label>
-          <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" value="" disabled>
+          <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" value="0" disabled="disabled">
         </div>
       </div>
       
     </div>
     <?php endfor ; ?>
+
+    <div class="row zonegrise">
+      <div class="col-sm-8">
+        <p>Total général</p>
+      </div>
+      <div class="col-sm-4 text-right">
+        <p class="totalgeneral" id="totalGeneral">0</p>
+      </div>
+    </div> 
+    
     <div class="mt-5">
       <input type="hidden" name="operation" value="ajouter">
       <input type="submit" value="Ajouter" class="btn btn-success">

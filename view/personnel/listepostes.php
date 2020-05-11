@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-8">
         <h2 class="mt-5 text-center">Postes</h2>
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover table-sm">
                 <tr>
                     <th class="th-md">Poste</th>
                     <th class="th-sm">Action</th>
@@ -22,13 +22,14 @@
                                 </a>
                             </td>
                         <?php endif; ?>
+
                     </tr>
                 <?php endforeach ; ?>
             </table>
         </div>  
         <?php if($_SESSION['user']['niveau'] >= 2) : ?>
         <div class="col-md-4 bg-light">
-        <h2 class="mt-5 text-center"><?php if (isset($currentPoste->id)){echo 'Modifier le poste';}else{echo 'Ajouter un poste';} ?></h2>
+            <h2 class="mt-5 text-center"><?php if (isset($currentPoste->id)){echo 'Modifier le poste';}else{echo 'Ajouter un poste';} ?></h2>
             <div class="container-fluid">
                 <form method="post" action="/gestock/postes/traitement-poste">
                     <div class="form-group">
