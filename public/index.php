@@ -25,7 +25,13 @@
     require 'default.php';
 
     }else{
-        require VIEW . 'authentification/login.php';
+        if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+            
+            $dispatcher = new Dispatcher();
+        }
+        else{
+            require_once VIEW . 'authentification/login.php';
+        }
     }
    
 

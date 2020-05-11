@@ -12,18 +12,21 @@
                 <?php foreach($postes as $poste): ?>
                     <tr>
                         <td><?= $poste->nom ?></td>
-                        <td>
-                            <a class="btn btn-info btn-sm" href="/gestock/postes/modifier/<?= $poste->id ?>">
-                                <img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier">
-                            </a>
-                            <a class="btn btn-info btn-sm" href="/gestock/postes/supprimer/<?= $poste->id ?>">
-                                <img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer">
-                            </a>
-                        </td>
+                        <?php if($_SESSION['user']['niveau'] >= 2) : ?>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="/gestock/postes/modifier/<?= $poste->id ?>">
+                                    <img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier">
+                                </a>
+                                <a class="btn btn-info btn-sm" href="/gestock/postes/supprimer/<?= $poste->id ?>">
+                                    <img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer">
+                                </a>
+                            </td>
+                        <?php endif; ?>
                     </tr>
                 <?php endforeach ; ?>
             </table>
         </div>  
+        <?php if($_SESSION['user']['niveau'] >= 2) : ?>
         <div class="col-md-4 bg-light">
         <h2 class="mt-5 text-center"><?php if (isset($currentPoste->id)){echo 'Modifier le poste';}else{echo 'Ajouter un poste';} ?></h2>
             <div class="container-fluid">
@@ -41,6 +44,7 @@
                 </form>
             </div>     
         </div>
+    <?php endif; ?>
     </div>
 </div>
 

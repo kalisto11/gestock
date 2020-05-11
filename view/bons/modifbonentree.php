@@ -20,7 +20,8 @@
       <?php 
       $i = 1;
       foreach ($bonentree->dotations as $dotation) : ?>
-        <div class="row">
+        <div class="row row-color">
+
           <div class="col">
             <div class="form-group">
               <label for="article<?= $i ?>">Article</label>
@@ -32,37 +33,71 @@
               </select>
             </div> 
           </div>
+
           <div class="col">
             <div class="form-group">
               <label for="quantite<?= $i ?>">Quantité</label>
               <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" value="<?= $dotation->quantite ?>" class="form-control" placeholder="Quantité de l'article">
             </div>
           </div>
+        
+          <div class="col">
+            <div class="form-group">
+              <label for="prix<?= $i ?>">Prix unitaire</label>
+              <input type="number" name="prix<?= $i ?>" id="prix<?= $i ?>" value="<?= $dotation->prix ?>" class="form-control" placeholder="Saisir le prix unitaire de l'article">
+            </div>
+          </div>
+        
+          <div class="col">
+            <div class="form-group">
+              <label for="total<?= $i ?>">Total</label>
+              <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" value="<?= $dotation->total ?>" class="form-control" disabled>
+            </div>
+          </div>
+        <!-- fin row -->
         </div> 
+
       <?php 
       $i++;
       endforeach ; ?>
 
       <?php if ($i < 10){
         for ($i = $i ; $i <= 10; $i ++) : ?>
-          <div class="row">
-          <div class="col">
-            <div class="form-group">
-              <label for="article<?= $i ?>">Article</label>
-              <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control">
-                <option value="null">Choisir un article</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>"><?= $article->nom ?></option>
-                <?php endforeach ; ?>
-              </select>
-            </div> 
-          </div>
-          <div class="col">
-            <div class="form-group">
-              <label for="quantite<?= $i ?>">Quantité</label>
-              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control" placeholder="Saisir un nombre">
+          <div class="row row-color">
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="article<?= $i ?>">Article</label>
+                <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control">
+                  <option value="null">Choisir un article</option>
+                  <?php foreach($articles as $article): ?>
+                  <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                  <?php endforeach ; ?>
+                </select>
+              </div> 
             </div>
-          </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="quantite<?= $i ?>">Quantité</label>
+                <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control" placeholder="Saisir un nombre">
+              </div>
+            </div>
+          
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="prix<?= $i ?>">Prix unitaire</label>
+                <input type="number" name="prix<?= $i ?>" id="prix<?= $i ?>" class="form-control" placeholder="Saisir le prix unitaire">
+              </div>
+            </div>
+
+            <div class="col-sm-3">
+              <div class="form-group">
+                <label for="total<?= $i ?>">Total</label>
+                <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" disabled>
+              </div>
+            </div>
+
         </div> 
         <?php endfor ;
       }

@@ -25,7 +25,7 @@
 				$dotations = [];
 				while ($row = $reponse->fetch()){
 					$article = new Article($row['id']);
-					$dotation = new Dotation($article, $row['quantite']);
+					$dotation = new Dotation($article, $row['quantite'], $row['prix'], $row['total']);
 					$dotations[] = $dotation;
 				}
 				$this->dotations = $dotations;	
@@ -53,12 +53,14 @@
 			$bonsortie = $reponse->fetch();
 			$this->id = $bonsortie['id'];
 			foreach ($this->dotations as $dotation){
-				$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, quantite) VALUES (:id_bon_sortie, :id_article, :quantite)';
+				$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, quantite, prix, total) VALUES (:id_bon_sortie, :id_article, :quantite, :prix, :total)';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array(
 					'id_bon_sortie' => $this->id,
 					'id_article'    => $dotation->article,
-					'quantite'    => $dotation->quantite
+					'quantite'    => $dotation->quantite,
+					'prix'    => $dotation->prix,
+					'total'    => $dotation->total
            		));
         	}
 		}
@@ -88,12 +90,14 @@
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array($this->id));
 			foreach ($this->dotations as $dotation){
-			$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, quantite) VALUES (:id_bon_sortie, :id_article, :quantite)';
+			$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, quantite, prix, total) VALUES (:id_bon_sortie, :id_article, :quantite, :prix, :total)';
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array(
 				'id_bon_sortie' => $this->id,
 				'id_article'    => $dotation->article,
-				'quantite'    => $dotation->quantite
+				'quantite'    => $dotation->quantite,
+				'prix'    => $dotation->prix,
+				'total'    => $dotation->total
 			));
 		}
 		}

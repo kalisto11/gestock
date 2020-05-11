@@ -1,17 +1,18 @@
 body{
-    background-image: url('images/phot/academie.jpg');
+    /* background-image: url('..//images/photos/academie.jpg'); */
     background-repeat: no-repeat center fixed;
     -webkit-background-size: cover;
    }
 
   .blanc{
     text-align: center;
-    margin-top: 100px;
-    background-color:rgb(50, 190, 245)
+    margin-top: 10px;
+    background-color:rgb(50, 190, 245);
+    color: #fff;
   }
   .connexion{
       width: 50%;
-      margin-top: 100px;
+      margin-top: 50px;
       opacity: 0.9;
   }
 
@@ -29,5 +30,6 @@ body{
   .icone{
     height: 50px;
     width: 7%;
+    margin-left: 50px;
   }
  
