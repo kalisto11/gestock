@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-8">
             <h2 class=" mt-5 text-center">Articles</h2>
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-bordered table-hover table-sm">
                 <tr>
                     <th class="th-md">Articles</th>
                     <th class="th-sm">Groupes</th>
@@ -16,7 +16,7 @@
                         <td><?php if($article->groupe == 0){echo 'néant';}else{echo $article->groupe ;} ?></td>
                         <td>
                             <a class="btn btn-info btn-sm" href="/gestock/articles/modifier/<?= $article->id ?>"><img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier"></a>
-                            <a class="btn btn-info btn-sm" href="/gestock/articles/supprimer/<?= $article->id ?>"><img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer"></a>
+                            <a class="btn btn-info btn-sm suppr" href="/gestock/articles/supprimer/<?= $article->id ?>"><img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer"></a>
                         </td>
                     </tr>
                 <?php endforeach ; ?>

@@ -89,10 +89,15 @@
 
         public function traiterBonEntree($reference, $fournisseur, $id =null){
 
-            $articles = $this->ajoutArticle($_POST['article1'], $_POST['quantite1'], $_POST['prix1'],
+            $articles = $this->ajoutArticles($_POST['article1'], $_POST['quantite1'], $_POST['prix1'],
             $_POST['article2'], $_POST['quantite2'], $_POST['prix2'], $_POST['article3'], $_POST['quantite3'], $_POST['prix3'], $_POST['article4'], $_POST['quantite4'], $_POST['prix4'], $_POST['article5'], $_POST['quantite5'], $_POST['prix5'], $_POST['article6'], $_POST['quantite6'], $_POST['prix6'], $_POST['article7'], $_POST['quantite7'], $_POST['prix7'], $_POST['article8'], $_POST['quantite8'], $_POST['prix8'], $_POST['article9'], $_POST['quantite9'], $_POST['prix9'], $_POST['article10'], $_POST['quantite10'], $_POST['prix10']);
 
             $erreur = false;
+
+            if ($articles == false){
+                $erreur = true;
+                $message[] = "Les valeurs négatives ou vides ne peuvent pas etre utilisées.";
+            }
 
             // Verifier si reference n'est pas vide
             if (empty($reference)){
@@ -105,22 +110,24 @@
                 $message[] = "Il faut choisir un fournisseur sur la liste de fournisseurs."; 
             }
             //Verifier si au moins un article et sa quantité ont été choisis
-            if (empty($articles)){
-                $erreur = true;
-                $message[] = "Il faut choisir au minimum un article et sa quantité.";
-            }
-            // Verifier si un article n'a pas été choisi 2 fois (doublons)
-            $idArticles = [];
-            foreach ($articles as $article){
-                $idArticles[] = $article['id'];
-            }
-            $noDoublons = array_unique($idArticles);
-            if (count($noDoublons) < count($idArticles)){
-                $erreur = true;
-                $message[] = "Il y a eu doublon sur les articles choisis.";
+            if($articles != false){
+                if (empty($articles)){
+                    $erreur = true;
+                    $message[] = "Il faut choisir au minimum un article et sa quantité.";
+                }
+
+                 // Verifier si un article n'a pas été choisi 2 fois (doublons)
+                $idArticles = [];
+                foreach ($articles as $article){
+                    $idArticles[] = $article['id'];
+                }
+                $noDoublons = array_unique($idArticles);
+                if (count($noDoublons) < count($idArticles)){
+                    $erreur = true;
+                    $message[] = "Il y a eu doublon sur les articles choisis.";
+                }
             }
            
-            
             if ($erreur == false){ // si pas d'erreur
                 if ($id == null){ // cas ajouter
                     $bonentree = new BonEntree();
@@ -133,9 +140,10 @@
                     }
                     $bonentree->dotations= $dotations;
                     $bonentree->save();
-                    $message[] = "Le bon a été ajouté avec succès.";
+                    $message[] = "Le bon a été bien ajouté.";
                     $this->notification = new Notification("success", $message);
-                    $this->request->action = 'liste';
+                    $this->request->action = 'consulter';
+                    $this->request->id = $bonentree->id;
                 }
                 else{ // cas modifier 
                     $id = intval($id);
@@ -150,7 +158,7 @@
                     }
                     $bonentree->dotations =  $dotations;
                     $bonentree->modify();
-                    $message[] = "Le bon a été modifié avec succès.";
+                    $message[] = "Le bon a été bien modifié.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'consulter';
                     $this->request->id = $bonentree->id;
@@ -168,152 +176,33 @@
             }
         } // fin méthode traiterBonEntree
         
-        public function ajoutArticle($article1, $quantite1, $prix1, $article2, $quantite2, $prix2, $article3, $quantite3, $prix3, $article4, $quantite4, $prix4, $article5, $quantite5, $prix5, $article6, $quantite6, $prix6, $article7, $quantite7, $prix7, $article8, $quantite8, $prix8, $article9, $quantite9, $prix9, $article10, $quantite10, $prix10){
+        public function ajoutArticles($article1, $quantite1, $prix1, $article2, $quantite2, $prix2, $article3, $quantite3, $prix3, $article4, $quantite4, $prix4, $article5, $quantite5, $prix5, $article6, $quantite6, $prix6, $article7, $quantite7, $prix7, $article8, $quantite8, $prix8, $article9, $quantite9, $prix9, $article10, $quantite10, $prix10){
 
-            if ($prix1 == null){
-                $prix1 = 0;
-            }
-            if ($prix2 == null){
-                $prix2 = 0;
-            }
-            if ($prix3 == null){
-                $prix3 = 0;
-            }
-            if ($prix4 == null){
-                $prix4 = 0;
-            }
-            if ($prix5 == null){
-                $prix5 = 0;
-            }
-            if ($prix6 == null){
-                $prix6 = 0;
-            }
-            if ($prix7 == null){
-                $prix7 = 0;
-            }
-            if ($prix8 == null){
-                $prix8 = 0;
-            }
-            if ($prix9 == null){
-                $prix9 = 0;
-            }
-            if ($prix10 == null){
-                $prix10 = 0;
-            }
-
-            if ($quantite1 == null){
-                $quantite1 = 0;
-            }
-            if ($quantite2 == null){
-                $quantite2 = 0;
-            }
-            if ($quantite3 == null){
-                $quantite3 = 0;
-            }
-            if ($quantite4 == null){
-                $quantite4 = 0;
-            }
-            if ($quantite5 == null){
-                $quantite5 = 0;
-            }
-            if ($quantite6 == null){
-                $quantite6 = 0;
-            }
-            if ($quantite7 == null){
-                $quantite7 = 0;
-            }
-            if ($quantite8 == null){
-                $quantite8 = 0;
-            }
-            if ($quantite9 == null){
-                $quantite9 = 0;
-            }
-            if ($quantite10 == null){
-                $quantite10 = 0;
-            }
-            
             $articles = [];
-            if ($article1 != "null" AND !empty($quantite1)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article1)),
-                    'quantite' => intval(strip_tags($quantite1)),
-                    'prix' => intval(strip_tags($prix1)),
-                    'total' => $quantite1 * $prix1 
-                ];
-            }
-            if ($article2 != "null" AND !empty($quantite2)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article2)),
-                    'quantite' => intval(strip_tags($quantite2)),
-                    'prix' => intval(strip_tags($prix2)),
-                    'total' => $quantite2 * $prix2 
-                ];
-            }
-            if ($article3 != "null" AND !empty($quantite3)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article3)),
-                    'quantite' => intval(strip_tags($quantite3)),
-                    'prix' => intval(strip_tags($prix2)),
-                    'total' => $quantite3 * $prix3 
-                ];
-            }
-            if ($article4 != "null" AND !empty($quantite4)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article4)),
-                    'quantite' => intval(strip_tags($quantite4)),
-                    'prix' => intval(strip_tags($prix4)),
-                    'total' => $quantite4 * $prix4 
-                ];
-            }
-            if ($article5 != "null" AND !empty($quantite5)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article5)),
-                    'quantite' => intval(strip_tags($quantite5)),
-                    'prix' => intval(strip_tags($prix5)),
-                    'total' => $quantite5 * $prix5 
-                ];
-            }
-            if ($article6 != "null" AND !empty($quantite6)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article6)),
-                    'quantite' => intval(strip_tags($quantite6)),
-                    'prix' => intval(strip_tags($prix6)),
-                    'total' => $quantite6 * $prix6 
-                ];
-            }
-            if ($article7 != "null" AND !empty($quantite7)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article7)),
-                    'quantite' => intval(strip_tags($quantite7)),
-                    'prix' => intval(strip_tags($prix7)),
-                    'total' => $quantite7 * $prix7 
-                ];
-            }
-            if ($article8 != "null" AND !empty($quantite8)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article8)),
-                    'quantite' => intval(strip_tags($quantite8)),
-                    'prix' => intval(strip_tags($prix8)),
-                    'total' => $quantite8 * $prix8 
-                ];
-            }
-            if ($article9 != "null" AND !empty($quantite9)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article9)),
-                    'quantite' => intval(strip_tags($quantite9)),
-                    'prix' => intval(strip_tags($prix9)),
-                    'total' => $quantite9 * $prix9 
-                ];
-            }
-            if ($article10 != "null" AND !empty($quantite10)){
-                $articles[] = [
-                    'id' => intval(strip_tags($article10)),
-                    'quantite' => intval(strip_tags($quantite10)),
-                    'prix' => intval(strip_tags($prix10)),
-                    'total' => $quantite10 * $prix10 
-                ];
+            $varArticle = "article";
+            $varQuantite = "quantite";
+            $varPrix = "prix";
+
+            for ($i = 1; $i <= 10; $i++){
+
+                if (${$varPrix . $i} < 0 OR ${$varQuantite . $i} < 0){
+                    return false;
+                }
+
+                if (empty(${$varPrix . $i})){
+                    ${$varPrix . $i} = 0 ;
+                }
+
+                if (${$varArticle . $i} != 'null' AND !empty(${$varQuantite . $i})){
+                    $articles[] = [
+                        'id' => intval(strip_tags(${$varArticle . $i})),
+                        'quantite' => intval(strip_tags(${$varQuantite . $i})),
+                        'prix' => intval(strip_tags(${$varPrix . $i})),
+                        'total' => intval(${$varQuantite . $i} * ${$varPrix . $i}) 
+                    ];
+                } 
             }
            
             return $articles;
-        }//Fin méthode ajoutArticle!!!
+        }//Fin méthode ajoutArticles!!!
     } // fin class

@@ -95,7 +95,7 @@
           <div class="col">
             <div class="form-group">
               <label for="total<?= $i ?>">Prix total</label>
-              <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" value="" disabled>
+              <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control" value="0" disabled>
             </div>
           </div>
 
@@ -106,10 +106,19 @@
       
       <input type="hidden" name="operation" value="modifier">
       <input type="hidden" name="id" value="<?= $bonsortie->id ?>">
+
+      <div class="row zonegrise">
+        <div class="col-sm-8">
+          <p>Total général</p>
+        </div>
+        <div class="col-sm-4 text-right">
+          <p class="totalgeneral" id="totalGeneral"><?= $bonsortie->totalGeneral ?></p>
+        </div>
+      </div> 
       
       <div class="mt-5">
         <input type="submit" value="Modifier" class="btn btn-info">
-        <a href="/gestock/bonssortie/liste" class="btn btn-danger">Annuler</a>
+        <a href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>" class="btn btn-danger">Annuler</a>
       </div>    
     </form>
   </div>

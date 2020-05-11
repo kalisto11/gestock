@@ -23,7 +23,8 @@
         <div>
         <h5>Dotations</h5>
         <?php if ($bonsortie->dotations != null): ?>
-          <table class="table table-striped table-bordered table-hover">
+
+          <table class="table table-striped table-bordered table-hover table-sm">
           <tr>
             <th class="th-md">Article</th>
             <th>Quantité</th>
@@ -37,19 +38,24 @@
               <td><?= htmlspecialchars($dotation->prix) ?></td>
               <td><?= htmlspecialchars($dotation->total) ?></td>
             </tr>
-          <?php endforeach ; ?>  
+          <?php endforeach ; ?>
+          <tr class="font-weight-bold">
+            <td colspan="3">Total général</td>
+            <td><?= $bonsortie->totalGeneral ?></td>
+          </tr>  
           </table>
+
         <?php endif ; ?>    
       </div>
         </div>      
     </div>
     <div class="mt-5">
-        <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>"class="btn btn-info">Modifier</a>
-        <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>"class="btn btn-danger">Supprimer</a>
+        <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>" class="btn btn-info">Modifier</a>
+        <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>" class="btn btn-danger suppr">Supprimer</a>
     </div>
     <div>
         <p>
-            <a class="btn btn-secondary float-right" href="/gestock/bonssortie/liste">Voir la liste des Bons de sortie</a>
+            <a class="btn btn-secondary float-right" href="/gestock/bonssortie/liste">Voir la liste des bons de sortie</a>
         </p>
     </div>
 </div>

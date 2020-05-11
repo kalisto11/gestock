@@ -6,6 +6,7 @@
 		public $date;
 		public $dotations;
 		public $fournisseur;
+		public $totalGeneral;
 
 		public function __construct($id = null) {//constructeur du bon d'entrée
 			if ($id != null){
@@ -27,6 +28,7 @@
 					$article = new Article($row['id']);
 					$dotation = new Dotation($article, $row['quantite'], $row['prix'], $row['total']);
 					$dotations[] = $dotation;
+					$this->totalGeneral += $dotation->total;
 				}
 				$this->dotations = $dotations;	
 			}
@@ -36,6 +38,7 @@
 				$this->date        = null;
 				$this->dotations   = null;
 				$this->fournisseur = null;
+				$this->totalGeneral = null;
 			}
 		}
 
