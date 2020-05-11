@@ -17,9 +17,11 @@
             
             <td> 
                 <a class="btn btn-info btn-sm" href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon d'entrée"></a>
-                <a class="btn btn-info btn-sm" href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"><img src="images/icones/pencil.png" class=" menu-icone" title="Modifier les informations du bon d'entrée"></a>
-                <a class="btn btn-info btn-sm suppr" href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"><img src="images/icones/delete.png" class=" menu-icone" title="Supprimer le bon d'entrée"></a>
-            </td>
+                <?php if($_SESSION['user']['niveau'] >= 2) : ?>
+                    <a class="btn btn-info btn-sm" href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"><img src="images/icones/pencil.png" class=" menu-icone" title="Modifier les informations du bon d'entrée"></a>
+                    <a class="btn btn-info btn-sm suppr" href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"><img src="images/icones/delete.png" class=" menu-icone" title="Supprimer le bon d'entrée"></a>
+                <?php endif; ?>
+             </td>
         </tr>
         <?php endforeach ;?>
     </table>
@@ -33,7 +35,15 @@
 		<a href="/gestock/bonsentree/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante </a>
 	<?php endif ?>
 </div>
+<<<<<<< HEAD
+<?php if($_SESSION['user']['niveau'] >= 2) : ?>
+    <div class="mt-5">
+        <a href="/gestock/bonsentree/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon d'entrée</button></a>
+    </div>
+<?php endif; ?>
+=======
 <div class="mt-5">
     <a class="btn btn-success ml-5" href="/gestock/bonsentree/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon d'entrée</a>
 </div>
 
+>>>>>>> f4ed2699ba6eaee12ec556ceea15d2783a223854
