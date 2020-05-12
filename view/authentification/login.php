@@ -2,19 +2,20 @@
 <html lang="fr">
     <head>
         <meta name="viewport" content="width=device-width,initial-scale=1">
+        <base href="/gestock/public/">
         <link rel="shortcut icon" type="image/png" href="public/images/icones/favicon.png">
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
         <link rel="stylesheet" href="css/connexion.css">
-        <base href="/gestock/public/">  
+         
     </head>
     <body>
       <h2 class="ml-3 mt-3"><img src="images/icones/education.png" class="icone  mr-2">IA KAFFRINE</h2>
-      <h1 class="blanc">APPLICATION DE GESTION DE STOCK</h1>
+      <h1 class="blanc">GESTION DE STOCK</h1>
         <div  class="container bg-light justify-content-center align-items-center connexion"> 
           <?php require VIEW . 'infos/notAuth.php'; ?>
-            <form method="post" action="/gestock/auths/traitement-connection" >
+            <form class="mt-5" method="post" action="/gestock/auths/" >
               <div class=" form-group">
-                <label class="mt-5" for="exampleInputEmail1" ><img src="images/icones/user.jpg" class="user mr-3">Nom d'utilisateur</label>
+                <label for="exampleInputEmail1" ><img src="images/icones/user.jpg" class="user mr-3">Nom d'utilisateur</label>
                 <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" required>
               </div>
               <div class="form-group">
@@ -22,7 +23,7 @@
                 <input type="password" class="form-control" name="pasword" id="exampleInputPassword1" required>
               </div>
               <div class="modal-footer"> 
-                <button type="submit" class="btn btn-primary">Se Connecter</button>
+                <button type="submit" class="btn btn-primary">Se connecter</button>
               </div> 
             </form>
         </div>

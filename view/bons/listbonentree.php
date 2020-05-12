@@ -13,11 +13,11 @@
         <tr>
             <td><?= $bonentree->reference?></td>
             <td><?=$bonentree->date?></td>
-            <td><?=$bonentree->fournisseur->nom?></td>
+            <td><?=$bonentree->nomFournisseur?></td>
             
             <td> 
                 <a class="btn btn-info btn-sm" href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon d'entrée"></a>
-                <?php if($_SESSION['user']['niveau'] >= 2) : ?>
+                <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
                     <a class="btn btn-info btn-sm" href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"><img src="images/icones/pencil.png" class=" menu-icone" title="Modifier les informations du bon d'entrée"></a>
                     <a class="btn btn-info btn-sm suppr" href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"><img src="images/icones/delete.png" class=" menu-icone" title="Supprimer le bon d'entrée"></a>
                 <?php endif; ?>
@@ -35,8 +35,8 @@
 		<a href="/gestock/bonsentree/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante </a>
 	<?php endif ?>
 </div>
-<?php if($_SESSION['user']['niveau'] >= 2) : ?>
+<?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
     <div class="mt-5">
-        <a href="/gestock/bonsentree/ajouter"><button class="btn btn-success ml-5"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon d'entrée</button></a>
+        <a class="btn btn-success ml-5" href="/gestock/bonsentree/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon d'entrée</a>
     </div>
 <?php endif; ?>

@@ -30,6 +30,7 @@
             $dispatcher = new Dispatcher();
         }
         else{
+            unset($_SESSION['notification']);
             require_once VIEW . 'authentification/login.php';
         }
     }

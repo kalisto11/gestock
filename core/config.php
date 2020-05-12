@@ -18,6 +18,9 @@ class Myautoload{
         define('MODEL', ROOT . 'model/');
         define('VIEW', ROOT . 'view/');
         define('CORE', ROOT . 'core/');
+        define('SUPERVISEUR', 1);
+        define('GESTIONNAIRE', 2);
+        define('ADMINISTRATEUR', 3);
     }
 
     public static function autoload($class){

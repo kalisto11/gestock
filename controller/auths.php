@@ -8,27 +8,27 @@ class Auths extends Controller{
             $users = Users::getList();
             foreach ($users as $user){
                 if ($_POST['username'] ==  $user->username  && sha1($_POST['pasword']) == $user->pasword ){
+                    $_SESSION['user']['id'] = $user->id; 
                     $_SESSION['user']['username'] = $user->username; 
                     $_SESSION['user']['niveau'] = $user->niveau;
                     $_SESSION['user']['nomComplet'] = $user->nomComplet;
-                    unset($_SESSION['notification']);
                     $this->request->controller = 'home';
                     $this->render();
                 }
                 else{
-                    $message = "Les identifiant sont incorrects";
+                    $message = "Les identifiants sont incorrects.";
                     $_SESSION['notification'] = [
                         'type'=> 'danger',
                         'message'=> $message
                     ];
                     $this->request->controller = 'login';
                     $this->render($_SESSION['notification']);   
-                    
                 }
             }
         }else if ($this->request->method === 'GET'){
             unset($_SESSION['user']);
-            $this->request->controller = 'login';
+            unset($_SESSION['notification']);
+            $this->request->controller = 'deconnexion';
             $this->render();   
         }
     }            
@@ -38,8 +38,11 @@ class Auths extends Controller{
                 header ('location: /gestock/home/');         
             break;        
             case 'login':
-               header ('location: /gestock/');    
+               require_once VIEW . 'authentification/login.php';
             break;
+            case 'deconnexion':
+                header ('location: /gestock/'); 
+             break;
         }        
     }
 }

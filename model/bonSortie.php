@@ -1,32 +1,38 @@
 <?php
-	class BonSortie
-	{
+	class BonSortie{
 		public $id;
 		public $reference;
 		public $date;
 		public $dotations;
-		public $beneficiaire;
+		public $idBeneficiaire;
+		public $nomBeneficiaire;
 		public $totalGeneral;
+		public $idModificateur;
+		public $nomModificateur;
+		public $dateModification;
 
 		public function __construct($id = null) {//constructeur du bon de sortie
 			if ($id != null){
 				$this->id = $id;
 				$pdo = Database::getPDO();
-				$req = "SELECT id, reference, DATE_FORMAT(date, '%d/%m/%Y') AS date, beneficiaire FROM bon_sortie WHERE id = ?";
+				$req = "SELECT id, reference, DATE_FORMAT(date, '%d/%m/%Y') AS date, beneficiaire_id, beneficiaire_nom, modificateur_id, modificateur_nom, DATE_FORMAT(date_modification, '%d/%m/%Y') AS date_modification FROM bon_sortie WHERE id = ?";
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));
 				$bonsortie        = $reponse->fetch();
 				$this->id          = $bonsortie['id'];
 				$this->reference   = $bonsortie['reference'];
 				$this->date        = $bonsortie['date'];
-				$this->beneficiaire = new Personnel($bonsortie['beneficiaire']);
+				$this->idBeneficiaire = $bonsortie['beneficiaire_id'];
+				$this->nomBeneficiaire = $bonsortie['beneficiaire_nom'];
+				$this->idModificateur = $bonsortie['modificateur_id'];
+				$this->nomModificateur = $bonsortie['modificateur_nom'];
+				$this->dateModification = $bonsortie['date_modification'];
 				$req = 'SELECT * FROM article RIGHT JOIN sortie_article ON article.id = sortie_article.id_article WHERE sortie_article.id_bon_sortie = ?';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));
 				$dotations = [];
 				while ($row = $reponse->fetch()){
-					$article = new Article($row['id']);
-					$dotation = new Dotation($article, $row['quantite'], $row['prix'], $row['total']);
+					$dotation = new Dotation($row['id_article'], $row['nom_article'], $row['quantite'], $row['prix']);
 					$dotations[] = $dotation;
 					$this->totalGeneral += $dotation->total;
 				}
@@ -37,32 +43,41 @@
 				$this->reference   = null;
 				$this->date        = null;
 				$this->dotations     = null;
-				$this->quantite    = null;
-				$this->beneficiaire = null;
+				$this->idBeneficiaire = null;
+				$this->nomBeneficiaire = null;
+				$this->totalGeneral = null;
+				$this->idModificateur = null;
+				$this->nomModificateur = null;
+				$this->dateModification = null;
+				
 			}
 		}
 
 		public function save() {// Méthode permettant d'insérer un bon de sortie
 			$pdo = Database::getPDO();
-            $req = 'INSERT INTO bon_sortie (reference, date, beneficiaire) VALUES (:reference, CURDATE(),:beneficiaire)';
+            $req = 'INSERT INTO bon_sortie (reference, date, beneficiaire_id, beneficiaire_nom, modificateur_id, modificateur_nom, date_modification) VALUES (:reference, CURDATE(), :idBeneficiaire, :nomBeneficiaire, :idModificateur, :nomModificateur, CURDATE())';
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
-			'reference'   => $this->reference,
-			'beneficiaire' => $this->beneficiaire
+				'reference'   => $this->reference,
+				'idBeneficiaire' => $this->idBeneficiaire,
+				'nomBeneficiaire' => $this->nomBeneficiaire,
+				'idModificateur' => $this->idModificateur,
+				'nomModificateur' => $this->nomModificateur
 			));
+
 			$req = 'SELECT id FROM bon_sortie Order By ID Desc LIMIT 1';
         	$reponse = $pdo->query($req);
 			$bonsortie = $reponse->fetch();
 			$this->id = $bonsortie['id'];
 			foreach ($this->dotations as $dotation){
-				$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, quantite, prix, total) VALUES (:id_bon_sortie, :id_article, :quantite, :prix, :total)';
+				$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, nom_article, quantite, prix) VALUES (:id_bon_sortie, :id_article, :nom_article, :quantite, :prix)';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array(
 					'id_bon_sortie' => $this->id,
-					'id_article'    => $dotation->article,
+					'id_article'    => $dotation->idArticle,
+					'nom_article'    => $dotation->nomArticle,
 					'quantite'    => $dotation->quantite,
-					'prix'    => $dotation->prix,
-					'total'    => $dotation->total
+					'prix'    => $dotation->prix
            		));
         	}
 		}
@@ -80,28 +95,31 @@
 
 		public function modify() {//Méthode permettant de modifier le bon de sortie
 			$pdo = Database::getPDO();
-            $req = 'UPDATE bon_sortie SET reference = :reference, beneficiaire = :beneficiaire WHERE id = :id';
+            $req = 'UPDATE bon_sortie SET reference = :reference, beneficiaire_id = :idBeneficiaire, beneficiaire_nom = :nomBeneficiaire, modificateur_id = :idModificateur, modificateur_nom = :nomModificateur, date_modification = CURDATE() WHERE id = :id';
             $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
-            $resultat = $reponse->execute(array(
+			$resultat = $reponse->execute(array( 
 			'reference'   => $this->reference,
-			'beneficiaire' =>$this->beneficiaire,
-            'id'          => $this->id
-            ));
+			'idBeneficiaire' =>$this->idBeneficiaire,
+			'nomBeneficiaire' =>$this->nomBeneficiaire,
+			'idModificateur' => $this->idModificateur,
+			'nomModificateur' => $this->nomModificateur,
+			'id' => $this->id
+			));	
 			
 			$req = 'DELETE FROM sortie_article WHERE id_bon_sortie = ?';
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array($this->id));
 			foreach ($this->dotations as $dotation){
-			$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, quantite, prix, total) VALUES (:id_bon_sortie, :id_article, :quantite, :prix, :total)';
-			$reponse = $pdo->prepare($req);
-			$reponse->execute(array(
-				'id_bon_sortie' => $this->id,
-				'id_article'    => $dotation->article,
-				'quantite'    => $dotation->quantite,
-				'prix'    => $dotation->prix,
-				'total'    => $dotation->total
-			));
-		}
+				$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, nom_article, quantite, prix) VALUES (:id_bon_sortie, :id_article, :nom_article, :quantite, :prix)';
+				$reponse = $pdo->prepare($req);
+				$reponse->execute(array(
+					'id_bon_sortie' => $this->id,
+					'id_article'    => $dotation->idArticle,
+					'nom_article'    => $dotation->nomArticle,
+					'quantite'    => $dotation->quantite,
+					'prix'    => $dotation->prix
+				));
+			}
 		}
 		/**
 		  * permet de récupérer la liste des bons de sortie
@@ -118,6 +136,7 @@
 			return $bonssorties;
 			
 		}
+
 		public static function getNbrBon(){
 			$pdo = Database::getPDO();
 			$req = "SELECT COUNT(id) FROM bon_sortie";

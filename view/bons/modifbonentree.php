@@ -12,7 +12,7 @@
       <select name="fournisseur" id="fournisseur" class="form-control">
         <option value="null">Choisir un fournisseur</option>
         <?php foreach ($fournisseurs as $fournisseur) : ?>
-        <option value="<?= $fournisseur->id ?>" <?php if ($fournisseur->id == $bonentree->fournisseur->id){echo 'selected="selected"' ;} ?>><?= $fournisseur->nom ?></option>
+        <option value="<?= $fournisseur->id ?>" <?php if ($fournisseur->id == $bonentree->idFournisseur){echo 'selected="selected"' ;} ?>><?= $fournisseur->nom ?></option>
         <?php endforeach ; ?>
       </select>
       </div>
@@ -28,7 +28,7 @@
               <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control">
                 <option value="null">Choisir un article</option>
                 <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>" <?php if ($article->id == $dotation->article->id){echo 'selected="selected"';} ?>><?= $article->nom ?></option>
+                <option value="<?= $article->id ?>" <?php if ($article->id == $dotation->idArticle){echo 'selected="selected"';} ?>><?= $article->nom ?></option>
                 <?php endforeach ; ?>
               </select>
             </div> 

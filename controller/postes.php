@@ -11,32 +11,37 @@
         */
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
-                switch ($_POST['operation']){
-                    case 'ajouter': // cas ou on ajoute un nouveau poste
-                        $this->traiterPoste($_POST['nomPoste']);
-                    break;
-
-                    case 'modifier': // cas ou on modifie un poste existant
-                        $this->traiterPoste($_POST['nomPoste'], $_POST['id']);
-                    break;
-
-                    default:
-                    $message[] =  "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
-                    $this->notification = new Notification("danger", $message);
-                    $this->request->action = 'liste';
-                    
-                } // fin switch sur $_POST['operation']
+                if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    switch ($_POST['operation']){
+                        case 'ajouter': // cas ou on ajoute un nouveau poste
+                            $this->traiterPoste($_POST['nomPoste']);
+                        break;
+    
+                        case 'modifier': // cas ou on modifie un poste existant
+                            $this->traiterPoste($_POST['nomPoste'], $_POST['id']);
+                        break;
+    
+                        default:
+                        $message[] =  "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
+                        $this->notification = new Notification("danger", $message);
+                        $this->request->action = 'liste';
+                        
+                    } // fin switch sur $_POST['operation']
+                }
+                
                 $this->render($this->notification);
             } // fin traitement POST
 
             else if ($this->request->method === 'GET'){ // si la requete vient d'un lien 
                 if ($this->request->action === 'supprimer'){
-                    $idPoste = intval($this->request->id);
-                    $poste  = new Poste($idPoste, null);
-                    $poste->delete();
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $idPoste = intval($this->request->id);
+                        $poste  = new Poste($idPoste, null);
+                        $poste->delete();
+                        $message[] = "Le poste a été supprimé avec succès.";
+                        $this->notification = new Notification("success", $message);
+                    }
                     $this->request->action = 'liste';
-                    $message[] = "Le poste a été supprimé avec succès.";
-                    $this->notification = new Notification("success", $message);
                 }
                 $this->render($this->notification);
             }
@@ -55,8 +60,10 @@
                 break;
 
                 case 'modifier':
-                    $idPoste = intval($this->request->id);
-                    $currentPoste = new Poste($idPoste);
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $idPoste = intval($this->request->id);
+                        $currentPoste = new Poste($idPoste);
+                    }
                     $postes = Poste::getList();
                     require_once VIEW . 'personnel/listepostes.php';
                 break;
