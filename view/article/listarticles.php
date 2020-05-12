@@ -7,7 +7,7 @@
             <table class="table table-striped table-bordered table-hover table-sm">
                 <tr>
                     <th class="th-md">Articles</th>
-                    <th class="th-sm">Groupe</th>
+                    <th class="th-sm">Groupes</th>
                     <th class="th-sm">Action</th>
                 </tr>
                 <?php foreach($articles as $article): ?>
@@ -41,17 +41,16 @@
                         <option value="2" <?php if (isset($currentArticle->groupe) AND $currentArticle->groupe == 2){echo 'selected="selected"';} ?>>Groupe 2
                         </option>
                     </select><br/><br/>
+                        <input type="hidden" name="operation" value="<?php if (isset($currentArticle->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
+                        <input type="hidden" name="idArticle" value="<?php if (isset($currentArticle->id)){echo $currentArticle->id ;} ?>">
+                        <input type="submit" value="<?php if (isset($currentArticle->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-<?php if(isset($currentArticle->id)){echo 'info';}else{echo 'success';}?>">
 
-                    <input type="hidden" name="operation" value="<?php if (isset($currentArticle->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
-                    <input type="hidden" name="idArticle" value="<?php if (isset($currentArticle->id)){echo $currentArticle->id ;} ?>">
-                    <input type="submit" value="<?php if (isset($currentArticle->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-<?php if(isset($currentArticle->id)){echo 'info';}else{echo 'success';}?>">
-
-                    <?php if (isset($currentArticle->id)): ?>
-                    <a class="btn btn-danger" href="/gestock/articles/liste">Annuler</a>
-                    <?php endif ; ?>
-                </form>
-            </div>     
-        </div>
+                        <?php if (isset($currentArticle->id)): ?>
+                        <a class="btn btn-danger" href="/gestock/articles/liste">Annuler</a>
+                        <?php endif ; ?>
+                    </form>
+                </div>     
+            </div>
         <?php endif; ?>
     </div>
 </div>

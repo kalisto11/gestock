@@ -76,7 +76,7 @@
                                 <img src="images/icones/dossier.png" class="mr-2 ml-2 bg-white menu-icone">Journal
                             </li>
                             <ul class="sub-menu collapse" id="journal">
-                                <li><a href=""><img src="images/icones/livre journal.JPG" class="mr-2 menu-icone">Livre Journal</a></li>
+                                <li><a href="/gestock/livrejournals/liste"><img src="images/icones/livre journal.JPG" class="mr-2 menu-icone">Livre Journal</a></li>
                                 <li><a href=""><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
                             </ul>
                         </ul>
