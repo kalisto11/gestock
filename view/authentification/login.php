@@ -15,7 +15,7 @@
           <?php require VIEW . 'infos/notAuth.php'; ?>
             <form class="mt-5" method="post" action="/gestock/auths/" >
               <div class=" form-group">
-                <label class="mt-5" for="exampleInputEmail1" ><img src="images/icones/user.jpg" class="user mr-3">Nom d'utilisateur</label>
+                <label for="exampleInputEmail1" ><img src="images/icones/user.jpg" class="user mr-3">Nom d'utilisateur</label>
                 <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" required>
               </div>
               <div class="form-group">
