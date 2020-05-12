@@ -4,18 +4,32 @@
 <div class="container"> 
   <div class="row">
     <div class="col-sm-3">
+
       <div>
-        <h5>Référence</h5>
+        <h5>Numéro du bon d'entrée</h5>
         <p class="zonegrise" ><?= $bonentree->reference ?></p>
       </div>
+
       <div>
-        <h5>Date</h5>
+        <h5>Date du bon d'entrée</h5>
         <p class="zonegrise"><?= $bonentree->date ?></p>
       </div>
+
+      <div>
+        <h5>Numéro de la facture</h5>
+        <p class="zonegrise" ><?= $bonentree->numeroFacture ?></p>
+      </div>
+
+      <div>
+        <h5>Date de la facture</h5>
+        <p class="zonegrise"><?= $bonentree->dateFacture ?></p>
+      </div>
+
       <div class="mt-3">
         <h5>Fournisseur</h5>
         <p class="zonegrise"><?= $bonentree->nomFournisseur ?></p>      
       </div>
+
     </div>
     
     <div class="col-sm-9">
