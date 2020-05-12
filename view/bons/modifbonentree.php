@@ -2,20 +2,43 @@
 <h2 class="mt-5 text-center">Modifier le bon d'entrée</h2>
 <div class="container"> 
     <form method="post" action="/gestock/bonsentree/traitement-bonentree">
-      <div class="form-group">
-        <label for="reference">Référence</label>
-        <input type="text" name="reference" id="reference" class="form-control" value="<?= $bonentree->reference ?>">
+
+      <div class="row">
+        <div class="col">
+          <div class="form-group">
+            <label for="reference">Numéro du bon d'entrée</label>
+            <input type="text" name="reference" id="reference" class="form-control" value="<?= $bonentree->reference ?>">
+          </div>
+        </div>
+        
+        <div class="col">
+          <div class="form-group">
+            <label for="numeroFacture">Numéro de la facture</label>
+            <input type="text" name="numeroFacture" id="numeroFacture" class="form-control" value="<?= $bonentree->numeroFacture ?>">
+          </div>
+        </div>
+        
+        <div class="col">
+          <div class="form-group">
+            <label for="dateFacture">Date de la facture</label>
+            <input type="date" name="dateFacture" id="dateFacture" class="form-control" value="<?= $bonentree->formatDateEng($bonentree->dateFacture) ?>">
+          </div>
+        </div>
+        
+        <div class="col">
+          <div class="form-group">
+            <label for="fournisseur">Fournisseur</label>
+            <select name="fournisseur" id="fournisseur" class="form-control">
+              <option value="null">Choisir un fournisseur</option>
+              <?php foreach ($fournisseurs as $fournisseur) : ?>
+              <option value="<?= $fournisseur->id ?>" <?php if ($fournisseur->id == $bonentree->idFournisseur){echo 'selected="selected"' ;} ?>><?= $fournisseur->nom ?></option>
+              <?php endforeach ; ?>
+            </select>
+          </div>
+        </div>
+      
       </div>
-    
-      <div class="form-group">
-      <label for="fournisseur">Fournisseur</label>
-      <select name="fournisseur" id="fournisseur" class="form-control">
-        <option value="null">Choisir un fournisseur</option>
-        <?php foreach ($fournisseurs as $fournisseur) : ?>
-        <option value="<?= $fournisseur->id ?>" <?php if ($fournisseur->id == $bonentree->idFournisseur){echo 'selected="selected"' ;} ?>><?= $fournisseur->nom ?></option>
-        <?php endforeach ; ?>
-      </select>
-      </div>
+      
 
       <?php 
       $i = 1;

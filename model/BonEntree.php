@@ -4,24 +4,28 @@
 		public $id;
 		public $reference;
 		public $date;
-		public $dotations;
+		public $numeroFacture;
+		public $dateFacture;
 		public $idFournisseur;
 		public $nomFournisseur;
 		public $totalGeneral;
 		public $idModificateur;
 		public $nomModificateur;
 		public $dateModification;
+		public $dotations;
 
 		public function __construct($id = null) {//constructeur du bon d'entrée
 			if ($id != null){
 				$this->id = $id;
 				$pdo = Database::getPDO();
-				$req = "SELECT id, reference, DATE_FORMAT(date, '%d/%m/%Y') AS date, fournisseur_id, fournisseur_nom, modificateur_id, modificateur_nom, DATE_FORMAT(date_modification, '%d/%m/%Y') AS date_modification FROM bon_entree WHERE id = ?";
+				$req = "SELECT id, reference, numero_facture, DATE_FORMAT(date_facture, '%d/%m/%Y') AS date_facture, DATE_FORMAT(date, '%d/%m/%Y') AS date, fournisseur_id, fournisseur_nom, modificateur_id, modificateur_nom, DATE_FORMAT(date_modification, '%d/%m/%Y') AS date_modification FROM bon_entree WHERE id = ?";
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));
 				$bonentree         = $reponse->fetch();
 				$this->id          = $bonentree['id'];
 				$this->reference   = $bonentree['reference'];
+				$this->numeroFacture   = $bonentree['numero_facture'];
+				$this->dateFacture   = $bonentree['date_facture'];
 				$this->date        = $bonentree['date'];
 				$this->idFournisseur = $bonentree['fournisseur_id'];
 				$this->nomFournisseur = $bonentree['fournisseur_nom'];
@@ -40,25 +44,29 @@
 				$this->dotations = $dotations;	
 			}
 			else{
-				$this->id          = null;
+				$this->id  = null;
 				$this->reference   = null;
+				$this->numeroFacture   = null;
+				$this->dateFacture   = null;
 				$this->date        = null;
-				$this->dotations   = null;
 				$this->idFournisseur = null;
 				$this->nomFournisseur = null;
 				$this->totalGeneral = null;
 				$this->idModificateur = null;
 				$this->nomModificateur = null;
 				$this->dateModification = null;
+				$this->dotations   = null;
 			}
 		}
 
 		public function save() {// Méthode permettant d'insérer un bon d'entrée
 			$pdo = Database::getPDO();
-            $req = 'INSERT INTO bon_entree (reference, date, fournisseur_id, fournisseur_nom, modificateur_id, modificateur_nom, date_modification) VALUES (:reference, CURDATE(), :idFournisseur, :nomFournisseur, :idModificateur, :nomModificateur, CURDATE())';
+            $req = 'INSERT INTO bon_entree (reference, numero_facture, date_facture, date, fournisseur_id, fournisseur_nom, modificateur_id, modificateur_nom, date_modification) VALUES (:reference, :numeroFacture, :dateFacture, CURDATE(), :idFournisseur, :nomFournisseur, :idModificateur, :nomModificateur, CURDATE())';
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
 			'reference'   => $this->reference,
+			'numeroFacture'   => $this->numeroFacture,
+			'dateFacture'   => $this->dateFacture,
 			'idFournisseur' => $this->idFournisseur,
 			'nomFournisseur' => $this->nomFournisseur,
 			'idModificateur' => $this->idModificateur,
@@ -83,10 +91,12 @@
 
 		public function modify() {//Méthode permettant de modifier le bon d'entrée
 			$pdo = Database::getPDO();
-            $req = 'UPDATE bon_entree SET reference = :reference, fournisseur_id = :idFournisseur, fournisseur_nom = :nomFournisseur, modificateur_id = :idModificateur, modificateur_nom = :nomModificateur, date_modification = CURDATE() WHERE id = :id';
+            $req = 'UPDATE bon_entree SET reference = :reference, numero_facture = :numeroFacture, date_facture = :dateFacture, fournisseur_id = :idFournisseur, fournisseur_nom = :nomFournisseur, modificateur_id = :idModificateur, modificateur_nom = :nomModificateur, date_modification = CURDATE() WHERE id = :id';
             $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
 			$resultat = $reponse->execute(array( 
 			'reference'   => $this->reference,
+			'numeroFacture'   => $this->numeroFacture,
+			'dateFacture'   => $this->dateFacture,
 			'idFournisseur' =>$this->idFournisseur,
 			'nomFournisseur' =>$this->nomFournisseur,
 			'idModificateur' => $this->idModificateur,
@@ -134,6 +144,14 @@
 					'prix'		=> $dotation->prix
            		));
         	}
+		}
+
+		public function formatDateEng($dateFR){
+			$tab = trim($dateFR, "/");
+			$parts = explode("/", $tab);
+			$revTab = array_reverse($parts);
+			$dateEN = implode("-", $revTab);
+			return $dateEN;
 		}
 
 	}// fin class
