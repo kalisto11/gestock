@@ -119,6 +119,19 @@
 			}
 			return $bonsentrees;
 		}
+		
+		public static function getListJournal() {
+			$pdo = Database::getPDO();
+			$req = "SELECT id from bon_entree  WHERE date = CURDATE()";
+			$reponse = $pdo->query($req);
+			$bonsentrees = array();
+			while ($row = $reponse->fetch()){
+				$bonentree = new BonEntree($row['id']);
+				$bonsentrees[] = $bonentree;
+			}
+			return $bonsentrees;
+		}
+		
 
 		public static function getNbrBon(){
 			$pdo = Database::getPDO();

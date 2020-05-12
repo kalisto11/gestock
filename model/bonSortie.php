@@ -136,6 +136,18 @@
 			return $bonssorties;
 			
 		}
+		public static function getListJournal() {
+			$pdo = Database::getPDO();
+			$req = "SELECT id from bon_sortie WHERE date = CURDATE()";
+			$reponse = $pdo->query($req);
+			$bonssorties = array();
+			while ($row = $reponse->fetch()){
+				$bonsortie = new BonSortie($row['id']);
+				$bonssorties[] = $bonsortie;
+			}
+			return $bonssorties;
+			
+		}
 
 		public static function getNbrBon(){
 			$pdo = Database::getPDO();
