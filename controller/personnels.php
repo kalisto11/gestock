@@ -12,33 +12,37 @@
          */
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
-                switch ($_POST['operation']){
-                    case 'ajouter':
-                        $this->traiterPersonnel($_POST['prenom'], $_POST['nom'], $_POST['poste1'], $_POST['poste2'], $_POST['poste3']);
+                if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    switch ($_POST['operation']){
+                        case 'ajouter':
+                            $this->traiterPersonnel($_POST['prenom'], $_POST['nom'], $_POST['poste1'], $_POST['poste2'], $_POST['poste3']);
+                            $this->render($this->notification);
+                        break;
+    
+                        case 'modifier': 
+                            $this->traiterPersonnel($_POST['prenom'], $_POST['nom'], $_POST['poste1'], $_POST['poste2'], $_POST['poste3'], $_POST['id']);
+                            $this->render($this->notification);
+                        break;
+    
+                        default:
+                        $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
+                        $this->notification = new Notification("danger", $message);
+                        $this->request->action = 'liste';
                         $this->render($this->notification);
-                    break;
-
-                    case 'modifier': 
-                        $this->traiterPersonnel($_POST['prenom'], $_POST['nom'], $_POST['poste1'], $_POST['poste2'], $_POST['poste3'], $_POST['id']);
-                        $this->render($this->notification);
-                    break;
-
-                    default:
-                    $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
-                    $this->notification = new Notification("danger", $message);
-                    $this->request->action = 'liste';
-                    $this->render($this->notification);
+                    }
                 }
             }
             else if ($this->request->method === 'GET'){ // si la requete vient d'un lien 
 
                 if ($this->request->action === 'supprimer'){
-                    $idPoste = intval($this->request->id);
-                    $agent  = new Personnel($this->request->id);
-                    $agent->delete();
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $idPoste = intval($this->request->id);
+                        $agent  = new Personnel($this->request->id);
+                        $agent->delete();
+                        $message[] = "L'agent a été supprimé avec succès.";
+                        $this->notification = new Notification("success", $message);
+                    }
                     $this->request->action = 'liste';
-                    $message[] = "L'agent a été supprimé avec succès.";
-                    $this->notification = new Notification("success", $message);
                 }
                 $this->render($this->notification);
             }
@@ -61,17 +65,25 @@
                 break;
 
                 case 'ajouter':
-                    $postes = Poste::getListFree();
-                    require_once VIEW . 'personnel/ajoutagent.php';
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $postes = Poste::getListFree();
+                        require_once VIEW . 'personnel/ajoutagent.php';
+                    }
                 break;
 
                 case 'modifier': // gestion du cas ou l'utilisateur veut modifier les infos d'un agent
-                    $agent = new Personnel($this->request->id);
-                    $postes = Poste::getListFree();
-                    foreach ($agent->poste as $poste){
-                        $postes[] = $poste;
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $agent = new Personnel($this->request->id);
+                        $postes = Poste::getListFree();
+                        foreach ($agent->poste as $poste){
+                            $postes[] = $poste;
+                        }
+                        require_once VIEW . 'personnel/ajoutagent.php';
                     }
-                    require_once VIEW . 'personnel/ajoutagent.php';
+                    else{
+                        $agents = Personnel::getList();
+                        require_once VIEW . 'personnel/listagent.php';
+                    }
                 break;
             
                 default: // gestion des erreurs au cas ou la valeur de action 

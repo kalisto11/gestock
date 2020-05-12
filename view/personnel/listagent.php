@@ -26,11 +26,11 @@
                             <a class="btn btn-info btn-sm" href="/gestock/personnels/consulter/<?=$agent->id?>">
                                 <img src="images/icones/consult.png" class="menu-icone" alt="Consulter" title="Consulter">
                             </a>
-                            <?php if($_SESSION['user']['niveau'] >= 2) : ?>
+                            <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
                                 <a class="btn btn-info btn-sm" href="/gestock/personnels/modifier/<?=$agent->id?>">
                                     <img src="images/icones/pencil.png" class=" menu-icone" alt="Modifier" title="Modifier">
                                 </a>
-                                <a class="btn btn-info btn-sm" href="/gestock/personnels/supprimer/<?=$agent->id?>">
+                                <a class="btn btn-info btn-sm suppr" href="/gestock/personnels/supprimer/<?=$agent->id?>">
                                     <img src="images/icones/delete.png" class=" menu-icone" alt="Supprimer" title="Supprimer">
                                 </a>
                             <?php endif; ?>
@@ -39,7 +39,7 @@
                 <?php endforeach ;?>
             </table>
         </div>
-        <?php if($_SESSION['user']['niveau'] >= 2) : ?>
+        <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
             <div class="mt-5">
                 <a class="btn btn-success" href="/gestock/personnels/ajouter"><img src="images/icones/ajout.png" class="menu-icone">  Ajouter un agent</a>
             </div>

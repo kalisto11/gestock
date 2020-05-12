@@ -12,12 +12,12 @@
                 <?php foreach($fournisseurs as $fournisseur): ?>
                     <tr>
                         <td><?= $fournisseur->nom ?></td>
-                        <?php if($_SESSION['user']['niveau'] >= 2) : ?>
+                        <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
                             <td>
                                 <a class="btn btn-info btn-sm" href="/gestock/fournisseurs/modifier/<?= $fournisseur->id ?>">
                                     <img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier">
                                 </a>
-                                <a class="btn btn-info btn-sm" href="/gestock/fournisseurs/supprimer/<?= $fournisseur->id ?>">
+                                <a class="btn btn-info btn-sm suppr" href="/gestock/fournisseurs/supprimer/<?= $fournisseur->id ?>">
                                     <img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer">
                                 </a>
                             </td>
@@ -26,7 +26,7 @@
                 <?php endforeach ; ?>
             </table>
         </div>  
-        <?php if($_SESSION['user']['niveau'] >= 2) : ?>
+        <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
             <div class="col-md-4 bg-light">
             <h2 class="mt-5 text-center"><?php if (isset($currentFournisseur->id)){echo 'Modifier le fournisseur';}else{echo 'Ajouter un fournisseur';} ?></h2>
                 <div class="container-fluid">

@@ -15,7 +15,7 @@
             <td><a href="/gestock/personnels/consulter/<?= $bonsortie->beneficiaire->id ?>"><?=$bonsortie->beneficiaire->prenom?>  <?=$bonsortie->beneficiaire->nom?></a></td>
             <td>
                 <a class="btn btn-info btn-sm" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon de sortie"></a> 
-                <?php if($_SESSION['user']['niveau'] >= 2) : ?>
+                <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
                     <a class="btn btn-info btn-sm" href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>"><img src="images/icones/pencil.png" class="menu-icone" title="Modifier les informations du bon de sortie"></a>
                     <a class="btn btn-info btn-sm suppr" href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>"><img src="images/icones/delete.png" class="menu-icone" title="Supprimer le bon de sortie"></a>
                 <?php endif; ?>
@@ -34,7 +34,7 @@
 	<?php endif ?>
 </div>
 
-<?php if($_SESSION['user']['niveau'] >= 2) : ?>
+<?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
     <div class="mt-5">
         <a class="btn btn-success ml-5" href="/gestock/bonssortie/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon de sortie</a>
     </div>

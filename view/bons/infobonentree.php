@@ -50,11 +50,11 @@
 
     </div>
   </div>
-  <?php if($_SESSION['user']['niveau'] >= 2) : ?>  
-  <div class="mt-5">
+  <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>  
+    <div class="mt-5">
       <a href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>" class="btn btn-info">Modifier</a>
       <a href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>" class="btn btn-danger suppr">Supprimer</a>
-  </div>
+    </div>
   <?php endif ; ?>
   </div>
   <div>

@@ -49,11 +49,11 @@
       </div>
         </div>      
     </div>
-    <?php if($_SESSION['user']['niveau'] >= 2) : ?>
-    <div class="mt-5">
-        <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>" class="btn btn-info">Modifier</a>
-        <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>" class="btn btn-danger suppr">Supprimer</a>
-    </div>
+    <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
+      <div class="mt-5">
+          <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>" class="btn btn-info">Modifier</a>
+          <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>" class="btn btn-danger suppr">Supprimer</a>
+      </div>
     <?php endif; ?>
     <div>
         <p>

@@ -11,32 +11,36 @@
         */
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
-                switch ($_POST['operation']){
-                    case 'ajouter': // cas ou on ajoute un nouveau fournisseur
-                        $this->traiterFournisseur($_POST['nom']);
-                    break;
-
-                    case 'modifier': // cas ou on modifie un fournisseur existant
-                        $this->traiterFournisseur($_POST['nom'], $_POST['id']);
-                    break;
-
-                    default:
-                    $message[] =  "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
-                    $this->notification = new Notification("danger", $message);
-                    $this->request->action = 'liste';
-                    
-                } // fin switch sur $_POST['operation']
+                if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    switch ($_POST['operation']){
+                        case 'ajouter': // cas ou on ajoute un nouveau fournisseur
+                            $this->traiterFournisseur($_POST['nom']);
+                        break;
+    
+                        case 'modifier': // cas ou on modifie un fournisseur existant
+                            $this->traiterFournisseur($_POST['nom'], $_POST['id']);
+                        break;
+    
+                        default:
+                        $message[] =  "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
+                        $this->notification = new Notification("danger", $message);
+                        $this->request->action = 'liste';
+                        
+                    } // fin switch sur $_POST['operation']
+                }
                 $this->render($this->notification);
             } // fin traitement POST
 
             else if ($this->request->method === 'GET'){ // si la requete vient d'un lien 
                 if ($this->request->action === 'supprimer'){
-                    $idFournisseur = intval($this->request->id);
-                    $Fournisseur  = new Fournisseur($idFournisseur, null);
-                    $Fournisseur->delete();
-                    $this->request->action = 'liste';
-                    $message[] = "Le fournisseur a été supprimé avec succès.";
-                    $this->notification = new Notification("success", $message);
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $idFournisseur = intval($this->request->id);
+                        $Fournisseur  = new Fournisseur($idFournisseur, null);
+                        $Fournisseur->delete();
+                        $message[] = "Le fournisseur a été supprimé avec succès.";
+                        $this->notification = new Notification("success", $message);
+                    } 
+                    $this->request->action = 'liste'; 
                 }
                 $this->render($this->notification);
             }
@@ -55,8 +59,10 @@
                 break;
 
                 case 'modifier':
-                    $idFournisseur = intval($this->request->id);
-                    $currentFournisseur = new Fournisseur($idFournisseur);
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $idFournisseur = intval($this->request->id);
+                        $currentFournisseur = new Fournisseur($idFournisseur);
+                    }
                     $fournisseurs = Fournisseur::getList();
                     require_once VIEW . 'fournisseur/listefournisseurs.php';
                 break;

@@ -7,21 +7,23 @@
     class BonsEntree extends Controller{
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
-                if ($this->request->action != null){
-                    switch ($this->request->action){
-                        case 'traitement-bonentree':
-                        switch ($_POST['operation']){
-                            case 'ajouter':
-                                $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur']);
-                                $this->render($this->notification);
-                            break;                           
-                            case 'modifier':
-                                $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur'], $_POST['id']);
-                                $this->render($this->notification);
-                            break;
-                            default:
-                                $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
-                                $this->notification = new Notification("danger", $message);
+                if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if ($this->request->action != null){
+                        switch ($this->request->action){
+                            case 'traitement-bonentree':
+                            switch ($_POST['operation']){
+                                case 'ajouter':
+                                    $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur']);
+                                    $this->render($this->notification);
+                                break;                           
+                                case 'modifier':
+                                    $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur'], $_POST['id']);
+                                    $this->render($this->notification);
+                                break;
+                                default:
+                                    $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
+                                    $this->notification = new Notification("danger", $message);
+                            }
                         }
                     }
                 }
@@ -29,12 +31,14 @@
             }
             elseif ($this->request->method === 'GET'){ // si la requete vient d'un lien 
                 if ($this->request->action === 'supprimer'){
-                    $idBonEntree = intval($this->request->id);
-                    $bonentree  = new BonEntree($idBonEntree);
-                    $bonentree->delete();
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $idBonEntree = intval($this->request->id);
+                        $bonentree  = new BonEntree($idBonEntree);
+                        $bonentree->delete();
+                        $message[] = "Le bon a été supprimé avec succès.";
+                        $this->notification = new Notification("success", $message);
+                    }
                     $this->request->action = 'liste';
-                    $message[] = "Le bon a été supprimé avec succès.";
-                    $this->notification = new Notification("success", $message);
                 }
                 $this->render($this->notification);
             }
@@ -69,16 +73,20 @@
                 break;
 
                 case 'ajouter':
-                    $articles = Article::getList();
-                    $fournisseurs = Fournisseur::getList();
-                    require_once VIEW . 'bons/ajoutbonentree.php';
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $articles = Article::getList();
+                        $fournisseurs = Fournisseur::getList();
+                        require_once VIEW . 'bons/ajoutbonentree.php';
+                    }
                 break;
 
                 case 'modifier':
-                    $bonentree  = new BonEntree($this->request->id);
-                    $articles = Article::getList();
-                    $fournisseurs = Fournisseur::getList();
-                    require_once VIEW . 'bons/modifbonentree.php';
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $bonentree  = new BonEntree($this->request->id);
+                        $articles = Article::getList();
+                        $fournisseurs = Fournisseur::getList();
+                        require_once VIEW . 'bons/modifbonentree.php';
+                    }
                 break;
             
                 default: // gestion des erreurs au cas ou la valeur de action 

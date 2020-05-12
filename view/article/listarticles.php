@@ -15,7 +15,7 @@
                         <td><?= $article->nom ?></td>
                         <td><?php if($article->groupe == 0){echo 'néant';}else{echo $article->groupe ;} ?></td>
                         <td>
-                        <?php if($_SESSION['user']['niveau'] >= 2) : ?>
+                        <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
                             <a class="btn btn-info btn-sm" href="/gestock/articles/modifier/<?= $article->id ?>"><img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier"></a>
                             <a class="btn btn-info btn-sm suppr" href="/gestock/articles/supprimer/<?= $article->id ?>"><img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer"></a>
                         <?php endif; ?>                         
@@ -24,7 +24,7 @@
                 <?php endforeach ; ?>
             </table>
         </div> 
-        <?php if($_SESSION['user']['niveau'] >= 2) : ?> 
+        <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?> 
         <div class="col-md-4 bg-light">
         <h2 class="mt-5 text-center"><?php if (isset($currentArticle->id)){echo 'Modifier l\'article';}else{echo 'Ajouter un article';} ?></h2>
             <div class="container-fluid">
