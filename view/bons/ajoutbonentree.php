@@ -3,20 +3,43 @@
 <h2 class="mt-5 text-center">Ajouter un bon d'entrée</h2>
 <div> 
   <form method="post" action="/gestock/bonsentree/traitement-bonentree">
-    <div class="form-group">
-      <label for="reference">Référence</label>
-      <input type="text" name="reference" id="reference" class="form-control" placeholder="référence du bon d'entrée" required>
+    <div class="row">
+    
+      <div class="col">
+        <div class="form-group">
+          <label for="reference">Numéro du bon d'entrée</label>
+          <input type="text" name="reference" id="reference" class="form-control" placeholder="Numéro du bon d'entrée" required>
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="form-group">
+          <label for="numeroFacture">Numéro de la facture</label>
+          <input type="text" name="numeroFacture" id="numeroFacture" class="form-control" placeholder="Numéro de la facture">
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="form-group">
+          <label for="dateFacture">Date de la facture</label>
+          <input type="date" name="dateFacture" id="dateFacture" class="form-control" placeholder="Date de la facture">
+        </div>
+      </div>
+      
+      <div class="col">
+        <div class="form-group">
+          <label for="fournisseur">Fournisseur</label>
+          <select name="fournisseur" id="fournisseur" class="form-control">
+            <option value="null">Choisir un fournisseur</option>
+            <?php foreach ($fournisseurs as $fournisseur) : ?>
+            <option value="<?= $fournisseur->id ?>"><?= $fournisseur->nom ?></option>
+            <?php endforeach ; ?>
+          </select>
+        </div>
+      </div>
+      
     </div>
-
-    <div class="form-group">
-      <label for="fournisseur">Fournisseur</label>
-      <select name="fournisseur" id="fournisseur" class="form-control">
-        <option value="null">Choisir un fournisseur</option>
-        <?php foreach ($fournisseurs as $fournisseur) : ?>
-        <option value="<?= $fournisseur->id ?>"><?= $fournisseur->nom ?></option>
-        <?php endforeach ; ?>
-      </select>
-    </div>
+    
 
     <h6>Dotations</h6>
     
