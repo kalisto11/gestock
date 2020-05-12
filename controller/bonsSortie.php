@@ -7,36 +7,40 @@
     class BonsSortie extends Controller{
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
-                if ($this->request->action != null){
-                    switch ($this->request->action){
-                        case 'traitement-bonsortie':
-                         switch ($_POST['operation']){
-                             case 'ajouter':
-                                $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire']);
-                                $this->render($this->notification);
-                            break;
- 
-                             case 'modifier': 
-                                $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire'], $_POST['id']);
-                                $this->render($this->notification);
-                            break;
- 
-                             default:
-                             $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
-                             $this->notification = new Notification("danger", $message);
+                if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if ($this->request->action != null){
+                        switch ($this->request->action){
+                            case 'traitement-bonsortie':
+                             switch ($_POST['operation']){
+                                 case 'ajouter':
+                                    $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire']);
+                                    $this->render($this->notification);
+                                break;
+     
+                                 case 'modifier': 
+                                    $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire'], $_POST['id']);
+                                    $this->render($this->notification);
+                                break;
+     
+                                 default:
+                                 $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
+                                 $this->notification = new Notification("danger", $message);
+                            }
                         }
                     }
-                }
+                } 
             }
              else if ($this->request->method === 'GET'){ // si la requete vient d'un lien 
  
                  if ($this->request->action === 'supprimer'){
-                     $idbonSortie = intval($this->request->id);
-                     $bonsortie  = new BonSortie($this->request->id);
-                     $bonsortie->delete();
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $idbonSortie = intval($this->request->id);
+                        $bonsortie  = new BonSortie($this->request->id);
+                        $bonsortie->delete();
+                        $message[] = "Le bon de sortie a été supprimé avec succès.";
+                        $this->notification = new Notification("success", $message);
+                    }
                      $this->request->action = 'liste';
-                     $message[] = "Le bon de sortie a été supprimé avec succès.";
-                     $this->notification = new Notification("success", $message);
                  }
                  $this->render($this->notification);
              }
@@ -71,17 +75,20 @@
                 break;
 
                 case 'ajouter':
-                    $articles = Article::getList();
-                    $personnels = Personnel::getList();
-                    require_once VIEW . 'bons/ajoutbonSortie.php';
-                    
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $articles = Article::getList();
+                        $personnels = Personnel::getList();
+                        require_once VIEW . 'bons/ajoutbonSortie.php';
+                    }
                 break;
 
                 case 'modifier':
-                    $bonsortie  = new BonSortie($this->request->id);
-                    $articles = Article::getList();
-                    $personnels = Personnel::getList();
-                    require_once VIEW . 'bons/modifbonsortie.php';
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $bonsortie  = new BonSortie($this->request->id);
+                        $articles = Article::getList();
+                        $personnels = Personnel::getList();
+                        require_once VIEW . 'bons/modifbonsortie.php';
+                    }
                 break;
             
                 default: // gestion des erreurs au cas ou la valeur de action 
@@ -136,10 +143,17 @@
                 if ($id == null){ // cas ajouter bon de sortie
                     $bonsortie = new BonSortie();
                     $bonsortie->reference = strip_tags($reference);
-                    $bonsortie->beneficiaire= strip_tags($beneficiaire);
+                    $idPersonnel = intval(strip_tags($beneficiaire));
+                    $beneficiaire = new Personnel($idPersonnel);
+                    $bonsortie->idBeneficiaire = (int)$beneficiaire->id;
+                    $bonsortie->nomBeneficiaire = $beneficiaire->prenom . " " . $beneficiaire->nom;
+                    $bonsortie->idModificateur = $_SESSION['user']['id'];
+                    $bonsortie->nomModificateur = $_SESSION['user']['nomComplet'];
                     $dotations = [];
                     foreach ($articles as $article){
-                        $dotation = new Dotation($article['id'], $article['quantite'], $article['prix'], $article['total']);
+                        $idArticle = intval(strip_tags($article['id']));
+                        $art = new Article($idArticle);
+                        $dotation = new Dotation($art->id, $art->nom, $article['quantite'], $article['prix']);
                         $dotations[] = $dotation;
                     }
                     $bonsortie->dotations =  $dotations;
@@ -154,10 +168,17 @@
                     $bonsortie = new BonSortie();
                     $bonsortie->id = $id;
                     $bonsortie->reference = strip_tags($reference);
-                    $bonsortie->beneficiaire= strip_tags($beneficiaire);
+                    $idPersonnel = intval(strip_tags($beneficiaire));
+                    $beneficiaire = new Personnel($idPersonnel);
+                    $bonsortie->idBeneficiaire = (int)$beneficiaire->id;
+                    $bonsortie->nomBeneficiaire = $beneficiaire->prenom . " " . $beneficiaire->nom;
+                    $bonsortie->idModificateur = (int)$_SESSION['user']['id'];
+                    $bonsortie->nomModificateur = $_SESSION['user']['nomComplet'];
                     $dotations = [];
                     foreach ($articles as $article){
-                        $dotation = new Dotation($article['id'], $article['quantite'], $article['prix'], $article['total']);
+                        $idArticle = intval(strip_tags($article['id']));
+                        $art = new Article($idArticle);
+                        $dotation = new Dotation($art->id, $art->nom, $article['quantite'], $article['prix']);
                         $dotations[] = $dotation;
                     }
                     $bonsortie->dotations =  $dotations;

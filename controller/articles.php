@@ -8,30 +8,34 @@
     class articles extends Controller{
         public function process(){
             if ($this->request->method === 'POST'){
-                switch ($_POST['operation']){
-                    case 'ajouter':
-                        $this->traiterArticle($_POST['groupe'], $_POST['article']);
-                    break;  
-
-                    case 'modifier':          
-                        $this->traiterArticle($_POST['groupe'], $_POST['article'], $_POST['idArticle']);
-                    break;
-
-                    default:
-                    $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
-                    $this->request->action = 'liste';
-                }  
-                $this->render($this->notification);          
+                if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    switch ($_POST['operation']){
+                        case 'ajouter':
+                            $this->traiterArticle($_POST['groupe'], $_POST['article']);
+                        break;  
+    
+                        case 'modifier':          
+                            $this->traiterArticle($_POST['groupe'], $_POST['article'], $_POST['idArticle']);
+                        break;
+    
+                        default:
+                        $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
+                        $this->request->action = 'liste';
+                    }  
+                    $this->render($this->notification);  
+                }      
             }  // fin traitement de la méthode POST
 
             elseif ($this->request->method === 'GET'){ //Si la requete vient d'un lien
                 if ($this->request->action === 'supprimer'){
-                    $idArticle = intval($this->request->id);
-                    $article = new Article($idArticle);
-                    $article->supprime(); 
+                    if($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $idArticle = intval($this->request->id);
+                        $article = new Article($idArticle);
+                        $article->supprime(); 
+                        $message[] = "L'article a été supprimé avec succès.";
+                        $this->notification = new Notification("success", $message);
+                    } 
                     $this->request->action = 'liste';
-                    $message[] = "L'article a été supprimé avec succès.";
-                    $this->notification = new Notification("success", $message);
                 }
                 $this->render($this->notification); 
             } // fin traitement de la méthode GET
@@ -49,13 +53,17 @@
                      require_once VIEW . 'article/listarticles.php';
                 break;
                 case 'modifier':
-                     $idArticle = intval($this->request->id);
-                     $currentArticle = new Article($idArticle);
-                     $articles = Article::getList();
-                     require_once VIEW . 'article/listarticles.php';
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $idArticle = intval($this->request->id);
+                        $currentArticle = new Article($idArticle);
+                    }  
+                    $articles = Article::getList();
+                    require_once VIEW . 'article/listarticles.php';
                 break;
                 case 'ajouter':
-                    require_once   VIEW . 'article/listarticles.php';
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        require_once   VIEW . 'article/listarticles.php';
+                    }
                  break;
                 case 'supprimer':
                     require_once VIEW . 'article/listarticles.php';

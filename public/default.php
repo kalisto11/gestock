@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -33,14 +34,16 @@
             <div class="row mt-5">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
                 <div class="nav-side-menu mt-5 col-3">
+                
                     <div class="row justify-content-center">
                         <div class="col-3 mt-5 ml-1">
                                  <img src="images/icones/utilisateur.png" class=" mr-1 ml-1 sous-menu">
                         </div>
                         <div class="col-9 mt-2 text-center">
-                                 <p>Salimata Wade GUEYE<br/>
-                                 <a href="/gestock/public/Salimata Wade Gueye">Déconnexion</a></p>
+                                 <p> <?= $_SESSION['user']['nomComplet'] ?><br/>
+                                 <a href="/gestock/auths/">Se déconnecter</a></p>
                         </div>
+
                     </div>
                     <div class="menu-list">
                         <ul id="menu-content" class="menu-content collapse out">
@@ -86,7 +89,7 @@
         <!-- ZONE D'AFFICHAGE DU CONTENU -->
         <main role="main" class="col-md-9 ml-sm-auto col-lg-10 mt-5">
             <div class="mt-5 px-4">
-            <?= $content ?>
+            <?= $content ?> 
             </div>
         </main>
         <footer class="m-0 p-0 bg-dark">

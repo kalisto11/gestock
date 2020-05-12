@@ -7,21 +7,23 @@
     class BonsEntree extends Controller{
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
-                if ($this->request->action != null){
-                    switch ($this->request->action){
-                        case 'traitement-bonentree':
-                        switch ($_POST['operation']){
-                            case 'ajouter':
-                                $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur']);
-                                $this->render($this->notification);
-                            break;                           
-                            case 'modifier':
-                                $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur'], $_POST['id']);
-                                $this->render($this->notification);
-                            break;
-                            default:
-                                $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
-                                $this->notification = new Notification("danger", $message);
+                if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if ($this->request->action != null){
+                        switch ($this->request->action){
+                            case 'traitement-bonentree':
+                            switch ($_POST['operation']){
+                                case 'ajouter':
+                                    $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur']);
+                                    $this->render($this->notification);
+                                break;                           
+                                case 'modifier':
+                                    $this->traiterBonEntree($_POST['reference'], $_POST['fournisseur'], $_POST['id']);
+                                    $this->render($this->notification);
+                                break;
+                                default:
+                                    $message[] = "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.";
+                                    $this->notification = new Notification("danger", $message);
+                            }
                         }
                     }
                 }
@@ -29,12 +31,14 @@
             }
             elseif ($this->request->method === 'GET'){ // si la requete vient d'un lien 
                 if ($this->request->action === 'supprimer'){
-                    $idBonEntree = intval($this->request->id);
-                    $bonentree  = new BonEntree($idBonEntree);
-                    $bonentree->delete();
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $idBonEntree = intval($this->request->id);
+                        $bonentree  = new BonEntree($idBonEntree);
+                        $bonentree->delete();
+                        $message[] = "Le bon a été supprimé avec succès.";
+                        $this->notification = new Notification("success", $message);
+                    }
                     $this->request->action = 'liste';
-                    $message[] = "Le bon a été supprimé avec succès.";
-                    $this->notification = new Notification("success", $message);
                 }
                 $this->render($this->notification);
             }
@@ -69,16 +73,20 @@
                 break;
 
                 case 'ajouter':
-                    $articles = Article::getList();
-                    $fournisseurs = Fournisseur::getList();
-                    require_once VIEW . 'bons/ajoutbonentree.php';
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $articles = Article::getList();
+                        $fournisseurs = Fournisseur::getList();
+                        require_once VIEW . 'bons/ajoutbonentree.php';
+                    }
                 break;
 
                 case 'modifier':
-                    $bonentree  = new BonEntree($this->request->id);
-                    $articles = Article::getList();
-                    $fournisseurs = Fournisseur::getList();
-                    require_once VIEW . 'bons/modifbonentree.php';
+                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                        $bonentree  = new BonEntree($this->request->id);
+                        $articles = Article::getList();
+                        $fournisseurs = Fournisseur::getList();
+                        require_once VIEW . 'bons/modifbonentree.php';
+                    }
                 break;
             
                 default: // gestion des erreurs au cas ou la valeur de action 
@@ -132,10 +140,16 @@
                 if ($id == null){ // cas ajouter
                     $bonentree = new BonEntree();
                     $bonentree->reference = strip_tags($reference);
-                    $bonentree->fournisseur = intval($fournisseur);
+                    $idFournisseur = intval(strip_tags($fournisseur));
+                    $fournisseur = new Fournisseur($idFournisseur);
+                    $bonentree->idFournisseur = $fournisseur->id;
+                    $bonentree->nomFournisseur = $fournisseur->nom;
+                    $bonentree->idModificateur = $_SESSION['user']['id'];
+                    $bonentree->nomModificateur = $_SESSION['user']['nomComplet'];
                     $dotations = [];
                     foreach ($articles as $article){
-                        $dotation = new Dotation($article['id'], $article['quantite'], $article['prix'], $article['total']);
+                        $art = new Article($article['id']);
+                        $dotation = new Dotation($art->id, $art->nom, $article['quantite'], $article['prix']);
                         $dotations[] = $dotation;
                     }
                     $bonentree->dotations= $dotations;
@@ -147,13 +161,20 @@
                 }
                 else{ // cas modifier 
                     $id = intval($id);
+                    $idFournisseur = intval(strip_tags($fournisseur));
+                    $fournisseur = new Fournisseur($idFournisseur);
+                    
                     $bonentree  = new BonEntree();
                     $bonentree->id = $id;
                     $bonentree->reference = strip_tags($reference);
-                    $bonentree->fournisseur = strip_tags($fournisseur);
+                    $bonentree->idFournisseur = $fournisseur->id;
+                    $bonentree->nomFournisseur = $fournisseur->nom;
+                    $bonentree->idModificateur = $_SESSION['user']['id'];
+                    $bonentree->nomModificateur = $_SESSION['user']['nomComplet'];
                     $dotations = [];
                     foreach ($articles as $article){
-                        $dotation = new Dotation($article['id'], $article['quantite'], $article['prix'], $article['total']);
+                        $art = new Article($article['id']);
+                        $dotation = new Dotation($art->id, $art->nom, $article['quantite'], $article['prix']);
                         $dotations[] = $dotation;
                     }
                     $bonentree->dotations =  $dotations;

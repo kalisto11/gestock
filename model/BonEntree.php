@@ -5,28 +5,35 @@
 		public $reference;
 		public $date;
 		public $dotations;
-		public $fournisseur;
+		public $idFournisseur;
+		public $nomFournisseur;
 		public $totalGeneral;
+		public $idModificateur;
+		public $nomModificateur;
+		public $dateModification;
 
 		public function __construct($id = null) {//constructeur du bon d'entrée
 			if ($id != null){
 				$this->id = $id;
 				$pdo = Database::getPDO();
-				$req = "SELECT id, reference, DATE_FORMAT(date, '%d/%m/%Y') AS date, fournisseur FROM bon_entree WHERE id = ?";
+				$req = "SELECT id, reference, DATE_FORMAT(date, '%d/%m/%Y') AS date, fournisseur_id, fournisseur_nom, modificateur_id, modificateur_nom, DATE_FORMAT(date_modification, '%d/%m/%Y') AS date_modification FROM bon_entree WHERE id = ?";
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));
 				$bonentree         = $reponse->fetch();
 				$this->id          = $bonentree['id'];
 				$this->reference   = $bonentree['reference'];
 				$this->date        = $bonentree['date'];
-				$this->fournisseur = new Fournisseur($bonentree['fournisseur']);
+				$this->idFournisseur = $bonentree['fournisseur_id'];
+				$this->nomFournisseur = $bonentree['fournisseur_nom'];
+				$this->idModificateur = $bonentree['modificateur_id'];
+				$this->nomModificateur = $bonentree['modificateur_nom'];
+				$this->dateModification = $bonentree['date_modification'];
 				$req = 'SELECT * FROM article RIGHT JOIN entree_article ON article.id = entree_article.id_article WHERE entree_article.id_bon_entree = ?';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));
 				$dotations = [];
 				while ($row = $reponse->fetch()){
-					$article = new Article($row['id']);
-					$dotation = new Dotation($article, $row['quantite'], $row['prix'], $row['total']);
+					$dotation = new Dotation($row['id'], $row['nom_article'], $row['quantite'], $row['prix']);
 					$dotations[] = $dotation;
 					$this->totalGeneral += $dotation->total;
 				}
@@ -37,18 +44,25 @@
 				$this->reference   = null;
 				$this->date        = null;
 				$this->dotations   = null;
-				$this->fournisseur = null;
+				$this->idFournisseur = null;
+				$this->nomFournisseur = null;
 				$this->totalGeneral = null;
+				$this->idModificateur = null;
+				$this->nomModificateur = null;
+				$this->dateModification = null;
 			}
 		}
 
 		public function save() {// Méthode permettant d'insérer un bon d'entrée
 			$pdo = Database::getPDO();
-            $req = 'INSERT INTO bon_entree (reference, date, fournisseur) VALUES (:reference, CURDATE(), :fournisseur)';
+            $req = 'INSERT INTO bon_entree (reference, date, fournisseur_id, fournisseur_nom, modificateur_id, modificateur_nom, date_modification) VALUES (:reference, CURDATE(), :idFournisseur, :nomFournisseur, :idModificateur, :nomModificateur, CURDATE())';
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
 			'reference'   => $this->reference,
-			'fournisseur' => $this->fournisseur
+			'idFournisseur' => $this->idFournisseur,
+			'nomFournisseur' => $this->nomFournisseur,
+			'idModificateur' => $this->idModificateur,
+			'nomModificateur' => $this->nomModificateur
 			));
 			$req = 'SELECT id FROM bon_entree Order By ID Desc LIMIT 1';
         	$reponse = $pdo->query($req);
@@ -69,11 +83,14 @@
 
 		public function modify() {//Méthode permettant de modifier le bon d'entrée
 			$pdo = Database::getPDO();
-            $req = 'UPDATE bon_entree SET reference = :reference, fournisseur = :fournisseur WHERE id = :id';
+            $req = 'UPDATE bon_entree SET reference = :reference, fournisseur_id = :idFournisseur, fournisseur_nom = :nomFournisseur, modificateur_id = :idModificateur, modificateur_nom = :nomModificateur, date_modification = CURDATE() WHERE id = :id';
             $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
 			$resultat = $reponse->execute(array( 
 			'reference'   => $this->reference,
-			'fournisseur' =>$this->fournisseur,
+			'idFournisseur' =>$this->idFournisseur,
+			'nomFournisseur' =>$this->nomFournisseur,
+			'idModificateur' => $this->idModificateur,
+			'nomModificateur' => $this->nomModificateur,
 			'id'           =>$this->id
 			));	
 			$this->saveArticles($this->id);
@@ -92,6 +109,7 @@
 			}
 			return $bonsentrees;
 		}
+
 		public static function getNbrBon(){
 			$pdo = Database::getPDO();
 			$req = "SELECT COUNT(id) FROM bon_entree";
@@ -106,14 +124,14 @@
 			$reponse = $pdo->prepare($req);
 			$reponse->execute(array($this->id));
 			foreach ($this->dotations as $dotation){
-				$req = 'INSERT INTO entree_article (id_bon_entree, id_article, quantite, prix, total) VALUES (:id_bon_entree, :id_article, :quantite, :prix, :total)';
+				$req = 'INSERT INTO entree_article (id_bon_entree, id_article, nom_article, quantite, prix) VALUES (:id_bon_entree, :id_article, :nom_article, :quantite, :prix)';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array(
 					'id_bon_entree' => $this->id,
-					'id_article'    => $dotation->article,
+					'id_article'    => $dotation->idArticle,
+					'nom_article'    => $dotation->nomArticle,
 					'quantite'    => $dotation->quantite,
-					'prix'		=> $dotation->prix,
-					'total'		=> $dotation->total
+					'prix'		=> $dotation->prix
            		));
         	}
 		}

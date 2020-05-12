@@ -1,7 +1,7 @@
 body{
-    background-image: url('../images/photos/academie.jpg');
+    background-image: url('..//images/photos/academie.jpg');
     background-repeat: no-repeat center fixed;
-    -webkit-background-size: cover;
+    background-size: cover;
    }
 
   .blanc{
@@ -13,6 +13,7 @@ body{
   .connexion{
       width: 50%;
       margin-top: 50px;
+      padding-top: 10px;
       opacity: 0.9;
   }
 
