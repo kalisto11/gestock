@@ -7,7 +7,7 @@
             <table class="table table-striped table-bordered table-hover table-sm">
                 <tr>
                     <th class="th-md">Articles</th>
-                    <th class="th-sm">Groupe</th>
+                    <th class="th-sm">Groupes</th>
                     <th class="th-sm">Action</th>
                 </tr>
                 <?php foreach($articles as $article): ?>

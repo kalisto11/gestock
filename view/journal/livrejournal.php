@@ -1,0 +1,1 @@
+<h2 class="ml-5 text-center">Livre journal</h2>
