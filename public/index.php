@@ -4,8 +4,10 @@
 * Front Controller du site
 * toutes les requetes passent par cette page
 * qui charge les fichiers necessaires, appelle le dispatcher et affiche le template
-*/
+*/  if (!isset($_SESSION)){
     session_start();
+    }
+   
     // inclure le fichier de configuration
     require_once '../core/config.php';
     // chargement de l'autoload
