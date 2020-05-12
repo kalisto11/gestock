@@ -14,7 +14,7 @@
         <select name="beneficiaire" id="beneficiaire" class="form-control">
           <option value="null">Choisir un bénéficiaire</option>
           <?php foreach($personnels as $personnel): ?>
-          <option value="<?= $personnel->id ?>" <?php if ($personnel->id == $bonsortie->beneficiaire->id){echo 'selected="selected"';}?>><?= $personnel->prenom?> <?= $personnel->nom ?></option>
+          <option value="<?= $personnel->id ?>" <?php if ($personnel->id == $bonsortie->idBeneficiaire){echo 'selected="selected"';}?>><?= $personnel->prenom?> <?= $personnel->nom ?></option>
           <?php endforeach ; ?>
         </select>
       </div>
@@ -30,7 +30,7 @@
               <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control">
                 <option value="null">Choisir un article</option>
                 <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>" <?php if ($article->id == $dotation->article->id){echo 'selected="selected"';} ?>><?= $article->nom ?></option>
+                <option value="<?= $article->id ?>" <?php if ($article->id == $dotation->idArticle){echo 'selected="selected"';} ?>><?= $article->nom ?></option>
                 <?php endforeach ; ?>
               </select>
             </div> 

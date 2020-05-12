@@ -1,14 +1,16 @@
 <?php
     class Dotation {
-            public $article;
+            public $idArticle;
+            public $nomArticle;
             public $quantite;
             public $prix;
             public $total;
           
-            public function __construct($article = null, $quantite = 0, $prix = 0, $total = 0){
-                $this->article = $article;
+            public function __construct($idArticle = null, $nomArticle = null, $quantite = 0, $prix = 0){
+                $this->idArticle = $idArticle;
+                $this->nomArticle = $nomArticle;
                 $this->quantite = $quantite;
                 $this->prix = $prix;
-                $this->total = $total;
+                $this->total = $quantite * $prix;
             }
     }

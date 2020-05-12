@@ -143,10 +143,17 @@
                 if ($id == null){ // cas ajouter bon de sortie
                     $bonsortie = new BonSortie();
                     $bonsortie->reference = strip_tags($reference);
-                    $bonsortie->beneficiaire= strip_tags($beneficiaire);
+                    $idPersonnel = intval(strip_tags($beneficiaire));
+                    $beneficiaire = new Personnel($idPersonnel);
+                    $bonsortie->idBeneficiaire = (int)$beneficiaire->id;
+                    $bonsortie->nomBeneficiaire = $beneficiaire->prenom . " " . $beneficiaire->nom;
+                    $bonsortie->idModificateur = $_SESSION['user']['id'];
+                    $bonsortie->nomModificateur = $_SESSION['user']['nomComplet'];
                     $dotations = [];
                     foreach ($articles as $article){
-                        $dotation = new Dotation($article['id'], $article['quantite'], $article['prix'], $article['total']);
+                        $idArticle = intval(strip_tags($article['id']));
+                        $art = new Article($idArticle);
+                        $dotation = new Dotation($art->id, $art->nom, $article['quantite'], $article['prix']);
                         $dotations[] = $dotation;
                     }
                     $bonsortie->dotations =  $dotations;
@@ -161,10 +168,17 @@
                     $bonsortie = new BonSortie();
                     $bonsortie->id = $id;
                     $bonsortie->reference = strip_tags($reference);
-                    $bonsortie->beneficiaire= strip_tags($beneficiaire);
+                    $idPersonnel = intval(strip_tags($beneficiaire));
+                    $beneficiaire = new Personnel($idPersonnel);
+                    $bonsortie->idBeneficiaire = (int)$beneficiaire->id;
+                    $bonsortie->nomBeneficiaire = $beneficiaire->prenom . " " . $beneficiaire->nom;
+                    $bonsortie->idModificateur = (int)$_SESSION['user']['id'];
+                    $bonsortie->nomModificateur = $_SESSION['user']['nomComplet'];
                     $dotations = [];
                     foreach ($articles as $article){
-                        $dotation = new Dotation($article['id'], $article['quantite'], $article['prix'], $article['total']);
+                        $idArticle = intval(strip_tags($article['id']));
+                        $art = new Article($idArticle);
+                        $dotation = new Dotation($art->id, $art->nom, $article['quantite'], $article['prix']);
                         $dotations[] = $dotation;
                     }
                     $bonsortie->dotations =  $dotations;

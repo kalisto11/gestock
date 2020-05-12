@@ -140,10 +140,16 @@
                 if ($id == null){ // cas ajouter
                     $bonentree = new BonEntree();
                     $bonentree->reference = strip_tags($reference);
-                    $bonentree->fournisseur = intval($fournisseur);
+                    $idFournisseur = intval(strip_tags($fournisseur));
+                    $fournisseur = new Fournisseur($idFournisseur);
+                    $bonentree->idFournisseur = $fournisseur->id;
+                    $bonentree->nomFournisseur = $fournisseur->nom;
+                    $bonentree->idModificateur = $_SESSION['user']['id'];
+                    $bonentree->nomModificateur = $_SESSION['user']['nomComplet'];
                     $dotations = [];
                     foreach ($articles as $article){
-                        $dotation = new Dotation($article['id'], $article['quantite'], $article['prix'], $article['total']);
+                        $art = new Article($article['id']);
+                        $dotation = new Dotation($art->id, $art->nom, $article['quantite'], $article['prix']);
                         $dotations[] = $dotation;
                     }
                     $bonentree->dotations= $dotations;
@@ -155,13 +161,20 @@
                 }
                 else{ // cas modifier 
                     $id = intval($id);
+                    $idFournisseur = intval(strip_tags($fournisseur));
+                    $fournisseur = new Fournisseur($idFournisseur);
+                    
                     $bonentree  = new BonEntree();
                     $bonentree->id = $id;
                     $bonentree->reference = strip_tags($reference);
-                    $bonentree->fournisseur = strip_tags($fournisseur);
+                    $bonentree->idFournisseur = $fournisseur->id;
+                    $bonentree->nomFournisseur = $fournisseur->nom;
+                    $bonentree->idModificateur = $_SESSION['user']['id'];
+                    $bonentree->nomModificateur = $_SESSION['user']['nomComplet'];
                     $dotations = [];
                     foreach ($articles as $article){
-                        $dotation = new Dotation($article['id'], $article['quantite'], $article['prix'], $article['total']);
+                        $art = new Article($article['id']);
+                        $dotation = new Dotation($art->id, $art->nom, $article['quantite'], $article['prix']);
                         $dotations[] = $dotation;
                     }
                     $bonentree->dotations =  $dotations;

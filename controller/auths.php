@@ -8,6 +8,7 @@ class Auths extends Controller{
             $users = Users::getList();
             foreach ($users as $user){
                 if ($_POST['username'] ==  $user->username  && sha1($_POST['pasword']) == $user->pasword ){
+                    $_SESSION['user']['id'] = $user->id; 
                     $_SESSION['user']['username'] = $user->username; 
                     $_SESSION['user']['niveau'] = $user->niveau;
                     $_SESSION['user']['nomComplet'] = $user->nomComplet;

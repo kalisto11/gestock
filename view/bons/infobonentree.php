@@ -14,7 +14,7 @@
       </div>
       <div class="mt-3">
         <h5>Fournisseur</h5>
-        <p class="zonegrise"><?= $bonentree->fournisseur->nom ?></p>      
+        <p class="zonegrise"><?= $bonentree->nomFournisseur ?></p>      
       </div>
     </div>
     
@@ -33,7 +33,7 @@
           </tr>
           <?php foreach ($bonentree->dotations as $dotation): ?>
             <tr>
-              <td><?= htmlspecialchars($dotation->article->nom) ?></td>
+              <td><?= htmlspecialchars($dotation->nomArticle) ?></td>
               <td><?= htmlspecialchars($dotation->quantite) ?></td>
               <td><?= htmlspecialchars($dotation->prix) ?></td>
               <td><?= htmlspecialchars($dotation->total) ?></td>
@@ -47,7 +47,9 @@
 
         <?php endif ; ?>    
       </div>
-
+      <div class="mt-5 text-right">
+        Dernière modification le <?= $bonentree->dateModification ?> par <?= $bonentree->nomModificateur ?>
+      </div>
     </div>
   </div>
   <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>  
