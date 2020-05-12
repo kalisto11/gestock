@@ -22,12 +22,11 @@
                                 </a>
                             </td>
                         <?php endif; ?>
-
                     </tr>
                 <?php endforeach ; ?>
             </table>
         </div>  
-        <?php if($_SESSION['user']['niveau'] >= 2) : ?>
+    <?php if($_SESSION['user']['niveau'] >= 2) : ?>
         <div class="col-md-4 bg-light">
             <h2 class="mt-5 text-center"><?php if (isset($currentPoste->id)){echo 'Modifier le poste';}else{echo 'Ajouter un poste';} ?></h2>
             <div class="container-fluid">
