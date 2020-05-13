@@ -55,11 +55,11 @@
     }
         public  function ajoutArticle(){
             $pdo = Database::getPDO();
-            $insert = 'INSERT INTO article (nom, idçbon, quantite, seuil) VALUES (:nom, :idçbon, :quantite, :seuil)';
+            $insert = 'INSERT INTO article (nom, id_bon, quantite, seuil) VALUES (:nom, :id_bon, :quantite, :seuil)';
             $retour = $pdo->prepare($insert);
             $retour->execute(array(
                 'nom' => $this->nom,
-                'idçbon' => $this->idçbon,
+                'id_bon' => $this->id_bon,
                 'quantite' => $this->quantite,
                 'seuil' => $this->seuil
             ));
