@@ -33,7 +33,7 @@
             <table class="table table-striped table-borderless table-hover table-sm">
                 <thead>
                     <tr>
-                        <th class="th-sm" scope="col">Référence</th>
+                        <th class="th-sm" scope="col">Numéro du bon</th>
                         <th class="th-sm" scope="col">Date</th>
                         <th class="th-sm" scope="col">Actions</th>
                     </tr>
@@ -59,8 +59,6 @@
             </div>
         </div>
     </div>
-
-    
 
     <div class="mt-5">
         <p>

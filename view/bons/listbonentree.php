@@ -13,7 +13,7 @@
         <tr>
             <td><?= $bonentree->reference?></td>
             <td><?=$bonentree->date?></td>
-            <td><?=$bonentree->nomFournisseur?></td>
+            <td><a href="/gestock/fournisseurs/consulter/<?=$bonentree->idFournisseur?>"><?=$bonentree->nomFournisseur?></a></td>
             
             <td> 
                 <a class="btn btn-info btn-sm" href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon d'entrée"></a>
