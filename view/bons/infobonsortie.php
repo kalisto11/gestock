@@ -5,7 +5,7 @@
   <div class="row">
     <div class="col-sm-3">
         <div>
-            <h6>Référence</h6>
+            <h6>Numéro du bon</h6>
             <p class="zonegrise">
             <?= $bonsortie->reference ?>
             </p>

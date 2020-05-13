@@ -4,7 +4,7 @@
 <div>
     <table class="table table-striped table-borderless table-hover table-sm">
         <tr>
-            <th class="th-sm">Référence</th>
+            <th class="th-sm">Numéro du bon</th>
             <th class="th-sm">Date</th>
             <th>Founisseur</th>
             <th class="th-sm">Actions</th>

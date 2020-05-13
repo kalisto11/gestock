@@ -6,7 +6,7 @@
     <div class="col-sm-3">
 
       <div>
-        <h6>Numéro du bon d'entrée</h6>
+        <h6>Numéro du bon</h6>
         <p class="zonegrise" ><?= $bonentree->reference ?></p>
       </div>
 
