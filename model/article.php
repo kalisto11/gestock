@@ -7,7 +7,7 @@
     class Article {
         public $id;
         public $nom;
-        public $groupe;
+        public $idçbon;
         public $quantite;
         public $seuil;
 
@@ -21,14 +21,14 @@
                 $article = $reponse->fetch();
                 $this->id = $article['id'];
                 $this->nom = $article['nom'];
-                $this->groupe = $article['groupe'];
+                $this->idçbon = $article['idçbon'];
                 $this->quantite = $article['quantite'];
                 $this->seuil = $article['seuil'];
             }
             else{
                 $this->nom = null;
                 $this->id = null;
-                $this->groupe = null;
+                $this->idçbon = null;
                 $this->quantite = null;
                 $this->seuil = null;
             }
@@ -36,11 +36,11 @@
 
         public  function modif(){
         $pdo = Database::getPDO();
-        $update = 'UPDATE article SET nom = :nom, groupe = :groupe, quantite = :quantite, seuil = :seuil WHERE id = :id';
+        $update = 'UPDATE article SET nom = :nom, idçbon = :idçbon, quantite = :quantite, seuil = :seuil WHERE id = :id';
         $sortie = $pdo->prepare($update) OR die(print_r($pdo->errorinfo()));
         $sortie->execute(array(
             'nom' => $this->nom,
-            'groupe' => $this->groupe,
+            'idçbon' => $this->idçbon,
             'quantite' => $this->quantite,
             'seuil' => $this->seuil,
             'id'  => $this->id
@@ -55,18 +55,18 @@
     }
         public  function ajoutArticle(){
             $pdo = Database::getPDO();
-            $insert = 'INSERT INTO article (nom, groupe, quantite, seuil) VALUES (:nom, :groupe, :quantite, :seuil)';
+            $insert = 'INSERT INTO article (nom, idçbon, quantite, seuil) VALUES (:nom, :idçbon, :quantite, :seuil)';
             $retour = $pdo->prepare($insert);
             $retour->execute(array(
                 'nom' => $this->nom,
-                'groupe' => $this->groupe,
+                'idçbon' => $this->idçbon,
                 'quantite' => $this->quantite,
                 'seuil' => $this->seuil
             ));
         }
         public static function getList(){
             $pdo = Database::getPDO();
-            $req = 'SELECT id from article';
+            $req = "SELECT id from article ";
             $reponse = $pdo->query($req);
             $articles = array();
             while ($row = $reponse->fetch()){
@@ -85,5 +85,36 @@
                 $articles[] = $article;
             }  
             return $articles;
+        }
+        public static function getListTrans($perpage, $offset){
+            $pdo = Database::getPDO();
+            $req = "SELECT id from article LIMIT $perpage OFFSET $offset";
+            $reponse = $pdo->query($req);
+            $articles = array();
+            while ($row = $reponse->fetch()){
+                $article = new Article($row['id']);
+                $articles[] = $article;
+            }  
+            return $articles;
+        }
+        public static function getNbrTransaction(){
+            $pdo = Database::getPDO();
+            $req = "SELECT COUNT(id) FROM  article";
+            $reponse = $pdo->query($req);
+            $count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
+             return  $count;
+        }
+        
+        public static function transaction($id_article, $id_bon, $quantite){
+            $pdo = Database::getPDO();
+            $req  = "INSERT INTO transactions (id_article, id_bon, quantite) VALUES (:id_article, :id_bon, :quantite)";
+            $reponse = $pdo->prepare($req);
+            $retour->execute(array(
+                'id_article' => $this->id_article,
+                'idçbon' => $this->idçbon,
+                'quantite' => $this->quantite
+            ));
+            $req = "SELECT id FROM article WHERE id = id_article ";
+
         }
     }

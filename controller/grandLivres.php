@@ -28,12 +28,12 @@ class GrandLivres extends Controller{
                         $this->notification = new Notification("success", $message);
                     }
                     $offset = $perpage * ($currentPage - 1);
-                    $articles = Article::getList($perpage, $offset);
+                    $articles = Article::getListTrans($perpage, $offset);
                     require_once VIEW . 'journal/grand_livre.php';
             break;
 
             case 'consulter':
-                $transaction = new GrandLivre($this->request->id);  
+               // $transaction = new GrandLivre($this->request->id); 
                 require_once VIEW . 'journal/inventaire.php';
             break;
 
