@@ -10,10 +10,12 @@
             <?= $bonsortie->reference ?>
             </p>
         </div>
+
         <div>
             <h6>Date</h6>
             <p class="zonegrise"><?= $bonsortie->date ?></p>
         </div>
+        
         <div>
             <h6>Bénéficiaire</h6>
             <p class="zonegrise"><a href="/gestock/personnels/consulter/<?=$bonsortie->idBeneficiaire?>"><?= $bonsortie->nomBeneficiaire ?></a></p>        

@@ -3,9 +3,9 @@
     <div class="col-md-6">
 		<div class="card ">
 			<div class="card-header bg-info text-light p-0">
-				<h3 class="text-center">Bons d'entrée</h3>
+				<h4 class="text-center m-0">Bons d'entrée</h4>
 			</div>
-			<div class="card-body pr-0  pl-0 pt-0 ">
+			<div class="card-body pr-0 pl-0 pt-0">
 				<table class="table table-striped table-borderless table-hover table-sm" >
                     <thead>
 					<tr>
@@ -19,7 +19,7 @@
 						<tr>
 							<td><?= $bonentree->reference?></td>
 							<td><?=$bonentree->date?></td>
-							<td><?=$bonentree->nomFournisseur?></td>					
+							<td><a href="/gestock/fournisseurs/consulter/<?=$bonentree->idFournisseur?>"><?=$bonentree->nomFournisseur?></a></td>					
 							<td> 
 								<a class="btn btn-info btn-sm" href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon d'entrée"></a>
 							</td>
@@ -37,7 +37,7 @@
 		<div class="col-md-6 ">
 			<div class="card">
 				<div class="card-header bg-info text-light p-0">
-					<h3 class="text-center">Bons de sortie</h3>
+					<h4 class="text-center m-0">Bons de sortie</h4>
 				</div>
 				<div class="card-body pr-0  pl-0 pt-0">
 					<table class="table table-striped table-borderless table-hover table-sm">
