@@ -149,7 +149,7 @@
 			
 		}
 
-		public static function getListbeneficiaire($idBeneficiaire, $perpage, $offset) {
+		public static function getListBeneficiaire($idBeneficiaire, $perpage, $offset) {
 			$pdo = Database::getPDO();
 			$req = "SELECT id from bon_sortie WHERE beneficiaire_id = $idBeneficiaire ORDER BY date DESC LIMIT $perpage OFFSET $offset";
 			$reponse = $pdo->query($req);

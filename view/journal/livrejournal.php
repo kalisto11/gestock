@@ -27,6 +27,9 @@
         			<?php endforeach ;?>
 				</table>
 			</div>
+			<div class="card-footer p-0">
+				<a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste de tous les bons d'entrée</a>
+			</div>
 		</div>
         
         </div>
@@ -35,28 +38,31 @@
 			<div class="card">
 				<div class="card-header bg-info text-light p-0">
 					<h3 class="text-center">Bons de sortie</h3>
-					</div>
-					<div class="card-body pr-0  pl-0 pt-0">
+				</div>
+				<div class="card-body pr-0  pl-0 pt-0">
 					<table class="table table-striped table-borderless table-hover table-sm">
-                    <thead>
-						<tr>
-							<th class="th-sm" scope="col">Référence</th>
-							<th class="th-sm" scope="col">Date</th>
-							<th scope="col">Bénéficiaire</th>
-							<th class="th-sm" scope="col">Actions</th>
-                        </tr>
-                    </thead>
-					<?php foreach($bonssorties as $bonsortie):?>
-						<tr>
-							<td><?= $bonsortie->reference?></td>
-							<td><?=$bonsortie->date?></td>
-							<td><a href="/gestock/personnels/consulter/<?= $bonsortie->idBeneficiaire ?>"><?=$bonsortie->nomBeneficiaire?></a></td>
-							<td>
-								<a class="btn btn-info btn-sm" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon de sortie"></a>
-							</td>
-						</tr>
-        			<?php endforeach ;?>
+						<thead>
+							<tr>
+								<th class="th-sm" scope="col">Référence</th>
+								<th class="th-sm" scope="col">Date</th>
+								<th scope="col">Bénéficiaire</th>
+								<th class="th-sm" scope="col">Actions</th>
+							</tr>
+						</thead>
+						<?php foreach($bonssorties as $bonsortie):?>
+							<tr>
+								<td><?= $bonsortie->reference?></td>
+								<td><?=$bonsortie->date?></td>
+								<td><a href="/gestock/personnels/consulter/<?= $bonsortie->idBeneficiaire ?>"><?=$bonsortie->nomBeneficiaire?></a></td>
+								<td>
+									<a class="btn btn-info btn-sm" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon de sortie"></a>
+								</td>
+							</tr>
+						<?php endforeach ;?>
 					</table>
+				</div>
+				<div class="card-footer p-0">
+				<a class="btn btn-secondary float-right" href="/gestock/bonssortie/liste">Voir la liste de tous les bons de sortie</a>
 				</div>
 			</div>
 			

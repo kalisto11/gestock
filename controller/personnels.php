@@ -70,7 +70,7 @@
                             $this->notification = new Notification("success", $message);
                     }
                     $offset = $perpage * ($currentPage - 1);
-                    $bonssorties = BonSortie::getListbeneficiaire($agent->id, $perpage, $offset);
+                    $bonssorties = BonSortie::getListBeneficiaire($agent->id, $perpage, $offset);
                     require_once VIEW . 'personnel/infoagent.php';
                 break;
 

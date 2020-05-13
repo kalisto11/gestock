@@ -58,6 +58,21 @@
                     require_once VIEW . 'fournisseur/listefournisseurs.php';
                 break;
 
+                case 'consulter':
+                    $fournisseur = new Fournisseur($this->request->id);
+                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
+                    $perpage = 10;
+                    $count = BonEntree::getNbrBonFournisseur($fournisseur->id);
+                    $pages = ceil($count/$perpage);
+                    if ($currentPage > $pages){
+                        $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("success", $message);
+                    }
+                    $offset = $perpage * ($currentPage - 1);
+                    $bonsentrees = BonEntree::getListFournisseur($fournisseur->id, $perpage, $offset);
+                    require_once VIEW . 'fournisseur/infofournisseur.php';
+                break;
+
                 case 'modifier':
                     if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
                         $idFournisseur = intval($this->request->id);
