@@ -27,12 +27,12 @@
         			<?php endforeach ;?>
 				</table>
 			</div>
-			<div class="card-footer p-0">
+			<div class="card-footer bg-info p-0">
 				<a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste de tous les bons d'entrée</a>
 			</div>
 		</div>
 	</div>
-	
+
 	<div class="col-md-6">
 		<div class="card">
 			<div class="card-header bg-info text-light p-0">
@@ -60,7 +60,7 @@
 					<?php endforeach ;?>
 				</table>
 			</div>
-			<div class="card-footer p-0">
+			<div class="card-footer bg-info p-0">
 			<a class="btn btn-secondary float-right" href="/gestock/bonssortie/liste">Voir la liste de tous les bons de sortie</a>
 			</div>
 		</div>	
