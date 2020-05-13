@@ -11,7 +11,7 @@
     <body>
       <h2 class="ml-3 mt-3"><img src="images/icones/education.png" class="icone  mr-2">IA KAFFRINE</h2>
       <h1 class="blanc">GESTION DE STOCK</h1>
-        <div  class="container bg-light justify-content-center align-items-center connexion"> 
+        <div  class="container bg-lightr justify-content-center align-items-center connexion"> 
           <?php require VIEW . 'infos/notAuth.php'; ?>
             <form class="mt-5" method="post" action="/gestock/auths/" >
               <div class=" form-group">
