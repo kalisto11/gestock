@@ -5,23 +5,23 @@
   <div class="row">
       <div class="col-sm-3">
           <div>
-              <h5>Référence</h5>
+              <h6>Référence</h6>
               <p class="zonegrise">
               <?= $bonsortie->reference ?>
               </p>
           </div>
           <div>
-              <h5>Date</h5>
+              <h6>Date</h6>
               <p class="zonegrise"><?= $bonsortie->date ?></p>
           </div>
           <div>
-              <h5>Bénéficiaire</h5>
+              <h6>Bénéficiaire</h6>
               <p class="zonegrise"><?= $bonsortie->nomBeneficiaire ?></p>        
           </div>
       </div>
       <div class="col-sm-9">
         <div>
-        <h5>Dotations</h5>
+        <h6>Dotations</h6>
         <?php if ($bonsortie->dotations != null): ?>
 
         <table class="table table-striped table-bordered table-hover table-sm">
@@ -49,15 +49,16 @@
       </div>
       <div class="mt-5 text-right">
           Dernière modification le <?= $bonsortie->dateModification ?> par <?= $bonsortie->nomModificateur ?>
-        </div> 
-      </div>      
-  </div>
-    <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
-      <div class="mt-5">
+      </div> 
+      <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
+        <div class="text-right mt-5">
           <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>" class="btn btn-info">Modifier</a>
           <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>" class="btn btn-danger suppr">Supprimer</a>
-      </div>
-    <?php endif; ?>
+        </div>
+      <?php endif; ?>
+      </div>      
+  </div>
+    
     <div>
         <p>
             <a class="btn btn-secondary float-right" href="/gestock/bonssortie/liste">Voir la liste des bons de sortie</a>

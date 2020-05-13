@@ -26,8 +26,7 @@ class Auths extends Controller{
                 }
             }
         }else if ($this->request->method === 'GET'){
-            unset($_SESSION['user']);
-            unset($_SESSION['notification']);
+            session_destroy();
             $this->request->controller = 'deconnexion';
             $this->render();   
         }

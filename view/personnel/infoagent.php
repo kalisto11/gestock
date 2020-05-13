@@ -16,7 +16,7 @@
             
         </div>
         <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
-            <div>
+            <div class="text-right">
                 <a href="/gestock/personnels/modifier/<?= $agent->id ?>"class="btn btn-info">Modifier</a>
                 <a href="/gestock/personnels/supprimer/<?= $agent->id ?>"class="btn btn-danger">Supprimer</a>
             </div>
