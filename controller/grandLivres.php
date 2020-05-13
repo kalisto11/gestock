@@ -11,7 +11,7 @@ class GrandLivres extends Controller{
           if($this->request->action = 'liste') {
             $this->render($this->notification);
           } 
-          elsif($this->request->action = 'consulter'){
+          elseif($this->request->action = 'consulter'){
               $this->render($this->notification);
           }                  
     } // fin méthode process
@@ -21,7 +21,7 @@ class GrandLivres extends Controller{
                 case 'liste':
                     $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
                     $perpage = 10;
-                    $count = GrandLivre::getNbrTransaction();
+                    $count = Article::getNbrTransaction();
                     $pages = ceil($count/$perpage);
                     if ($currentPage > $pages){
                         $message[] = "Cette page n'existe pas";
@@ -29,12 +29,12 @@ class GrandLivres extends Controller{
                     }
                     $offset = $perpage * ($currentPage - 1);
                     $articles = Article::getList($perpage, $offset);
-                    require_once VIEW . 'bons/listbonentree.php';
+                    require_once VIEW . 'journal/grand_livre.php';
             break;
 
             case 'consulter':
                 $transaction = new GrandLivre($this->request->id);  
-                require_once VIEW . 'bons/infobonentree.php';
+                require_once VIEW . 'journal/inventaire.php';
             break;
 
             default: // gestion des erreurs au cas ou la valeur de action 
