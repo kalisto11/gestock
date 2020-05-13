@@ -8,6 +8,8 @@
         public $id;
         public $nom;
         public $groupe;
+        public $quantite;
+        public $seuil;
 
         public function __construct($id = null){
             if ($id != null){
@@ -20,21 +22,27 @@
                 $this->id = $article['id'];
                 $this->nom = $article['nom'];
                 $this->groupe = $article['groupe'];
+                $this->quantite = $article['quantite'];
+                $this->seuil = $article['seuil'];
             }
             else{
                 $this->nom = null;
                 $this->id = null;
                 $this->groupe = null;
+                $this->quantite = null;
+                $this->seuil = null;
             }
         }
 
         public  function modif(){
         $pdo = Database::getPDO();
-        $update = 'UPDATE article SET nom = :nom, groupe = :groupe WHERE id = :id';
+        $update = 'UPDATE article SET nom = :nom, groupe = :groupe, quantite = :quantite, seuil = :seuil WHERE id = :id';
         $sortie = $pdo->prepare($update) OR die(print_r($pdo->errorinfo()));
         $sortie->execute(array(
             'nom' => $this->nom,
             'groupe' => $this->groupe,
+            'quantite' => $this->quantite,
+            'seuil' => $this->seuil,
             'id'  => $this->id
         ));
     }
@@ -47,11 +55,13 @@
     }
         public  function ajoutArticle(){
             $pdo = Database::getPDO();
-            $insert = 'INSERT INTO article (nom, groupe) VALUES (:nom, :groupe)';
+            $insert = 'INSERT INTO article (nom, groupe, quantite, seuil) VALUES (:nom, :groupe, :quantite, :seuil)';
             $retour = $pdo->prepare($insert);
             $retour->execute(array(
                 'nom' => $this->nom,
-                'groupe' => $this->groupe
+                'groupe' => $this->groupe,
+                'quantite' => $this->quantite,
+                'seuil' => $this->seuil
             ));
         }
         public static function getList(){

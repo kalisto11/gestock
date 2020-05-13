@@ -11,11 +11,11 @@
                 if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
                     switch ($_POST['operation']){
                         case 'ajouter':
-                            $this->traiterArticle($_POST['groupe'], $_POST['article']);
+                            $this->traiterArticle($_POST['nom'], $_POST['groupe'], $_POST['quantite'], $_POST['seuil']);
                         break;  
     
                         case 'modifier':          
-                            $this->traiterArticle($_POST['groupe'], $_POST['article'], $_POST['idArticle']);
+                            $this->traiterArticle($_POST['nom'], $_POST['groupe'], $_POST['quantite'], $_POST['seuil'], $_POST['idArticle']);
                         break;
     
                         default:
@@ -76,7 +76,7 @@
             }
         }
 
-        public function traiterArticle($groupeArticle, $nomArticle, $idArticle = null){
+        public function traiterArticle($nomArticle, $groupeArticle, $quantiteArticle, $seuilArticle, $idArticle = null){
             // mettre la premiere lettre du nom en majuscule
             $nomArticle = ucfirst(mb_convert_case($nomArticle, MB_CASE_LOWER));
 
@@ -118,7 +118,9 @@
                 if ($idArticle == null){ // cas ajouter article
                     $article = new Article();
                     $article->nom = strip_tags($nomArticle);   
-                    $article->groupe = strip_tags($groupeArticle);                                            
+                    $article->groupe = strip_tags($groupeArticle);
+                    $article->quantite = intval($quantiteArticle);   
+                    $article->seuil = intval($seuilArticle);                                           
                     $article->ajoutArticle();
                     $message[] = "L'article a été ajouté avec succès.";
                     $this->notification = new Notification("success", $message);
@@ -129,6 +131,8 @@
                     $article->id = (int) $idArticle;
                     $article->nom = strip_tags($nomArticle);
                     $article->groupe = strip_tags($groupeArticle);
+                    $article->quantite = intval($quantiteArticle);   
+                    $article->seuil = intval($seuilArticle); 
                     $article->modif();
                     $message[] = "L'article a été modifié avec succès.";
                     $this->notification = new Notification("success", $message);
