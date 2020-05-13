@@ -64,8 +64,7 @@
                     }
                     $offset = $perpage * ($currentPage - 1);
                     $bonssorties = BonSortie::getList($perpage, $offset);
-                    require_once VIEW . 'bons/listbonSortie.php';
-                            
+                    require_once VIEW . 'bons/listbonSortie.php';   
                 break;
 
                 case 'consulter':

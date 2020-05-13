@@ -2,10 +2,10 @@
 <div class="row justify-content-center">
     <div class="col-md-6">
 		<div class="card ">
-			<div class="card-header ">
-				<h3 class="text-center">Bons d'entrée </h3>
+			<div class="card-header bg-info text-light p-0">
+				<h3 class="text-center">Bons d'entrée</h3>
 			</div>
-			<div class="card-body  pr-0  pl-0 pt-0 ">
+			<div class="card-body pr-0  pl-0 pt-0 ">
 				<table class="table table-striped table-borderless table-hover table-sm" >
                     <thead>
 					<tr>
@@ -33,8 +33,8 @@
 
 		<div class="col-md-6 ">
 			<div class="card">
-				<div class="card-header">
-					<h3 class="text-center">Bons de sortie </h3>
+				<div class="card-header bg-info text-light p-0">
+					<h3 class="text-center">Bons de sortie</h3>
 					</div>
 					<div class="card-body pr-0  pl-0 pt-0">
 					<table class="table table-striped table-borderless table-hover table-sm">

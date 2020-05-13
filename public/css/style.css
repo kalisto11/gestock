@@ -121,6 +121,15 @@ footer p{
   border-radius: 10px;
 }
 
+.zonegrise a{
+  color: #000;
+}
+
+.zonegrise a:hover{
+  text-decoration: none;
+  color: rgb(105, 102, 102);
+}
+
 .icone{
   height: 50px;
   width:80px;

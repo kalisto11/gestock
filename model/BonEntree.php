@@ -132,7 +132,6 @@
 			return $bonsentrees;
 		}
 		
-
 		public static function getNbrBon(){
 			$pdo = Database::getPDO();
 			$req = "SELECT COUNT(id) FROM bon_entree";
