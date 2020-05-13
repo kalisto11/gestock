@@ -37,8 +37,7 @@
       <div>
         <h6>Dotations</h6>
         <?php if ($bonentree->dotations != null): ?>
-          
-          <table class="table table-striped table-bordered table-hover table-sm">
+        <table class="table table-striped table-borderless table-hover table-sm">
           <tr>
             <th class="th-md">Article</th>
             <th>Quantité</th>
@@ -46,21 +45,21 @@
             <th>Prix total</th>
           </tr>
           <?php foreach ($bonentree->dotations as $dotation): ?>
-            <tr>
-              <td><?= htmlspecialchars($dotation->nomArticle) ?></td>
-              <td><?= htmlspecialchars($dotation->quantite) ?></td>
-              <td><?= htmlspecialchars($dotation->prix) ?></td>
-              <td><?= htmlspecialchars($dotation->total) ?></td>
-            </tr>
+          <tr>
+            <td><?= htmlspecialchars($dotation->nomArticle) ?></td>
+            <td><?= htmlspecialchars($dotation->quantite) ?></td>
+            <td><?= htmlspecialchars($dotation->prix) ?></td>
+            <td><?= htmlspecialchars($dotation->total) ?></td>
+          </tr>
           <?php endforeach ; ?> 
-            <tr class="font-weight-bold">
-              <td colspan="3">Total général</td>
-              <td><?= $bonentree->totalGeneral ?></td>
-            </tr>  
-          </table>
-
+          <tr class="font-weight-bold">
+            <td colspan="3">Total général</td>
+            <td><?= $bonentree->totalGeneral ?></td>
+          </tr>  
+        </table>
         <?php endif ; ?>    
       </div>
+
       <div class="mt-5 text-right">
         Dernière modification le <?= $bonentree->dateModification ?> par <?= $bonentree->nomModificateur ?>
       </div>
@@ -71,14 +70,13 @@
       <a href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>" class="btn btn-danger suppr">Supprimer</a>
       </div>
       <?php endif ; ?>
+      <div class="mt-5">
+        <p>
+            <a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des bons d'entrée</a>
+        </p>
+      </div>
     </div>
   </div>
-  
-  </div>
-  <div>
-      <p>
-          <a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des bons d'entrée</a>
-      </p>
-  </div>
 </div>
+
 

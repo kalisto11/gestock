@@ -1,10 +1,10 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
 <div class="container-fluid">
+<h2 class="mt-5 text-center">Fournisseurs</h2>
     <div class="row">
         <div class="col-md-8">
-        <h2 class="mt-5 text-center">Fournisseurs</h2>
-            <table class="table table-striped table-bordered table-hover table-sm">
+            <table class="table table-striped table-borderless table-hover table-sm">
                 <tr>
                     <th class="th-md">Fournisseur</th>
                     <th class="th-sm">Action</th>
@@ -28,7 +28,7 @@
         </div>  
         <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
             <div class="col-md-4 bg-light">
-            <h2 class="mt-5 text-center"><?php if (isset($currentFournisseur->id)){echo 'Modifier le fournisseur';}else{echo 'Ajouter un fournisseur';} ?></h2>
+            <h4 class="mt-5 text-center"><?php if (isset($currentFournisseur->id)){echo 'Modifier le fournisseur';}else{echo 'Ajouter un fournisseur';} ?></h4>
                 <div class="container-fluid">
                     <form method="post" action="/gestock/Fournisseurs/traitement-fournisseur">
                         <div class="form-group">
