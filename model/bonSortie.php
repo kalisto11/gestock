@@ -149,9 +149,30 @@
 			
 		}
 
+		public static function getListBeneficiaire($idBeneficiaire, $perpage, $offset) {
+			$pdo = Database::getPDO();
+			$req = "SELECT id from bon_sortie WHERE beneficiaire_id = $idBeneficiaire ORDER BY date DESC LIMIT $perpage OFFSET $offset";
+			$reponse = $pdo->query($req);
+			$bonssorties = array();
+			while ($row = $reponse->fetch()){
+				$bonsortie = new BonSortie($row['id']);
+				$bonssorties[] = $bonsortie;
+			}
+			return $bonssorties;
+			
+		}
+
 		public static function getNbrBon(){
 			$pdo = Database::getPDO();
 			$req = "SELECT COUNT(id) FROM bon_sortie";
+			$reponse = $pdo->query($req);
+			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
+			 return  $count;
+		}
+
+		public static function getNbrBonBeneficiaire($idBeneficiaire){
+			$pdo = Database::getPDO();
+			$req = "SELECT COUNT(id) FROM bon_sortie WHERE beneficiaire_id = $idBeneficiaire";
 			$reponse = $pdo->query($req);
 			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
 			 return  $count;

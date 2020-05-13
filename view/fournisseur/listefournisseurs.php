@@ -11,7 +11,7 @@
                 </tr>
                 <?php foreach($fournisseurs as $fournisseur): ?>
                     <tr>
-                        <td><?= $fournisseur->nom ?></td>
+                        <td><a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>"><?= $fournisseur->nom ?></a></td>
                         <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
                             <td>
                                 <a class="btn btn-info btn-sm" href="/gestock/fournisseurs/modifier/<?= $fournisseur->id ?>">

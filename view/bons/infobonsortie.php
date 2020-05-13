@@ -1,22 +1,24 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
 <h2 class="mt-5 text-center">Information sur le bon de sortie</h2>
-<div class="container"> 
+<div class="container-fluid"> 
   <div class="row">
     <div class="col-sm-3">
         <div>
-            <h6>Référence</h6>
+            <h6>Numéro du bon</h6>
             <p class="zonegrise">
             <?= $bonsortie->reference ?>
             </p>
         </div>
+
         <div>
             <h6>Date</h6>
             <p class="zonegrise"><?= $bonsortie->date ?></p>
         </div>
+        
         <div>
             <h6>Bénéficiaire</h6>
-            <p class="zonegrise"><?= $bonsortie->nomBeneficiaire ?></p>        
+            <p class="zonegrise"><a href="/gestock/personnels/consulter/<?=$bonsortie->idBeneficiaire?>"><?= $bonsortie->nomBeneficiaire ?></a></p>        
         </div>
     </div>
     <div class="col-sm-9">

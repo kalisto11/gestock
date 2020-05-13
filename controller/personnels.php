@@ -61,6 +61,16 @@
 
                 case 'consulter':
                     $agent = new Personnel($this->request->id);
+                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
+                    $perpage = 10;
+                    $count = BonSortie::getNbrBonBeneficiaire($agent->id);
+                    $pages = ceil($count/$perpage);
+                    if ($currentPage > $pages){
+                        $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("success", $message);
+                    }
+                    $offset = $perpage * ($currentPage - 1);
+                    $bonssorties = BonSortie::getListBeneficiaire($agent->id, $perpage, $offset);
                     require_once VIEW . 'personnel/infoagent.php';
                 break;
 

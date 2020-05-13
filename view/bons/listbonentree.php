@@ -4,7 +4,7 @@
 <div>
     <table class="table table-striped table-borderless table-hover table-sm">
         <tr>
-            <th class="th-sm">Référence</th>
+            <th class="th-sm">Numéro du bon</th>
             <th class="th-sm">Date</th>
             <th>Founisseur</th>
             <th class="th-sm">Actions</th>
@@ -13,7 +13,7 @@
         <tr>
             <td><?= $bonentree->reference?></td>
             <td><?=$bonentree->date?></td>
-            <td><?=$bonentree->nomFournisseur?></td>
+            <td><a href="/gestock/fournisseurs/consulter/<?=$bonentree->idFournisseur?>"><?=$bonentree->nomFournisseur?></a></td>
             
             <td> 
                 <a class="btn btn-info btn-sm" href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon d'entrée"></a>

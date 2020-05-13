@@ -1,12 +1,12 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
 <h2 class="mt-5 text-center">Information sur le bon d'entrée</h2>
-<div class="container"> 
+<div class="container-fluid"> 
   <div class="row">
     <div class="col-sm-3">
 
       <div>
-        <h6>Numéro du bon d'entrée</h6>
+        <h6>Numéro du bon</h6>
         <p class="zonegrise" ><?= $bonentree->reference ?></p>
       </div>
 
@@ -27,7 +27,7 @@
 
       <div class="mt-3">
         <h6>Fournisseur</h6>
-        <p class="zonegrise"><?= $bonentree->nomFournisseur ?></p>      
+        <p class="zonegrise"><a href="/gestock/fournisseurs/consulter/<?= $bonentree->idFournisseur ?>"><?= $bonentree->nomFournisseur ?></a></p>      
       </div>
 
     </div>
