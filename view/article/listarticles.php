@@ -4,7 +4,7 @@
     <div class="row">
         <div class="col-md-8">
             <h2 class=" mt-5 text-center">Articles</h2>
-            <table class="table table-striped table-bordered table-hover table-sm">
+            <table class="table table-striped table-borderless table-hover table-sm">
                 <tr>
                     <th class="th-md">Articles</th>
                     <th class="th-sm">Groupes</th>
