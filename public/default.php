@@ -94,7 +94,7 @@
         </main>
         <footer class="m-0 p-0 bg-dark">
             <p class="text-light m-0">
-                &copy;Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
+                &copy; Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
             </p>
         </footer> 
           

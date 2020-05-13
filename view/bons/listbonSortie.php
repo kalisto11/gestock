@@ -1,7 +1,7 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 <h2 class="mt-5 text-center">Bons de sortie</h2> 
 <div>
-    <table class="table table-striped table-bordered table-hover table-sm">
+    <table class="table table-striped table-borderless table-hover table-sm">
         <tr>
             <th class="th-sm">Référence</th>
             <th class="th-sm">Date</th>
