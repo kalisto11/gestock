@@ -1,4 +1,4 @@
-<h2 class="text-center mt-3 mb-3">Livre journal</h2>
+<h2>Livre journal</h2>
 <div class="row">
     <div class="col-md-6">
 		

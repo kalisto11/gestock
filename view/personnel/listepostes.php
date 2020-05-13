@@ -1,7 +1,7 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
 <div class="container-fluid">
-<h2 class="mt-5 text-center">Postes</h2>
+<h2>Postes</h2>
     <div class="row">
         <div class="col-md-8">
        

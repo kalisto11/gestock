@@ -1,6 +1,6 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
-<h2 class="mt-5 text-center">Information sur le bon de sortie</h2>
+<h2>Information sur le bon de sortie</h2>
 <div class="container-fluid"> 
   <div class="row">
     <div class="col-sm-3">

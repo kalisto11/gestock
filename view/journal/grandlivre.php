@@ -1,4 +1,4 @@
-<h2 class="text-center mt-3 mb-3">Information inventaire</h2>
+<h2>Information inventaire</h2>
 	<div class="container my-2">
 		<div class="card">
 			<div class="card-header">

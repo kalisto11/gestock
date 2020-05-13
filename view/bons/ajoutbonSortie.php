@@ -1,6 +1,6 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
-<h2 class="text-center">Ajouter un bon de sortie</h2>
+<h2>Ajouter un bon de sortie</h2>
 <div class="container"> 
   <form method="post" action="/gestock/bonssortie/traitement-bonsortie">
     

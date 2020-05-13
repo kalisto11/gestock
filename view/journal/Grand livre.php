@@ -1,4 +1,4 @@
-<h2 class="text-center">Grand livre</h2>
+<h2>Grand livre</h2>
       <div>
         <table class="table table-striped table-bordered table-hover table-sm">
           <tr>
