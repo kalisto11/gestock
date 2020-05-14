@@ -51,10 +51,10 @@
 
             <div class="d-flex justify-content-between my-4">
             <?php if ($currentPage > 1):?>
-                <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $currentPage - 1 ?>" class="btn btn-primary">Page précédente</a>
+                <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
             <?php endif ?>
             <?php if ($currentPage < $pages):?>
-                <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante </a>
+                <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante </a>
             <?php endif ?>
             </div>
         </div>
