@@ -161,6 +161,46 @@ input[disabled]{
   text-align: right;
 }
 
+<<<<<<< HEAD
+/*  debut accueille */
+
+.nomcomplet{
+  color:black;
+  font-size: 20px;
+}
+.nomconnexion{
+ color:black;
+ font-size: 20px;
+}
+.role{
+ color:black;
+ font-size: 20px;
+}
+.motpass{
+ color:black;
+ font-size: 20px;
+}
+.confpass{
+ color:black;
+ font-size: 20px;
+}
+#pourcentage1{
+ width: 15%;
+}
+#pourcentage2{
+ width: 25%;
+}
+#pourcentage3{
+ width: 30%;
+}
+#pourcentage4{
+  width: 40%;
+}
+#pourcentage5{
+  width:50%;
+}
+/* fin accueil */
+=======
 #notification{
   position: absolute;
   top: -20px;
@@ -173,7 +213,11 @@ input[disabled]{
   opacity: 0.9;
   font-weight: bold;
 }
+<<<<<<< HEAD
 
 #hiddenBlock{
   display: none;
 }
+=======
+>>>>>>> 1592ff09255e2e2c2204821652c87c55aae6081c
+>>>>>>> a57c84778fc3d62b180e67b5eed0008da8b1bb31
