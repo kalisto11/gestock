@@ -1,6 +1,6 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
-<h2 class="mt-5 text-center">Information sur le bon d'entrée</h2>
+<h2>Information sur le bon d'entrée</h2>
 <div class="container-fluid"> 
   <div class="row">
     <div class="col-sm-3">
@@ -57,7 +57,7 @@
       <div class="mt-5 text-right">
         Dernière modification le <?= $bonentree->dateModification ?> par <?= $bonentree->nomModificateur ?>
       </div>
-      <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>  
+      <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>  
       <div class="text-right mt-5">
       <a href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>" class="btn btn-info">Modifier</a>
       <a href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>" class="btn btn-danger suppr">Supprimer</a>

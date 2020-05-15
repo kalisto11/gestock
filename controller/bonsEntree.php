@@ -7,7 +7,7 @@
     class BonsEntree extends Controller{
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
-                if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                     if ($this->request->action != null){
                         switch ($this->request->action){
                             case 'traitement-bonentree':
@@ -31,7 +31,7 @@
             }
             elseif ($this->request->method === 'GET'){ // si la requete vient d'un lien 
                 if ($this->request->action === 'supprimer'){
-                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $idBonEntree = intval($this->request->id);
                         $bonentree  = new BonEntree($idBonEntree);
                         $bonentree->delete();
@@ -70,14 +70,14 @@
                     require_once VIEW . 'bons/infobonentree.php';
                 break;
                 case 'ajouter':
-                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $articles = Article::getList();
                         $fournisseurs = Fournisseur::getList();
                         require_once VIEW . 'bons/ajoutbonentree.php';
                     }
                 break;
                 case 'modifier':
-                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $bonentree  = new BonEntree($this->request->id);
                         $articles = Article::getList();
                         $fournisseurs = Fournisseur::getList();

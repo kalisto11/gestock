@@ -152,7 +152,7 @@
                     $agent->nom = mb_convert_case(strip_tags($nom), MB_CASE_UPPER);
                     $agent->poste = $this->ajouterPoste($poste1, $poste2, $poste3);
                     $agent->save();
-                    $message[] = "L'agent a été bien ajouté.";
+                    $message[] = "Les informations de l'agent a été bien ajoutées.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'liste';
                 }

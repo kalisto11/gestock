@@ -1,6 +1,6 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
-<h2 class="ml-5 text-center">Information sur l'agent</h2>
+<h2>Information sur l'agent</h2>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-4">
@@ -22,7 +22,7 @@
                 <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
                 <div class="text-right mt-5">
                     <a href="/gestock/personnels/modifier/<?= $agent->id ?>"class="btn btn-info">Modifier</a>
-                    <a href="/gestock/personnels/supprimer/<?= $agent->id ?>"class="btn btn-danger">Supprimer</a>
+                    <a href="/gestock/personnels/supprimer/<?= $agent->id ?>"class="btn btn-danger suppr">Supprimer</a>
                 </div>
                 <?php endif; ?>
             </div>
@@ -51,10 +51,10 @@
 
             <div class="d-flex justify-content-between my-4">
             <?php if ($currentPage > 1):?>
-                <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $currentPage - 1 ?>" class="btn btn-primary">Page précédente</a>
+                <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
             <?php endif ?>
             <?php if ($currentPage < $pages):?>
-                <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante </a>
+                <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante </a>
             <?php endif ?>
             </div>
         </div>

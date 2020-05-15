@@ -14,8 +14,14 @@ body{
       width: 50%;
       margin-top: 50px;
       padding-top: 10px;
-      opacity: 0.7;
+      opacity: 0.9;
+      background-color: WHITE;
   }
+
+  .connexion{
+    font-size: 12px;
+}
+
 
   .cle{
     height: 30px;

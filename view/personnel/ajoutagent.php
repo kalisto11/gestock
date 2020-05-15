@@ -1,6 +1,6 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
-<h2 class="text-center mt-5"><?php if (isset($agent)){echo 'Modifier les informations de l\'agent';}else{echo 'Ajouter un nouvel agent';} ?></h2> 
+<h2><?php if (isset($agent)){echo 'Modifier les informations de l\'agent';}else{echo 'Ajouter un nouvel agent';} ?></h2> 
 <div class="container mt-2">
    <form method="post" action="/gestock/personnels/traitement-agent" class="form-sm">
       <div class="form-group">
