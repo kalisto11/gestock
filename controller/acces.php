@@ -7,7 +7,6 @@ class Acces extends Controller{
     public function process(){
         if ($this->request->method == 'POST'){
             switch ($this->request->action){
-
                 case 'changerpassword':
                     if (isset($_SESSION['token'])){
                         if ($_POST['password1'] === $_POST['password2']){
@@ -39,17 +38,25 @@ class Acces extends Controller{
 
                 case 'ajouter':
                     if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
-                        $message = "L'utilisateur a été bien ajouté.";
-                       $_SESSION['notification'] = new Notification("success", $message);
-                        
+                        if (empty($_POST['nomComplet']) OR empty($_POST['username']) OR empty($_POST['password1']) OR empty($_POST['password2'])){
+                            $message[] = "Veuillez remplir tous les champs.";
+                            $this->notification = new Notification("success", $message);
+                        }
+                        else{
+                            if ($_POST['password1'] !== $_POST['password2']){
+                                
+                            }
+                        }
+                        $message[] = "L'utilisateur a été bien ajouté.";
+                        $this->notification = new Notification("success", $message);
                     }
 
                 break;
 
                 case 'modifier':
                     if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
-                        $message = "L'utilisateur a été bien modifié.";
-                       $_SESSION['notification'] = new Notification("success", $message);
+                        $message[] = "L'utilisateur a été bien modifié.";
+                       $this->notification = new Notification("success", $message);
                     }
                 break;
             }
@@ -57,18 +64,18 @@ class Acces extends Controller{
         }
         else if ($this->request->method == 'GET'){
             if ($this->request->action == "supprimer"){
-
+                $this->request->action = 'home';
+                // operation de suppression ici
+                $message[] = "L'utilisateur a été bien supprimé";
+                $this->notification = new Notification("success", $message);
             }
-            $message = "L'utilisateur a été bien supprimé";
-           $_SESSION['notification'] = new Notification("success", $message);
-            $this->request->action = 'home';
+           
             $this->render($this->notification);
         }
     }            
     public function render($notification = null){
         switch ($this->request->action){
             case 'ajouter':
-                jj
                 if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
                     require_once VIEW . 'acces/ajoutuser.php';
                 }

@@ -81,6 +81,7 @@
                             <ul class="sub-menu" id="journal">
                                 <li><a href="/gestock/livrejournals/liste"><img src="images/icones/livre journal.JPG" class="mr-2 menu-icone">Livre Journal</a></li>
                                 <li><a href=""><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
+                                <li><a href="/gestock/acces/ajouter/"><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
                             </ul>
                         </ul>
                     </div>

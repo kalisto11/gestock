@@ -8,8 +8,8 @@
         </div>
 
         <div class="form-group">
-            <label for="nomComplet">Nom de connexion</label>
-            <input type="text" name="nomConnexion" id="nomComplet" class="form-control" placeholder="ex: kdiaw">
+            <label for="username">Nom de connexion</label>
+            <input type="text" name="username" id="username" class="form-control" placeholder="ex: kdiaw">
         </div>
 
         Role du nouvel utilisateur <br>
