@@ -14,18 +14,23 @@
     Myautoload::start();
 
     if(isset($_SESSION['user'])){
-         // temporisation de la sortie
-    ob_start();
+        if ($_SESSION['user']['changePassword'] == false){
+            require_once VIEW . 'acces/changepassword.php';
+        }
+        else{
+            // temporisation de la sortie
+            ob_start();
     
-    // instanciation du dispatcher
-    $dispatcher = new Dispatcher();
+            // instanciation du dispatcher
+            $dispatcher = new Dispatcher();
 
-    // recueil de la sortie dans $content
-    $content = ob_get_clean();
+            // recueil de la sortie dans $content
+            $content = ob_get_clean();
 
-    // inclure le template par defaut
-    require 'default.php';
-
+            // inclure le template par defaut
+            require 'default.php';
+        }
+         
     }else{
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             

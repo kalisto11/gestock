@@ -12,8 +12,15 @@ class Auths extends Controller{
                     $_SESSION['user']['username'] = $user->username; 
                     $_SESSION['user']['niveau'] = $user->niveau;
                     $_SESSION['user']['nomComplet'] = $user->nomComplet;
-                    $this->request->controller = 'home';
-                    $this->render();
+                    $_SESSION['user']['changePassword'] = $user->changePassword;
+                    if ($user->changePassword == false){
+                        $this->request->controller = "changepassword";
+                        $this->render();
+                    }
+                    else{
+                        $this->request->controller = 'home';
+                        $this->render();
+                    }
                 }
                 else{
                     $message = "Les identifiants sont incorrects.";
@@ -42,6 +49,10 @@ class Auths extends Controller{
             case 'deconnexion':
                 header ('location: /gestock/'); 
              break;
+
+             case 'changepassword': 
+                header ('location: /gestock/');     
+            break; 
         }        
     }
 }
