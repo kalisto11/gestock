@@ -121,12 +121,12 @@
         }
         public static function requireTransaction($idArticle){
             $pdo = Database::getPDO();
-            $req = "SELECT * from transactions WHERE idArticle = ?";
+            $req = "SELECT id, DATE_FORMAT(dateTrans, '%d/%m/%Y') AS dateTrans, idArticle, idBon, numeroBon, quantite, typeTrans from transactions WHERE idArticle = ? ORDER BY dateTrans DESC";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($idArticle));
+            $transactions = array();
             while ($row = $reponse->fetch()){
-                $transaction = $row;
-                $transactions[] = $transaction;
+                $transactions[] = $row;
             }  
             return $transactions;
         }

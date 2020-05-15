@@ -18,7 +18,7 @@
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-            <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone fa-spin">IA KAFFRINE</a>
+            <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo"><img src="images/icones/education.png" class="mr-2 icone fa-spin">IA KAFFRINE</a>
             <h1 class="h2">GESTION DE STOCK</h1>
 
             <form class="form-inline mr-4" action="/gestock/recherche">
@@ -46,8 +46,8 @@
                     </div>
                     <div class="menu-list">
                         <ul id="menu-content" class="menu-content collapse out">
-                            <li  data-toggle="collapse" data-target="#accueil" class="collapsed bg-info">
-                                <img src="images/icones/accueil.JPG"class="mr-2 ml-2 bg-white menu-icone">Accueil
+                            <li class="collapsed bg-info">
+                                <a href="/gestock/home/"><img src="images/icones/accueil.JPG"class="mr-2 ml-2 bg-white menu-icone">Accueil</a>
                             </li> 
                             <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
                                 <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel

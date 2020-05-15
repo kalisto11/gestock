@@ -19,28 +19,29 @@
             <th>Numéro Bon</th>
             <th>Quantité </th>
             <th>Date</th>
-          </tr>  
+          </tr>
+          <?php if (!empty($transactions)) : ?>
           <?php foreach($transactions as $transaction):?>
             <tr>
-            <td><?= htmlspecialchars($transaction['typeTrans']) ?></td>
-            
-              <?php if ($transaction['typeTrans'] == 'entree'): ?> 
-                <td><a href="/gestock/bonsentree/consulter/<?= $transaction['idBon'] ?>"><?= htmlspecialchars($transaction['numeroBon']) ?></a></td>
-                <td><?= htmlspecialchars('+'. $transaction['quantite'])?></td>
-                <td><?= htmlspecialchars($transaction['dateTrans'])?></td>
-         
-              <?php elseif ($transaction['typeTrans'] == 'sortie'): ?>
-                <td><a href="/gestock/bonssortie/consulter/<?= $transaction['idBon'] ?>"><?= htmlspecialchars($transaction['numeroBon']) ?></a></td>
-                <td><?= htmlspecialchars('-'. $transaction['quantite'])?></td>
-                <td><?= htmlspecialchars($transaction['dateTrans'])?></td>
-              <?php endif ?>
-            
-           
-         
-			</tr>	
-      <?php endforeach ?> 
-		</table>          
-	</div>
+              <td><?= htmlspecialchars($transaction['typeTrans']) ?></td>
+              
+                <?php if ($transaction['typeTrans'] == 'entree'): ?> 
+                  <td><a href="/gestock/bonsentree/consulter/<?= $transaction['idBon'] ?>"><?= htmlspecialchars($transaction['numeroBon']) ?></a></td>
+                  <td class="font-weight-bold text-<?php if ($transaction['typeTrans'] == "entree"){echo "success";}else{echo "danger";} ?>"><?= htmlspecialchars('+'. $transaction['quantite'])?></td>
+                  <td><?= htmlspecialchars($transaction['dateTrans'])?></td>
+          
+                <?php elseif ($transaction['typeTrans'] == 'sortie'): ?>
+                  <td><a href="/gestock/bonssortie/consulter/<?= $transaction['idBon'] ?>"><?= htmlspecialchars($transaction['numeroBon']) ?></a></td>
+                  <td><?= htmlspecialchars('-'. $transaction['quantite'])?></td>
+                  <td><?= htmlspecialchars($transaction['dateTrans'])?></td>
+                <?php endif ?>
+			      </tr>	
+          <?php endforeach ?> 
+          <?php else : ?> 
+        </table>
+        <div class="text-center">Cet article n'a pas encore de transactions effectuées.</div>   
+        <?php endif ; ?>      
+	    </div>
  
 </div>    
 
