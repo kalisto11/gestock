@@ -14,24 +14,25 @@
     Myautoload::start();
 
     if(isset($_SESSION['user'])){
-        if ($_SESSION['user']['changePassword'] == false){
-            require_once VIEW . 'acces/changepassword.php';
-        }
-        else{
-            // temporisation de la sortie
-            ob_start();
-    
-            // instanciation du dispatcher
-            $dispatcher = new Dispatcher();
+         // temporisation de la sortie
+        ob_start();
+        
+        // instanciation du dispatcher
+        $dispatcher = new Dispatcher();
 
-            // recueil de la sortie dans $content
-            $content = ob_get_clean();
+        // recueil de la sortie dans $content
+        $content = ob_get_clean();
 
-            // inclure le template par defaut
-            require 'default.php';
-        }
-         
-    }else{
+        // inclure le template par defaut
+        require 'default.php';
+
+    }
+    else if(isset($_SESSION['id'])){
+        $_SESSION['token'] = $_SESSION['id'];
+        unset($_SESSION['id']);
+        require_once VIEW . 'acces/changepassword.php';
+    }
+    else{
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             
             $dispatcher = new Dispatcher();

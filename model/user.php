@@ -1,6 +1,6 @@
 <?php
    
-class Users{
+class User{
     public $id;
     public $nomComplet;
     public $username;
@@ -27,7 +27,7 @@ class Users{
         $reponse = $pdo->query($req);
         $users = array();
         while ($row = $reponse->fetch()){
-            $user = new Users($row['id']);  
+            $user = new User($row['id']);  
             $users[] = $user;
         }
         return $users;
@@ -46,7 +46,7 @@ class Users{
         ));
     }
 
-    public function modify(){
+    public function update(){
         $pdo = Database::getPDO();
         $req = 'UPDATE users SET nomComplet = :nomComplet, username = :username, pasword = :pasword, niveau = :niveau, changePassword = :changePassword WHERE id = :id';
         $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));

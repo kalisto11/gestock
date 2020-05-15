@@ -5,22 +5,21 @@ class Auths extends Controller{
 
     public function process(){
         if ($this->request->method === 'POST'){
-            $users = Users::getList();
+            $users = User::getList();
             foreach ($users as $user){
                 if ($_POST['username'] ==  $user->username  && sha1($_POST['pasword']) == $user->pasword ){
-                    $_SESSION['user']['id'] = $user->id; 
-                    $_SESSION['user']['username'] = $user->username; 
-                    $_SESSION['user']['niveau'] = $user->niveau;
-                    $_SESSION['user']['nomComplet'] = $user->nomComplet;
-                    $_SESSION['user']['changePassword'] = $user->changePassword;
                     if ($user->changePassword == false){
-                        $this->request->controller = "changepassword";
-                        $this->render();
+                        $_SESSION['id'] = $user->id; 
                     }
                     else{
-                        $this->request->controller = 'home';
-                        $this->render();
+                        $_SESSION['user']['id'] = $user->id; 
+                        $_SESSION['user']['username'] = $user->username; 
+                        $_SESSION['user']['niveau'] = $user->niveau;
+                        $_SESSION['user']['nomComplet'] = $user->nomComplet;
+                        $_SESSION['user']['changePassword'] = $user->changePassword;
                     }
+                    $this->request->controller = 'home';
+                    $this->render();
                 }
                 else{
                     $message = "Les identifiants sont incorrects.";

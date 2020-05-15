@@ -4,8 +4,8 @@
         <meta name="viewport" content="width=device-width,initial-scale=1">
         <base href="/gestock/public/">
         <link rel="shortcut icon" type="image/png" href="public/images/icones/favicon.png">
-        <link href="/public/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="/css/connexion.css">
+        <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="css/changerpassword.css">
          
     </head>
     <body>
@@ -13,21 +13,21 @@
       <h1 class="blanc">GESTION DE STOCK</h1>
         <div  class="container bg-lightr justify-content-center align-items-center connexion"> 
           <?php require VIEW . 'infos/notAuth.php'; ?>
-          <h2>Changement de mot de passe</h2>
-            <div>
-                Votre mot de passe actuel est temporaire car d'autres personne le connaisent. Vous devez changer votre mot de passe pour pouvoir se connecter à votre compte de manière sécurisée (aucune autre personne n'y aura accès). <br>
+          <h3>Changement de mot de passe</h3>
+            <div class="text-justify">
+                Votre mot de passe actuel est temporaire car d'autres personnes le connaisent. Vous devez le changer pour pouvoir se connecter à votre compte de manière sécurisée (aucune autre personne n'y aura accès). <br>
                 NB: en cas d'oubli de votre mot de passe, veuillez contacter l'administrateur pour réinitialiser votre compte et vous en donner accès à nouveau.
             </div>
             <div class="container"> 
                 <form method="post" action="/gestock/acces/changerpassword/">
 
                     <div class="form-group">
-                        <label for="password1">Nouveau mot de passe</label>
+                        <label for="password1"><img src="images/icones/cle.png" class="cle mr-3">Nouveau mot de passe</label>
                         <input type="password" name="password1" id="password1" class="form-control">
                     </div>
 
                     <div class="form-group">
-                        <label for="password2">Confirmation du nouveau mot de passe</label>
+                        <label for="password2"><img src="images/icones/cle.png" class="cle mr-3">Confirmation du nouveau mot de passe</label>
                         <input type="password" name="password2" id="password2" class="form-control">
                     </div>
 
