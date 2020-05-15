@@ -161,9 +161,6 @@ input[disabled]{
   text-align: right;
 }
 
-<<<<<<< HEAD
-/*  debut accueille */
-
 .nomcomplet{
   color:black;
   font-size: 20px;
@@ -199,8 +196,7 @@ input[disabled]{
 #pourcentage5{
   width:50%;
 }
-/* fin accueil */
-=======
+
 #notification{
   position: absolute;
   top: -20px;
@@ -213,11 +209,7 @@ input[disabled]{
   opacity: 0.9;
   font-weight: bold;
 }
-<<<<<<< HEAD
 
 #hiddenBlock{
   display: none;
 }
-=======
->>>>>>> 1592ff09255e2e2c2204821652c87c55aae6081c
->>>>>>> a57c84778fc3d62b180e67b5eed0008da8b1bb31
