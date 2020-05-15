@@ -241,8 +241,6 @@ prix10.addEventListener('change', function(){
     }
 });
 
-
-
 function sommeTotalgeneral(){
     let somme;
     somme = parseInt(total1.value) + parseInt(total2.value) + parseInt(total3.value) + parseInt(total4.value) + parseInt(total5.value) + parseInt(total6.value) + parseInt(total7.value) + parseInt(total8.value) + parseInt(total9.value) + parseInt(total10.value);

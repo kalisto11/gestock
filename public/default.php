@@ -106,6 +106,7 @@
         <script src="js/main.js"></script>
         <script src="js/confirm.js"></script>
         <script src="js/notification.js"></script>
+        <script src="js/closenotif.js"></script>
         
     </body>
 </html>
