@@ -75,9 +75,9 @@
             }  
             return $articles;
         }
-        public static function getListArticle(){
+        public static function getListTrans($perpage, $offset){
             $pdo = Database::getPDO();
-            $req = 'SELECT id FROM article LEFT JOIN sortie_article ON article.id = sortie_article.id_article WHERE sortie_article.id_article IS NULL AND sortie_article.id_bon_sortie IS NULL';
+            $req = "SELECT id from article  LIMIT $perpage OFFSET $offset";
             $reponse = $pdo->query($req);
             $articles = array();
             while ($row = $reponse->fetch()){
@@ -86,4 +86,83 @@
             }  
             return $articles;
         }
-    }
+      /* public static function getListArticle(){
+            $pdo = Database::getPDO();
+            $req = 'SELECT id FROM article LEFT JOIN sortie_article ON article.id = sortie_article.idArticle WHERE sortie_article.idArticle IS NULL AND sortie_article.id_bon_sortie IS NULL';
+            $reponse = $pdo->query($req);
+            $articles = array();
+            while ($row = $reponse->fetch()){
+                $article = new Article($row['id']);
+                $articles[] = $article;
+            }  
+            return $articles;
+        }*/
+        public static function getNbrArticle(){
+            $pdo = Database::getPDO();
+            $req = "SELECT COUNT(id) FROM  article";
+            $reponse = $pdo->query($req);
+            $count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
+             return  $count;
+        }
+        /**
+         * 
+         */
+        public static function transaction($idArticle, $idBon, $numeroBon, $quantite, $typeTrans){
+            $pdo = Database::getPDO();
+            $req  = "INSERT INTO transactions (dateTrans,idArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(),:idArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
+            $reponse = $pdo->prepare($req);
+            $reponse->execute(array(
+                'idArticle' => $idArticle,
+                'idBon'     => $idBon,
+                'numeroBon' => $numeroBon,
+                'quantite'  => $quantite,
+                'typeTrans' =>$typeTrans
+            ));
+        }
+        public static function requireTransaction($idArticle){
+            $pdo = Database::getPDO();
+            $req = "SELECT * from transactions WHERE idArticle = ?";
+            $reponse = $pdo->prepare($req);
+            $reponse->execute(array($idArticle));
+            while ($row = $reponse->fetch()){
+                $transaction = $row;
+                $transactions[] = $transaction;
+            }  
+            return $transactions;
+        }
+        /**
+         * 
+         */
+        public static function updateQuantity($idArticle, $quantite, $typeTrans){
+            $pdo = Database::getPDO();
+            if($typeTrans =="entree"){
+                $req  = "UPDATE article SET  quantite = quantite + :quantite WHERE id= :idArticle";
+            }elseif($typeTrans == "sortie"){
+                $req  = "UPDATE article SET  quantite = quantite - :quantite WHERE id= :idArticle";
+            }
+            $reponse = $pdo->prepare($req);
+            $reponse->execute(array(
+                'idArticle' => $idArticle,
+                'quantite'  => $quantite
+            ));
+        }
+        /**
+         * 
+         */
+        public static function difQuantity($dotationIdArticle, $referenceBon){
+            $pdo = Database::getPDO();
+            $req = "SELECT quantite FROM transactions WHERE numeroBon = :numeroBon AND idArticle = :idArticle";
+			$reponse = $pdo->prepare($req);
+			$reponse->execute(array(
+				'numeroBon' => $referenceBon,
+				'idArticle' => $dotationIdArticle
+			));
+			$row = $reponse->fetch();
+			$oldquantite = $row['quantite'];
+            $reponse = $pdo->prepare("UPDATE article SET quantite = quantite + :oldquantite WHERE id = :idArticle");
+            $reponse->execute(array(
+                'oldquantite' => $oldquantite,
+                'idArticle' => $dotationIdArticle
+            ));
+        }
+    }//fin de la classe Article

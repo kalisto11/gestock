@@ -4,27 +4,22 @@
 <div class="container-fluid"> 
   <div class="row">
     <div class="col-sm-3">
-
       <div>
         <h6>Numéro du bon</h6>
         <p class="zonegrise" ><?= $bonentree->reference ?></p>
       </div>
-
       <div>
         <h6>Date du bon d'entrée</h6>
         <p class="zonegrise"><?= $bonentree->date ?></p>
       </div>
-
       <div>
         <h6>Numéro de la facture</h6>
         <p class="zonegrise" ><?= $bonentree->numeroFacture ?></p>
       </div>
-
       <div>
         <h6>Date de la facture</h6>
         <p class="zonegrise"><?= $bonentree->dateFacture ?></p>
       </div>
-
       <div class="mt-3">
         <h6>Fournisseur</h6>
         <p class="zonegrise"><a href="/gestock/fournisseurs/consulter/<?= $bonentree->idFournisseur ?>"><?= $bonentree->nomFournisseur ?></a></p>      
@@ -59,11 +54,9 @@
         </table>
         <?php endif ; ?>    
       </div>
-
       <div class="mt-5 text-right">
         Dernière modification le <?= $bonentree->dateModification ?> par <?= $bonentree->nomModificateur ?>
       </div>
-
       <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>  
       <div class="text-right mt-5">
       <a href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>" class="btn btn-info">Modifier</a>
