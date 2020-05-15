@@ -107,9 +107,6 @@
         <script src="bootstrap/js/propper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/confirm.js"></script>
         <script src="js/notification.js"></script>
-        <script src="js/closenotif.js"></script>
-        
     </body>
 </html>

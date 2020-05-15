@@ -158,8 +158,6 @@ td a:hover{
 }
 
 input[disabled]{
-  background-color: rgb(69, 194, 243);
-  border: 1px solid rgb(75, 15, 216);
   text-align: right;
 }
 
@@ -174,4 +172,8 @@ input[disabled]{
   z-index: 999;
   opacity: 0.9;
   font-weight: bold;
+}
+
+#hiddenBlock{
+  display: none;
 }
