@@ -14,21 +14,21 @@
 
         Role du nouvel utilisateur <br>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="administrateur" value="3" checked>
+            <input class="form-check-input" type="radio" name="niveau" id="administrateur" value="3" checked>
             <label class="form-check-label" for="administrateur">
                 Administrateur
             </label>
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="gestionnaire" value="2">
+            <input class="form-check-input" type="radio" name="niveau" id="gestionnaire" value="2">
             <label class="form-check-label" for="gestionnaire">
                 Gestionnaire
             </label>
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="superviseur" value="1" checked="checked">
+            <input class="form-check-input" type="radio" name="niveau" id="superviseur" value="1" checked="checked">
             <label class="form-check-label" for="superviseur">
                 Superviseur 
             </label>

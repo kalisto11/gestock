@@ -43,33 +43,73 @@ class Acces extends Controller{
                         if (empty($_POST['nomComplet']) OR empty($_POST['username']) OR empty($_POST['password1']) OR empty($_POST['password2'])){
                             $type = "danger";
                             $message[] = "Veuillez remplir tous les champs.";
+                            $this->notification = new Notification($type, $message);
+                            $this->request->action = "ajouter";
                         }
                         else if($_POST['password1'] !== $_POST['password2']){
                             $type = "danger";
                             $message[] = "Les mots de passe ne sont pas identiques.";
+                            $this->notification = new Notification($type, $message);
+                            $this->request->action = "ajouter";
                         }
                         else{
                             $user = new User();
                             $user->nomComplet = strip_tags($_POST['nomComplet']);
                             $user->username = strip_tags($_POST['username']);
-                            $user->niveau = strip_tags($_POST['username']);
+                            $user->pasword = sha1($_POST['password1']);
+                            $user->niveau = intval($_POST['niveau']);
+                            $user->save();
+                            $type = "success";
+                            $message[] = "L'utilisateur a été bien ajouté.";
+                            $this->notification = new Notification($type, $message);
+                            $this->request->action = "home";
+                        }
+                        
+                    }
+
+                break;
+
+                case 'modifier': 
+                    if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
+                        $user = new User($_POST['idUser']);
+                        $error = false;
+                        if (empty($_POST['nomComplet']) OR empty($_POST['username'])){
+                            $error = true;
+                            $type = "danger";
+                            $message[] = "Veuillez remplir tous les champs.";
+                        }
+                    
+                        else if ($_POST['reset'] == "ON"){
+                            if($_POST['password1'] !== $_POST['password2']){
+                                $error = true;
+                                $type = "danger";
+                                $message[] = "Les mots de passe ne sont pas identiques.";
+                            }
+                            else{
+                                $user->pasword = sha1($_POST['password1']);
+                            }
                         }
 
-                        $message[] = "L'utilisateur a été bien ajouté.";
-                        $this->notification = new Notification("success", $message);
+                        if ($error == true){
+                            $this->notification = new Notification($type, $message);
+                            $this->request->action = "modifier";
+                        }
+                        else{
+                            $user->nomComplet = strip_tags($_POST['nomComplet']);
+                            $user->username = strip_tags($_POST['username']);
+                            $user->niveau = intval($_POST['niveau']);
+                            $user->update();
+                            $type = "success";
+                            $message[] = "L'utilisateur a été bien modifié.";
+                            $this->notification = new Notification($type, $message);
+                            $this->request->action = "home";
+                        }
+                        
                     }
-
                 break;
-
-                case 'modifier':
-                    if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
-                        $message[] = "L'utilisateur a été bien modifié.";
-                       $this->notification = new Notification("success", $message);
-                    }
-                break;
-            }
+            } // fin switch
             $this->render($this->notification);
-        }
+        } // fin traitement post
         else if ($this->request->method == 'GET'){
             if ($this->request->action == "supprimer"){
                 $this->request->action = 'home';
@@ -77,17 +117,16 @@ class Acces extends Controller{
                 $message[] = "L'utilisateur a été bien supprimé";
                 $this->notification = new Notification("success", $message);
             }
-           
             $this->render($this->notification);
         }
-    }            
+    } // fin méthode process   
+
     public function render($notification = null){
         switch ($this->request->action){
             case 'ajouter':
                 if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
                     require_once VIEW . 'acces/ajoutuser.php';
                 }
-                
              break; 
 
             case 'modifier':
@@ -99,9 +138,6 @@ class Acces extends Controller{
             case 'home':
                 header ('location: /gestock/'); 
             break;
-
-            default:
-            header ('location: /gestock/'); 
         }        
     }
 }
