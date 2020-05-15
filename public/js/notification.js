@@ -5,4 +5,4 @@ btnFermer.addEventListener('click', function(){
 });
 setTimeout(function(){ 
     notif.parentElement.removeChild(notif); 
-}, 10000);
+}, 5000);

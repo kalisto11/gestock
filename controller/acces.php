@@ -20,14 +20,16 @@ class Acces extends Controller{
                             $_SESSION['user']['nomComplet'] = $user->nomComplet;
                             $_SESSION['user']['changePassword'] = $user->changePassword;
                             unset($_SESSION['token']);
-                            $message[] = "Bienvenue sur l'application de gestion du matériel de l'IA de Kaffrine ! Vous etes maintenant connecté.";
-                            $this->notification = new notification("success", $message);
+                            $message = "Bienvenue sur l'application de gestion du matériel de l'IA de Kaffrine ! Vous etes maintenant connecté.";
+                            $_SESSION['notification'] = [
+                                'type'=> 'success',
+                                'message'=> $message
+                                ];
                             $this->request->action = 'home';
                         }
                         else{
                             $_SESSION['id'] = $_SESSION['token'];
                             $message = "Les deux mots de passe saisis ne sont pas identiques. Veuillez recommencer.";
-                            $_SESSION['notification'] = null;
                             $_SESSION['notification'] = [
                             'type'=> 'danger',
                             'message'=> $message
@@ -44,7 +46,7 @@ class Acces extends Controller{
                         }
                         else{
                             if ($_POST['password1'] !== $_POST['password2']){
-                                
+
                             }
                         }
                         $message[] = "L'utilisateur a été bien ajouté.";
