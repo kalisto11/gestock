@@ -15,18 +15,24 @@
 
     if(isset($_SESSION['user'])){
          // temporisation de la sortie
-    ob_start();
-    
-    // instanciation du dispatcher
-    $dispatcher = new Dispatcher();
+        ob_start();
+        
+        // instanciation du dispatcher
+        $dispatcher = new Dispatcher();
 
-    // recueil de la sortie dans $content
-    $content = ob_get_clean();
+        // recueil de la sortie dans $content
+        $content = ob_get_clean();
 
-    // inclure le template par defaut
-    require 'default.php';
+        // inclure le template par defaut
+        require 'default.php';
 
-    }else{
+    }
+    else if(isset($_SESSION['id'])){
+        $_SESSION['token'] = $_SESSION['id'];
+        unset($_SESSION['id']);
+        require_once VIEW . 'acces/changepassword.php';
+    }
+    else{
         if ($_SERVER['REQUEST_METHOD'] == 'POST'){
             
             $dispatcher = new Dispatcher();

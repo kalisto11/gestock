@@ -1,3 +1,16 @@
+var supprs = document.querySelectorAll('.suppr');
+var i = 0 ;
+var  choix ;
+for (i = 0; i < supprs.length; i++){
+     supprs[i].addEventListener('click', function(){
+    event.preventDefault();
+    choix = confirm('Etes-vous sûr de vouloir supprimer cet élément ?');
+    if (choix){
+        window.location.href= this.getAttribute('href');
+    }
+});
+}
+
 var totalGeneral = document.querySelector('#totalGeneral');
 
 var quantite1 = document.querySelector('#quantite1');
@@ -30,7 +43,6 @@ var total9 = document.querySelector('#total9');
 var quantite10 = document.querySelector('#quantite10');
 var prix10 = document.querySelector('#prix10');
 var total10 = document.querySelector('#total10');
-
 quantite1.addEventListener('change', function(){
     if (quantite1.value <= 0){
         alert('La valeur de la quantité ne peut etre négative ou nulle.');
@@ -246,6 +258,10 @@ function sommeTotalgeneral(){
     somme = parseInt(total1.value) + parseInt(total2.value) + parseInt(total3.value) + parseInt(total4.value) + parseInt(total5.value) + parseInt(total6.value) + parseInt(total7.value) + parseInt(total8.value) + parseInt(total9.value) + parseInt(total10.value);
     return somme;
 }
+
+
+
+
 
 /*
 var i ;

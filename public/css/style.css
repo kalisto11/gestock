@@ -158,13 +158,8 @@ td a:hover{
 }
 
 input[disabled]{
-  background-color: rgb(69, 194, 243);
-  border: 1px solid rgb(75, 15, 216);
   text-align: right;
 }
-
-<<<<<<< HEAD
-/*  debut accueille */
 
 .nomcomplet{
   color:black;
@@ -202,7 +197,7 @@ input[disabled]{
   width:50%;
 }
 /* fin accueil */
-=======
+
 #notification{
   position: absolute;
   top: -20px;
@@ -215,4 +210,7 @@ input[disabled]{
   opacity: 0.9;
   font-weight: bold;
 }
->>>>>>> 1592ff09255e2e2c2204821652c87c55aae6081c
+
+#hiddenBlock{
+  display: none;
+}

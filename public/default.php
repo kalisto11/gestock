@@ -18,14 +18,13 @@
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-                <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone ">IA KAFFRINE</a>
-                <h1 class="h2">GESTION DE STOCK</h1>
+            <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone fa-spin">IA KAFFRINE</a>
+            <h1 class="h2">GESTION DE STOCK</h1>
 
-                <form class="form-inline mr-4" action="/gestock/recherche">
-                  <input class="form-control form-control-dark w-10" type="text" placeholder="Recherche" aria-label="Search">
-                  <button  type="submit" class="btn bg-info my-2 my-sm-0 "><img src="images/icones/recherche.png" class="bouton"></button>
-                </form>
-
+            <form class="form-inline mr-4" action="/gestock/recherche">
+                <input class="form-control form-control-dark w-10" type="text" placeholder="Recherche" aria-label="Search">
+                <button  type="submit" class="btn bg-info my-2 my-sm-0 "><img src="images/icones/recherche.png" class="bouton"></button>
+            </form>
         </nav> 
         <!-- FIN BARRE DU LOGO ET ZONE DE RECHERCHE -->
 
@@ -47,7 +46,6 @@
                     </div>
                     <div class="menu-list">
                         <ul id="menu-content" class="menu-content collapse out">
-
                             <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
                                 <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel
                             </li>
@@ -78,6 +76,7 @@
                             <ul class="sub-menu collapse" id="journal">
                                 <li><a href="/gestock/livrejournals/liste"><img src="images/icones/livre journal.JPG" class="mr-2 menu-icone">Livre Journal</a></li>
                                 <li><a href=""><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
+                                <li><a href="/gestock/acces/ajouter/"><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
                             </ul>
                         </ul>
                     </div>
@@ -104,7 +103,6 @@
         <script src="bootstrap/js/propper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
         <script src="js/main.js"></script>
-        <script src="js/confirm.js"></script>
         <script src="js/notification.js"></script>
         
     </body>
