@@ -18,14 +18,13 @@
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-                <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone">IA KAFFRINE</a>
-                <h1 class="h2">GESTION DE STOCK</h1>
+            <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone">IA KAFFRINE</a>
+            <h1 class="h2">GESTION DE STOCK</h1>
 
-                <form class="form-inline mr-4" action="/gestock/recherche">
-                  <input class="form-control form-control-dark w-10" type="text" placeholder="Recherche" aria-label="Search">
-                  <button  type="submit" class="btn bg-info my-2 my-sm-0 "><img src="images/icones/recherche.png" class="bouton"></button>
-                </form>
-
+            <form class="form-inline mr-4">
+                <input class="form-control form-control-dark w-10" type="text" placeholder="Recherche" aria-label="Search">
+                <button  type="submit" class="btn bg-info my-2 my-sm-0 "><img src="images/icones/recherche.png" class="bouton"></button>
+            </form>
         </nav> 
         <!-- FIN BARRE DU LOGO ET ZONE DE RECHERCHE -->
 
@@ -51,7 +50,7 @@
                             <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
                                 <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel
                             </li>
-                            <ul class="sub-menu collapse" id="personnel">
+                            <ul class="sub-menu" id="personnel">
                                 <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white menu-icone">Agents</a></li>
                                 <li><a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</a></li>
                             </ul>
@@ -75,7 +74,7 @@
                             <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">
                                 <img src="images/icones/dossier.png" class="mr-2 ml-2 bg-white menu-icone">Journal
                             </li>
-                            <ul class="sub-menu collapse" id="journal">
+                            <ul class="sub-menu" id="journal">
                                 <li><a href="/gestock/livrejournals/liste"><img src="images/icones/livre journal.JPG" class="mr-2 menu-icone">Livre Journal</a></li>
                                 <li><a href=""><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
                             </ul>
