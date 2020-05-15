@@ -5,7 +5,7 @@
         <base href="/gestock/public/">
         <link rel="shortcut icon" type="image/png" href="public/images/icones/favicon.png">
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
-        <link rel="stylesheet" href="css/changerpassword.css">
+        <link rel="stylesheet" href="css/connexion.css">
          
     </head>
     <body>

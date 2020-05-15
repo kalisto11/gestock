@@ -14,8 +14,13 @@ body{
       width: 50%;
       margin-top: 50px;
       padding-top: 10px;
+<<<<<<< HEAD
       opacity: 0.7;
       background-color: WHITE;
+=======
+      background-color: #fff;
+      opacity: 0.9;
+>>>>>>> 1de3f05d78db2c9bc149bafceae56e6ac012a775
   }
 
   .cle{
