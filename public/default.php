@@ -18,7 +18,7 @@
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-                <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone">IA KAFFRINE</a>
+                <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone fa-spin">IA KAFFRINE</a>
                 <h1 class="h2">GESTION DE STOCK</h1>
 
                 <form class="form-inline mr-4" action="/gestock/recherche">
