@@ -41,14 +41,20 @@ class Acces extends Controller{
                 case 'ajouter':
                     if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
                         if (empty($_POST['nomComplet']) OR empty($_POST['username']) OR empty($_POST['password1']) OR empty($_POST['password2'])){
+                            $type = "danger";
                             $message[] = "Veuillez remplir tous les champs.";
-                            $this->notification = new Notification("success", $message);
+                        }
+                        else if($_POST['password1'] !== $_POST['password2']){
+                            $type = "danger";
+                            $message[] = "Les mots de passe ne sont pas identiques.";
                         }
                         else{
-                            if ($_POST['password1'] !== $_POST['password2']){
-
-                            }
+                            $user = new User();
+                            $user->nomComplet = strip_tags($_POST['nomComplet']);
+                            $user->username = strip_tags($_POST['username']);
+                            $user->niveau = strip_tags($_POST['username']);
                         }
+
                         $message[] = "L'utilisateur a été bien ajouté.";
                         $this->notification = new Notification("success", $message);
                     }

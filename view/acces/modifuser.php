@@ -3,13 +3,13 @@
 <div class="container"> 
     <form method="post" action="/gestock/acces/modifier/">
         <div class="form-group">
-            <label for="nomComplet">Prénom et Nom</label>
-            <input type="text" name="nomComplet" id="nomComplet" class="form-control">
+            <label for="nomComplet">Prénom et nom</label>
+            <input type="text" name="nomComplet" id="nomComplet" class="form-control" required>
         </div>
 
         <div class="form-group">
             <label for="nomComplet">Nom de connexion</label>
-            <input type="text" name="nomConnexion" id="nomComplet" class="form-control">
+            <input type="text" name="nomConnexion" id="nomComplet" class="form-control" required>
         </div>
 
         Role de l'utilisateur <br>
