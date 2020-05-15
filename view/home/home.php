@@ -22,11 +22,11 @@ Affichage accueil ici. <section>
                 <th>Role</th>
               </tr>
               <tr>
-                <td><?= $nom->Daouda?>
-                    <?= $non->Saly ?>
+                <td>Daouda>
+                    Saly 
                 </td>
-                <td><?= $role->Administrateur ?>
-                    <?= $role->Superviseur ?>
+                <td>Administrateur 
+                    Superviseur 
                 </td>
               </tr>
             </table>
@@ -51,7 +51,7 @@ Affichage accueil ici. <section>
         <div class="card-header">
           <h3 class="text-center">Bons d'entrée </h3>
         </div>
-        <div class="card-body mr-5 pl-0 pr-0 pt-0 ">
+        <div class="card-body mr-0 ml-0 pl-0 pr-0 pt-0 ">
           <table class="table table-striped table-borderless table-hover table-sm" >
             <thead>
             <tr>
@@ -72,7 +72,7 @@ Affichage accueil ici. <section>
           <div class="card-header">
             <h3 class="text-center">Bons de sortie </h3>
             </div>
-            <div class="card-body   mr-5 pl-0 pr-0 pt-0">
+            <div class="card-body   mr-0 ml-0 pl-0 pr-0 pt-0">
             <table class="table table-striped table-borderless table-hover table-sm">
               <thead>
               <tr>
