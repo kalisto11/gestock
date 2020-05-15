@@ -28,7 +28,7 @@ class Acces extends Controller{
                         else{
                             $_SESSION['id'] = $_SESSION['token'];
                             $message = "Les deux mots de passe saisis ne sont pas identiques. Veuillez recommencer.";
-                         
+                            $_SESSION['notification'] = null;
                             $_SESSION['notification'] = [
                             'type'=> 'danger',
                             'message'=> $message

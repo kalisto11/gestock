@@ -9,7 +9,7 @@ class Auths extends Controller{
             foreach ($users as $user){
                 if ($_POST['username'] ==  $user->username  && sha1($_POST['pasword']) == $user->pasword ){
                     if ($user->changePassword == false){
-                        $_SESSION['id'] = $user->id; 
+                        $_SESSION['id'] = $user->id;
                     }
                     else{
                         $_SESSION['user']['id'] = $user->id; 
@@ -20,17 +20,25 @@ class Auths extends Controller{
                     }
                     $this->request->controller = 'home';
                     $this->render();
+                    $connexion = true;
+                    break;
                 }
                 else{
-                    $message = "Les identifiants sont incorrects.";
-                    $_SESSION['notification'] = [
-                        'type'=> 'danger',
-                        'message'=> $message
-                    ];
-                    $this->request->controller = 'login';
-                    $this->render($_SESSION['notification']);   
-                }
+                    $connexion = false;
+                }     
             }
+            
+            if ($connexion == false){
+                $message = "Les identifiants sont incorrects.";
+                $_SESSION['notification'] = [
+                'type'=> 'danger',
+                'message'=> $message
+                ];
+            }
+            
+            $this->request->controller = 'login';
+            $this->render($_SESSION['notification']);
+
         }else if ($this->request->method === 'GET'){
             session_destroy();
             $this->request->controller = 'deconnexion';
@@ -49,7 +57,7 @@ class Auths extends Controller{
                 header ('location: /gestock/'); 
              break;
 
-             case 'changepassword': 
+             case 'acess': 
                 header ('location: /gestock/');     
             break; 
         }        
