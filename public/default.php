@@ -46,6 +46,9 @@
                     </div>
                     <div class="menu-list">
                         <ul id="menu-content" class="menu-content collapse out">
+                            <li  data-toggle="collapse" data-target="#accueil" class="collapsed bg-info">
+                                <img src="images/icones/accueil.JPG"class="mr-2 ml-2 bg-white menu-icone">Accueil
+                            </li> 
                             <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
                                 <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel
                             </li>
