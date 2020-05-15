@@ -13,12 +13,12 @@
       <h1 class="blanc">GESTION DE STOCK</h1>
         <div  class="container bg-lightr justify-content-center align-items-center connexion"> 
           <?php require VIEW . 'infos/notAuth.php'; ?>
-          <h3>Changement de mot de passe</h3>
-            <div class="text-justify">
+          <h3 class="text-center">Changement de mot de passe</h3>
+            <div class="text-justify avis mb-3 mt-3">
                 Votre mot de passe actuel est temporaire car d'autres personnes peuvent le connaitre. Vous devez le changer pour pouvoir se connecter à votre compte de manière sécurisée (aucune autre personne n'y aura accès). <br>
                 NB: en cas d'oubli de votre mot de passe, veuillez contacter l'administrateur pour réinitialiser votre compte et vous en donner accès à nouveau.
             </div>
-            <div class="container"> 
+            <div class="container pb-5"> 
                 <form method="post" action="/gestock/acces/changerpassword/">
 
                     <div class="form-group">
