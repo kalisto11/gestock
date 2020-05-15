@@ -75,7 +75,7 @@
   border-left: 3px solid #2e353d;
   border-bottom: 1px solid #23282e;
 }
-.nav-side-menu li a {
+.nav-side-menu li > a {
   text-decoration: none;
   color: #e1ffff;
   padding-left: 30px;
@@ -122,4 +122,9 @@
   .nav-side-menu .menu-list .menu-content {
     display: block;
   }
+}
+
+#accueil a{
+  text-decoration: none;
+  color: #fff;
 }

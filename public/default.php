@@ -32,7 +32,7 @@
         <div class="container-fluid mt-5">
             <div class="row mt-5">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
-                <div class="nav-side-menu mt-5 col-3">
+                <div class="nav-side-menu mt-4 col-3">
                 
                     <div class="row justify-content-center">
                         <div class="col-3 mt-5 ml-1">
@@ -46,13 +46,17 @@
                     </div>
                     <div class="menu-list">
                         <ul id="menu-content" class="menu-content collapse out">
-
+                            <li class="collapsed bg-info">
+                                <div id="accueil"><a href="/gestock/home/"><img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Accueil</a></div>
+                            </li>
                             <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
                                 <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel
                             </li>
                             <ul class="sub-menu" id="personnel">
-                                <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white menu-icone">Agents</a></li>
-                                <li><a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</a></li>
+                                <li><a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</a>
+                                </li>
+                                <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white menu-icone">Agents</a>
+                                </li>
                             </ul>
                             <li data-toggle="collapse" data-target="#bons" class="collapsed bg-info">
                                 <img src="images/icones/bon.png"class="mr-2 ml-2 bg-white menu-icone">Bons
