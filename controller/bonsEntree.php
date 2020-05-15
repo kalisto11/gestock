@@ -65,13 +65,10 @@
                         $bonsentrees = BonEntree::getList($perpage, $offset);
                         require_once VIEW . 'bons/listbonentree.php';
                 break;
-
                 case 'consulter':
-                    $articles = Article::getListArticle();
                     $bonentree = new BonEntree($this->request->id);  
                     require_once VIEW . 'bons/infobonentree.php';
                 break;
-
                 case 'ajouter':
                     if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
                         $articles = Article::getList();
@@ -79,7 +76,6 @@
                         require_once VIEW . 'bons/ajoutbonentree.php';
                     }
                 break;
-
                 case 'modifier':
                     if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
                         $bonentree  = new BonEntree($this->request->id);
@@ -88,25 +84,22 @@
                         require_once VIEW . 'bons/modifbonentree.php';
                     }
                 break;
-            
                 default: // gestion des erreurs au cas ou la valeur de action 
                     $currentController = new Erreur($this->request);
                     $currentController->process();
             }
         } //fin méthode render
-
+        /**
+         * 
+         */
         public function traiterBonEntree($reference, $numeroFacture, $dateFacture, $fournisseur, $id =null){
-
             $articles = $this->ajoutArticles($_POST['article1'], $_POST['quantite1'], $_POST['prix1'],
             $_POST['article2'], $_POST['quantite2'], $_POST['prix2'], $_POST['article3'], $_POST['quantite3'], $_POST['prix3'], $_POST['article4'], $_POST['quantite4'], $_POST['prix4'], $_POST['article5'], $_POST['quantite5'], $_POST['prix5'], $_POST['article6'], $_POST['quantite6'], $_POST['prix6'], $_POST['article7'], $_POST['quantite7'], $_POST['prix7'], $_POST['article8'], $_POST['quantite8'], $_POST['prix8'], $_POST['article9'], $_POST['quantite9'], $_POST['prix9'], $_POST['article10'], $_POST['quantite10'], $_POST['prix10']);
-
             $erreur = false;
-
             if ($articles == false){
                 $erreur = true;
                 $message[] = "Les valeurs négatives ou vides ne peuvent pas etre utilisées.";
             }
-
             // Verifier si reference n'est pas vide
             if (empty($reference)){
                 $erreur = true;
@@ -123,7 +116,6 @@
                     $erreur = true;
                     $message[] = "Il faut choisir au minimum un article et sa quantité.";
                 }
-
                  // Verifier si un article n'a pas été choisi 2 fois (doublons)
                 $idArticles = [];
                 foreach ($articles as $article){
@@ -135,7 +127,6 @@
                     $message[] = "Il y a eu doublon sur les articles choisis.";
                 }
             }
-           
             if ($erreur == false){ // si pas d'erreur
                 if ($id == null){ // cas ajouter
                     $bonentree = new BonEntree();
@@ -164,8 +155,7 @@
                 else{ // cas modifier 
                     $id = intval($id);
                     $idFournisseur = intval(strip_tags($fournisseur));
-                    $fournisseur = new Fournisseur($idFournisseur);
-                    
+                    $fournisseur = new Fournisseur($idFournisseur);       
                     $bonentree  = new BonEntree();
                     $bonentree->id = $id;
                     $bonentree->reference = strip_tags($reference);
@@ -200,24 +190,21 @@
                 }     
             }
         } // fin méthode traiterBonEntree
-        
+        /**
+         * 
+         */
         public function ajoutArticles($article1, $quantite1, $prix1, $article2, $quantite2, $prix2, $article3, $quantite3, $prix3, $article4, $quantite4, $prix4, $article5, $quantite5, $prix5, $article6, $quantite6, $prix6, $article7, $quantite7, $prix7, $article8, $quantite8, $prix8, $article9, $quantite9, $prix9, $article10, $quantite10, $prix10){
-
             $articles = [];
             $varArticle = "article";
             $varQuantite = "quantite";
             $varPrix = "prix";
-
             for ($i = 1; $i <= 10; $i++){
-
                 if (${$varPrix . $i} < 0 OR ${$varQuantite . $i} < 0){
                     return false;
                 }
-
                 if (empty(${$varPrix . $i})){
                     ${$varPrix . $i} = 0 ;
                 }
-
                 if (${$varArticle . $i} != 'null' AND !empty(${$varQuantite . $i})){
                     $articles[] = [
                         'id' => intval(strip_tags(${$varArticle . $i})),
@@ -227,7 +214,6 @@
                     ];
                 } 
             }
-           
             return $articles;
         }//Fin méthode ajoutArticles!!!
     } // fin class

@@ -52,7 +52,6 @@
         **/
         public function render($notification = null){
             switch ($this->request->action){
-
                 case 'liste':
                     $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
                     $perpage = 10;
@@ -66,13 +65,10 @@
                     $bonssorties = BonSortie::getList($perpage, $offset);
                     require_once VIEW . 'bons/listbonSortie.php';   
                 break;
-
                 case 'consulter':
-                    $articles = Article::getListArticle();
                     $bonsortie = new BonSortie($this->request->id);  
                     require_once VIEW . 'bons/infobonsortie.php';
                 break;
-
                 case 'ajouter':
                     if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
                         $articles = Article::getList();
@@ -80,7 +76,6 @@
                         require_once VIEW . 'bons/ajoutbonSortie.php';
                     }
                 break;
-
                 case 'modifier':
                     if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
                         $bonsortie  = new BonSortie($this->request->id);
@@ -89,26 +84,22 @@
                         require_once VIEW . 'bons/modifbonsortie.php';
                     }
                 break;
-            
                 default: // gestion des erreurs au cas ou la valeur de action 
                     $currentController = new Erreur($this->request);
                     $currentController->process();
             }
         }
+        /**
+         * 
+         */
         public function traitementBon_sortie($reference, $beneficiaire, $id = null){
-
             $articles = $this->ajoutArticles($_POST['article1'], $_POST['quantite1'], $_POST['prix1'],
             $_POST['article2'], $_POST['quantite2'], $_POST['prix2'], $_POST['article3'], $_POST['quantite3'], $_POST['prix3'], $_POST['article4'], $_POST['quantite4'], $_POST['prix4'], $_POST['article5'], $_POST['quantite5'], $_POST['prix5'], $_POST['article6'], $_POST['quantite6'], $_POST['prix6'], $_POST['article7'], $_POST['quantite7'], $_POST['prix7'], $_POST['article8'], $_POST['quantite8'], $_POST['prix8'], $_POST['article9'], $_POST['quantite9'], $_POST['prix9'], $_POST['article10'], $_POST['quantite10'], $_POST['prix10']);
-
             $erreur = false;
-
             if ($articles == false){
                 $erreur = true;
                 $message[] = "Les valeurs négatives ou vides ne peuvent pas etre utilisées.";
             }
-
-           
-
              // verifier si reference n'est pas vide
             if (empty($reference)){
                 $erreur = true;
@@ -119,7 +110,6 @@
                 $erreur = true;
                 $message[] = "Il faut choisir un bénéficiaire";
             }
-
             if ($articles != false){
                 // Verifier si au moins un article et sa quantité ont été choisis
                 if (empty($articles)){
@@ -137,7 +127,6 @@
                     $message[] = "Il y a eu doublon sur les articles choisis.";
                 }
             }
-
             if ($erreur == false){ // cas sans erreur
                 if ($id == null){ // cas ajouter bon de sortie
                     $bonsortie = new BonSortie();
@@ -186,8 +175,7 @@
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'consulter';
                     $this->request->id = $id; 
-                }
-               
+                }  
             }
             else{ // cas avec erreur(s)
                 $this->notification = new Notification("danger", $message);
@@ -200,14 +188,14 @@
                 }
             }
         } // fin méthode traitementBon_sortie
-
+        /**
+         * 
+         */
         public function ajoutArticles($article1, $quantite1, $prix1, $article2, $quantite2, $prix2, $article3, $quantite3, $prix3, $article4, $quantite4, $prix4, $article5, $quantite5, $prix5, $article6, $quantite6, $prix6, $article7, $quantite7, $prix7, $article8, $quantite8, $prix8, $article9, $quantite9, $prix9, $article10, $quantite10, $prix10){
-
             $articles = [];
             $varArticle = "article";
             $varQuantite = "quantite";
             $varPrix = "prix";
-
             for ($i = 1; $i <= 10; $i++){
                 if (${$varPrix . $i} < 0 OR ${$varQuantite . $i} < 0){
                     return false;
@@ -215,7 +203,6 @@
                 if (empty(${$varPrix . $i})){
                     ${$varPrix . $i} = 0 ;
                 }
-
                 if (${$varArticle . $i} != 'null' AND !empty(${$varQuantite . $i})){
                     $articles[] = [
                         'id' => intval(strip_tags(${$varArticle . $i})),
@@ -225,7 +212,6 @@
                     ];
                 } 
             }
-           
             return $articles;
         }//Fin méthode ajoutArticles!!!
     } // fin class

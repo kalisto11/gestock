@@ -44,3 +44,4 @@
                 <a class="btn btn-success" href="/gestock/personnels/ajouter"><img src="images/icones/ajout.png" class="menu-icone">  Ajouter un agent</a>
             </div>
         <?php endif; ?>
+          

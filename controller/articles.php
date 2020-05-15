@@ -13,11 +13,9 @@
                         case 'ajouter':
                             $this->traiterArticle($_POST['nom'], $_POST['groupe'], $_POST['quantite'], $_POST['seuil']);
                         break;  
-    
                         case 'modifier':          
                             $this->traiterArticle($_POST['nom'], $_POST['groupe'], $_POST['quantite'], $_POST['seuil'], $_POST['idArticle']);
-                        break;
-    
+                        break;   
                         default:
                         $this->notification = new Notification("danger", "Une erreur s'est produite pendant le traitement des données. Veuillez rééssayer svp.");
                         $this->request->action = 'liste';
@@ -25,7 +23,6 @@
                     $this->render($this->notification);  
                 }      
             }  // fin traitement de la méthode POST
-
             elseif ($this->request->method === 'GET'){ //Si la requete vient d'un lien
                 if ($this->request->action === 'supprimer'){
                     if($_SESSION['user']['niveau'] >= GESTIONNAIRE){
@@ -39,8 +36,7 @@
                 }
                 $this->render($this->notification); 
             } // fin traitement de la méthode GET
-        } // fin méthode process
-        
+        } // fin méthode process    
         /**
          * permet d'afficher les vues du module articles
          * @param Notification notification : objet contenant le type et le message de notification à afficher en cas d'echec ou de reussite d'une opération
@@ -49,15 +45,33 @@
              switch ($this->request->action){
                 // inclure les vues ici selon la valeur de $this->request->action
                 case 'liste':
-                     $articles = Article::getList();
-                     require_once VIEW . 'article/listarticles.php';
+                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
+                    $perpage = 10;
+                    $count = Article::getNbrArticle();
+                    $pages = ceil($count/$perpage);
+                    if ($currentPage > $pages){
+                            $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("success", $message);
+                    }
+                    $offset = $perpage * ($currentPage - 1);
+                    $articles = Article::getListTrans($perpage, $offset);
+                    require_once VIEW . 'article/listarticles.php';
                 break;
                 case 'modifier':
                     if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
                         $idArticle = intval($this->request->id);
                         $currentArticle = new Article($idArticle);
                     }  
-                    $articles = Article::getList();
+                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
+                    $perpage = 10;
+                    $count = Article::getNbrArticle();
+                    $pages = ceil($count/$perpage);
+                    if ($currentPage > $pages){
+                            $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("success", $message);
+                    }
+                    $offset = $perpage * ($currentPage - 1);
+                    $articles = Article::getListTrans($perpage, $offset);
                     require_once VIEW . 'article/listarticles.php';
                 break;
                 case 'ajouter':
@@ -68,26 +82,22 @@
                 case 'supprimer':
                     require_once VIEW . 'article/listarticles.php';
                  break;
-
                 default: // gestion des erreurs au cas ou la valeur de action n'est pas valide
                 $currentController = new Erreur($this->request);
                 $currentController->process();
-                    
             }
         }
-
+        /**
+         * 
+         */
         public function traiterArticle($nomArticle, $groupeArticle, $quantiteArticle, $seuilArticle, $idArticle = null){
             // mettre la premiere lettre du nom en majuscule
             $nomArticle = ucfirst(mb_convert_case($nomArticle, MB_CASE_LOWER));
-
-            $erreurs = false;
-
-            
+            $erreurs = false; 
             if (empty($nomArticle)){
                 $erreurs = true;
                 $message[] = "Le nom de l'article ne doit pas etre vide.";
             }
-
             $articles = Article::getList();
             if ($idArticle == null){ // cas ajout
                 foreach ($articles as $article){
@@ -112,8 +122,7 @@
                     $erreurs = true;
                     $message[] = "Le nom de l'article existe déja. Veuillez choisir un autre nom.";
                 }
-            }
-                
+            }   
             if ($erreurs == false){ // si pas d'erreurs
                 if ($idArticle == null){ // cas ajouter article
                     $article = new Article();

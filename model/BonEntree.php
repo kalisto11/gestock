@@ -76,7 +76,10 @@
         	$reponse = $pdo->query($req);
 			$bonentree = $reponse->fetch();
 			$this->id = $bonentree['id'];
-			$this->saveArticles();
+			$statutBon = 'new';
+			$this->saveArticles($statutBon);
+			
+
 		 }
 
 		public function delete() { //Méthode qui permet de supprimer un bon d'entrée
@@ -103,14 +106,15 @@
 			'nomModificateur' => $this->nomModificateur,
 			'id'           =>$this->id
 			));	
-			$this->saveArticles($this->id);
+			$statutBon = 'old';
+			$this->saveArticles($statutBon);
 		}
 		/**
 		  * permet de récupérer la liste des bons d'entrée
 		  */
 		public static function getList($perpage, $offset) {
 			$pdo = Database::getPDO();
-			$req = "SELECT id from bon_entree ORDER BY date DESC LIMIT $perpage OFFSET $offset";
+			$req = "SELECT id from bon_entree ORDER BY id DESC LIMIT $perpage OFFSET $offset";
 			$reponse = $pdo->query($req);
 			$bonsentrees = array();
 			while ($row = $reponse->fetch()){
@@ -131,7 +135,9 @@
 			}
 			return $bonsentrees;
 		}
-
+		/**
+		 * 
+		 */
 		public static function getListFournisseur($idFournisseur, $perpage, $offset) {
 			$pdo = Database::getPDO();
 			$req = "SELECT id from bon_entree WHERE fournisseur_id = $idFournisseur ORDER BY date DESC LIMIT $perpage OFFSET $offset";
@@ -141,10 +147,11 @@
 				$bonentree = new BonEntree($row['id']);
 				$bonsentrees[] = $bonentree;
 			}
-			return $bonsentrees;
-			
+			return $bonsentrees;	
 		}
-		
+		/**
+		 * 
+		 */
 		public static function getNbrBon(){
 			$pdo = Database::getPDO();
 			$req = "SELECT COUNT(id) FROM bon_entree";
@@ -152,7 +159,9 @@
 			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
 			 return  $count;
 		}
-
+		/**
+		 * 
+		 */
 		public static function getNbrBonFournisseur($idFournisseur){
 			$pdo = Database::getPDO();
 			$req = "SELECT COUNT(id) FROM bon_entree WHERE fournisseur_id = $idFournisseur";
@@ -160,8 +169,10 @@
 			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
 			 return  $count;
 		}
-
-		public function saveArticles(){
+		/**
+		 * 
+		 */
+		public function saveArticles($statutBon){
 			$pdo = Database::getPDO();
 			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
 			$reponse = $pdo->prepare($req);
@@ -175,10 +186,17 @@
 					'nom_article'    => $dotation->nomArticle,
 					'quantite'    => $dotation->quantite,
 					'prix'		=> $dotation->prix
-           		));
+				   ));
+				if($statutBon == 'old'){
+					Article::difQuantity($dotation->idArticle, $this->reference);
+				}
+				Article::updateQuantity($dotation->idArticle,$dotation->quantite, "entree");
+				Article::transaction($dotation->idArticle,$this->id, $this->reference, $dotation->quantite, "entree");			
         	}
 		}
-
+		/**
+		 * 
+		 */
 		public function formatDateEng($dateFR){
 			$tab = trim($dateFR, "/");
 			$parts = explode("/", $tab);
