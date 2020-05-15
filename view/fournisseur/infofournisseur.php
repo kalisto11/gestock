@@ -10,10 +10,10 @@
             </div>
 
             <div>
-                <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
+                <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
                 <div class="text-right mt-5">
-                    <a href="/gestock/fournisseurs/modifier/<?= $fournisseur->id ?>"class="btn btn-info">Modifier</a>
-                    <a href="/gestock/fournisseurs/supprimer/<?= $fournisseur->id ?>"class="btn btn-danger">Supprimer</a>
+                    <a href="/gestock/fournisseurs/modifier/<?= $fournisseur->id ?>" class="btn btn-info">Modifier</a>
+                    <a href="/gestock/fournisseurs/supprimer/<?= $fournisseur->id ?>" class="btn btn-danger suppr">Supprimer</a>
                 </div>
                 <?php endif; ?>
             </div>

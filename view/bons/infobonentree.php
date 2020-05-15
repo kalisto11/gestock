@@ -64,7 +64,7 @@
         Dernière modification le <?= $bonentree->dateModification ?> par <?= $bonentree->nomModificateur ?>
       </div>
 
-      <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>  
+      <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>  
       <div class="text-right mt-5">
       <a href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>" class="btn btn-info">Modifier</a>
       <a href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>" class="btn btn-danger suppr">Supprimer</a>
