@@ -116,14 +116,14 @@
                     $poste = new Poste();
                     $poste->nom = strip_tags($nomPoste);
                     $poste->save();
-                    $message[] =  "Le poste a été ajouté avec succès.";
+                    $message[] =  "Le poste a été bien ajouté.";
                     $this->notification = new Notification("success", $message);
                 }
                 else{
                     $poste = new Poste(intval($idPoste));
                     $poste->nom = strip_tags($nomPoste);
                     $poste->update();
-                    $message[] = "Le poste a été modifié avec succès.";
+                    $message[] = "Le poste a été bien modifié.";
                     $this->notification = new Notification("success", $message);
                 }
                 $this->request->action = 'liste';

@@ -96,7 +96,7 @@
     }
     public static function getList(){ //Fonction permettant d'obtenir la liste du personnel
         $pdo = Database::getPDO();
-        $get = 'SELECT id from personnel';
+        $get = 'SELECT id from personnel ORDER BY nom';
         $reponse = $pdo->query($get);
         $personnels  = array();
         while ($row = $reponse->fetch()){

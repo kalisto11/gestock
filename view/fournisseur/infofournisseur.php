@@ -10,10 +10,10 @@
             </div>
 
             <div>
-                <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
+                <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
                 <div class="text-right mt-5">
-                    <a href="/gestock/fournisseurs/modifier/<?= $fournisseur->id ?>"class="btn btn-info">Modifier</a>
-                    <a href="/gestock/fournisseurs/supprimer/<?= $fournisseur->id ?>"class="btn btn-danger">Supprimer</a>
+                    <a href="/gestock/fournisseurs/modifier/<?= $fournisseur->id ?>" class="btn btn-info">Modifier</a>
+                    <a href="/gestock/fournisseurs/supprimer/<?= $fournisseur->id ?>" class="btn btn-danger suppr">Supprimer</a>
                 </div>
                 <?php endif; ?>
             </div>
@@ -42,12 +42,13 @@
 
             <div class="d-flex justify-content-between my-4">
             <?php if ($currentPage > 1):?>
-                <a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>/?page=<?= $currentPage - 1 ?>" class="btn btn-primary">Page précédente</a>
+                <a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>/?page=<?= $currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
             <?php endif ?>
             <?php if ($currentPage < $pages):?>
-                <a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>/?page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante </a>
+                <a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>/?page=<?= $currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante </a>
             <?php endif ?>
             </div>
+            
         </div>
     </div>
 

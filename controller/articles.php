@@ -8,7 +8,7 @@
     class articles extends Controller{
         public function process(){
             if ($this->request->method === 'POST'){
-                if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                     switch ($_POST['operation']){
                         case 'ajouter':
                             $this->traiterArticle($_POST['nom'], $_POST['groupe'], $_POST['quantite'], $_POST['seuil']);
@@ -28,7 +28,7 @@
 
             elseif ($this->request->method === 'GET'){ //Si la requete vient d'un lien
                 if ($this->request->action === 'supprimer'){
-                    if($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $idArticle = intval($this->request->id);
                         $article = new Article($idArticle);
                         $article->supprime(); 
@@ -53,7 +53,7 @@
                      require_once VIEW . 'article/listarticles.php';
                 break;
                 case 'modifier':
-                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $idArticle = intval($this->request->id);
                         $currentArticle = new Article($idArticle);
                     }  
@@ -61,7 +61,7 @@
                     require_once VIEW . 'article/listarticles.php';
                 break;
                 case 'ajouter':
-                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         require_once   VIEW . 'article/listarticles.php';
                     }
                  break;

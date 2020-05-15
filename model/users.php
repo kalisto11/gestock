@@ -22,13 +22,13 @@ class Users{
     public static function getList(){
         $pdo = Database::getPDO();
         $req = 'SELECT * from users';
-            $reponse = $pdo->query($req);
-            $users = array();
-            while ($row = $reponse->fetch()){
-                $user = new Users($row['id']);  
-                $users[] = $user;
-            }
-            return $users;
+        $reponse = $pdo->query($req);
+        $users = array();
+        while ($row = $reponse->fetch()){
+            $user = new Users($row['id']);  
+            $users[] = $user;
+        }
+        return $users;
     }
 } 
 

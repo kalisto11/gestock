@@ -66,7 +66,7 @@
         }
         public static function getList(){
             $pdo = Database::getPDO();
-            $req = 'SELECT id from article';
+            $req = 'SELECT id from article ORDER BY nom';
             $reponse = $pdo->query($req);
             $articles = array();
             while ($row = $reponse->fetch()){

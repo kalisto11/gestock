@@ -93,10 +93,8 @@ h2{
   text-align: center;
   margin: auto;
   margin-bottom: 30px;
-  font-size: 22px;
-  font-weight: bold;
   border: 1px solid black;
-  width: 50%;
+  width: 70%;
 }
 /* fin tableau */
 
@@ -165,6 +163,7 @@ input[disabled]{
   text-align: right;
 }
 
+<<<<<<< HEAD
 /*  debut accueille */
 
 .nomcomplet{
@@ -203,3 +202,17 @@ input[disabled]{
   width:50%;
 }
 /* fin accueil */
+=======
+#notification{
+  position: absolute;
+  top: -20px;
+  right: 0px;
+  left: 0px;
+  margin-left: 50px;
+  margin-right: 20px;
+  border: 2px inset black;
+  z-index: 999;
+  opacity: 0.9;
+  font-weight: bold;
+}
+>>>>>>> 1592ff09255e2e2c2204821652c87c55aae6081c

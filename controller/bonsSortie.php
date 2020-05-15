@@ -7,7 +7,7 @@
     class BonsSortie extends Controller{
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
-                if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                     if ($this->request->action != null){
                         switch ($this->request->action){
                             case 'traitement-bonsortie':
@@ -33,7 +33,7 @@
              else if ($this->request->method === 'GET'){ // si la requete vient d'un lien 
  
                  if ($this->request->action === 'supprimer'){
-                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $idbonSortie = intval($this->request->id);
                         $bonsortie  = new BonSortie($this->request->id);
                         $bonsortie->delete();
@@ -74,7 +74,7 @@
                 break;
 
                 case 'ajouter':
-                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $articles = Article::getList();
                         $personnels = Personnel::getList();
                         require_once VIEW . 'bons/ajoutbonSortie.php';
@@ -82,7 +82,7 @@
                 break;
 
                 case 'modifier':
-                    if ($_SESSION['user']['niveau'] >= GESTIONNAIRE){
+                    if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $bonsortie  = new BonSortie($this->request->id);
                         $articles = Article::getList();
                         $personnels = Personnel::getList();

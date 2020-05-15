@@ -53,7 +53,7 @@
 
         public static function getList(){
             $pdo = Database::getPDO();
-            $req = 'SELECT * from fournisseur';
+            $req = 'SELECT id from fournisseur ORDER BY nom';
             $reponse = $pdo->query($req);
             $fournisseurs = array();
             while ($row = $reponse->fetch()){
