@@ -15,7 +15,7 @@
           <?php require VIEW . 'infos/notAuth.php'; ?>
           <h3>Changement de mot de passe</h3>
             <div class="text-justify">
-                Votre mot de passe actuel est temporaire car d'autres personnes le connaisent. Vous devez le changer pour pouvoir se connecter à votre compte de manière sécurisée (aucune autre personne n'y aura accès). <br>
+                Votre mot de passe actuel est temporaire car d'autres personnes peuvent le connaitre. Vous devez le changer pour pouvoir se connecter à votre compte de manière sécurisée (aucune autre personne n'y aura accès). <br>
                 NB: en cas d'oubli de votre mot de passe, veuillez contacter l'administrateur pour réinitialiser votre compte et vous en donner accès à nouveau.
             </div>
             <div class="container"> 
