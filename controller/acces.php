@@ -68,6 +68,7 @@ class Acces extends Controller{
     public function render($notification = null){
         switch ($this->request->action){
             case 'ajouter':
+                jj
                 if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
                     require_once VIEW . 'acces/ajoutuser.php';
                 }
