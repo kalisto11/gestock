@@ -52,7 +52,7 @@
       <div class="mt-5 text-right">
         Dernière modification le <?= $bonsortie->dateModification ?> par <?= $bonsortie->nomModificateur ?>
       </div> 
-      <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
+      <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
       <div class="text-right mt-5">
         <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>" class="btn btn-info">Modifier</a>
         <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>" class="btn btn-danger suppr">Supprimer</a>

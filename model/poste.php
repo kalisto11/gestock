@@ -56,7 +56,7 @@
 
         public static function getList(){
             $pdo = Database::getPDO();
-            $req = 'SELECT * from poste';
+            $req = 'SELECT * from poste ORDER BY nom';
             $reponse = $pdo->query($req);
             $postes = array();
             while ($row = $reponse->fetch()){
