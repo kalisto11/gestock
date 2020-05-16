@@ -5,7 +5,7 @@
 * toutes les requetes passent par cette page
 * qui charge les fichiers necessaires, appelle le dispatcher et affiche le template
 */  
-    ini_set('session.name', 'MA_SESSION');
+    ini_set('session.name', 'GESTOCK_SESSION');
     ini_set('session.cookie_path', '/');
     ini_set('session.cookie_domain', 'localhost');
     ini_set('session.gc_maxlifetime', 1000000);

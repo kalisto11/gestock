@@ -8,14 +8,14 @@
       </div>
       <div>
         <h6>Quantité dans le stock</h6>
-        <p class="zonegrise font-weight-bold text-<?php if ($article->quantite >= $article->seuil + 10){echo 'success';}elseif($article->quantite <= $article->seuil + 10 AND $article->quantite >= $article->seuil){echo 'warning';}else{echo 'danger';} ?>"><?= $article->quantite ?></p>
+        <p class="zonegrise font-weight-bold text-<?php if ($article->quantite >= $article->seuil + 5){echo 'success';}elseif($article->quantite <= $article->seuil + 5 AND $article->quantite >= $article->seuil){echo 'warning';}else{echo 'danger';} ?>"><?= $article->quantite ?></p>
       </div>
     </div>
     <div class="col-sm-9">
       <table class="table table-striped table-borderless table-hover table-sm">
         <tr>
           <th>Opération</th>
-          <th>N° du bon</th>
+          <th>N° bon/Utilisateur</th>
           <th>Quantité </th>
           <th>Date</th>
         </tr>
@@ -23,19 +23,45 @@
         <?php foreach($transactions as $transaction):?>
           <tr>
             <td><?= htmlspecialchars($transaction['typeTrans']) ?></td>
-            
-              <?php if ($transaction['typeTrans'] == 'entree'): ?> 
-                <td>
-                  <a href="/gestock/bonsentree/consulter/<?= $transaction['idBon'] ?>"><?= htmlspecialchars($transaction['numeroBon']) ?></a></td>
+            <td>
+              <a href="/gestock/<?php if ($transaction['typeTrans'] == "entree"){echo 'bonsentree';}elseif($transaction['typeTrans'] == "sortie"){echo 'bonssortie';}else{echo 'home';} ?>/consulter/<?= $transaction['idBon'] ?>"><?= htmlspecialchars($transaction['numeroBon']) ?></a>
+            </td>
 
-                <td class="font-weight-bold text-<?php if ($transaction['typeTrans'] == "entree"){echo "success";}else{echo "danger";} ?>"><?= htmlspecialchars('+'. $transaction['quantite'])?></td>
-                <td><?= htmlspecialchars($transaction['dateTrans'])?></td>
-        
-                <?php elseif ($transaction['typeTrans'] == 'sortie'): ?>
-                <td><a href="/gestock/bonssortie/consulter/<?= $transaction['idBon'] ?>"><?= htmlspecialchars($transaction['numeroBon']) ?></a></td>
-                <td class="font-weight-bold text-<?php if ($transaction['typeTrans'] == "entree"){echo "success";}else{echo "danger";} ?>"><?= htmlspecialchars('-'. $transaction['quantite'])?></td>
-                <td><?= htmlspecialchars($transaction['dateTrans'])?></td>
-              <?php endif ?>
+            <td class="font-weight-bold text-<?php 
+                if ($transaction['typeTrans'] == "entree"){
+                  echo "success";
+                }
+                elseif($transaction['typeTrans'] == "sortie"){
+                  echo "danger";
+                } 
+                else{
+                  if ($transaction['quantite'] > 0){
+                    echo "success";
+                  }
+                  elseif ($transaction['quantite'] < 0){
+                    echo "danger";
+                  }
+                }
+              ?>
+              ">
+              <?php 
+                if ($transaction['typeTrans'] == "entree"){
+                  echo '+';
+                }
+                elseif($transaction['typeTrans'] == "sortie"){
+                  echo '-';
+                }
+                elseif($transaction['typeTrans'] == "modification"){
+                  if ($transaction['quantite'] > 0){
+                    echo '+';
+                  }
+                }
+                echo $transaction['quantite'];
+              ?>
+            </td>
+            <td>
+            <?= $transaction['dateTrans'] ?>
+            </td>
           </tr>	
         <?php endforeach ?> 
         <?php else : ?> 

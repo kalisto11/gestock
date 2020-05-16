@@ -32,10 +32,10 @@
         <div class="container-fluid mt-5">
             <div class="row mt-5">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
-                <div class="nav-side-menu mt-5 col-3">
+                <div class="nav-side-menu mt-4 col-3">
                 
                     <div class="d-flex flex-row justify-content-center bd-highlight mt-5 mb-2">
-                        <div class="col-3">
+                        <div class="col-3 d-flex align-items-center">
                             <img src="images/icones/utilisateur.png" class="sous-menu" title="Utilisateur connecté">
                         </div>
                         <div class="col-9 text-center">
