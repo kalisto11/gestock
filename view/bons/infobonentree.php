@@ -41,7 +41,7 @@
           </tr>
           <?php foreach ($bonentree->dotations as $dotation): ?>
           <tr>
-            <td><?= htmlspecialchars($dotation->nomArticle) ?></td>
+            <td><a href="/gestock/grandlivres/consulter/<?= $dotation->idArticle ?>"><?= htmlspecialchars($dotation->nomArticle) ?></a></td>
             <td><?= htmlspecialchars($dotation->quantite) ?></td>
             <td><?= htmlspecialchars($dotation->prix) ?></td>
             <td><?= htmlspecialchars($dotation->total) ?></td>

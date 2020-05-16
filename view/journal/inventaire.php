@@ -26,13 +26,15 @@
               <td><?= htmlspecialchars($transaction['typeTrans']) ?></td>
               
                 <?php if ($transaction['typeTrans'] == 'entree'): ?> 
-                  <td><a href="/gestock/bonsentree/consulter/<?= $transaction['idBon'] ?>"><?= htmlspecialchars($transaction['numeroBon']) ?></a></td>
+                  <td>
+                    <a href="/gestock/bonsentree/consulter/<?= $transaction['idBon'] ?>"><?= htmlspecialchars($transaction['numeroBon']) ?></a></td>
+
                   <td class="font-weight-bold text-<?php if ($transaction['typeTrans'] == "entree"){echo "success";}else{echo "danger";} ?>"><?= htmlspecialchars('+'. $transaction['quantite'])?></td>
                   <td><?= htmlspecialchars($transaction['dateTrans'])?></td>
           
-                <?php elseif ($transaction['typeTrans'] == 'sortie'): ?>
+                  <?php elseif ($transaction['typeTrans'] == 'sortie'): ?>
                   <td><a href="/gestock/bonssortie/consulter/<?= $transaction['idBon'] ?>"><?= htmlspecialchars($transaction['numeroBon']) ?></a></td>
-                  <td><?= htmlspecialchars('-'. $transaction['quantite'])?></td>
+                  <td class="font-weight-bold text-<?php if ($transaction['typeTrans'] == "entree"){echo "success";}else{echo "danger";} ?>"><?= htmlspecialchars('-'. $transaction['quantite'])?></td>
                   <td><?= htmlspecialchars($transaction['dateTrans'])?></td>
                 <?php endif ?>
 			      </tr>	

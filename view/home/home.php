@@ -1,6 +1,5 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 <?php require VIEW . 'infos/notifwelcome.php'; ?>
-Affichage accueil ici. <section>
       <div class="card-columns">
         <div class="col sm-4">
           <div class="card bg-light  mt-5 ml-3" style="max-width: 18rem;" >

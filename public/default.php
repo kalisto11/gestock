@@ -35,10 +35,10 @@
                 <div class="nav-side-menu mt-5 col-3">
                 
                     <div class="row justify-content-center">
-                        <div class="col-3 mt-5 ml-1">
+                        <div class="col-3 mt-4 ml-1">
                                  <img src="images/icones/utilisateur.png" class=" mr-1 ml-1 sous-menu">
                         </div>
-                        <div class="col-9 mt-2 text-center">
+                        <div class="col-9 mt-1 text-center">
                                  <p> <?= $_SESSION['user']['nomComplet'] ?><br/>
                                  <a href="/gestock/auths/">Se déconnecter</a></p>
                         </div>
@@ -52,7 +52,7 @@
                             <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
                                 <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel
                             </li>
-                            <ul class="sub-menu collapse" id="personnel">
+                            <ul class="sub-menu" id="personnel">
                                 <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white menu-icone">Agents</a></li>
                                 <li><a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</a></li>
                             </ul>
@@ -76,7 +76,7 @@
                             <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">
                                 <img src="images/icones/dossier.png" class="mr-2 ml-2 bg-white menu-icone">Journal
                             </li>
-                            <ul class="sub-menu collapse" id="journal">
+                            <ul class="sub-menu" id="journal">
                                 <li><a href="/gestock/livrejournals/liste"><img src="images/icones/livre journal.JPG" class="mr-2 menu-icone">Livre Journal</a></li>
                                 <li><a href="/gestock/grandlivres/liste"><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
                             </ul>

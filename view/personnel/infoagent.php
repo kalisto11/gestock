@@ -5,12 +5,12 @@
     <div class="row">
         <div class="col-sm-4">
             <div>
-            <h6>Prénom et nom de l'agent</h6>
+            <h6>Prénom et nom</h6>
             <p class="zonegrise"><?= $agent->prenom ?> <?= $agent->nom ?></p>
             </div>
 
             <div>
-                <h6>Poste(s) de l'agent</h6>
+                <h6>Poste(s) occupé(s) </h6>
                 <ul class="zonegrise">
                     <?php foreach ($agent->poste as $poste): ?>
                     <li class="ml-3"><?= $poste->nom ?></li>

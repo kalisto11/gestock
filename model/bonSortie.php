@@ -164,7 +164,6 @@
 				$bonssorties[] = $bonsortie;
 			}
 			return $bonssorties;
-			
 		}
 		/**
 		 * 
