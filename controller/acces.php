@@ -9,7 +9,7 @@ class Acces extends Controller{
             switch ($this->request->action){
                 case 'changerpassword':
                     if (isset($_SESSION['token'])){
-                        if ($_POST['password1'] === $_POST['password2']){
+                        if (!empty($_POST['password1']) AND $_POST['password1'] === $_POST['password2']){
                             $user = new User($_SESSION['token']);
                             $user->pasword = sha1($_POST['password1']);
                             $user->changePassword = true;

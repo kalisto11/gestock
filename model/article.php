@@ -52,7 +52,7 @@
                 'id'  => $this->id
             ));
             if ($difference != 0){
-                self::transaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['nomComplet'] , $difference, "modification");
+                self::insertTransaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['nomComplet'] , $difference, "modification");
             }
         }
 
@@ -93,7 +93,7 @@
         }
         public static function getListTrans($perpage, $offset){
             $pdo = Database::getPDO();
-            $req = "SELECT id from article  LIMIT $perpage OFFSET $offset";
+            $req = "SELECT id from article LIMIT $perpage OFFSET $offset";
             $reponse = $pdo->query($req);
             $articles = array();
             while ($row = $reponse->fetch()){
@@ -113,7 +113,7 @@
         /**
          * 
          */
-        public static function transaction($idArticle, $idBon, $numeroBon, $quantite, $typeTrans){
+        public static function insertTransaction($idArticle, $idBon, $numeroBon, $quantite, $typeTrans){
             $numeroBon = $numeroBon . "";
             $pdo = Database::getPDO();
             if ($typeTrans == "entrée" OR $typeTrans == "sortie"){
@@ -139,7 +139,7 @@
 
         public static function requireTransaction($idArticle){
             $pdo = Database::getPDO();
-            $req = "SELECT id, DATE_FORMAT(dateTrans, '%d/%m/%Y') AS dateTrans, idArticle, idBon, numeroBon, quantite, typeTrans from transactions WHERE idArticle = ? ORDER BY dateTrans DESC";
+            $req = "SELECT id, DATE_FORMAT(dateTrans, '%d/%m/%Y') AS dateTrans, idArticle, idBon, numeroBon, quantite, typeTrans from transactions WHERE idArticle = ? ORDER BY id DESC";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($idArticle));
             $transactions = array();
