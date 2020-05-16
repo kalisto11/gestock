@@ -33,7 +33,7 @@
 
                     <div class="mt-5"></div>
 
-                    <input type="submit" value="valider" class="btn btn-success btn-block">
+                    <input type="submit" value="valider" class="btn btn-primary btn-block">
                 </form>
             </div>
         </div>

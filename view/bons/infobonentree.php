@@ -30,7 +30,7 @@
     <div class="col-sm-9">
 
       <div>
-        <h6>Dotations</h6>
+        <h5 class="text-center">Dotations</h5>
         <?php if ($bonentree->dotations != null): ?>
         <table class="table table-striped table-borderless table-hover table-sm">
           <tr>

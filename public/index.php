@@ -4,7 +4,13 @@
 * Front Controller du site
 * toutes les requetes passent par cette page
 * qui charge les fichiers necessaires, appelle le dispatcher et affiche le template
-*/  if (!isset($_SESSION)){
+*/  
+    ini_set('session.name', 'MA_SESSION');
+    ini_set('session.cookie_path', '/');
+    ini_set('session.cookie_domain', 'localhost');
+    ini_set('session.gc_maxlifetime', 1000000);
+    ini_set('session.cookie_lifetime', 1800);
+    if (!isset($_SESSION)){
     session_start();
     }
    
@@ -25,7 +31,6 @@
 
         // inclure le template par defaut
         require 'default.php';
-
     }
     else if(isset($_SESSION['id'])){
         $_SESSION['token'] = $_SESSION['id'];

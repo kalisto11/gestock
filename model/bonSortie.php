@@ -130,7 +130,7 @@
 					'prix'    => $dotation->prix
 				));
 				if($statutBon == 'old'){
-					Article::difQuantity($dotation->idArticle, $this->reference);
+					Article::removeQuantity($dotation->idArticle, $this->reference, "sortie");
 				}
 				Article::updateQuantity($dotation->idArticle,$dotation->quantite, "sortie");
 				Article::transaction($dotation->idArticle, $this->id, $this->reference, $dotation->quantite, "sortie");

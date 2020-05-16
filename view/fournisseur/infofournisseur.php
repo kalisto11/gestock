@@ -20,7 +20,7 @@
         </div>
 
         <div class="col-sm-8"> 
-            <h4 class="text-center">Bons fournis par <?= $fournisseur->nom ?></h4>
+            <h5 class="text-center">Bons fournis par <?= $fournisseur->nom ?></h5>
             <table class="table table-striped table-borderless table-hover table-sm">
                 <thead>
                     <tr>

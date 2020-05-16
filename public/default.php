@@ -34,15 +34,13 @@
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
                 <div class="nav-side-menu mt-5 col-3">
                 
-                    <div class="row justify-content-center">
-                        <div class="col-3 mt-4 ml-1">
-                                 <img src="images/icones/utilisateur.png" class=" mr-1 ml-1 sous-menu">
+                    <div class="d-flex flex-row justify-content-center bd-highlight mt-5 mb-2">
+                        <div class="col-3">
+                            <img src="images/icones/utilisateur.png" class="sous-menu" title="Utilisateur connecté">
                         </div>
-                        <div class="col-9 mt-1 text-center">
-                                 <p> <?= $_SESSION['user']['nomComplet'] ?><br/>
-                                 <a href="/gestock/auths/">Se déconnecter</a></p>
+                        <div class="col-9 text-center">
+                            <?= $_SESSION['user']['nomComplet'] ?><br><a href="/gestock/auths/">Se déconnecter</a>
                         </div>
-
                     </div>
                     <div class="menu-list">
                         <ul id="menu-content" class="menu-content collapse out">
@@ -88,7 +86,7 @@
         <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
 
         <!-- ZONE D'AFFICHAGE DU CONTENU -->
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 mt-5">
+        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 mt-5">
             <div class="mt-5 px-4">
             <?= $content ?> 
             </div>

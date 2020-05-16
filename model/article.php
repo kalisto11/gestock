@@ -109,6 +109,13 @@
          */
         public static function transaction($idArticle, $idBon, $numeroBon, $quantite, $typeTrans){
             $pdo = Database::getPDO();
+            $req = "DELETE FROM transactions WHERE idArticle = :idArticle AND idBon = :idBon";
+            $reponse = $pdo->prepare($req);
+            $reponse->execute(array(
+                'idArticle' => $idArticle,
+                'idBon'     => $idBon
+            ));
+
             $req  = "INSERT INTO transactions (dateTrans,idArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(),:idArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
@@ -119,6 +126,7 @@
                 'typeTrans' =>$typeTrans
             ));
         }
+
         public static function requireTransaction($idArticle){
             $pdo = Database::getPDO();
             $req = "SELECT id, DATE_FORMAT(dateTrans, '%d/%m/%Y') AS dateTrans, idArticle, idBon, numeroBon, quantite, typeTrans from transactions WHERE idArticle = ? ORDER BY dateTrans DESC";
@@ -147,9 +155,9 @@
             ));
         }
         /**
-         * 
+         * Annule la quantité précédente qui a été ajoutée ou supprimée par le bon qui est modifié
          */
-        public static function difQuantity($dotationIdArticle, $referenceBon){
+        public static function removeQuantity($dotationIdArticle, $referenceBon, $typeTransaction){
             $pdo = Database::getPDO();
             $req = "SELECT quantite FROM transactions WHERE numeroBon = :numeroBon AND idArticle = :idArticle";
 			$reponse = $pdo->prepare($req);
@@ -158,10 +166,15 @@
 				'idArticle' => $dotationIdArticle
 			));
 			$row = $reponse->fetch();
-			$oldquantite = $row['quantite'];
-            $reponse = $pdo->prepare("UPDATE article SET quantite = quantite + :oldquantite WHERE id = :idArticle");
+            $oldQuantity = intval($row['quantite']);
+            if ($typeTransaction == "entree"){
+                $reponse = $pdo->prepare("UPDATE article SET quantite = quantite - :oldQuantity WHERE id = :idArticle");
+            }
+            else if ($typeTransaction == "sortie"){
+                $reponse = $pdo->prepare("UPDATE article SET quantite = quantite + :oldQuantity WHERE id = :idArticle");
+            }
             $reponse->execute(array(
-                'oldquantite' => $oldquantite,
+                'oldQuantity' => $oldQuantity,
                 'idArticle' => $dotationIdArticle
             ));
         }
