@@ -7,7 +7,7 @@ class Auths extends Controller{
         if ($this->request->method === 'POST'){
             $users = User::getList();
             foreach ($users as $user){
-                if ($_POST['username'] ==  $user->username  && sha1($_POST['pasword']) == $user->pasword ){
+                if ($_POST['username'] ==  $user->username  && sha1($_POST['password']) == $user->pasword ){
                     if ($user->changePassword == false){
                         $_SESSION['id'] = $user->id;
                     }

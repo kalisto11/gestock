@@ -19,8 +19,9 @@
                 <input type="text" class="form-control" name="username" id="exampleInputEmail1" aria-describedby="emailHelp" required>
               </div>
               <div class="form-group">
-                <label for="exampleInputPassword1"><img src="images/icones/cle.png" class="cle mr-3">Mot de passe</label>
-                <input type="password" class="form-control" name="pasword" id="exampleInputPassword1" required>
+                <label for="password"><img src="images/icones/cle.png" class="cle mr-3">Mot de passe</label>
+                <input type="password" class="form-control" name="password" id="password" required>
+                <img src="images/icones/check.jpg" alt="" class="check-icone">
               </div>
               <div class="modal-footer"> 
                 <button type="submit" class="btn btn-primary btn-block">Se connecter</button>

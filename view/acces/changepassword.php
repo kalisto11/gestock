@@ -24,11 +24,13 @@
                     <div class="form-group">
                         <label for="password1"><img src="images/icones/cle.png" class="cle mr-3">Nouveau mot de passe</label>
                         <input type="password" name="password1" id="password1" class="form-control" required>
+                        <img src="images/icones/check.jpg" alt="" class="check-icone">
                     </div>
 
                     <div class="form-group">
                         <label for="password2"><img src="images/icones/cle.png" class="cle mr-3">Confirmation du nouveau mot de passe</label>
                         <input type="password" name="password2" id="password2" class="form-control" required>
+                        <img src="images/icones/check.jpg" alt="" class="check-icone">
                     </div>
 
                     <div class="mt-5"></div>
