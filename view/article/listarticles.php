@@ -12,7 +12,7 @@
                 </tr>
                 <?php foreach($articles as $article): ?>
                     <tr>
-                        <td><?= $article->nom ?></td>
+                    <td><a href="/gestock/grandlivres/consulter/<?= $article->id ?>"><?= $article->nom ?></a></td>
                         <td><?php if($article->groupe == 0){echo 'néant';}else{echo $article->groupe ;} ?></td>
                         <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
                         <td>

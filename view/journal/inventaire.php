@@ -24,11 +24,11 @@
           <tr>
             <td><?= htmlspecialchars($transaction['typeTrans']) ?></td>
             <td>
-              <a href="/gestock/<?php if ($transaction['typeTrans'] == "entree"){echo 'bonsentree';}elseif($transaction['typeTrans'] == "sortie"){echo 'bonssortie';}else{echo 'home';} ?>/consulter/<?= $transaction['idBon'] ?>"><?= htmlspecialchars($transaction['numeroBon']) ?></a>
+              <?php if ($transaction['typeTrans'] != "modification" AND $transaction['typeTrans'] != "création") : ?><a href="/gestock/<?php if ($transaction['typeTrans'] == "entrée"){echo 'bonsentree';}elseif($transaction['typeTrans'] == "sortie"){echo 'bonssortie';}else{echo 'home';} ?>/consulter/<?= $transaction['idBon'] ?>"><?php endif ; ?><?= htmlspecialchars($transaction['numeroBon']) ?><?php if ($transaction['typeTrans'] != "modification") : ?></a><?php endif ;?>
             </td>
 
             <td class="font-weight-bold text-<?php 
-                if ($transaction['typeTrans'] == "entree"){
+                if ($transaction['typeTrans'] == "entrée"){
                   echo "success";
                 }
                 elseif($transaction['typeTrans'] == "sortie"){
@@ -45,13 +45,16 @@
               ?>
               ">
               <?php 
-                if ($transaction['typeTrans'] == "entree"){
+                if ($transaction['typeTrans'] == "entrée"){
                   echo '+';
                 }
-                elseif($transaction['typeTrans'] == "sortie"){
+                else if ($transaction['typeTrans'] == "création"){
+                  echo '+';
+                }
+                else if ($transaction['typeTrans'] == "sortie"){
                   echo '-';
                 }
-                elseif($transaction['typeTrans'] == "modification"){
+                else if ($transaction['typeTrans'] == "modification"){
                   if ($transaction['quantite'] > 0){
                     echo '+';
                   }

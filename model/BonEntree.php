@@ -78,8 +78,6 @@
 			$this->id = $bonentree['id'];
 			$statutBon = 'new';
 			$this->saveArticles($statutBon);
-			
-
 		 }
 
 		public function delete() { //Méthode qui permet de supprimer un bon d'entrée
@@ -188,10 +186,10 @@
 					'prix'		=> $dotation->prix
 				   ));
 				if($statutBon == 'old'){
-					Article::removeQuantity($dotation->idArticle, $this->reference, "entree");
+					Article::removeQuantity($dotation->idArticle, $this->reference, "entrée");
 				}
-				Article::updateQuantity($dotation->idArticle,$dotation->quantite, "entree");
-				Article::transaction($dotation->idArticle,$this->id, $this->reference, $dotation->quantite, "entree");			
+				Article::updateQuantity($dotation->idArticle,$dotation->quantite, "entrée");
+				Article::transaction($dotation->idArticle,$this->id, $this->reference, $dotation->quantite, "entrée");			
         	}
 		}
 		/**

@@ -1,5 +1,5 @@
 body{
-    background-image: url('..//images/photos/academie.jpg');
+    background-image: url('../images/photos/academie.jpg');
     background-repeat: no-repeat center fixed;
     background-size: cover;
    }
@@ -12,15 +12,13 @@ body{
   }
   .connexion{
       width: 50%;
-      margin-top: 50px;
+      margin-top: 40px;
       padding-top: 10px;
+      padding-bottom: 0px;
       opacity: 0.8;
-      background-color: WHITE;
+      background-color: #fff;
+      font-size: 14px;
   }
-
-  .connexion{
-    font-size: 12px;
-}
 
 
   .cle{
