@@ -47,6 +47,7 @@ password1.addEventListener("input", function (e) {
     var aideMdpElt = document.getElementById("helpPassword1");
     aideMdpElt.textContent = "Mot de passe : " + longueurMdp; // Texte de l'aide
     aideMdpElt.style.color = couleurMsg; // Couleur du texte de l'aide
+    document.getElementById("passwordMsg").textContent = "";
 });
 
 password2.addEventListener("input", function (e) {
@@ -63,6 +64,7 @@ password2.addEventListener("input", function (e) {
     var aideMdpElt = document.getElementById("helpPassword2");
     aideMdpElt.textContent = "Mot de passe : " + longueurMdp; // Texte de l'aide
     aideMdpElt.style.color = couleurMsg; // Couleur du texte de l'aide
+    document.getElementById("passwordMsg").textContent = "";
 });
 
 password1.addEventListener("blur", function(e){
@@ -72,16 +74,10 @@ password1.addEventListener("blur", function(e){
         }
     }
 });
-password1.addEventListener("input", function(e){
-    document.getElementById("passwordMsg").textContent = "";
-});
 password2.addEventListener("blur", function(e){
     if (password2.value.length != 0  && password1.value.length != 0){
         if( password2.value != password1.value){
             document.getElementById("passwordMsg").textContent = "Les mots de passe ne sont pas identiques.";
         }
     }
-});
-password2.addEventListener("input", function(e){
-    document.getElementById("passwordMsg").textContent = "";
 });

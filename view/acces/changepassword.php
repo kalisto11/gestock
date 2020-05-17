@@ -34,7 +34,7 @@
                                 <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword1">
                                 <div id="helpPassword1"></div>
                             </div>
-
+                            <div id="passwordMsg" class="bg-warning"></div>
                             <div class="form-group">
                                 <label for="password2"><img src="images/icones/cle.png" class="cle mr-3">Confirmez le mot de passe</label>
                                 <input type="password" name="password2" id="password2" class="form-control form-control-sm" required>
