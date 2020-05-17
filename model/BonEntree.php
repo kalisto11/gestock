@@ -123,6 +123,17 @@
 			}
 			return $bonsentrees;
 		}
+		public static function getListHome() {
+			$pdo = Database::getPDO();
+			$req = "SELECT id from bon_entree";
+			$reponse = $pdo->query($req);
+			$bonsentrees = array();
+			while ($row = $reponse->fetch()){
+				$bonentree = new BonEntree($row['id']);
+				$bonsentrees[] = $bonentree;
+			}
+			return $bonsentrees;
+		}
 		
 		public static function getListJournal() {
 			$pdo = Database::getPDO();
