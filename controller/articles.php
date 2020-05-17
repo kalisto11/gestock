@@ -96,7 +96,7 @@
             $erreurs = false; 
             if (empty($nomArticle)){
                 $erreurs = true;
-                $message[] = "Le nom de l'article ne doit pas etre vide.";
+                $message[] = "Le nom de l'article ne doit pas être vide.";
             }
             $articles = Article::getList();
             if ($idArticle == null){ // cas ajout

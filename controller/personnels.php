@@ -117,12 +117,12 @@
             // Verifier si prénom n'est pas vide
             if (empty($prenom)){
                 $erreur = true;
-                $message[] = "Le prénom ne doit pas etre vide.";
+                $message[] = "Le prénom ne doit pas être vide.";
             }
             // verifier si nom n'est pas vide
             if (empty($nom)){
                 $erreur = true;
-                $message[] = "Le nom ne doit pas etre vide.";
+                $message[] = "Le nom ne doit pas être vide.";
             }
             // Verifier s'il n y a pas de doublon de poste (un poste slectionné 2 fois)
             $postes = $this->ajouterPoste($poste1, $poste2, $poste3);
