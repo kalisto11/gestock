@@ -18,7 +18,7 @@
                 Votre mot de passe actuel est temporaire car d'autres personnes peuvent le connaitre. Vous devez le changer pour pouvoir se connecter à votre compte de manière sécurisée (aucune autre personne n'y aura accès). <br>
                 NB: en cas d'oubli de votre mot de passe, veuillez contacter l'administrateur pour réinitialiser votre compte et vous en donner accès à nouveau.
             </div>
-            <div class="container pb-3 mb-3"> 
+            <div class="container pb-3 mb-3 w-75"> 
                 <form method="post" action="/gestock/acces/changerpassword/">
 
                     <div class="form-group">

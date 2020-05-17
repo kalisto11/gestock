@@ -1,6 +1,6 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 <h2>Modifier les informations d'accès</h2>
-<div class="container"> 
+<div class="container w-50"> 
     <form method="post" action="/gestock/acces/modifier/">
         <div class="form-group">
             <label for="nomComplet">Prénom et nom</label>
@@ -52,7 +52,7 @@
                 <label for="password2">Confirmation du mot de passe temporaire</label>
                 <input type="password" name="password2" id="password2" class="form-control">
                 <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword2">
-                <div class="helpPassword2"></div>
+                <div id="helpPassword2"></div>
             </div>
         </div>
 
