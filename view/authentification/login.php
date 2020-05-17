@@ -17,16 +17,16 @@
 
               <div class=" form-group">
                 <label for="username" ><img src="images/icones/user.jpg" class="user mr-3">Nom d'utilisateur</label>
-                <input type="text" class="form-control" name="username" id="username" aria-describedby="emailHelp" required>
+                <input type="text" class="form-control form-control-sm" name="username" id="username" aria-describedby="emailHelp" required>
               </div>
 
               <div class="form-group">
                 <label for="password"><img src="images/icones/cle.png" class="cle mr-3">Mot de passe</label>
-                <input type="password" class="form-control" name="password" id="password" required>
+                <input type="password" class="form-control form-control-sm" name="password" id="password" required>
                 <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword">
               </div>
 
-              <div class="modal-footer"> 
+              <div class="form-group mt-4"> 
                 <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
               </div> 
 

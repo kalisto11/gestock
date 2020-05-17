@@ -82,7 +82,7 @@
 
             if (empty($nomPoste)){
                 $erreurs = true;
-                $message[] = "Le nom du poste ne doit pas etre vide.";
+                $message[] = "Le nom du poste ne doit pas être vide.";
             }
 
             $postes = Poste::getList();

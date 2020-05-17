@@ -41,12 +41,12 @@
 
                     <div class="form-group">
                         <label for="nom">Nom de l'article</label>
-                        <input class="form-control input-sm" type="text" id="nom" name="nom" value="<?php if (isset($currentArticle->id)){echo $currentArticle->nom;} ?>" required>
+                        <input class="form-control form-control-sm" type="text" id="nom" name="nom" value="<?php if (isset($currentArticle->id)){echo $currentArticle->nom;} ?>" required>
                     </div>
 
                     <div class="form-group">
                         <label for="groupe">Groupe</label><br/>
-                        <select name="groupe" id="groupe" class="form-control input-sm">
+                        <select name="groupe" id="groupe" class="form-control form-control-sm">
                             <option value="0">Choisir un groupe</option>
                             <option value="1" <?php if (isset($currentArticle->groupe) AND $currentArticle->groupe == 1){echo 'selected="selected"';} ?>>Groupe 1
                             </option>
@@ -56,11 +56,11 @@
                     </div>
                     <div class="form-group">
                         <label for="quantite">Quantité de l'article dans l'existant</label>
-                        <input class="form-control input-sm" type="number" id="quantite" name="quantite" value="<?php if (isset($currentArticle->id)){echo $currentArticle->quantite;} ?>">
+                        <input class="form-control form-control-sm" type="number" id="quantite" name="quantite" value="<?php if (isset($currentArticle->id)){echo $currentArticle->quantite;} ?>">
                     </div>
                     <div class="form-group">
                         <label for="seuil">Seuil de l'article</label>
-                        <input class="form-control input-sm" type="number" id="seuil" name="seuil" value="<?php if (isset($currentArticle->id)){echo $currentArticle->seuil;} ?>">
+                        <input class="form-control form-control-sm" type="number" id="seuil" name="seuil" value="<?php if (isset($currentArticle->id)){echo $currentArticle->seuil;} ?>">
                     </div>
 
                     <input type="hidden" name="operation" value="<?php if (isset($currentArticle->id)){echo 'modifier';}else{echo 'ajouter';} ?>">

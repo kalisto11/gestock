@@ -34,7 +34,7 @@
             }
         }
 
-        public  function modif(){
+        public function modif(){
             $pdo = Database::getPDO();
 
             $req = "SELECT quantite from article WHERE id = $this->id";
@@ -56,7 +56,7 @@
             }
         }
 
-        public  function supprime(){
+        public function supprime(){
         $pdo = Database::getPDO();
         
         $delete = 'DELETE from article WHERE id = ?';
@@ -80,6 +80,9 @@
             self::insertTransaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['nomComplet'] , $this->quantite, "création");
         }
 
+        /**
+         * retourne la liste de tous les articles
+         */
         public static function getList(){
             $pdo = Database::getPDO();
             $req = 'SELECT id from article';
@@ -91,6 +94,10 @@
             }  
             return $articles;
         }
+
+        /**
+         * retourne la liste des articles par lots definis par $perpage
+         */
         public static function getListTrans($perpage, $offset){
             $pdo = Database::getPDO();
             $req = "SELECT id from article  ORDER BY nom LIMIT $perpage OFFSET $offset";

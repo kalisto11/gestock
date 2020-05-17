@@ -96,7 +96,7 @@
 
             if (empty($nomFournisseur)){
                 $erreurs = true;
-                $message[] = "Le nom du fournisseur ne doit pas etre vide.";
+                $message[] = "Le nom du fournisseur ne doit pas être vide.";
             }
 
             $fournisseurs = Fournisseur::getList();

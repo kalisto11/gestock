@@ -1,10 +1,10 @@
-<h2 class="text-center mt-3 mb-3">Historique des transactions</h2>
+<h2>Historique des transactions</h2>
 <div class="container-fluid"> 
   <div class="row">
     <div class="col-sm-3">
       <div>
         <h6>Nom de l'article</h6>  
-        <p class="zonegrise" ><?= $article->nom ?></p>
+        <p class="zonegrise"><?= $article->nom ?></p>
       </div>
       <div>
         <h6>Quantité dans le stock</h6>
@@ -12,14 +12,15 @@
       </div>
     </div>
     <div class="col-sm-9">
+      <?php if (!empty($transactions)) : ?>
       <table class="table table-striped table-borderless table-hover table-sm">
         <tr>
           <th>Opération</th>
           <th>N° bon/Utilisateur</th>
-          <th>Quantité </th>
+          <th>Quantité</th>
           <th>Date</th>
         </tr>
-        <?php if (!empty($transactions)) : ?>
+       
         <?php foreach($transactions as $transaction):?>
           <tr>
             <td><?= htmlspecialchars($transaction['typeTrans']) ?></td>
@@ -66,16 +67,16 @@
             </td>
           </tr>	
         <?php endforeach ?> 
-        <?php else : ?> 
       </table>
+      <?php else : ?> 
       <div class="text-center">Cet article n'a pas encore de transactions effectuées.</div>   
-      <?php endif ; ?>      
-	    </div>
+      <?php endif ; ?> 
+        <div class="mt-5 text-right">
+          <p>
+            <a class="btn btn-secondary" href="/gestock/grandlivres/liste/">Voir le grand livre</a>
+          </p>
+        </div>     
+      </div>
     </div>    
-    <div class="modal-footer mt-3">
-      <p>
-        <a class="btn btn-secondary" href="/gestock/grandlivres/liste">Voir le grand livre</a>
-      </p>
-    </div>
   </div> 
 </div>

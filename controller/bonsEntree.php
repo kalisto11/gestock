@@ -98,12 +98,12 @@
             $erreur = false;
             if ($articles == false){
                 $erreur = true;
-                $message[] = "Les valeurs négatives ou vides ne peuvent pas etre utilisées.";
+                $message[] = "Les valeurs négatives ou vides ne peuvent pas être utilisées.";
             }
             // Verifier si reference n'est pas vide
             if (empty($reference)){
                 $erreur = true;
-                $message[] = "La référence ne doit pas etre vide.";
+                $message[] = "La référence ne doit pas être vide.";
             }
             //Verifier si fournisseur n'est pas vide
             if ($fournisseur == "null"){

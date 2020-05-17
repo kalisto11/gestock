@@ -4,31 +4,31 @@
     <form method="post" action="/gestock/acces/modifier/">
         <div class="form-group">
             <label for="nomComplet">Prénom et nom</label>
-            <input type="text" name="nomComplet" id="nomComplet" class="form-control" required>
+            <input type="text" name="nomComplet" id="nomComplet" class="form-control form-control-sm" value="<?= $user->nomComplet ?>" required>
         </div>
 
         <div class="form-group">
             <label for="username">Nom de connexion</label>
-            <input type="text" name="username" id="username" class="form-control" required>
+            <input type="text" name="username" id="username" class="form-control form-control-sm" value="<?= $user->username ?>" required>
         </div>
 
-        Role de l'utilisateur <br>
+        Rôle  de l'utilisateur <br>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="administrateur" value="3" checked>
+            <input class="form-check-input" type="radio" name="niveau" id="administrateur" value="3" <?php if ($user->niveau == 3){echo 'checked="checked"';} ?>>
             <label class="form-check-label" for="administrateur">
                 Administrateur
             </label>
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="gestionnaire" value="2">
+            <input class="form-check-input" type="radio" name="niveau" id="gestionnaire" value="2" <?php if ($user->niveau == 2){echo 'checked="checked"';} ?>>
             <label class="form-check-label" for="gestionnaire">
                 Gestionnaire
             </label>
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="superviseur" value="1" checked="checked">
+            <input class="form-check-input" type="radio" name="niveau" id="superviseur" value="1" <?php if ($user->niveau == 1){echo 'checked="checked"';} ?>>
             <label class="form-check-label" for="superviseur">
                 Superviseur 
             </label>
@@ -43,27 +43,27 @@
         <div id="hiddenBlock">
             <div class="form-group">
                 <label for="password1">Nouveau mot de passe temporaire</label>
-                <input type="password" name="password1" id="password1" class="form-control">
+                <input type="password" name="password1" id="password1" class="form-control form-control-sm">
                 <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword1">
                 <div id="helpPassword1"></div>
             </div>
 
             <div class="form-group">
                 <label for="password2">Confirmation du mot de passe temporaire</label>
-                <input type="password" name="password2" id="password2" class="form-control">
+                <input type="password" name="password2" id="password2" class="form-control form-control-sm">
                 <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword2">
                 <div id="helpPassword2"></div>
             </div>
         </div>
 
-        <input type="hidden" name="idUser" value="1">
+        <input type="hidden" name="idUser" value="<?= $user->id ?>">
 
         <div class="mt-5"></div>
 
-        <input type="submit" value="valider" class="btn btn-success">
+        <input type="submit" value="Valider" class="btn btn-success">
         <a href="/gestock/home/" class="btn btn-danger">Annuler</a>
 
     </form>
   </div>
-  <script src="js/form-acces.js"></script>
+  <script src="js/form.js"></script>
 

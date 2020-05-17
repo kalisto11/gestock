@@ -21,7 +21,7 @@ class Acces extends Controller{
                             $_SESSION['user']['nomComplet'] = $user->nomComplet;
                             $_SESSION['user']['changePassword'] = $user->changePassword;
                             unset($_SESSION['token']);
-                            $message = "Bienvenue sur l'application de gestion du matériel de l'IA de Kaffrine ! Vous etes maintenant connecté.";
+                            $message = "Bienvenue sur l'application de gestion du matériel de l'IA de Kaffrine ! Vous êtes maintenant connecté.";
                             $_SESSION['notification'] = [
                                 'type'=> 'success',
                                 'message'=> $message
@@ -30,11 +30,17 @@ class Acces extends Controller{
                         }
                         else{
                             $_SESSION['id'] = $_SESSION['token'];
-                            $message = "Les deux mots de passe saisis ne sont pas identiques. Veuillez recommencer.";
+                            if (empty($_POST['password1']) AND empty($_POST['password2'])){
+                                $message = "Le mot de passe ne doit pas être vide. Veuillez recommencer.";
+                            }
+                            else{
+                                $message = "Les deux mots de passe saisis ne sont pas identiques. Veuillez recommencer.";
+                            }
                             $_SESSION['notification'] = [
                             'type'=> 'danger',
                             'message'=> $message
                             ];
+                            $this->request->action = 'home';
                         } 
                     }
                 break;
@@ -65,23 +71,27 @@ class Acces extends Controller{
                             $message[] = "L'utilisateur a été bien ajouté.";
                             $this->notification = new Notification($type, $message);
                             $this->request->action = "home";
-                        }
-                        
+                        }  
                     }
-
                 break;
 
                 case 'modifier': 
                     if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
                         $user = new User($_POST['idUser']);
                         $error = false;
+
                         if (empty($_POST['nomComplet']) OR empty($_POST['username'])){
                             $error = true;
                             $type = "danger";
                             $message[] = "Veuillez remplir tous les champs.";
                         }
-                    
-                        else if ($_POST['reset'] == "ON"){
+
+                        if ($_POST['reset'] == "on"){
+                            if (empty($_POST['password1']) OR empty($_POST['password2'])){
+                                $error = true;
+                                $type = "danger";
+                                $message[] = "Les mots de passe ne doivent pas être vides.";
+                            }
                             if($_POST['password1'] !== $_POST['password2']){
                                 $error = true;
                                 $type = "danger";
@@ -89,12 +99,14 @@ class Acces extends Controller{
                             }
                             else{
                                 $user->pasword = sha1($_POST['password1']);
+                                $user->changePassword = 0;
                             }
                         }
 
                         if ($error == true){
                             $this->notification = new Notification($type, $message);
                             $this->request->action = "modifier";
+                            $this->request->id = $user->id;
                         }
                         else{
                             $user->prenom = strip_tags($_POST['prenom']);
@@ -106,8 +118,7 @@ class Acces extends Controller{
                             $message[] = "L'utilisateur a été bien modifié.";
                             $this->notification = new Notification($type, $message);
                             $this->request->action = "home";
-                        }
-                        
+                        } 
                     }
                 break;
             } // fin switch
@@ -136,6 +147,7 @@ class Acces extends Controller{
 
             case 'modifier':
                 if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
+                    $user = new User($this->request->id);
                     require_once VIEW . 'acces/modifuser.php';
                 }
             break;
