@@ -11,25 +11,25 @@ var checkPassword1 = document.getElementById("checkPassword1");
 var password1 = document.getElementById("password1");
 checkPassword1.addEventListener("mousedown", function(){
     checkPassword1.style.width = "35px";
-    checkPassword1.style.height = "35px";
+    checkPassword1.style.height = "25px";
     password1.setAttribute("type", "text");
 });
 checkPassword1.addEventListener("mouseup", function(){
     password1.setAttribute("type", "password");
     checkPassword1.style.width = "30px";
-    checkPassword2.style.height = "30px";
+    checkPassword2.style.height = "20px";
     password1.setAttribute("type", "password");
 });
 var checkPassword2 = document.getElementById("checkPassword2");
 var password2 = document.getElementById("password2");
 checkPassword2.addEventListener("mousedown", function(){
     checkPassword2.style.width = "35px";
-    checkPassword2.style.height = "35px";
+    checkPassword2.style.height = "25px";
     password2.setAttribute("type", "text");
 });
 checkPassword2.addEventListener("mouseup", function(){
     checkPassword2.style.width = "30px";
-    checkPassword2.style.height = "30px";
+    checkPassword2.style.height = "20px";
     password2.setAttribute("type", "password");
 });
 

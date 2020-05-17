@@ -4,12 +4,12 @@
     <form method="post" action="/gestock/acces/modifier/">
         <div class="form-group">
             <label for="nomComplet">Prénom et nom</label>
-            <input type="text" name="nomComplet" id="nomComplet" class="form-control" required>
+            <input type="text" name="nomComplet" id="nomComplet" class="form-control form-control-sm" required>
         </div>
 
         <div class="form-group">
             <label for="username">Nom de connexion</label>
-            <input type="text" name="username" id="username" class="form-control" required>
+            <input type="text" name="username" id="username" class="form-control form-control-sm" required>
         </div>
 
         Role de l'utilisateur <br>
@@ -43,14 +43,14 @@
         <div id="hiddenBlock">
             <div class="form-group">
                 <label for="password1">Nouveau mot de passe temporaire</label>
-                <input type="password" name="password1" id="password1" class="form-control">
+                <input type="password" name="password1" id="password1" class="form-control form-control-sm">
                 <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword1">
                 <div id="helpPassword1"></div>
             </div>
 
             <div class="form-group">
                 <label for="password2">Confirmation du mot de passe temporaire</label>
-                <input type="password" name="password2" id="password2" class="form-control">
+                <input type="password" name="password2" id="password2" class="form-control form-control-sm">
                 <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword2">
                 <div id="helpPassword2"></div>
             </div>
@@ -65,5 +65,5 @@
 
     </form>
   </div>
-  <script src="js/form-acces.js"></script>
+  <script src="js/form.js"></script>
 

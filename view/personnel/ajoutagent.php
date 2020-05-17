@@ -1,23 +1,23 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
 <h2><?php if (isset($agent)){echo 'Modifier les informations de l\'agent';}else{echo 'Ajouter un nouvel agent';} ?></h2> 
-<div class="container mt-2">
+<div class="container mt-2 w-75">
    <form method="post" action="/gestock/personnels/traitement-agent" class="form-sm">
       <div class="form-group">
-            <label for="prenom">Prénom </label>
-         <input class="form-control" type="text" name="prenom" id="prenom" value="<?php if (isset($agent)){echo $agent->prenom ;} ?>" placeholder="Saisir le prénom du nouvel agent ici" required>
+            <label for="prenom">Prénom</label>
+         <input class="form-control form-control-sm" type="text" name="prenom" id="prenom" value="<?php if (isset($agent)){echo $agent->prenom ;} ?>" placeholder="Saisir le prénom du nouvel agent ici" required>
       </div>
       
       <div class="form-group">
          <label for="nom">Nom</label>
-         <input class="form-control" type="text" name="nom" id="nom" value="<?php if (isset($agent)){echo $agent->nom ;} ?>" placeholder="Saisir le nom du nouvel agent ici" required>
+         <input class="form-control form-control-sm" type="text" name="nom" id="nom" value="<?php if (isset($agent)){echo $agent->nom ;} ?>" placeholder="Saisir le nom du nouvel agent ici" required>
       </div>
       <div class="row">
          <!-- debut poste 1 -->
          <div class="col">
             <div class="form-group">
                <label for="poste1">Poste 1</label>
-               <select name="poste1" id="poste1" class="form-control">
+               <select name="poste1" id="poste1" class="form-control form-control-sm">
                   <option value="null">Choisir un poste</option>
                   <?php foreach ($postes as $poste): ?>
                   <option 
@@ -40,7 +40,7 @@
          <div class="col">
             <div class="form-group">
                <label for="poste2">Poste 2</label>
-               <select name="poste2" id="poste2" class="form-control">
+               <select name="poste2" id="poste2" class="form-control form-control-sm">
                   <option value="null">Choisir un poste</option>
                   <?php foreach ($postes as $poste): ?>
                   <option 
@@ -63,7 +63,7 @@
          <div class="col">
             <div class="form-group">
                <label for="poste3">Poste 3</label>
-               <select name="poste3" id="poste3" class="form-control">
+               <select name="poste3" id="poste3" class="form-control form-control-sm">
                   <option value="null">Choisir un poste</option>
                   <?php foreach ($postes as $poste): ?>
                   <option 
