@@ -38,14 +38,14 @@ password1.addEventListener("input", function (e) {
     var longueurMdp = "faible";
     var couleurMsg = "red"; // Longueur faible => couleur rouge
     if (mdp.length >= 8) {
-        longueurMdp = "suffisante";
+        longueurMdp = "fort";
         couleurMsg = "green"; // Longueur suffisante => couleur verte
     } else if (mdp.length >= 4) {
-        longueurMdp = "moyenne";
+        longueurMdp = "moyen";
         couleurMsg = "orange"; // Longueur moyenne => couleur orange
     }
     var aideMdpElt = document.getElementById("helpPassword1");
-    aideMdpElt.textContent = "Longueur : " + longueurMdp; // Texte de l'aide
+    aideMdpElt.textContent = "Mot de passe : " + longueurMdp; // Texte de l'aide
     aideMdpElt.style.color = couleurMsg; // Couleur du texte de l'aide
 });
 
@@ -54,13 +54,13 @@ password2.addEventListener("input", function (e) {
     var longueurMdp = "faible";
     var couleurMsg = "red"; // Longueur faible => couleur rouge
     if (mdp.length >= 8) {
-        longueurMdp = "suffisante";
+        longueurMdp = "fort";
         couleurMsg = "green"; // Longueur suffisante => couleur verte
     } else if (mdp.length >= 4) {
-        longueurMdp = "moyenne";
+        longueurMdp = "moyen";
         couleurMsg = "orange"; // Longueur moyenne => couleur orange
     }
     var aideMdpElt = document.getElementById("helpPassword2");
-    aideMdpElt.textContent = "Longueur : " + longueurMdp; // Texte de l'aide
+    aideMdpElt.textContent = "Mot de passe : " + longueurMdp; // Texte de l'aide
     aideMdpElt.style.color = couleurMsg; // Couleur du texte de l'aide
 });
