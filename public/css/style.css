@@ -215,3 +215,14 @@ input[disabled]{
 #hiddenBlock{
   display: none;
 }
+
+.checkPassword{
+  position: relative;
+  top: 0px;
+  right: 0px;
+  height: 30px;
+  width: 30px;
+  float: right;
+  margin-top: -35px;
+  margin-right: 5px;
+}

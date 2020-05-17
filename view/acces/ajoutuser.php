@@ -39,11 +39,13 @@
         <div class="form-group">
             <label for="password1">Mot de passe temporaire</label>(l'utilisateur changera son mot de passe à sa première connection).
             <input type="password" name="password1" id="password1" class="form-control">
+            <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword1">
         </div>
 
         <div class="form-group">
             <label for="password2">Confirmation du mot de passe temporaire</label>
             <input type="password" name="password2" id="password2" class="form-control">
+            <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword2">
         </div>
 
         <div class="mt-5"></div>

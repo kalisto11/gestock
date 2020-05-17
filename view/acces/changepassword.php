@@ -24,13 +24,15 @@
                     <div class="form-group">
                         <label for="password1"><img src="images/icones/cle.png" class="cle mr-3">Nouveau mot de passe</label>
                         <input type="password" name="password1" id="password1" class="form-control" required>
-                        <img src="images/icones/check.jpg" alt="" class="check-icone">
+                        <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword1">
+                        <div id="helpPassword1"></div>
                     </div>
 
                     <div class="form-group">
                         <label for="password2"><img src="images/icones/cle.png" class="cle mr-3">Confirmation du nouveau mot de passe</label>
                         <input type="password" name="password2" id="password2" class="form-control" required>
-                        <img src="images/icones/check.jpg" alt="" class="check-icone">
+                        <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword2">
+                        <div id="helpPassword2"></div>
                     </div>
 
                     <div class="mt-5"></div>
@@ -42,7 +44,7 @@
         <script src="bootstrap/js/jquery.min.js"></script>
         <script src="bootstrap/js/propper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="js/main.js"></script>    
+        <script src="js/form-acces.js"></script>
     </body>
 </html>
 
