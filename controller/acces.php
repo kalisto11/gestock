@@ -6,7 +6,7 @@ class Acces extends Controller{
 
     public function process(){
         if ($this->request->method == 'POST'){
-            if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
+           
                 switch ($this->request->action){
                     case 'changerpassword':
                         if (isset($_SESSION['token'])){
@@ -47,80 +47,84 @@ class Acces extends Controller{
                     break;
 
                     case 'ajouter':
-                        if (empty($_POST['prenom']) OR empty($_POST['nom']) OR empty($_POST['username']) OR empty($_POST['password1']) OR empty($_POST['password2'])){
-                            $type = "danger";
-                            $message[] = "Veuillez remplir tous les champs.";
-                            $this->notification = new Notification($type, $message);
-                            $this->request->action = "ajouter";
+                        if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
+                            if (empty($_POST['prenom']) OR empty($_POST['nom']) OR empty($_POST['username']) OR empty($_POST['password1']) OR empty($_POST['password2'])){
+                                $type = "danger";
+                                $message[] = "Veuillez remplir tous les champs.";
+                                $this->notification = new Notification($type, $message);
+                                $this->request->action = "ajouter";
+                            }
+                            else if($_POST['password1'] !== $_POST['password2']){
+                                $type = "danger";
+                                $message[] = "Les mots de passe ne sont pas identiques.";
+                                $this->notification = new Notification($type, $message);
+                                $this->request->action = "ajouter";
+                            }
+                            else{
+                                $user = new User();
+                                $user->prenom =  mb_convert_case(strip_tags($_POST['prenom']), MB_CASE_UPPER);
+                                $user->nom = mb_convert_case(strip_tags($_POST['nom']), MB_CASE_UPPER);
+                                $user->username = strip_tags($_POST['username']);
+                                $user->pasword = sha1($_POST['password1']);
+                                $user->niveau = intval($_POST['niveau']);
+                                $user->save();
+                                $type = "success";
+                                $message[] = "L'utilisateur a été bien ajouté.";
+                                $this->notification = new Notification($type, $message);
+                                $this->request->action = "home";
+                            }  
                         }
-                        else if($_POST['password1'] !== $_POST['password2']){
-                            $type = "danger";
-                            $message[] = "Les mots de passe ne sont pas identiques.";
-                            $this->notification = new Notification($type, $message);
-                            $this->request->action = "ajouter";
-                        }
-                        else{
-                            $user = new User();
-                            $user->prenom =  mb_convert_case(strip_tags($_POST['prenom']), MB_CASE_UPPER);
-                            $user->nom = mb_convert_case(strip_tags($_POST['nom']), MB_CASE_UPPER);
-                            $user->username = strip_tags($_POST['username']);
-                            $user->pasword = sha1($_POST['password1']);
-                            $user->niveau = intval($_POST['niveau']);
-                            $user->save();
-                            $type = "success";
-                            $message[] = "L'utilisateur a été bien ajouté.";
-                            $this->notification = new Notification($type, $message);
-                            $this->request->action = "home";
-                        }  
                     break;
 
                     case 'modifier': 
-                        $user = new User($_POST['idUser']);
-                        $error = false;
+                        if ($_SESSION['user']['niveau'] >= ADMINISTRATEUR){
+                            $user = new User($_POST['idUser']);
+                            $error = false;
 
-                        if (empty($_POST['prenom']) OR empty($_POST['prenom']) OR empty($_POST['username'])){
-                            $error = true;
-                            $type = "danger";
-                            $message[] = "Veuillez remplir tous les champs.";
-                        }
-
-                        if ($_POST['reset'] == "on"){
-                            if (empty($_POST['password1']) OR empty($_POST['password2'])){
+                            if (empty($_POST['prenom']) OR empty($_POST['prenom']) OR empty($_POST['username'])){
                                 $error = true;
                                 $type = "danger";
-                                $message[] = "Les mots de passe ne doivent pas être vides.";
+                                $message[] = "Veuillez remplir tous les champs.";
                             }
-                            if($_POST['password1'] !== $_POST['password2']){
-                                $error = true;
-                                $type = "danger";
-                                $message[] = "Les mots de passe ne sont pas identiques.";
+
+                            if ($_POST['reset'] == "on"){
+                                if (empty($_POST['password1']) OR empty($_POST['password2'])){
+                                    $error = true;
+                                    $type = "danger";
+                                    $message[] = "Les mots de passe ne doivent pas être vides.";
+                                }
+                                if($_POST['password1'] !== $_POST['password2']){
+                                    $error = true;
+                                    $type = "danger";
+                                    $message[] = "Les mots de passe ne sont pas identiques.";
+                                }
+                                else{
+                                    $user->pasword = sha1($_POST['password1']);
+                                    $user->changePassword = 0;
+                                }
+                            }
+
+                            if ($error == true){
+                                $this->notification = new Notification($type, $message);
+                                $this->request->action = "modifier";
+                                $this->request->id = $user->id;
                             }
                             else{
-                                $user->pasword = sha1($_POST['password1']);
-                                $user->changePassword = 0;
-                            }
+                                $user->prenom =  mb_convert_case(strip_tags($_POST['prenom']), MB_CASE_UPPER);
+                                $user->nom = mb_convert_case(strip_tags($_POST['nom']), MB_CASE_UPPER);
+                                $user->username = strip_tags($_POST['username']);
+                                $user->niveau = intval($_POST['niveau']);
+                                $user->update();
+                                $type = "success";
+                                $message[] = "L'utilisateur a été bien modifié.";
+                                $this->notification = new Notification($type, $message);
+                                $this->request->action = "home";
+                            }    
                         }
-
-                        if ($error == true){
-                            $this->notification = new Notification($type, $message);
-                            $this->request->action = "modifier";
-                            $this->request->id = $user->id;
-                        }
-                        else{
-                            $user->prenom =  mb_convert_case(strip_tags($_POST['prenom']), MB_CASE_UPPER);
-                            $user->nom = mb_convert_case(strip_tags($_POST['nom']), MB_CASE_UPPER);
-                            $user->username = strip_tags($_POST['username']);
-                            $user->niveau = intval($_POST['niveau']);
-                            $user->update();
-                            $type = "success";
-                            $message[] = "L'utilisateur a été bien modifié.";
-                            $this->notification = new Notification($type, $message);
-                            $this->request->action = "home";
-                        }    
                     break;
                 } // fin switch
                 $this->render($this->notification);
-            } // fin verification droit d'accès
+    
         } // fin traitement post
         else if ($this->request->method == 'GET'){
             if ($this->request->action == "supprimer"){
