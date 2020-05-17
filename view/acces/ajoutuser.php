@@ -2,28 +2,25 @@
 <h2>Donner l'accès à un nouvel utilisateur</h2>
 <div class="container w-50"> 
     <form method="post" action="/gestock/acces/ajouter/">
-        <fieldset>
-            <div class="form-group">
-                <label for="nomComplet">Prénom et Nom</label>
-                <input type="text" name="nomComplet" id="nomComplet" class="form-control form-control-sm" placeholder="ex: Khadim Diaw" required>
-            </div>
+        
+        <div class="form-group">
+            <label for="nomComplet">Prénom et Nom</label>
+            <input type="text" name="nomComplet" id="nomComplet" class="form-control form-control-sm" placeholder="ex: Khadim Diaw" required>
+        </div>
 
-            <div class="form-group">
-                <label for="username">Nom de connexion</label>
-                <input type="text" name="username" id="username" class="form-control form-control-sm" placeholder="ex: kdiaw" required>
-            </div>
-        </fieldset>
-
-        <fieldset>
-            Role du nouvel utilisateur <br>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="niveau" id="administrateur" value="3" checked>
-                <label class="form-check-label" for="administrateur">
-                    Administrateur
-                </label>
-            </div>
-        </fieldset>
-       
+        <div class="form-group">
+            <label for="username">Nom de connexion</label>
+            <input type="text" name="username" id="username" class="form-control form-control-sm" placeholder="ex: kdiaw" required>
+        </div>
+     
+      
+        Rôle  du nouvel utilisateur <br>
+        <div class="form-check">
+            <input class="form-check-input" type="radio" name="niveau" id="administrateur" value="3">
+            <label class="form-check-label" for="administrateur">
+                Administrateur
+            </label>
+        </div>
 
         <div class="form-check">
             <input class="form-check-input" type="radio" name="niveau" id="gestionnaire" value="2">
@@ -33,7 +30,7 @@
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="niveau" id="superviseur" value="1" checked="checked">
+            <input class="form-check-input" type="radio" name="niveau" id="superviseur" value="1">
             <label class="form-check-label" for="superviseur">
                 Superviseur 
             </label>
@@ -57,7 +54,7 @@
 
         <div class="mt-5"></div>
 
-        <input type="submit" value="valider" class="btn btn-success">
+        <input type="submit" value="Valider" class="btn btn-success">
         <a href="/gestock/home/" class="btn btn-danger">Annuler</a>
 
     </form>
