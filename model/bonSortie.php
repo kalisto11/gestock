@@ -151,6 +151,18 @@
 			return $bonssorties;
 			
 		}
+		public static function getListHome() {
+			$pdo = Database::getPDO();
+			$req = "SELECT id from bon_sortie";
+			$reponse = $pdo->query($req);
+			$bonssorties = array();
+			while ($row = $reponse->fetch()){
+				$bonsortie = new BonSortie($row['id']);
+				$bonssorties[] = $bonsortie;
+			}
+			return $bonssorties;
+			
+		}
 		/**
 		 * 
 		 */
