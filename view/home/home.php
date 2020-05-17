@@ -6,7 +6,8 @@
           <div class="card bg-light  mt-5 ml-3" style="max-width: 18rem;" >
             <div class="card-header">Mon compte</div>
             <div class="card-body"> 
-              <p class="card-text">Nom : <?= $_SESSION['user']['nomComplet'] ?></p></br>
+              <p class="card-text">Prénom : <?= $_SESSION['user']['prenom'] ?></p>
+              <p class="card-text">Nom : <?= $_SESSION['user']['nom'] ?></p>
               <p class="card-text">Role : <?= $_SESSION['user']['username']?></p>
             </div>
           </div>

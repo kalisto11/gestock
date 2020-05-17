@@ -2,7 +2,8 @@
    
 class User{
     public $id;
-    public $nomComplet;
+    public $prenom;
+    public $nom;
     public $username;
     public $pasword;
     public $niveau;
@@ -15,7 +16,8 @@ class User{
         $reponse->execute(array($id));
         $user =  $reponse->fetch();
         $this->id = $user['id'];
-        $this->nomComplet = $user['nomComplet'];
+        $this->prenom = $user['prenom'];
+        $this->nom = $user['nom'];
         $this->username = $user['username'];
         $this->pasword = $user['pasword'];
         $this->niveau = $user['niveau'];
@@ -35,10 +37,11 @@ class User{
 
     public function save(){
         $pdo = Database::getPDO();
-        $req = "INSERT INTO users (nomComplet, username, pasword, niveau) VALUES (:nomComplet, :username, :pasword, :niveau)";
+        $req = "INSERT INTO users (prenom, nom, username, pasword, niveau) VALUES (:prenom, :nom, :username, :pasword, :niveau)";
         $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
         $reponse->execute(array(
-            'nomComplet' => $this->nomComplet,
+            'prenom' => $this->prenom,
+            'nom' => $this->nom,
             'username' => $this->username,
             'pasword' => $this->pasword,
             'niveau' => $this->niveau,
@@ -47,10 +50,11 @@ class User{
 
     public function update(){
         $pdo = Database::getPDO();
-        $req = 'UPDATE users SET nomComplet = :nomComplet, username = :username, pasword = :pasword, niveau = :niveau, changePassword = :changePassword WHERE id = :id';
+        $req = 'UPDATE users SET prenom = :prenom, nom = :nom, username = :username, pasword = :pasword, niveau = :niveau, changePassword = :changePassword WHERE id = :id';
         $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
         $reponse->execute(array(
-            'nomComplet' => $this->nomComplet,
+            'prenom' => $this->prenom,
+            'nom' => $this->nom,
             'username' => $this->username,
             'pasword' => $this->pasword,
             'niveau' => $this->niveau,

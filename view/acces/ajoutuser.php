@@ -4,8 +4,13 @@
     <form method="post" action="/gestock/acces/ajouter/">
         
         <div class="form-group">
-            <label for="nomComplet">Prénom et Nom</label>
-            <input type="text" name="nomComplet" id="nomComplet" class="form-control form-control-sm" placeholder="ex: Khadim Diaw" required>
+            <label for="prenom">Prénom</label>
+            <input type="text" name="prenom" id="prenom" class="form-control form-control-sm" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" id="nom" class="form-control form-control-sm" required>
         </div>
 
         <div class="form-group">

@@ -15,7 +15,8 @@ class Auths extends Controller{
                         $_SESSION['user']['id'] = $user->id; 
                         $_SESSION['user']['username'] = $user->username; 
                         $_SESSION['user']['niveau'] = $user->niveau;
-                        $_SESSION['user']['nomComplet'] = $user->nomComplet;
+                        $_SESSION['user']['prenom'] = $user->prenom;
+                        $_SESSION['user']['nom'] = $user->nom;
                     }
                     $this->request->controller = 'home';
                     $this->render();
