@@ -3,16 +3,16 @@
 <div class="container-fluid">
 <h2>Fournisseurs</h2>
     <div class="row">
-        <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?><div class="col-md-8"><?php endif; ?>
+        <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?><div class="col-md-8"><?php endif; ?>
             <table class="table table-striped table-borderless table-hover table-sm">
                 <tr>
                     <th class="th-md">Fournisseur</th>
-                    <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?><th class="th-sm">Action</th><?php endif; ?>
+                    <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?><th class="th-sm">Action</th><?php endif; ?>
                 </tr>
                 <?php foreach($fournisseurs as $fournisseur): ?>
                     <tr>
                         <td><a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>"><?= $fournisseur->nom ?></a></td>
-                        <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
+                        <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
                             <td>
                                 <a class="btn btn-info btn-sm" href="/gestock/fournisseurs/modifier/<?= $fournisseur->id ?>">
                                     <img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier">
@@ -25,9 +25,9 @@
                     </tr>
                 <?php endforeach ; ?>
             </table>
-        <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?></div><?php endif; ?>
+        <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?></div><?php endif; ?>
          
-        <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
+        <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
             <div class="col-md-4 bg-light">
             <h4 class="mt-5 text-center"><?php if (isset($currentFournisseur->id)){echo 'Modifier le fournisseur';}else{echo 'Ajouter un fournisseur';} ?></h4>
                 <div class="container-fluid">
