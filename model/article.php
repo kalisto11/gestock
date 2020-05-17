@@ -77,12 +77,12 @@
         	$reponse = $pdo->query($req);
 			$article = $reponse->fetch();
 			$this->id = $article['id'];
-            self::transaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['nomComplet'] , $this->quantite, "création");
+            self::insertTransaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['nomComplet'] , $this->quantite, "création");
         }
 
         public static function getList(){
             $pdo = Database::getPDO();
-            $req = 'SELECT id from article ORDER BY nom';
+            $req = 'SELECT id from article';
             $reponse = $pdo->query($req);
             $articles = array();
             while ($row = $reponse->fetch()){
@@ -93,7 +93,7 @@
         }
         public static function getListTrans($perpage, $offset){
             $pdo = Database::getPDO();
-            $req = "SELECT id from article LIMIT $perpage OFFSET $offset";
+            $req = "SELECT id from article  ORDER BY nom LIMIT $perpage OFFSET $offset";
             $reponse = $pdo->query($req);
             $articles = array();
             while ($row = $reponse->fetch()){

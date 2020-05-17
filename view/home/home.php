@@ -4,32 +4,50 @@
       <div class="card-columns">
         <div class="col sm-4">
           <div class="card bg-light  mt-5 ml-3" style="max-width: 18rem;" >
-            <div class="card-header">Mon compte</div>
+            <div class="card-header text-center">Mon compte</div>
             <div class="card-body"> 
-              <p class="card-text">Nom : <?= $_SESSION['user']['nomComplet'] ?></p></br>
-              <p class="card-text">Role : <?= $_SESSION['user']['username']?></p>
+              <p class="card-text">Nom : <?= $_SESSION['user']['prenom'] . $_SESSION['nom'] ?></p></br>             
+                <?php if($_SESSION['user']['niveau'] == 1) : ?>
+                  <p class="card-text">Role : SUPERVISEUR </p>
+                <?php elseif($_SESSION['user']['niveau'] == 2) : ?>
+                  <p class="card-text">Role : GESTIONNAIRE </p>
+                <?php elseif($_SESSION['user']['niveau'] == 3) : ?>
+                  <p class="card-text">Role : ADMINISTRATEUR </p>
+                <?php endif; ?>
             </div>
           </div>
         </div>
         <div class="col sm-4">
-          <div class="card bg-light mt-5 ml-3" style="max-width: 18rem;" >
-            <div class="card-header">Utilisateurs</div>
-            <table>
+          <div class="card bg-light mt-5 ml-5" style="max-width: 25rem;" >
+            <div class="card-header text-center">Utilisateurs</div>
+            <table class="table table-striped table-borderless table-hover table-sm">
               <tr>
                 <th class="th-sm" scope="col">Nom</th>
                 <th class="th-sm" scope="col">Role</th>
+<?php if($_SESSION['user']['niveau'] >= ADMINISTRATEUR) : ?><th class ="th-sm" scope ="col">Action</th><?php endif; ?>
               </tr>
               <?php foreach ($users as $user): ?>
               <tr>
-                <td><?= $user->nomComplet ?></td>
-                <td><?= $user->username ?></td>  
+                <td><?= $user->prenom .' '.$user->nom ?></td>
+                <td><?= $user->username ?></td> 
+                <?php if($_SESSION['user']['niveau'] >= ADMINISTRATEUR) : ?>
+                  <td>
+                    <a class="btn btn-info btn-sm" href="/gestock/acces/modifier/<?= $user->id ?>"><img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier"></a>
+                    <a class="btn btn-info btn-sm suppr" href="/gestock/acces/supprimer/<?= $user->id ?>"><img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer"></a>                     
+                  </td>
+                <?php endif; ?> 
               </tr>
               <?php endforeach ?>
             </table>
         </div>
+        <?php if($_SESSION['user']['niveau'] >= ADMINISTRATEUR) : ?>
+          <div class="mt-3">
+            <a class="btn btn-info ml-5" href="/gestock/acces/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un utilisateur</a>
+          </div>
+        <?php endif; ?>
         <div class="col sm-4">
-          <div class="card bg-light  mt-5 ml-3" style="max-width: 18rem;" > 
-             <div class="card-header">Derniers Articles</div>
+          <div class="card bg-light  mt-5 ml-3 " style="max-width: 20rem;" > 
+             <div class="card-header text-center ">Derniers Articles</div>
               
               <table class="table table-striped table-borderless table-hover table-sm">
                 <thead>

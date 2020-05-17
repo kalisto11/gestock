@@ -17,6 +17,7 @@ class Acces extends Controller{
                             $_SESSION['user']['id'] = $user->id; 
                             $_SESSION['user']['username'] = $user->username; 
                             $_SESSION['user']['niveau'] = $user->niveau;
+                            $_SESSION['user']['prenom'] = $user->prenom;
                             $_SESSION['user']['nomComplet'] = $user->nomComplet;
                             $_SESSION['user']['changePassword'] = $user->changePassword;
                             unset($_SESSION['token']);
@@ -54,7 +55,8 @@ class Acces extends Controller{
                         }
                         else{
                             $user = new User();
-                            $user->nomComplet = strip_tags($_POST['nomComplet']);
+                            $user->prenom = strip_tags($_POST['prenom']);
+                            $user->nom = strip_tags($_POST['nom']);
                             $user->username = strip_tags($_POST['username']);
                             $user->pasword = sha1($_POST['password1']);
                             $user->niveau = intval($_POST['niveau']);
@@ -95,7 +97,8 @@ class Acces extends Controller{
                             $this->request->action = "modifier";
                         }
                         else{
-                            $user->nomComplet = strip_tags($_POST['nomComplet']);
+                            $user->prenom = strip_tags($_POST['prenom']);
+                            $user->nom = strip_tags($_POST['nom']);
                             $user->username = strip_tags($_POST['username']);
                             $user->niveau = intval($_POST['niveau']);
                             $user->update();
@@ -113,7 +116,9 @@ class Acces extends Controller{
         else if ($this->request->method == 'GET'){
             if ($this->request->action == "supprimer"){
                 $this->request->action = 'home';
-                // operation de suppression ici
+                $idUser = intval($this->request->id);
+                $user  = new User($idUser);
+                $user->delete();
                 $message[] = "L'utilisateur a été bien supprimé";
                 $this->notification = new Notification("success", $message);
             }
