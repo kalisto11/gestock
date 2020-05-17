@@ -3,13 +3,13 @@
 <div class="container"> 
     <form method="post" action="/gestock/acces/modifier/">
         <div class="form-group">
-            <label for="nomComplet">Prénom et Nom</label>
-            <input type="text" name="nomComplet" id="nomComplet" class="form-control">
+            <label for="nomComplet">Prénom et nom</label>
+            <input type="text" name="nomComplet" id="nomComplet" class="form-control" required>
         </div>
 
         <div class="form-group">
-            <label for="nomComplet">Nom de connexion</label>
-            <input type="text" name="nomConnexion" id="nomComplet" class="form-control">
+            <label for="username">Nom de connexion</label>
+            <input type="text" name="username" id="username" class="form-control" required>
         </div>
 
         Role de l'utilisateur <br>
@@ -37,7 +37,7 @@
         <div class="mt-3"></div>
 
         <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="reset">
+            <input type="checkbox" class="form-check-input" id="reset" name="reset">
             <label class="form-check-label" for="reset">Réinitialiser le mot de passe (l'utilisateur changera obligatoirement son mot de passe à sa première connection).</label>
         </div>
         <div id="hiddenBlock">
@@ -51,6 +51,8 @@
                 <input type="password" name="password2" id="password2" class="form-control">
             </div>
         </div>
+
+        <input type="hidden" name="idUser" value="1">
 
         <div class="mt-5"></div>
 

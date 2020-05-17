@@ -35,17 +35,27 @@
         }
 
         public  function modif(){
-        $pdo = Database::getPDO();
-        $update = 'UPDATE article SET nom = :nom, groupe = :groupe, quantite = :quantite, seuil = :seuil WHERE id = :id';
-        $sortie = $pdo->prepare($update) OR die(print_r($pdo->errorinfo()));
-        $sortie->execute(array(
-            'nom' => $this->nom,
-            'groupe' => $this->groupe,
-            'quantite' => $this->quantite,
-            'seuil' => $this->seuil,
-            'id'  => $this->id
-        ));
-    }
+            $pdo = Database::getPDO();
+
+            $req = "SELECT quantite from article WHERE id = $this->id";
+            $reponse = $pdo->query($req);
+            $article = $reponse->fetch();
+            $difference = $this->quantite - $article['quantite'];
+
+            $update = 'UPDATE article SET nom = :nom, groupe = :groupe, quantite = :quantite, seuil = :seuil WHERE id = :id';
+            $sortie = $pdo->prepare($update) OR die(print_r($pdo->errorinfo()));
+            $sortie->execute(array(
+                'nom' => $this->nom,
+                'groupe' => $this->groupe,
+                'quantite' => $this->quantite,
+                'seuil' => $this->seuil,
+                'id'  => $this->id
+            ));
+            if ($difference != 0){
+                self::transaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['nomComplet'] , $difference, "modification");
+            }
+        }
+
         public  function supprime(){
         $pdo = Database::getPDO();
         
@@ -86,17 +96,7 @@
             }  
             return $articles;
         }
-      /* public static function getListArticle(){
-            $pdo = Database::getPDO();
-            $req = 'SELECT id FROM article LEFT JOIN sortie_article ON article.id = sortie_article.idArticle WHERE sortie_article.idArticle IS NULL AND sortie_article.id_bon_sortie IS NULL';
-            $reponse = $pdo->query($req);
-            $articles = array();
-            while ($row = $reponse->fetch()){
-                $article = new Article($row['id']);
-                $articles[] = $article;
-            }  
-            return $articles;
-        }*/
+    
         public static function getNbrArticle(){
             $pdo = Database::getPDO();
             $req = "SELECT COUNT(id) FROM  article";
@@ -109,7 +109,14 @@
          */
         public static function transaction($idArticle, $idBon, $numeroBon, $quantite, $typeTrans){
             $pdo = Database::getPDO();
-            $req  = "INSERT INTO transactions (dateTrans,idArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(),:idArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
+            $req = "DELETE FROM transactions WHERE idArticle = :idArticle AND idBon = :idBon";
+            $reponse = $pdo->prepare($req);
+            $reponse->execute(array(
+                'idArticle' => $idArticle,
+                'idBon'     => $idBon
+            ));
+
+            $req  = "INSERT INTO transactions (dateTrans, idArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(), :idArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
                 'idArticle' => $idArticle,
@@ -119,14 +126,15 @@
                 'typeTrans' =>$typeTrans
             ));
         }
+
         public static function requireTransaction($idArticle){
             $pdo = Database::getPDO();
-            $req = "SELECT * from transactions WHERE idArticle = ?";
+            $req = "SELECT id, DATE_FORMAT(dateTrans, '%d/%m/%Y') AS dateTrans, idArticle, idBon, numeroBon, quantite, typeTrans from transactions WHERE idArticle = ? ORDER BY dateTrans DESC";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($idArticle));
+            $transactions = array();
             while ($row = $reponse->fetch()){
-                $transaction = $row;
-                $transactions[] = $transaction;
+                $transactions[] = $row;
             }  
             return $transactions;
         }
@@ -147,9 +155,9 @@
             ));
         }
         /**
-         * 
+         * Annule la quantité précédente qui a été ajoutée ou supprimée par le bon qui est modifié
          */
-        public static function difQuantity($dotationIdArticle, $referenceBon){
+        public static function removeQuantity($dotationIdArticle, $referenceBon, $typeTransaction){
             $pdo = Database::getPDO();
             $req = "SELECT quantite FROM transactions WHERE numeroBon = :numeroBon AND idArticle = :idArticle";
 			$reponse = $pdo->prepare($req);
@@ -158,10 +166,15 @@
 				'idArticle' => $dotationIdArticle
 			));
 			$row = $reponse->fetch();
-			$oldquantite = $row['quantite'];
-            $reponse = $pdo->prepare("UPDATE article SET quantite = quantite + :oldquantite WHERE id = :idArticle");
+            $oldQuantity = intval($row['quantite']);
+            if ($typeTransaction == "entree"){
+                $reponse = $pdo->prepare("UPDATE article SET quantite = quantite - :oldQuantity WHERE id = :idArticle");
+            }
+            else if ($typeTransaction == "sortie"){
+                $reponse = $pdo->prepare("UPDATE article SET quantite = quantite + :oldQuantity WHERE id = :idArticle");
+            }
             $reponse->execute(array(
-                'oldquantite' => $oldquantite,
+                'oldQuantity' => $oldQuantity,
                 'idArticle' => $dotationIdArticle
             ));
         }

@@ -4,31 +4,31 @@
     <form method="post" action="/gestock/acces/ajouter/">
         <div class="form-group">
             <label for="nomComplet">Prénom et Nom</label>
-            <input type="text" name="nomComplet" id="nomComplet" class="form-control" placeholder="ex: Khadim Diaw">
+            <input type="text" name="nomComplet" id="nomComplet" class="form-control" placeholder="ex: Khadim Diaw" required>
         </div>
 
         <div class="form-group">
             <label for="username">Nom de connexion</label>
-            <input type="text" name="username" id="username" class="form-control" placeholder="ex: kdiaw">
+            <input type="text" name="username" id="username" class="form-control" placeholder="ex: kdiaw" required>
         </div>
 
         Role du nouvel utilisateur <br>
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="administrateur" value="3" checked>
+            <input class="form-check-input" type="radio" name="niveau" id="administrateur" value="3" checked>
             <label class="form-check-label" for="administrateur">
                 Administrateur
             </label>
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="gestionnaire" value="2">
+            <input class="form-check-input" type="radio" name="niveau" id="gestionnaire" value="2">
             <label class="form-check-label" for="gestionnaire">
                 Gestionnaire
             </label>
         </div>
 
         <div class="form-check">
-            <input class="form-check-input" type="radio" name="role" id="superviseur" value="1" checked="checked">
+            <input class="form-check-input" type="radio" name="niveau" id="superviseur" value="1" checked="checked">
             <label class="form-check-label" for="superviseur">
                 Superviseur 
             </label>

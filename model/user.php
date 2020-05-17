@@ -35,14 +35,13 @@ class User{
 
     public function save(){
         $pdo = Database::getPDO();
-        $req = "INSERT INTO users (nomComplet, username, pasword, niveau, changePassword) VALUES (:nomComplet, :username, :pasword, :niveau, :changePassword)";
+        $req = "INSERT INTO users (nomComplet, username, pasword, niveau) VALUES (:nomComplet, :username, :pasword, :niveau)";
         $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
         $reponse->execute(array(
             'nomComplet' => $this->nomComplet,
             'username' => $this->username,
             'pasword' => $this->pasword,
             'niveau' => $this->niveau,
-            'changePassword' => $this->changePassword
         ));
     }
 

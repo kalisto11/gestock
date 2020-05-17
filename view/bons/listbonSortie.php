@@ -3,7 +3,7 @@
 <div>
     <table class="table table-striped table-borderless table-hover table-sm">
         <tr>
-            <th class="th-sm">Numéro du bon</th>
+            <th class="th-sm">N° du bon</th>
             <th class="th-sm">Date</th>
             <th>Bénéficiaire</th>
             <th class="th-sm">Actions</th>

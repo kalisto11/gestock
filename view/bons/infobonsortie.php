@@ -23,7 +23,7 @@
     </div>
     <div class="col-sm-9">
       <div>
-        <h6>Dotations</h6>
+        <h5 class="text-center">Dotations</h5>
         <?php if ($bonsortie->dotations != null): ?>
 
         <table class="table table-striped table-borderless table-hover table-sm">
@@ -35,7 +35,7 @@
           </tr>
           <?php foreach ($bonsortie->dotations as $dotation): ?>
           <tr>
-            <td><?= htmlspecialchars($dotation->nomArticle) ?></td>
+            <td><a href="/gestock/grandlivres/consulter/<?= $dotation->idArticle ?>"><?= htmlspecialchars($dotation->nomArticle) ?></a></td>
             <td><?= htmlspecialchars($dotation->quantite) ?></td>
             <td><?= htmlspecialchars($dotation->prix) ?></td>
             <td><?= htmlspecialchars($dotation->total) ?></td>

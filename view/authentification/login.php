@@ -23,7 +23,7 @@
                 <input type="password" class="form-control" name="pasword" id="exampleInputPassword1" required>
               </div>
               <div class="modal-footer"> 
-                <button type="submit" class="btn btn-primary">Se connecter</button>
+                <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
               </div> 
             </form>
         </div>

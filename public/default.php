@@ -18,7 +18,7 @@
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
-            <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo" href="#"><img src="images/icones/education.png" class="mr-2 icone fa-spin">IA KAFFRINE</a>
+            <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo"><img src="images/icones/education.png" class="mr-2 icone fa-spin">IA KAFFRINE</a>
             <h1 class="h2">GESTION DE STOCK</h1>
 
             <form class="form-inline mr-4" action="/gestock/recherche">
@@ -32,27 +32,25 @@
         <div class="container-fluid mt-5">
             <div class="row mt-5">
                 <!-- PANNEAU TITRE ET MENU LATERAL -->
-                <div class="nav-side-menu mt-5 col-3">
+                <div class="nav-side-menu mt-4 col-3">
                 
-                    <div class="row justify-content-center">
-                        <div class="col-3 mt-5 ml-1">
-                                 <img src="images/icones/utilisateur.png" class=" mr-1 ml-1 sous-menu">
+                    <div class="d-flex flex-row justify-content-center bd-highlight mt-5 mb-2">
+                        <div class="col-3 d-flex align-items-center">
+                            <img src="images/icones/utilisateur.png" class="sous-menu" title="Utilisateur connecté">
                         </div>
-                        <div class="col-9 mt-2 text-center">
-                                 <p> <?= $_SESSION['user']['nomComplet'] ?><br/>
-                                 <a href="/gestock/auths/">Se déconnecter</a></p>
+                        <div class="col-9 text-center">
+                            <?= $_SESSION['user']['nomComplet'] ?><br><a href="/gestock/auths/">Se déconnecter</a>
                         </div>
-
                     </div>
                     <div class="menu-list">
                         <ul id="menu-content" class="menu-content collapse out">
-                            <li  data-toggle="collapse" data-target="#accueil" class="collapsed bg-info">
-                                <img src="images/icones/accueil.JPG"class="mr-2 ml-2 bg-white menu-icone">Accueil
+                            <li class="collapsed bg-info">
+                                <a href="/gestock/home/"><img src="images/icones/accueil.JPG"class="mr-2 ml-2 bg-white menu-icone">Accueil</a>
                             </li> 
                             <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
                                 <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel
                             </li>
-                            <ul class="sub-menu collapse" id="personnel">
+                            <ul class="sub-menu" id="personnel">
                                 <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white menu-icone">Agents</a></li>
                                 <li><a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</a></li>
                             </ul>
@@ -76,7 +74,7 @@
                             <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">
                                 <img src="images/icones/dossier.png" class="mr-2 ml-2 bg-white menu-icone">Journal
                             </li>
-                            <ul class="sub-menu collapse" id="journal">
+                            <ul class="sub-menu" id="journal">
                                 <li><a href="/gestock/livrejournals/liste"><img src="images/icones/livre journal.JPG" class="mr-2 menu-icone">Livre Journal</a></li>
                                 <li><a href="/gestock/grandlivres/liste"><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
                             </ul>
@@ -88,7 +86,7 @@
         <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
 
         <!-- ZONE D'AFFICHAGE DU CONTENU -->
-        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 mt-5">
+        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 mt-5">
             <div class="mt-5 px-4">
             <?= $content ?> 
             </div>
