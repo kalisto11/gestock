@@ -30,7 +30,15 @@
               <?php foreach ($users as $user): ?>
               <tr>
                 <td><?= $user->prenom .' '.$user->nom ?></td>
-                <td><?= $user->username ?></td> 
+                <td>
+                  <?php if($user->niveau == 1) : ?>
+                    <p class="card-text"> SUPERVISEUR </p>
+                  <?php elseif($user->niveau  == 2) : ?>
+                    <p class="card-text"> GESTIONNAIRE </p>
+                  <?php elseif($user->niveau  == 3) : ?>
+                    <p class="card-text">ADMINISTRATEUR </p>
+                </td> 
+                  <?php endif; ?>
                 <?php if($_SESSION['user']['niveau'] >= ADMINISTRATEUR) : ?>
                   <td>
                     <a class="btn btn-info btn-sm" href="/gestock/acces/modifier/<?= $user->id ?>"><img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier"></a>
@@ -56,16 +64,16 @@
                     <th class="th-sm" scope="col">Quantité</th>
                   </tr>
                 </thead>
-                <?php if($articles != null): ?>
-                <?php for ($i = 0; $i < 5; $i++): ?>
-                  <tr>
-                  <?php if($articles[$i]->quantite <= $articles[$i]->seuil + 5): ?>
-                    <td><?= $articles[$i]->nom ?></td>
-                    <td><?= $articles[$i]->quantite ?></td>
-                  <?php endif; ?>
-                  </tr>  
-                <?php endfor; ?> 
-                  <?php endif; ?> 
+                <?php if ($articles != null) : ?>
+                   <?php for ($i = 0; $i < 5 ; $i++): ?>
+                    <tr>
+                    <?php if($articles[$i]->quantite <= $articles[$i]->seuil + 5): ?>
+                      <td><?= $articles[$i]->nom ?></td>
+                      <td><?= $articles[$i]->quantite ?></td>
+                    <?php endif; ?>
+                    </tr>  
+                  <?php endfor; ?>  
+                <?php endif ;?>
               </table>
           </div>
         </div>
@@ -88,6 +96,7 @@
                 </tr>
               </thead>
               <?php if($bonsentrees != null): ?>
+
               <?php for ($i = 0; $i < 5; $i++): ?>
                 <tr>   
                 <td><?= $bonsentrees[$i]->reference ?> </td>
@@ -123,7 +132,6 @@
               </tr>  
             <?php endfor; ?> 
             <?php endif ; ?> 
-          </table>
         </div>
      </div>    
     </div>

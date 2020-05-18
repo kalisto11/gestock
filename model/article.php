@@ -76,8 +76,9 @@
             $req = 'SELECT id FROM article Order By id Desc LIMIT 1';
         	$reponse = $pdo->query($req);
 			$article = $reponse->fetch();
-			$this->id = $article['id'];
-            self::insertTransaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['prenom'] , $_SESSION['user']['nom'], $this->quantite, "création");
+            $this->id = $article['id'];
+            $nomComplet = $_SESSION['user']['prenom']. ' ' . $_SESSION['user']['nom'];
+            self::insertTransaction($this->id, $_SESSION['user']['id'],$nomComplet , $this->quantite, "création");
         }
 
         /**
