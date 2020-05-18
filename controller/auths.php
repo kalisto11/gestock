@@ -8,20 +8,21 @@ class Auths extends Controller{
             $users = User::getList();
             foreach ($users as $user){
                 if ($_POST['username'] ==  $user->username  && sha1($_POST['password']) == $user->pasword ){
-                    if ($user->changePassword == false){
-                        $_SESSION['id'] = $user->id;
-                    }
-                    else{
-                        $_SESSION['user']['id'] = $user->id; 
-                        $_SESSION['user']['username'] = $user->username; 
-                        $_SESSION['user']['niveau'] = $user->niveau;
-                        $_SESSION['user']['prenom'] = $user->prenom;
-                        $_SESSION['user']['nom'] = $user->nom;
-                    }
+                    $_SESSION['user']['id'] = $user->id; 
+                    $_SESSION['user']['username'] = $user->username; 
+                    $_SESSION['user']['niveau'] = $user->niveau;
+                    $_SESSION['user']['prenom'] = $user->prenom;
+                    $_SESSION['user']['nom'] = $user->nom;
                     $this->request->controller = 'home';
-                    $this->render();
-                    $connexion = true;
                     break;
+                }
+                else{
+                $_SESSION['id'] = $user->id;
+                }
+                   
+                $this->render();
+               
+                
                 }
                 else{
                     $connexion = false;
