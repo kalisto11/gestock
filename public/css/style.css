@@ -232,3 +232,12 @@ input[disabled]{
   margin: auto;
   background-color: grey;
 }
+
+#sedeconnecter:hover{
+color: #fff;
+text-decoration: none;
+}
+
+#passwordMsg{
+  height: 25px;
+}

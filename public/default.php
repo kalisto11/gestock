@@ -39,7 +39,7 @@
                             <img src="images/icones/utilisateur.png" class="sous-menu" title="Utilisateur connecté">
                         </div>
                         <div class="col-9 text-center">
-                            <?= $_SESSION['user']['prenom'] ?> <?= $_SESSION['user']['nom'] ?><br><a href="/gestock/auths/">Se déconnecter</a>
+                            <?= $_SESSION['user']['prenom'] ?> <?= $_SESSION['user']['nom'] ?><br><a id="sedeconnecter" href="/gestock/auths/">Se déconnecter</a>
                         </div>
                     </div>
                     <div class="menu-list">

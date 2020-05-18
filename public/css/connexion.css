@@ -47,4 +47,8 @@ body{
     width: 7%;
     margin-left: 50px;
   }
+
+  #passwordMsg{
+    min-height: 30px;
+  }
  
