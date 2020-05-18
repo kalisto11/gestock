@@ -56,6 +56,7 @@
                     <th class="th-sm" scope="col">Quantité</th>
                   </tr>
                 </thead>
+                <?php if($articles != null): ?>
                 <?php for ($i = 0; $i < 5; $i++): ?>
                   <tr>
                   <?php if($articles[$i]->quantite <= $articles[$i]->seuil + 5): ?>
@@ -63,7 +64,8 @@
                     <td><?= $articles[$i]->quantite ?></td>
                   <?php endif; ?>
                   </tr>  
-                <?php endfor; ?>  
+                <?php endfor; ?> 
+                  <?php endif; ?> 
               </table>
           </div>
         </div>
@@ -85,6 +87,7 @@
                   <th class= "th-sm" scope="col">Founisseur</th>
                 </tr>
               </thead>
+              <?php if($bonsentrees != null): ?>
               <?php for ($i = 0; $i < 5; $i++): ?>
                 <tr>   
                 <td><?= $bonsentrees[$i]->reference ?> </td>
@@ -92,6 +95,7 @@
                 <td><?= $bonsentrees[$i]->nomFournisseur ?></td>
               </tr>
               <?php endfor; ?>
+              <?php endif ; ?>
           </table>
         </div>
       </div>  
@@ -110,13 +114,15 @@
                 <th class= "th-sm" scope="col">Bénéficiaire</th> 
               </tr>
             </thead>
+            <?php if($bonssorties != null): ?>
             <?php for ($i = 0; $i < 5; $i++): ?>
               <tr>
                   <td><?= $bonssorties[$i]->reference ?></td>
                   <td><?= $bonssorties[$i]->date ?></td>
                   <td><?= $bonssorties[$i]->nomBeneficiaire ?></td>
               </tr>  
-            <?php endfor; ?>  
+            <?php endfor; ?> 
+            <?php endif ; ?> 
           </table>
         </div>
      </div>    
