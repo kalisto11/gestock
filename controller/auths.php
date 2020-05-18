@@ -6,44 +6,37 @@ class Auths extends Controller{
     public function process(){
         if ($this->request->method === 'POST'){
             $users = User::getList();
-            $connexion = false;
             foreach ($users as $user){
-                if ($_POST['username'] == $user->username  && sha1($_POST['password']) == $user->pasword){ 
-                    $_SESSION['user']['id'] = $user->id; 
-                    $_SESSION['user']['username'] = $user->username; 
-                    $_SESSION['user']['niveau'] = $user->niveau;
-                    $_SESSION['user']['prenom'] = $user->prenom;
-                    $_SESSION['user']['nom'] = $user->nom;
-                    $_SESSION['user']['changePassword'] = $user->changePassword;
-                    echo $user->prenom;
-                    exit;
+                if ($_POST['username'] == $user->username && sha1($_POST['password']) == $user->pasword ){
+                    if ($user->changePassword == false){
+                        $_SESSION['id'] = $user->id;
+                    }
+                    else{
+                        $_SESSION['user']['id'] = $user->id; 
+                        $_SESSION['user']['username'] = $user->username; 
+                        $_SESSION['user']['niveau'] = $user->niveau;
+                        $_SESSION['user']['prenom'] = $user->prenom;
+                        $_SESSION['user']['nom'] = $user->nom;
+                    }
+                    $this->request->controller = 'home';
+                    $this->render();
                     $connexion = true;
-                    break; 
-                }
-                
-            }
-
-            if ($connexion == true){
-                if ($user->changePassword == 0){
-                    $_SESSION['id'] = $user->id;
-                    $this->request->controller = 'acces';
+                    break;
                 }
                 else{
-                    $this->request->controller = 'home';
-                }
+                    $connexion = false;
+                }     
             }
-            else{
-                var_dump("test");
-                exit;
+            
+            if ($connexion == false){
                 $message = "Les identifiants sont incorrects.";
                 $_SESSION['notification'] = [
                 'type'=> 'danger',
                 'message'=> $message
                 ];
-                $this->request->controller = 'login';
             }
             
-          
+            $this->request->controller = 'login';
             $this->render($_SESSION['notification']);
 
         }else if ($this->request->method === 'GET'){
@@ -64,7 +57,7 @@ class Auths extends Controller{
                 header ('location: /gestock/'); 
              break;
 
-             case 'acces': 
+             case 'acess': 
                 header ('location: /gestock/');     
             break; 
         }        
