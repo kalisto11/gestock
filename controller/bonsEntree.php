@@ -154,7 +154,7 @@
                     $this->request->id = $bonentree->id;
                 }
                 else{ // cas modifier 
-                    $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];
+                    $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];// prenom et nom du créateur ou modificateur du bon
                     $id = intval($id);
                     $idFournisseur = intval(strip_tags($fournisseur));
                     $fournisseur = new Fournisseur($idFournisseur);       
