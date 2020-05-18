@@ -17,6 +17,7 @@
         public function render($notification = null){
             $articles = Article::getList();
             $users = User::getList();
+            $user = new User($_SESSION['user']['id']);
             $bonsentrees = BonEntree::getListHome();
             $bonssorties = BonSortie::getListHome();
             require_once VIEW . 'home/home.php';

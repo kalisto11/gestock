@@ -3,8 +3,13 @@
 <div class="container w-50"> 
     <form method="post" action="/gestock/acces/modifier/">
         <div class="form-group">
-            <label for="nomComplet">Prénom et nom</label>
-            <input type="text" name="nomComplet" id="nomComplet" class="form-control form-control-sm" value="<?= $user->nomComplet ?>" required>
+            <label for="prenom">Prénom</label>
+            <input type="text" name="prenom" id="prenom" class="form-control form-control-sm" value="<?= $user->prenom ?>" required>
+        </div>
+
+        <div class="form-group">
+            <label for="nom">Nom</label>
+            <input type="text" name="nom" id="nom" class="form-control form-control-sm" value="<?= $user->nom ?>" required>
         </div>
 
         <div class="form-group">
@@ -47,7 +52,7 @@
                 <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword1">
                 <div id="helpPassword1"></div>
             </div>
-
+            <div id="passwordMsg" class="bg-warning"></div>
             <div class="form-group">
                 <label for="password2">Confirmation du mot de passe temporaire</label>
                 <input type="password" name="password2" id="password2" class="form-control form-control-sm">

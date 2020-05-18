@@ -129,6 +129,7 @@
             }
             if ($erreur == false){ // si pas d'erreur
                 if ($id == null){ // cas ajouter
+                    $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];
                     $bonentree = new BonEntree();
                     $bonentree->reference = strip_tags($reference);
                     $bonentree->numeroFacture = strip_tags($numeroFacture);
@@ -138,7 +139,7 @@
                     $bonentree->idFournisseur = $fournisseur->id;
                     $bonentree->nomFournisseur = $fournisseur->nom;
                     $bonentree->idModificateur = $_SESSION['user']['id'];
-                    $bonentree->nomModificateur = $_SESSION['user']['nomComplet'];
+                    $bonentree->nomModificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];
                     $dotations = [];
                     foreach ($articles as $article){
                         $art = new Article($article['id']);
@@ -153,6 +154,7 @@
                     $this->request->id = $bonentree->id;
                 }
                 else{ // cas modifier 
+                    $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];
                     $id = intval($id);
                     $idFournisseur = intval(strip_tags($fournisseur));
                     $fournisseur = new Fournisseur($idFournisseur);       
@@ -164,7 +166,7 @@
                     $bonentree->idFournisseur = $fournisseur->id;
                     $bonentree->nomFournisseur = $fournisseur->nom;
                     $bonentree->idModificateur = $_SESSION['user']['id'];
-                    $bonentree->nomModificateur = $_SESSION['user']['nomComplet'];
+                    $bonentree->nomModificateur =$modificateur ;
                     $dotations = [];
                     foreach ($articles as $article){
                         $art = new Article($article['id']);

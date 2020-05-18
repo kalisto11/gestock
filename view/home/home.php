@@ -6,14 +6,15 @@
           <div class="card bg-light  mt-5 ml-3" style="max-width: 18rem;" >
             <div class="card-header text-center">Mon compte</div>
             <div class="card-body"> 
-              <p class="card-text">Nom : <?= $_SESSION['user']['prenom'] . $_SESSION['nom'] ?></p></br>             
+              <p class="card-text">Prénom : <?= $user->prenom ?></p>
+              <p class="card-text">Nom : <?= $user->nom?></p>
                 <?php if($_SESSION['user']['niveau'] == 1) : ?>
                   <p class="card-text">Role : SUPERVISEUR </p>
                 <?php elseif($_SESSION['user']['niveau'] == 2) : ?>
                   <p class="card-text">Role : GESTIONNAIRE </p>
                 <?php elseif($_SESSION['user']['niveau'] == 3) : ?>
                   <p class="card-text">Role : ADMINISTRATEUR </p>
-                <?php endif; ?>
+                <?php endif; ?> 
             </div>
           </div>
         </div>
@@ -24,7 +25,7 @@
               <tr>
                 <th class="th-sm" scope="col">Nom</th>
                 <th class="th-sm" scope="col">Role</th>
-<?php if($_SESSION['user']['niveau'] >= ADMINISTRATEUR) : ?><th class ="th-sm" scope ="col">Action</th><?php endif; ?>
+            <?php if($_SESSION['user']['niveau'] >= ADMINISTRATEUR) : ?><th class ="th-sm" scope ="col">Action</th><?php endif; ?>
               </tr>
               <?php foreach ($users as $user): ?>
               <tr>
@@ -39,29 +40,31 @@
               </tr>
               <?php endforeach ?>
             </table>
-        </div>
         <?php if($_SESSION['user']['niveau'] >= ADMINISTRATEUR) : ?>
-          <div class="mt-3">
+          <div class="mt-3 card-footer">
             <a class="btn btn-info ml-5" href="/gestock/acces/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un utilisateur</a>
           </div>
         <?php endif; ?>
+        </div>
         <div class="col sm-4">
           <div class="card bg-light  mt-5 ml-3 " style="max-width: 20rem;" > 
              <div class="card-header text-center ">Derniers Articles</div>
-              
               <table class="table table-striped table-borderless table-hover table-sm">
                 <thead>
                   <tr>
                     <th class="th-sm" scope="col">Nom</th>
+                    <th class="th-sm" scope="col">Quantité</th>
                   </tr>
                 </thead>
                 <?php for ($i = 0; $i < 5; $i++): ?>
                   <tr>
+                  <?php if($articles[$i]->quantite <= $articles[$i]->seuil + 5): ?>
                     <td><?= $articles[$i]->nom ?></td>
+                    <td><?= $articles[$i]->quantite ?></td>
+                  <?php endif; ?>
                   </tr>  
                 <?php endfor; ?>  
               </table>
-            
           </div>
         </div>
       </div>

@@ -64,3 +64,24 @@ password2.addEventListener("input", function (e) {
     aideMdpElt.textContent = "Mot de passe : " + longueurMdp; // Texte de l'aide
     aideMdpElt.style.color = couleurMsg; // Couleur du texte de l'aide
 });
+
+password1.addEventListener("blur", function(e){
+    if (password1.value.length != 0  && password2.value.length != 0){
+        if( password1.value != password2.value){
+            document.getElementById("passwordMsg").textContent = "Les mots de passe ne sont pas identiques.";
+        }
+    }
+});
+password1.addEventListener("input", function(e){
+    document.getElementById("passwordMsg").textContent = "";
+});
+password2.addEventListener("blur", function(e){
+    if (password2.value.length != 0  && password1.value.length != 0){
+        if( password2.value != password1.value){
+            document.getElementById("passwordMsg").textContent = "Les mots de passe ne sont pas identiques.";
+        }
+    }
+});
+password2.addEventListener("input", function(e){
+    document.getElementById("passwordMsg").textContent = "";
+});

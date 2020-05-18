@@ -52,7 +52,7 @@
                 'id'  => $this->id
             ));
             if ($difference != 0){
-                self::insertTransaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['nomComplet'] , $difference, "modification");
+                self::insertTransaction($this->id, $_SESSION['user']['id'],$_SESSION['user']['prenom'] , $_SESSION['user']['nom']  , $difference, "modification");
             }
         }
 
@@ -77,7 +77,7 @@
         	$reponse = $pdo->query($req);
 			$article = $reponse->fetch();
 			$this->id = $article['id'];
-            self::insertTransaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['nomComplet'] , $this->quantite, "création");
+            self::insertTransaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['prenom'] , $_SESSION['user']['nom'], $this->quantite, "création");
         }
 
         /**
