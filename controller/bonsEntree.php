@@ -105,6 +105,11 @@
                 $erreur = true;
                 $message[] = "La référence ne doit pas être vide.";
             }
+            // Vérifier si la date de la facture n'est pas vide
+            if (empty($dateFacture)){
+                $erreur = true;
+                $message[] = "La date de la facture ne doit pas être vide.";
+            }
             //Verifier si fournisseur n'est pas vide
             if ($fournisseur == "null"){
                 $erreur = true;
