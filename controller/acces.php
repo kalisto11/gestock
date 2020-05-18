@@ -157,6 +157,11 @@ class Acces extends Controller{
                     }   
                 }
                 $this->request->action = 'home';
+                $idUser = intval($this->request->id);
+                $user  = new User($idUser);
+                $user->delete();
+                $message[] = "L'utilisateur a été bien supprimé";
+                $this->notification = new Notification("success", $message);
             }
             $this->render($this->notification);
         } // fin traitement GET
@@ -181,6 +186,6 @@ class Acces extends Controller{
                 header ('location: /gestock/'); 
             break;
         }        
-    } // fin méthode render()
+    } // fin méthode render
 } // fin class
 
