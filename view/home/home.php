@@ -64,7 +64,7 @@
                     <th class="th-sm" scope="col">Quantité</th>
                   </tr>
                 </thead>
-                <?php if ($articles != null) : ?>
+                <?php if ($articles != null AND count($articles) > 5) : ?>
                    <?php for ($i = 0; $i < 5 ; $i++): ?>
                     <tr>
                     <?php if($articles[$i]->quantite <= $articles[$i]->seuil + 5): ?>
@@ -95,8 +95,7 @@
                   <th class= "th-sm" scope="col">Founisseur</th>
                 </tr>
               </thead>
-              <?php if($bonsentrees != null): ?>
-
+              <?php if($bonsentrees != null AND count($bonsentrees) > 5): ?>
               <?php for ($i = 0; $i < 5; $i++): ?>
                 <tr>   
                 <td><?= $bonsentrees[$i]->reference ?> </td>
@@ -123,7 +122,7 @@
                 <th class= "th-sm" scope="col">Bénéficiaire</th> 
               </tr>
             </thead>
-            <?php if($bonssorties != null): ?>
+            <?php if($bonssorties != null AND count($bonssorties) > 5): ?>
             <?php for ($i = 0; $i < 5; $i++): ?>
               <tr>
                   <td><?= $bonssorties[$i]->reference ?></td>
