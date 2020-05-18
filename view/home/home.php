@@ -64,7 +64,7 @@
                     <th class="th-sm" scope="col">Quantité</th>
                   </tr>
                 </thead>
-                <?php if ($articles != null) : ?>
+                <?php if ($articles != null AND $article > 5): ?>
                    <?php for ($i = 0; $i < 5 ; $i++): ?>
                     <tr>
                     <?php if($articles[$i]->quantite <= $articles[$i]->seuil + 5): ?>
