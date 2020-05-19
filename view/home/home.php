@@ -114,30 +114,30 @@
       </div>  
     </div> 
     <div class="col-lg-6">
-      <div class="card">
+      <div class="card ">
         <div class="card-header bg-info">
-          <h5 class="text-center">Bons de sortie</5>
+          <h5 class="text-center">Bons de sortie</h5>
         </div>
-        <div class="card-body mr-0 ml-0 pl-0 pr-0 pt-0">
-          <table class="table table-striped table-borderless table-hover table-sm">
+        <div class="card-body mr-0 ml-0 pl-0 pr-0 pt-0 ">
+          <table class="table table-striped table-borderless table-hover table-sm" >
             <thead>
               <tr>
                 <th class="th-sm" scope="col">Référence</th>
                 <th class="th-sm" scope="col">Date</th>
-                <th class= "th-sm" scope="col">Bénéficiaire</th> 
+                <th class= "th-sm" scope="col">Bénéficiaire</th>
               </tr>
             </thead>
             <?php if($bonssorties != null AND count($bonssorties) >= 5): ?>
             <?php for ($i = 0; $i < 5; $i++): ?>
-              <tr>
-                  <td><?= $bonssorties[$i]->reference ?></td>
-                  <td><?= $bonssorties[$i]->date ?></td>
-                  <td><?= $bonssorties[$i]->nomBeneficiaire ?></td>
-              </tr>  
-            <?php endfor; ?> 
-            <?php endif ; ?> 
-        </div>
-     </div>    
-    </div>
+              <tr>   
+              <td><?= $bonssorties[$i]->reference ?> </td>
+              <td><?= $bonssorties[$i]->date ?></td>
+              <td><?= $bonssorties[$i]->nomBeneficiaire ?></td>
+            </tr>
+            <?php endfor; ?>
+            <?php endif ; ?>
+        </table>
+      </div>
+    </div>  
   </div>
 </section>
