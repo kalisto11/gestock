@@ -5,9 +5,10 @@
 * toutes les requetes passent par cette page
 * qui charge les fichiers necessaires, appelle le dispatcher et affiche le template
 */  
-    //if (!isset($_SESSION)){
+    //ini_set('session.gc_maxlifetime', 2592000);
+    //$lifetime=1800;
+    //session_set_cookie_params($lifetime, "/", "localhost");
     session_start();
-   // }
    
     // inclure le fichier de configuration
     require_once '../core/config.php';

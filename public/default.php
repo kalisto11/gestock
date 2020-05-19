@@ -17,29 +17,26 @@
     </head>
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
-        <nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
+        <nav class="navbar navbar-dark sticky-top bg-dark m-0">
             <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo"><img src="images/icones/education.png" class="mr-2 icone fa-spin">IA KAFFRINE</a>
             <h1 class="h2">GESTION DE STOCK</h1>
 
             <form class="form-inline mr-4" action="/gestock/recherche">
                 <input class="form-control form-control-dark w-10" type="text" placeholder="Recherche" aria-label="Search">
-                <button  type="submit" class="btn bg-info my-2 my-sm-0 "><img src="images/icones/recherche.png" class="bouton"></button>
+                <button  type="submit" class="btn bg-info"><img src="images/icones/recherche.png" class="bouton"></button>
             </form>
         </nav> 
-        <!-- FIN BARRE DU LOGO ET ZONE DE RECHERCHE -->
-
-        <!-- DEBUT CONTENEUR MENU LATERAL ET ZONE PRINCIPAL -->
-        <div class="container-fluid mt-5">
-            <div class="row mt-5">
-                <!-- PANNEAU TITRE ET MENU LATERAL -->
-                <div class="nav-side-menu mt-4 col-3">
+        <div class="row">
+            <div class="col-sm-2 mt-md-5">
+                <div class="nav-side-menu mt-md-5">
                 
-                    <div class="d-flex flex-row justify-content-center bd-highlight mt-5 mb-2">
-                        <div class="col-3 d-flex align-items-center">
+                    <div class="row d-flex justify-content-center">
+                        <div class="col-lg-4 mt-md-5 text-right">
                             <img src="images/icones/utilisateur.png" class="sous-menu" title="Utilisateur connecté">
                         </div>
-                        <div class="col-9 text-center">
-                            <?= $_SESSION['user']['prenom'] ?> <?= $_SESSION['user']['nom'] ?><br><a href="/gestock/auths/">Se déconnecter</a>
+                        <div class="col-lg-8 text-left mt-md-5 pb-3 ml-0">
+                            <?= $_SESSION['user']['prenom'] ?> <?= $_SESSION['user']['nom'] ?><br>
+                            <a href="/gestock/auths/">Se déconnecter</a>
                         </div>
                     </div>
                     <div class="menu-list">
@@ -81,23 +78,26 @@
                         </ul>
                     </div>
                 </div>
-                <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
+            </div>
 
-                <!-- ZONE D'AFFICHAGE DU CONTENU -->
-                <main role="main" class="col-md-10 ml-sm-auto col-lg-10 mt-5">
-                    <div class="mt-5 px-4">
-                    <?= $content ?> 
-                    </div>
+
+
+            <div class="col-md-10 mt-md-4 pr-5 pl-0 ml-0">
+                <main>
+                <?= $content ?> 
                 </main>
-                <footer class="m-0 p-0 bg-dark">
-                    <p class="text-light m-0">
-                        &copy; Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
-                    </p>
-                </footer> 
+            </div>
+            <footer class="m-0 p-0 bg-dark">
+                <p class="text-light m-0">
+                    &copy; Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
+                </p>
+            </footer> 
             </div>
         </div>
-        <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
-        
+        <!-- FIN BARRE DU LOGO ET ZONE DE RECHERCHE -->
+
+        <!-- DEBUT CONTENEUR MENU LATERAL ET ZONE PRINCIPAL -->
+      
         <script src="bootstrap/js/jquery.min.js"></script>
         <script src="bootstrap/js/propper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
@@ -106,3 +106,26 @@
         
     </body>
 </html>
+
+
+
+
+<!-- 
+
+
+  <div class="container-fluid mt-5">
+            <div class="row mt-5">
+                 PANNEAU TITRE ET MENU LATERAL 
+                
+                 FIN PANNEAU TITRE ET MENU LATERAL 
+
+               
+        </div>
+        <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
+
+
+
+
+
+
+ -->
