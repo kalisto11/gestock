@@ -5,14 +5,9 @@
 * toutes les requetes passent par cette page
 * qui charge les fichiers necessaires, appelle le dispatcher et affiche le template
 */  
-    ini_set('session.name', 'GESTOCK_SESSION');
-    ini_set('session.cookie_path', '/');
-    ini_set('session.cookie_domain', 'localhost');
-    ini_set('session.gc_maxlifetime', 1000000);
-    ini_set('session.cookie_lifetime', 1800);
-    if (!isset($_SESSION)){
+    //if (!isset($_SESSION)){
     session_start();
-    }
+   // }
    
     // inclure le fichier de configuration
     require_once '../core/config.php';

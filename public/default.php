@@ -81,22 +81,21 @@
                         </ul>
                     </div>
                 </div>
+                <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
+
+                <!-- ZONE D'AFFICHAGE DU CONTENU -->
+                <main role="main" class="col-md-10 ml-sm-auto col-lg-10 mt-5">
+                    <div class="mt-5 px-4">
+                    <?= $content ?> 
+                    </div>
+                </main>
+                <footer class="m-0 p-0 bg-dark">
+                    <p class="text-light m-0">
+                        &copy; Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
+                    </p>
+                </footer> 
             </div>
         </div>
-        <!-- FIN PANNEAU TITRE ET MENU LATERAL -->
-
-        <!-- ZONE D'AFFICHAGE DU CONTENU -->
-        <main role="main" class="col-md-10 ml-sm-auto col-lg-10 mt-5">
-            <div class="mt-5 px-4">
-            <?= $content ?> 
-            </div>
-        </main>
-        <footer class="m-0 p-0 bg-dark">
-            <p class="text-light m-0">
-                &copy; Copyright IA Kaffrine 2020 - Design by TEAM STAGIAIRES UVS/MAI
-            </p>
-        </footer> 
-          
         <!-- FIN ZONE D'AFFICHAGE DU CONTENU -->
         
         <script src="bootstrap/js/jquery.min.js"></script>
