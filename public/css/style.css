@@ -240,3 +240,7 @@ text-decoration: none;
 #passwordMsg{
   height: 25px;
 }
+
+.text-sm{
+  font-size: 11px;
+}

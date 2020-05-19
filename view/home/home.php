@@ -3,26 +3,24 @@
  <section>
         <div class="d-flex justify-content- flew-row-reverse">
 
-          <div class="col-md-3 m-0">
+          <div class="col-lg-3 m-0">
             <div class="card bg-light w-75">
               <div class="card-header text-center bg-info">Mon compte</div>
               <div class="card-body"> 
-                <table class="table table-striped table-borderless table-hover table-sm">
-                  <tr>Prénom : <?= $user->prenom ?></tr>
-                  <tr>Nom : <?= $user->nom?></tr>
-                  <?php if($_SESSION['user']['niveau'] == 1) : ?>
-                      <tr>Role : SUPERVISEUR</tr>
-                    <?php elseif($_SESSION['user']['niveau'] == 2) : ?>
-                      <tr>Role : GESTIONNAIRE</tr>
-                    <?php elseif($_SESSION['user']['niveau'] == 3) : ?>
-                      <tr>Role : ADMINISTRATEUR</tr>
-                    <?php endif; ?> 
-                </table>
+                <p>Prénom : <?= $user->prenom ?></p>
+                <p>Nom : <?= $user->nom?></p>
+                <?php if($_SESSION['user']['niveau'] == 1) : ?>
+                    <p>Role : SUPERVISEUR</p>
+                  <?php elseif($_SESSION['user']['niveau'] == 2) : ?>
+                    <p>Role : GESTIONNAIRE</p>
+                  <?php elseif($_SESSION['user']['niveau'] == 3) : ?>
+                    <p class="text-sm">Role : ADMINISTRATEUR</p>
+                  <?php endif; ?> 
               </div>
             </div>
           </div>
           
-          <div class="col-md-4 m-0">
+          <div class="col-lg-4 m-0">
             <div class="card bg-light"> 
               <div class="card-header text-center bg-info">Articles bientot en rupture</div>
                 <table class="table table-striped table-borderless table-hover table-sm">
@@ -46,7 +44,7 @@
             </div>
           </div>
 
-          <div class="col-md-4 m-0">
+          <div class="col-lg-4 m-0">
             <div class="card bg-light">
               <div class="card-header text-center bg-info">Utilisateurs</div>
               <table class="table table-striped table-borderless table-hover table-sm">
@@ -88,7 +86,7 @@
     </section>
     <section>
     <div class="row mt-5 pl-0 pr-0">
-      <div class="col-md-6">
+      <div class="col-lg-6">
         <div class="card ">
           <div class="card-header bg-info">
             <h5 class="text-center">Bons d'entrée</h5>
@@ -115,7 +113,7 @@
         </div>
       </div>  
     </div> 
-    <div class="col-md-6">
+    <div class="col-lg-6">
       <div class="card">
         <div class="card-header bg-info">
           <h5 class="text-center">Bons de sortie</5>
