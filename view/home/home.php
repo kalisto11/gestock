@@ -1,53 +1,67 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 <?php require VIEW . 'infos/notifwelcome.php'; ?>
- <section>
-        <div class="d-flex justify-content- flew-row-reverse">
-
-          <div class="col-lg-3 m-0">
-            <div class="card bg-light w-75">
-              <div class="card-header text-center bg-info">Mon compte</div>
-              <div class="card-body"> 
-                <p>Prénom : <?= $user->prenom ?></p>
-                <p>Nom : <?= $user->nom?></p>
-                <?php if($_SESSION['user']['niveau'] == 1) : ?>
-                    <p>Role : SUPERVISEUR</p>
-                  <?php elseif($_SESSION['user']['niveau'] == 2) : ?>
-                    <p>Role : GESTIONNAIRE</p>
-                  <?php elseif($_SESSION['user']['niveau'] == 3) : ?>
-                    <p class="text-sm">Role : ADMINISTRATEUR</p>
-                  <?php endif; ?> 
-              </div>
+  <section>
+      <div class="row">
+        <div class="col-lg-3 m-0">
+          <div class="card">
+            <div class="card-header text-center text-light font-weight-bold bg-info p-0 m-0">
+            <h5 class="text-center font-weight-bold p-0 m-0">Mon compte</h5>
+            </div>
+            <div class="card-body p-0 font-weight-bold"> 
+              <p class="bg- mx-0 mt-2 px-3">Prénom : <?= $user->prenom ?></p>
+              <p class="bg- mx-0 px-3">Nom : <?= $user->nom?></p>
+              <p class="bg- mx-0 px-3">
+                Rôle  : 
+                <?php 
+                  if($_SESSION['user']['niveau'] == 1){
+                    echo "Superviseur";
+                  }elseif($_SESSION['user']['niveau'] == 2){
+                    echo "Gestionnaire";
+                  }
+                  elseif($_SESSION['user']['niveau'] == 2){
+                  echo "Administrateur";
+                  }
+                ?>
+              </p>
             </div>
           </div>
-          
-          <div class="col-lg-4 m-0">
-            <div class="card bg-light"> 
-              <div class="card-header text-center bg-info">Articles bientot en rupture</div>
-                <table class="table table-striped table-borderless table-hover table-sm">
+        </div>
+        
+        <div class="col-lg-4 m-0">
+          <div class="card"> 
+            <div class="card-header text-center text-light font-weight-bold bg-info p-0 m-0"">
+            <h5 class="text-center font-weight-bold p-0 m-0">Articles bientot en rupture</h5>
+            </div>
+            <div class="card-body p-0">
+              <table class="table table-striped table-borderless table-hover table-sm m-0">
                   <thead>
                     <tr>
                       <th class="th-sm" scope="col">Nom</th>
                       <th class="th-sm" scope="col">Quantité</th>
                     </tr>
                   </thead>
-                  <?php if ($articles != null AND count($articles) >= 5) : ?>
-                    <?php for ($i = 0; $i < 5 ; $i++): ?>
-                      <tr>
-                      <?php if($articles[$i]->quantite <= $articles[$i]->seuil + 5): ?>
-                        <td><?= $articles[$i]->nom ?></td>
-                        <td><?= $articles[$i]->quantite ?></td>
-                      <?php endif; ?>
-                      </tr>  
-                    <?php endfor; ?>  
+                  <?php if ($articles != null) : ?>
+                    <?php foreach ($articles as $article) : ?>
+                      <?php if ($article->quantite <= $article->seuil) : ?>
+                        <tr>
+                          <td><?= $article->nom ?></td>
+                          <td><?= $article->quantite ?></td>
+                        </tr>
+                      <?php endif ; ?>  
+                    <?php endforeach; ?>  
                   <?php endif ;?>
-                </table>
-            </div>
+              </table>
+            </div> 
           </div>
+        </div>
 
-          <div class="col-lg-4 m-0">
-            <div class="card bg-light">
-              <div class="card-header text-center bg-info">Utilisateurs</div>
-              <table class="table table-striped table-borderless table-hover table-sm">
+        <div class="col-lg-5 m-0">
+          <div class="card bg-light">
+            <div class="card-header text-center text-light font-weight-bold bg-info p-0 m-0"">
+            <h5 class="text-center font-weight-bold p-0 m-0">utilisateurs</h5>
+            </div>
+            <div class="card-body p-0">
+              <table class="table table-striped table-borderless table-hover table-sm m-0">
                 <tr>
                   <th class="th-sm" scope="col">Nom</th>
                   <th class="th-sm" scope="col">Role</th>
@@ -74,25 +88,27 @@
                 </tr>
                 <?php endforeach ?>
               </table>
-              <?php if($_SESSION['user']['niveau'] >= ADMINISTRATEUR) : ?>
-              <div class="mt-3 card-footer">
-                <a class="btn btn-info ml-5" href="/gestock/acces/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un utilisateur</a>
-              </div>
             </div>
-            <?php endif; ?>
+            <?php if($_SESSION['user']['niveau'] >= ADMINISTRATEUR) : ?>
+            <div class="mt-3 card-footer">
+              <a class="btn btn-info ml-5" href="/gestock/acces/ajouter"><img src="images/icones/ajout.png" class=" menu-icone">Ajouter un utilisateur</a>
+            </div>
           </div>
-    
+          <?php endif; ?>
         </div>
-    </section>
-    <section>
-    <div class="row mt-5 pl-0 pr-0">
+      </div>
+  </section>
+
+  <section>
+    <div class="row mt-5">
+
       <div class="col-lg-6">
-        <div class="card ">
-          <div class="card-header bg-info">
-            <h5 class="text-center">Bons d'entrée</h5>
+        <div class="card">
+          <div class="card-header text-light bg-info p-0 m-0"">
+            <h5 class="text-center font-weight-bold p-0 m-0">Derniers bons d'entrée</h5>
           </div>
-          <div class="card-body mr-0 ml-0 pl-0 pr-0 pt-0 ">
-            <table class="table table-striped table-borderless table-hover table-sm" >
+          <div class="card-body m-0 p-0">
+            <table class="table table-striped table-borderless table-hover table-sm m-0" >
               <thead>
                 <tr>
                   <th class="th-sm" scope="col">Référence</th>
@@ -109,35 +125,36 @@
               </tr>
               <?php endfor; ?>
               <?php endif ; ?>
-          </table>
+            </table>
+          </div>
+        </div>  
+      </div> 
+
+      <div class="col-lg-6">
+        <div class="card ">
+          <div class="card-header text-light bg-info p-0 m-0"">
+            <h5 class="text-center font-weight-bold p-0 m-0">Derniers bons de sortie</h5>
+          </div>
+          <div class="card-body m-0 p-0">
+            <table class="table table-striped table-borderless table-hover table-sm m-0" >
+              <thead>
+                <tr>
+                  <th class="th-sm" scope="col">Référence</th>
+                  <th class="th-sm" scope="col">Date</th>
+                  <th class= "th-sm" scope="col">Bénéficiaire</th>
+                </tr>
+              </thead>
+              <?php if($bonssorties != null AND count($bonssorties) >= 5): ?>
+              <?php for ($i = 0; $i < 5; $i++): ?>
+                <tr>   
+                <td><?= $bonssorties[$i]->reference ?> </td>
+                <td><?= $bonssorties[$i]->date ?></td>
+                <td><?= $bonssorties[$i]->nomBeneficiaire ?></td>
+              </tr>
+              <?php endfor; ?>
+              <?php endif ; ?>
+            </table>
         </div>
       </div>  
-    </div> 
-    <div class="col-lg-6">
-      <div class="card ">
-        <div class="card-header bg-info">
-          <h5 class="text-center">Bons de sortie</h5>
-        </div>
-        <div class="card-body mr-0 ml-0 pl-0 pr-0 pt-0 ">
-          <table class="table table-striped table-borderless table-hover table-sm" >
-            <thead>
-              <tr>
-                <th class="th-sm" scope="col">Référence</th>
-                <th class="th-sm" scope="col">Date</th>
-                <th class= "th-sm" scope="col">Bénéficiaire</th>
-              </tr>
-            </thead>
-            <?php if($bonssorties != null AND count($bonssorties) >= 5): ?>
-            <?php for ($i = 0; $i < 5; $i++): ?>
-              <tr>   
-              <td><?= $bonssorties[$i]->reference ?> </td>
-              <td><?= $bonssorties[$i]->date ?></td>
-              <td><?= $bonssorties[$i]->nomBeneficiaire ?></td>
-            </tr>
-            <?php endfor; ?>
-            <?php endif ; ?>
-        </table>
-      </div>
-    </div>  
-  </div>
-</section>
+    </div>
+  </section>
