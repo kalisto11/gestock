@@ -105,6 +105,11 @@
                 $erreur = true;
                 $message[] = "La référence ne doit pas être vide.";
             }
+            // Vérifier si la date de la facture n'est pas vide
+            if (empty($dateFacture)){
+                $erreur = true;
+                $message[] = "La date de la facture ne doit pas être vide.";
+            }
             //Verifier si fournisseur n'est pas vide
             if ($fournisseur == "null"){
                 $erreur = true;
@@ -129,6 +134,7 @@
             }
             if ($erreur == false){ // si pas d'erreur
                 if ($id == null){ // cas ajouter
+                    $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];
                     $bonentree = new BonEntree();
                     $bonentree->reference = strip_tags($reference);
                     $bonentree->numeroFacture = strip_tags($numeroFacture);
@@ -138,7 +144,7 @@
                     $bonentree->idFournisseur = $fournisseur->id;
                     $bonentree->nomFournisseur = $fournisseur->nom;
                     $bonentree->idModificateur = $_SESSION['user']['id'];
-                    $bonentree->nomModificateur = $_SESSION['user']['nomComplet'];
+                    $bonentree->nomModificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];
                     $dotations = [];
                     foreach ($articles as $article){
                         $art = new Article($article['id']);
@@ -153,6 +159,7 @@
                     $this->request->id = $bonentree->id;
                 }
                 else{ // cas modifier 
+                    $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];// prenom et nom du créateur ou modificateur du bon
                     $id = intval($id);
                     $idFournisseur = intval(strip_tags($fournisseur));
                     $fournisseur = new Fournisseur($idFournisseur);       
@@ -164,7 +171,7 @@
                     $bonentree->idFournisseur = $fournisseur->id;
                     $bonentree->nomFournisseur = $fournisseur->nom;
                     $bonentree->idModificateur = $_SESSION['user']['id'];
-                    $bonentree->nomModificateur = $_SESSION['user']['nomComplet'];
+                    $bonentree->nomModificateur =$modificateur ;
                     $dotations = [];
                     foreach ($articles as $article){
                         $art = new Article($article['id']);

@@ -27,7 +27,6 @@
             <td>
               <?php if ($transaction['typeTrans'] != "modification" AND $transaction['typeTrans'] != "création") : ?><a href="/gestock/<?php if ($transaction['typeTrans'] == "entrée"){echo 'bonsentree';}elseif($transaction['typeTrans'] == "sortie"){echo 'bonssortie';}else{echo 'home';} ?>/consulter/<?= $transaction['idBon'] ?>"><?php endif ; ?><?= htmlspecialchars($transaction['numeroBon']) ?><?php if ($transaction['typeTrans'] != "modification") : ?></a><?php endif ;?>
             </td>
-
             <td class="font-weight-bold text-<?php 
                 if ($transaction['typeTrans'] == "entrée"){
                   echo "success";
@@ -63,7 +62,7 @@
                 echo $transaction['quantite'];
               ?>
             </td>
-            <td>
+            <td> 
             <?= $transaction['dateTrans'] ?>
             </td>
           </tr>	

@@ -52,7 +52,8 @@
                 'id'  => $this->id
             ));
             if ($difference != 0){
-                self::insertTransaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['nomComplet'] , $difference, "modification");
+                $nomComplet = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];  
+                self::insertTransaction($this->id, $_SESSION['user']['id'], $nomComplet, $difference, "modification");
             }
         }
 
@@ -76,8 +77,9 @@
             $req = 'SELECT id FROM article Order By id Desc LIMIT 1';
         	$reponse = $pdo->query($req);
 			$article = $reponse->fetch();
-			$this->id = $article['id'];
-            self::insertTransaction($this->id, $_SESSION['user']['id'], $_SESSION['user']['nomComplet'] , $this->quantite, "création");
+            $this->id = $article['id'];
+            $nomComplet = $_SESSION['user']['prenom'] . " " . $_SESSION['user']['nom'] ;
+            self::insertTransaction($this->id, $_SESSION['user']['id'] , $nomComplet, $this->quantite, "création");
         }
 
         /**
@@ -85,7 +87,7 @@
          */
         public static function getList(){
             $pdo = Database::getPDO();
-            $req = 'SELECT id from article ORDER BY nom';
+            $req = 'SELECT id from article';
             $reponse = $pdo->query($req);
             $articles = array();
             while ($row = $reponse->fetch()){
@@ -100,7 +102,7 @@
          */
         public static function getListTrans($perpage, $offset){
             $pdo = Database::getPDO();
-            $req = "SELECT id from article LIMIT $perpage OFFSET $offset";
+            $req = "SELECT id from article  ORDER BY nom LIMIT $perpage OFFSET $offset";
             $reponse = $pdo->query($req);
             $articles = array();
             while ($row = $reponse->fetch()){

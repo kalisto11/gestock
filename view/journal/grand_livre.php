@@ -1,7 +1,7 @@
 
 <h2 class="text-center">Grand livre</h2>
       <?php require VIEW . 'infos/notifications.php'; ?>
-        <table class="table table-striped table-bordered table-hover table-sm">
+        <table class="table table-striped table-borderless table-hover table-sm">
           <tr>
               <th>Article</th>
               <th>Quantité</th>

@@ -52,7 +52,7 @@
                 <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword1">
                 <div id="helpPassword1"></div>
             </div>
-
+            <div id="passwordMsg" class="text-danger"></div>
             <div class="form-group">
                 <label for="password2">Confirmation du mot de passe temporaire</label>
                 <input type="password" name="password2" id="password2" class="form-control form-control-sm">

@@ -23,6 +23,14 @@
                     </tr>
                 <?php endforeach ; ?>
             </table>
+            <div class="d-flex justify-content-between my-4">
+	<?php if ($currentPage > 1):?>
+		<a href=" /gestock/articles/liste/?page=<?= $currentPage - 1 ?>" class="btn btn-primary">Page précédente</a>
+	<?php endif ?>
+    <?php if ($currentPage < $pages):?>
+		<a href="/gestock/articles/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante </a>
+	<?php endif ?>
+</div>
         <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?></div><?php endif; ?>
         
         <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?> 
@@ -46,12 +54,10 @@
                             </option>
                         </select>
                     </div>
-                    
                     <div class="form-group">
                         <label for="quantite">Quantité de l'article dans l'existant</label>
                         <input class="form-control form-control-sm" type="number" id="quantite" name="quantite" value="<?php if (isset($currentArticle->id)){echo $currentArticle->quantite;} ?>">
                     </div>
-
                     <div class="form-group">
                         <label for="seuil">Seuil de l'article</label>
                         <input class="form-control form-control-sm" type="number" id="seuil" name="seuil" value="<?php if (isset($currentArticle->id)){echo $currentArticle->seuil;} ?>">
@@ -60,22 +66,13 @@
                     <input type="hidden" name="operation" value="<?php if (isset($currentArticle->id)){echo 'modifier';}else{echo 'ajouter';} ?>">
                     <input type="hidden" name="idArticle" value="<?php if (isset($currentArticle->id)){echo $currentArticle->id ;} ?>">
                     <input type="submit" value="<?php if (isset($currentArticle->id)){echo 'Modifier';}else{echo 'Ajouter';} ?>"class="btn btn-<?php if(isset($currentArticle->id)){echo 'info';}else{echo 'success';}?>">
-
+      
                     <?php if (isset($currentArticle->id)): ?>
                     <a class="btn btn-danger" href="/gestock/articles/liste">Annuler</a>
                     <?php endif ; ?>
-
                 </form>
             </div>     
         </div>
         <?php endif; ?>
     </div>
-</div>
-<div class="d-flex justify-content-between my-4">
-	<?php if ($currentPage > 1):?>
-		<a href=" /gestock/articles/liste/?page=<?= $currentPage - 1 ?>" class="btn btn-primary">Page précédente</a>
-	<?php endif ?>
-    <?php if ($currentPage < $pages):?>
-		<a href="/gestock/articles/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante </a>
-	<?php endif ?>
 </div>

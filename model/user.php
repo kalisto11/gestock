@@ -41,7 +41,7 @@ class User{
         $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
         $reponse->execute(array(
             'prenom' => $this->prenom,
-            'nom' => $this->nom,
+            'nom'    => $this->nom,
             'username' => $this->username,
             'pasword' => $this->pasword,
             'niveau' => $this->niveau,
@@ -54,7 +54,7 @@ class User{
         $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
         $reponse->execute(array(
             'prenom' => $this->prenom,
-            'nom' => $this->nom,
+            'nom'    => $this->nom,
             'username' => $this->username,
             'pasword' => $this->pasword,
             'niveau' => $this->niveau,

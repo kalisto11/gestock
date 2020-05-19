@@ -28,13 +28,13 @@
             
                     <div class="container pb-3 mb-3"> 
                         <form method="post" action="/gestock/acces/changerpassword/">
+                            <div id="passwordMsg" class="text-danger h-50"></div>
                             <div class="form-group">
                                 <label for="password1"><img src="images/icones/cle.png" class="cle mr-3">Nouveau mot de passe</label>
                                 <input type="password" name="password1" id="password1" class="form-control form-control-sm" required>
                                 <img src="images/icones/check.jpg" alt="" class="checkPassword" id="checkPassword1">
                                 <div id="helpPassword1"></div>
                             </div>
-
                             <div class="form-group">
                                 <label for="password2"><img src="images/icones/cle.png" class="cle mr-3">Confirmez le mot de passe</label>
                                 <input type="password" name="password2" id="password2" class="form-control form-control-sm" required>

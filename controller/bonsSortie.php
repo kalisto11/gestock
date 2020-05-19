@@ -2,8 +2,7 @@
 
      /*
     * Controleur du module des Bons d'netrée pour la gestion des bons d'entrée
-    */
-    
+    */    
     class BonsSortie extends Controller{
         public function process(){
             if ($this->request->method === 'POST'){ // si la requete vient d'un formulaire
@@ -129,6 +128,7 @@
             }
             if ($erreur == false){ // cas sans erreur
                 if ($id == null){ // cas ajouter bon de sortie
+                    $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];
                     $bonsortie = new BonSortie();
                     $bonsortie->reference = strip_tags($reference);
                     $idPersonnel = intval(strip_tags($beneficiaire));
@@ -136,7 +136,7 @@
                     $bonsortie->idBeneficiaire = (int)$beneficiaire->id;
                     $bonsortie->nomBeneficiaire = $beneficiaire->prenom . " " . $beneficiaire->nom;
                     $bonsortie->idModificateur = $_SESSION['user']['id'];
-                    $bonsortie->nomModificateur = $_SESSION['user']['nomComplet'];
+                    $bonsortie->nomModificateur =$modificateur;
                     $dotations = [];
                     foreach ($articles as $article){
                         $idArticle = intval(strip_tags($article['id']));
@@ -152,6 +152,7 @@
                     $this->request->id = $bonsortie->id;
                 }
                 else{ // cas modifier bon de sortie
+                    $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];
                     $id = intval($id);
                     $bonsortie = new BonSortie();
                     $bonsortie->id = $id;
@@ -161,7 +162,7 @@
                     $bonsortie->idBeneficiaire = (int)$beneficiaire->id;
                     $bonsortie->nomBeneficiaire = $beneficiaire->prenom . " " . $beneficiaire->nom;
                     $bonsortie->idModificateur = (int)$_SESSION['user']['id'];
-                    $bonsortie->nomModificateur = $_SESSION['user']['nomComplet'];
+                    $bonsortie->nomModificateur =$modificateur;
                     $dotations = [];
                     foreach ($articles as $article){
                         $idArticle = intval(strip_tags($article['id']));
