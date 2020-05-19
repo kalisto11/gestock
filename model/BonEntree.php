@@ -87,7 +87,7 @@
 			$reponse->execute(array($this->id));
 			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
 			$reponse = $pdo->prepare($req);
-			$reponse->execute(array( $this->id));
+			$reponse->execute(array($this->id));
 		}
 
 		public function modify() {//Méthode permettant de modifier le bon d'entrée
