@@ -17,13 +17,13 @@
     </head>
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
-        <nav class="navbar navbar-dark sticky-top bg-dark m-0 p-0">
-            <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo"><img src="images/icones/education.png" class="mr-2 icone fa-spin">IA KAFFRINE</a>
-            <h1 class="h2">GESTION DE STOCK</h1>
+        <nav class="navbar navbar-dark sticky-top bg-dark m-0 p-0 row">
+            <a  class="navbar-brand mx-4 col-lg-2" id="logo"><img src="images/icones/education.png" class="mr-2 icone fa-spin">IA KAFFRINE</a>
+            <h1 class="h2 col-lg-6 text-center">GESTION DE STOCK</h1>
 
-            <form class="form-inline mr-4 p-0" action="/gestock/recherche">
-                <input class="form-control form-control-sm" type="text" placeholder="Recherche : N° bon" aria-label="Search">
-                <button type="submit" class="btn bg-info col btn-sm"><img src="images/icones/recherche.png" class="bouton"></button>
+            <form class="form p-0 col-lg-2 col-sm-4 mr-5 row justify-content-end" action="/gestock/recherche">
+                <input class="form-control form-control-sm col-lg-8 col-md-4" type="text" placeholder="Recherche : N° bon" aria-label="Search">
+                <button type="submit" class="btn btn-sm bg-info col-lg-2 col-sm-1"><img src="images/icones/recherche.png" class="bouton"></button>
             </form>
         </nav> 
         <div class="row">
@@ -31,7 +31,7 @@
                 <div class="nav-side-menu mt-md-5">
                 
                     <div class="row d-flex justify-content-center">
-                        <div class="col-lg-4 mt-md-5 text-right">
+                        <div class="col-lg-4 mt-sm-5 text-md-right">
                             <img src="images/icones/utilisateur.png" class="sous-menu" title="Utilisateur connecté">
                         </div>
                         <div class="col-lg-8 text-left mt-md-5 pb-3 ml-0">
@@ -39,6 +39,7 @@
                             <a href="/gestock/auths/">Se déconnecter</a>
                         </div>
                     </div>
+
                     <div class="menu-list">
                         <ul id="menu-content" class="menu-content collapse out">
                             <li class="collapsed bg-info">
