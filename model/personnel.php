@@ -57,9 +57,9 @@
             'id_personnel' => $this->id,
             'id_poste'    => $poste
         ));
-
+        }
     }
-    }  
+    
     public function update(){ //fonction permettant de modifier les données d'un agent
         $pdo = Database::getPDO();
         $req = 'UPDATE personnel SET prenom = :prenom, nom = :nom WHERE id = :id';
@@ -80,9 +80,10 @@
        $reponse->execute(array(
            'id_personnel' => $this->id,
            'id_poste'    => $poste
-       ));
-    }
+        ));
+        }
     }  
+
     public function delete(){ //Fonction de suppresssion d'un agent
 
         $pdo = Database::getPDO();

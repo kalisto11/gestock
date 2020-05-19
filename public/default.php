@@ -17,13 +17,13 @@
     </head>
     <body>
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
-        <nav class="navbar navbar-dark sticky-top bg-dark m-0">
+        <nav class="navbar navbar-dark sticky-top bg-dark m-0 p-0">
             <a  class="navbar-brand col-sm-3 col-md-2 mx-4" id="logo"><img src="images/icones/education.png" class="mr-2 icone fa-spin">IA KAFFRINE</a>
             <h1 class="h2">GESTION DE STOCK</h1>
 
-            <form class="form-inline mr-4" action="/gestock/recherche">
-                <input class="form-control form-control-dark w-10" type="text" placeholder="Recherche" aria-label="Search">
-                <button  type="submit" class="btn bg-info"><img src="images/icones/recherche.png" class="bouton"></button>
+            <form class="form-inline mr-4 p-0" action="/gestock/recherche">
+                <input class="form-control form-control-sm" type="text" placeholder="Recherche : N° bon" aria-label="Search">
+                <button type="submit" class="btn bg-info col btn-sm"><img src="images/icones/recherche.png" class="bouton"></button>
             </form>
         </nav> 
         <div class="row">
