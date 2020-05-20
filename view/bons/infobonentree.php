@@ -20,7 +20,7 @@
         <h6>Date de la facture</h6>
         <p class="zonegrise"><?= $bonentree->dateFacture ?></p>
       </div>
-      <div class="mt-3">
+      <div>
         <h6>Fournisseur</h6>
         <p class="zonegrise"><a href="/gestock/fournisseurs/consulter/<?= $bonentree->idFournisseur ?>"><?= $bonentree->nomFournisseur ?></a></p>      
       </div>

@@ -121,7 +121,8 @@ footer p{
   font-size: 14px;
   padding: 13px;
   margin: auto;
-  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 20px;
   border-radius: 10px;
 }
 
@@ -146,7 +147,7 @@ footer p{
 }
 
 .row-color:nth-child(odd) {
-  background-color:rgba(157, 205, 238, 0.4);
+  background-color:rgba(23, 162, 184, 0.2);
   border-radius: 10px;
 }
 
@@ -242,5 +243,9 @@ text-decoration: none;
 }
 
 .text-sm{
-  font-size: 11px;
+  font-size: 14px;
+}
+
+.text-sm a:hover{
+  color: #fff;
 }

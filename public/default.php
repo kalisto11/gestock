@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="Team UVS">
         <base href="/gestock/public/">
-        <title>Gestion de stock</title>
+        <title>Gestion materielle</title>
         <link rel="shortcut icon" type="image/png" href="images/icones/favicon.png">
         <!-- Bootstrap core CSS -->
         <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -19,7 +19,7 @@
         <!-- BARRE DU LOGO ET ZONE DE RECHERCHE -->
         <nav class="navbar navbar-dark sticky-top bg-dark m-0 p-0 row">
             <a  class="navbar-brand mx-4 col-lg-2" id="logo"><img src="images/icones/education.png" class="mr-2 icone fa-spin">IA KAFFRINE</a>
-            <h1 class="h2 col-lg-6 text-center">GESTION DE STOCK</h1>
+            <h1 class="h2 col-lg-6 text-center">GESTION MATERIELLE</h1>
 
             <form class="form p-0 col-lg-2 col-sm-4 mr-5 row justify-content-end" action="/gestock/recherche">
                 <input class="form-control form-control-sm col-lg-8 col-md-4" type="text" placeholder="Recherche : N° bon" aria-label="Search">
@@ -31,11 +31,11 @@
                 <div class="nav-side-menu mt-md-5">
                 
                     <div class="row d-flex justify-content-center">
-                        <div class="col-lg-4 mt-sm-5 text-md-right">
-                            <img src="images/icones/utilisateur.png" class="sous-menu" title="Utilisateur connecté">
+                        <div class="col-lg-4 mt-sm-5 mr-0 p-0 text-md-right">
+                            <img src="images/icones/utilisateur.png" class="sous-menu align-middle" title="Utilisateur connecté">
                         </div>
-                        <div class="col-lg-8 text-left mt-md-5 pb-3 ml-0">
-                            <?= $_SESSION['user']['prenom'] ?> <?= $_SESSION['user']['nom'] ?><br>
+                        <div class="col-lg-8 text-left mt-md-5 pb-3 ml-0 text-sm">
+                            <?= $_SESSION['user']['prenom'] ?><br><?= $_SESSION['user']['nom'] ?><br>
                             <a href="/gestock/auths/">Se déconnecter</a>
                         </div>
                     </div>

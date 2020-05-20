@@ -123,7 +123,7 @@
 		}
 		public static function getListHome() {
 			$pdo = Database::getPDO();
-			$req = "SELECT id from bon_entree";
+			$req = "SELECT id from bon_entree ORDER BY date DESC";
 			$reponse = $pdo->query($req);
 			$bonsentrees = array();
 			while ($row = $reponse->fetch()){
