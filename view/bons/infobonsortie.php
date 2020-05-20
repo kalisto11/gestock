@@ -59,9 +59,10 @@
       </div>
       <?php endif; ?>
       <div class="mt-5">
-        <p>
-          <a class="btn btn-secondary float-right" href="/gestock/bonssortie/liste">Voir la liste des bons de sortie</a>
-        </p>
+        <?php if ($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
+        <a class="btn btn-success ml-5" href="/gestock/bonssortie/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon de sortie</a>
+        <?php endif ; ?>
+        <a class="btn btn-secondary float-right" href="/gestock/bonssortie/liste">Voir la liste des bons de sortie</a>
       </div>
     </div>      
   </div>

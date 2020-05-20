@@ -30,11 +30,11 @@
             <div class="col-sm-2 mt-md-5">
                 <div class="nav-side-menu mt-md-5">
                 
-                    <div class="row d-flex justify-content-center">
-                        <div class="col-lg-4 mt-sm-5 mr-0 p-0 text-md-right">
-                            <img src="images/icones/utilisateur.png" class="sous-menu align-middle" title="Utilisateur connecté">
+                    <div class="row d-flex justify-content-center align-items-center">
+                        <div class="col-lg-3 mt-sm-3 mr-0 p-0 text-md-right">
+                            <img src="images/icones/utilisateur.png" class="sous-menu" title="Utilisateur connecté">
                         </div>
-                        <div class="col-lg-8 text-left mt-md-5 pb-3 ml-0 text-sm">
+                        <div class="col-lg-9 text-center mt-md-5 pb-3 ml-0 text-sm pl-0">
                             <?= $_SESSION['user']['prenom'] ?><br><?= $_SESSION['user']['nom'] ?><br>
                             <a href="/gestock/auths/">Se déconnecter</a>
                         </div>

@@ -28,7 +28,6 @@
     </div>
     
     <div class="col-sm-9">
-
       <div>
         <h5 class="text-center">Dotations</h5>
         <?php if ($bonentree->dotations != null): ?>
@@ -64,9 +63,10 @@
       </div>
       <?php endif ; ?>
       <div class="mt-5">
-        <p>
-            <a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des bons d'entrée</a>
-        </p>
+        <?php if ($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
+        <a class="btn btn-success ml-5" href="/gestock/bonsentree/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon d'entrée</a>
+        <?php endif ; ?>
+        <a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des bons d'entrée</a>
       </div>
     </div>
   </div>
