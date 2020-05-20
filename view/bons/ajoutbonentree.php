@@ -8,21 +8,21 @@
       <div class="col">
         <div class="form-group">
           <label for="reference">Numéro du bon d'entrée</label>
-          <input type="text" name="reference" id="reference" class="form-control form-control-sm" placeholder="Numéro du bon d'entrée" required>
+          <input type="text" name="reference" id="reference" class="form-control form-control-sm" placeholder="Numéro du bon d'entrée" <?php if (isset($bonentree)) : ?> value="<?= $bonentree->reference ?>" <?php endif ; ?> required>
         </div>
       </div>
       
       <div class="col">
         <div class="form-group">
           <label for="numeroFacture">Numéro de la facture</label>
-          <input type="text" name="numeroFacture" id="numeroFacture" class="form-control form-control-sm" placeholder="Numéro de la facture">
+          <input type="text" name="numeroFacture" id="numeroFacture" class="form-control form-control-sm" placeholder="Numéro de la facture"  <?php if (isset($bonentree)) : ?> value="<?= $bonentree->numeroFacture ?>" <?php endif ; ?> >
         </div>
       </div>
       
       <div class="col">
         <div class="form-group">
           <label for="dateFacture">Date de la facture</label>
-          <input type="date" name="dateFacture" id="dateFacture" class="form-control form-control-sm" placeholder="Date de la facture">
+          <input type="date" name="dateFacture" id="dateFacture" class="form-control form-control-sm" placeholder="Date de la facture"  <?php if (isset($bonentree)) : ?> value="<?= $bonentree->dateFacture ?>" <?php endif ; ?> >
         </div>
       </div>
       
@@ -32,7 +32,7 @@
           <select name="fournisseur" id="fournisseur" class="form-control form-control-sm">
             <option value="null">Choisir un fournisseur</option>
             <?php foreach ($fournisseurs as $fournisseur) : ?>
-            <option value="<?= $fournisseur->id ?>"><?= $fournisseur->nom ?></option>
+            <option value="<?= $fournisseur->id ?>" <?php if (isset($bonentree) AND $bonentree->fournisseur == $fournisseur->id){echo 'selected="selected"' ;} ?>><?= $fournisseur->nom ?></option>
             <?php endforeach ; ?>
           </select>
         </div>
