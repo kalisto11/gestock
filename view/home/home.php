@@ -8,9 +8,9 @@
             <h5 class="text-center font-weight-bold p-0 m-0">Mon compte</h5>
             </div>
             <div class="card-body p-0 font-weight-bold"> 
-              <p class="bg- mx-0 mt-2 px-3">Prénom : <?= $user->prenom ?></p>
-              <p class="bg- mx-0 px-3">Nom : <?= $user->nom?></p>
-              <p class="bg- mx-0 px-3">
+              <p class="mx-0 mt-2 px-3">Prénom : <?= $user->prenom ?></p>
+              <p class="mx-0 px-3">Nom : <?= $user->nom?></p>
+              <p class="mx-0 px-3">
                 Rôle  : 
                 <?php 
                   if($_SESSION['user']['niveau'] == 1){
@@ -18,7 +18,7 @@
                   }elseif($_SESSION['user']['niveau'] == 2){
                     echo "Gestionnaire";
                   }
-                  elseif($_SESSION['user']['niveau'] == 2){
+                  elseif($_SESSION['user']['niveau'] == 3){
                   echo "Administrateur";
                   }
                 ?>
@@ -30,7 +30,7 @@
         <div class="col-lg-4 m-lg-0 mb-sm-5">
           <div class="card"> 
             <div class="card-header text-center text-light font-weight-bold bg-info p-0 m-0"">
-            <h5 class="text-center font-weight-bold p-0 m-0">Articles bientot en rupture</h5>
+            <h5 class="text-center font-weight-bold p-0 m-0">Articles bientôt  en rupture</h5>
             </div>
             <div class="card-body p-0">
               <table class="table table-striped table-borderless table-hover table-sm m-0">
@@ -58,13 +58,13 @@
         <div class="col-lg-5 m-lg-0 mb-sm-5">
           <div class="card bg-light">
             <div class="card-header text-center text-light font-weight-bold bg-info p-0 m-0"">
-            <h5 class="text-center font-weight-bold p-0 m-0">utilisateurs</h5>
+            <h5 class="text-center font-weight-bold p-0 m-0">Utilisateurs</h5>
             </div>
             <div class="card-body p-0">
               <table class="table table-striped table-borderless table-hover table-sm m-0">
                 <tr>
                   <th class="th-sm" scope="col">Nom</th>
-                  <th class="th-sm" scope="col">Role</th>
+                  <th class="th-sm" scope="col">Rôle</th>
                 <?php if($_SESSION['user']['niveau'] >= ADMINISTRATEUR) : ?><th class ="th-sm" scope ="col">Action</th><?php endif; ?>
                 </tr>
                 <?php foreach ($users as $user): ?>
@@ -90,8 +90,8 @@
               </table>
             </div>
             <?php if($_SESSION['user']['niveau'] >= ADMINISTRATEUR) : ?>
-            <div class="mt-3 card-footer">
-              <a class="btn btn-info ml-5" href="/gestock/acces/ajouter"><img src="images/icones/ajout.png" class=" menu-icone">Ajouter un utilisateur</a>
+            <div class="card-footer m-0 p-0 text-right">
+              <a class="btn btn-info" href="/gestock/acces/ajouter"><img src="images/icones/ajout.png" class=" menu-icone">Ajouter un utilisateur</a>
             </div>
           </div>
           <?php endif; ?>
@@ -111,9 +111,9 @@
             <table class="table table-striped table-borderless table-hover table-sm m-0" >
               <thead>
                 <tr>
-                  <th class="th-sm" scope="col">Référence</th>
+                  <th class="th-sm" scope="col">N° bon</th>
                   <th class="th-sm" scope="col">Date</th>
-                  <th class= "th-sm" scope="col">Founisseur</th>
+                  <th class= "th-sm" scope="col">Fournisseur</th>
                 </tr>
               </thead>
               <?php if($bonsentrees != null AND count($bonsentrees) >= 5): ?>
@@ -139,7 +139,7 @@
             <table class="table table-striped table-borderless table-hover table-sm m-0" >
               <thead>
                 <tr>
-                  <th class="th-sm" scope="col">Référence</th>
+                  <th class="th-sm" scope="col">N° bon</th>
                   <th class="th-sm" scope="col">Date</th>
                   <th class= "th-sm" scope="col">Bénéficiaire</th>
                 </tr>

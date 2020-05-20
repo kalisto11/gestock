@@ -131,6 +131,16 @@
                     $message[] = "Il y a eu doublon sur les articles choisis.";
                 }
             }
+
+            $bonssorties = BonSortie::getListHome();
+            foreach ($bonssorties as $bonsortie){
+                if ($bonsortie->reference == $_POST['reference']){
+                    $erreur = true;
+                    $message[] = "le numéro du bon est déja utilisé.";
+                    break;
+                }
+            }
+
             if ($erreur == false){ // cas sans erreur
                 if ($id == null){ // cas ajouter bon de sortie
                     $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];

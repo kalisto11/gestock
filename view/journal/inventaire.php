@@ -8,7 +8,7 @@
       </div>
       <div>
         <h6>Quantité dans le stock</h6>
-        <p class="zonegrise font-weight-bold text-<?php if ($article->quantite >= $article->seuil + 2){echo 'success';}elseif($article->quantite <= $article->seuil + 2 AND $article->quantite >= $article->seuil){echo 'warning';}else{echo 'danger';} ?>"><?= $article->quantite ?></p>
+        <p class="zonegrise font-weight-bold text-md text-<?php if ($article->quantite >= $article->seuil + 2){echo 'success';}elseif($article->quantite <= $article->seuil + 2 AND $article->quantite >= $article->seuil){echo 'warning';}else{echo 'danger';} ?>"><?= $article->quantite ?></p>
       </div>
     </div>
     <div class="col-sm-9">
