@@ -26,7 +26,7 @@
         $content = ob_get_clean();
 
         // inclure le template par defaut
-        require 'default.php';
+        require '../view/default.php';
     }
     else if(isset($_SESSION['id'])){
         $_SESSION['token'] = $_SESSION['id'];
