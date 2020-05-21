@@ -28,7 +28,7 @@ class GrandLivres extends Controller{
             break;
             case 'consulter':
                 $article = new Article($this->request->id);
-                $transactions = Article::requireTransaction($this->request->id);
+                $transactions = Article::getTransactions($this->request->id);
                 
                 require_once VIEW . 'journal/inventaire.php';
             break;

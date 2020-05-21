@@ -25,6 +25,16 @@
                     </tr>
                 <?php endforeach ; ?>
             </table>
+
+            <div class="d-flex justify-content-between my-4">
+                <?php if ($currentPage > 1):?>
+                    <a href="/gestock/fournisseurs/liste/?page=<?= $currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
+                <?php endif ?>
+                <?php if ($currentPage < $pages):?>
+                    <a href="/gestock/fournisseurs/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante</a>
+                <?php endif ?>
+            </div>
+
         <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?></div><?php endif; ?>
          
         <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>

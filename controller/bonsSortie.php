@@ -132,7 +132,7 @@
                 }
             }
 
-            $bonssorties = BonSortie::getListHome();
+            $bonssorties = BonSortie::getListAll();
             foreach ($bonssorties as $bonsortie){
                 if ($bonsortie->reference == $_POST['reference']){
                     $erreur = true;
@@ -186,7 +186,7 @@
                         $dotations[] = $dotation;
                     }
                     $bonsortie->dotations =  $dotations;
-                    $bonsortie->modify();  
+                    $bonsortie->update();  
                     $message[] = "Le bon de sortie a été bien modifié.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'consulter';

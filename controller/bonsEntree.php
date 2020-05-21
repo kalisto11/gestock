@@ -72,7 +72,7 @@
                 case 'ajouter':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $articles = Article::getList();
-                        $fournisseurs = Fournisseur::getList();
+                        $fournisseurs = Fournisseur::getListAll();
                         if ($statutTraitement == false){
                             $bonentree = new BonEntree();
                             $bonentree->reference = $_POST['reference'];
@@ -87,7 +87,7 @@
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $bonentree  = new BonEntree($this->request->id);
                         $articles = Article::getList();
-                        $fournisseurs = Fournisseur::getList();
+                        $fournisseurs = Fournisseur::getListAll();
                         require_once VIEW . 'bons/modifbonentree.php';
                     }
                 break;
@@ -140,7 +140,7 @@
                 }
             }
 
-            $bonsentrees = BonEntree::getListHome();
+            $bonsentrees = BonEntree::getListAll();
             foreach ($bonsentrees as $bonentree){
                 if ($bonentree->reference == $_POST['reference']){
                     $erreur = true;
@@ -196,7 +196,7 @@
                         $dotations[] = $dotation;
                     }
                     $bonentree->dotations = $dotations;
-                    $bonentree->modify();
+                    $bonentree->update();
                     $message[] = "Le bon a été bien modifié.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'consulter';

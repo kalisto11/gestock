@@ -80,17 +80,9 @@
 			$this->saveArticles($statutBon);
 		 }
 
-		public function delete() { //Méthode qui permet de supprimer un bon d'entrée
-			$pdo = Database::getPDO();
-			$req = 'DELETE FROM bon_entree WHERE id = ?';
-			$reponse = $pdo->prepare($req);
-			$reponse->execute(array($this->id));
-			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
-			$reponse = $pdo->prepare($req);
-			$reponse->execute(array($this->id));
-		}
+		
 
-		public function modify() {//Méthode permettant de modifier le bon d'entrée
+		public function update() {//Méthode permettant de modifier le bon d'entrée
 			$pdo = Database::getPDO();
             $req = 'UPDATE bon_entree SET reference = :reference, numero_facture = :numeroFacture, date_facture = :dateFacture, fournisseur_id = :idFournisseur, fournisseur_nom = :nomFournisseur, modificateur_id = :idModificateur, modificateur_nom = :nomModificateur, date_modification = CURDATE() WHERE id = :id';
             $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
@@ -107,6 +99,17 @@
 			$statutBon = 'old';
 			$this->saveArticles($statutBon);
 		}
+
+		public function delete() { //Méthode qui permet de supprimer un bon d'entrée
+			$pdo = Database::getPDO();
+			$req = 'DELETE FROM bon_entree WHERE id = ?';
+			$reponse = $pdo->prepare($req);
+			$reponse->execute(array($this->id));
+			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
+			$reponse = $pdo->prepare($req);
+			$reponse->execute(array($this->id));
+		}
+
 		/**
 		  * permet de récupérer la liste des bons d'entrée
 		  */
@@ -121,7 +124,8 @@
 			}
 			return $bonsentrees;
 		}
-		public static function getListHome() {
+		
+		public static function getListAll() {
 			$pdo = Database::getPDO();
 			$req = "SELECT id from bon_entree ORDER BY date DESC";
 			$reponse = $pdo->query($req);
@@ -200,7 +204,7 @@
 					Article::removeQuantity($dotation->idArticle, $this->reference, "entrée");
 				}
 				Article::updateQuantity($dotation->idArticle,$dotation->quantite, "entrée");
-				Article::insertTransaction($dotation->idArticle,$this->id, $this->reference, $dotation->quantite, "entrée");			
+				Article::insertTransaction($dotation->idArticle, $dotation->nomArticle, $this->id, $this->reference, $dotation->quantite, "entrée");			
         	}
 		}
 		/**

@@ -10,6 +10,7 @@
 		public $idModificateur;
 		public $nomModificateur;
 		public $dateModification;
+		
 		/**
 		 * 
 		 */
@@ -50,8 +51,7 @@
 				$this->totalGeneral = null;
 				$this->idModificateur = null;
 				$this->nomModificateur = null;
-				$this->dateModification = null;
-				
+				$this->dateModification = null;	
 			}
 		}
 		/**
@@ -75,23 +75,11 @@
 			$statutBon = 'new';
 			$this->saveArticles($statutBon);
 		}
+	
 		/**
 		 * 
 		 */
-		public function delete() { //Méthode qui permet de supprimer un bon de sortie
-			$pdo = Database::getPDO();
-			$req = 'DELETE FROM bon_sortie WHERE id = ?';
-			$reponse = $pdo->prepare($req);
-			$reponse->execute(array($this->id));
-
-			$req = 'DELETE FROM sortie_article WHERE id_bon_sortie = ?';
-			$reponse = $pdo->prepare($req);
-			$reponse->execute(array($this->id));
-		}
-		/**
-		 * 
-		 */
-		public function modify() {//Méthode permettant de modifier le bon de sortie
+		public function update() {//Méthode permettant de modifier le bon de sortie
 			$pdo = Database::getPDO();
             $req = 'UPDATE bon_sortie SET reference = :reference, beneficiaire_id = :idBeneficiaire, beneficiaire_nom = :nomBeneficiaire, modificateur_id = :idModificateur, modificateur_nom = :nomModificateur, date_modification = CURDATE() WHERE id = :id';
             $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
@@ -111,6 +99,21 @@
 			$this->saveArticles($statutBon);
 			
 		}
+
+		/**
+		 * 
+		 */
+		public function delete() { //Méthode qui permet de supprimer un bon de sortie
+			$pdo = Database::getPDO();
+			$req = 'DELETE FROM bon_sortie WHERE id = ?';
+			$reponse = $pdo->prepare($req);
+			$reponse->execute(array($this->id));
+
+			$req = 'DELETE FROM sortie_article WHERE id_bon_sortie = ?';
+			$reponse = $pdo->prepare($req);
+			$reponse->execute(array($this->id));
+		}
+
 		/**
 		 * 
 		 */
@@ -133,7 +136,7 @@
 					Article::removeQuantity($dotation->idArticle, $this->reference, "sortie");
 				}
 				Article::updateQuantity($dotation->idArticle,$dotation->quantite, "sortie");
-				Article::insertTransaction($dotation->idArticle, $this->id, $this->reference, $dotation->quantite, "sortie");
+				Article::insertTransaction($dotation->idArticle, $dotation->nomArticle, $this->id, $this->reference, $dotation->quantite, "sortie");
 			}
 		}
 		/**
@@ -151,7 +154,7 @@
 			return $bonssorties;
 			
 		}
-		public static function getListHome() {
+		public static function getListAll() {
 			$pdo = Database::getPDO();
 			$req = "SELECT id from bon_sortie ORDER BY date DESC";
 			$reponse = $pdo->query($req);

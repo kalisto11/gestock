@@ -34,7 +34,25 @@
             }
         }
 
-        public function modif(){
+        public  function save(){
+            $pdo = Database::getPDO();
+            $insert = 'INSERT INTO article (nom, groupe, quantite, seuil) VALUES (:nom, :groupe, :quantite, :seuil)';
+            $retour = $pdo->prepare($insert);
+            $retour->execute(array(
+                'nom' => $this->nom,
+                'groupe' => $this->groupe,
+                'quantite' => $this->quantite,
+                'seuil' => $this->seuil
+            ));
+            $req = 'SELECT id FROM article ORDER BY id DESC LIMIT 1';
+        	$reponse = $pdo->query($req);
+			$article = $reponse->fetch();
+            $this->id = $article['id'];
+            $nomComplet = $_SESSION['user']['prenom'] . " " . $_SESSION['user']['nom'] ;
+            self::insertTransaction($this->id, $this->nom, $_SESSION['user']['id'] , $nomComplet, $this->quantite, "création");
+        }
+
+        public function update(){
             $pdo = Database::getPDO();
 
             $req = "SELECT quantite from article WHERE id = $this->id";
@@ -53,33 +71,15 @@
             ));
             if ($difference != 0){
                 $nomComplet = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];  
-                self::insertTransaction($this->id, $_SESSION['user']['id'], $nomComplet, $difference, "modification");
+                self::insertTransaction($this->id, $this->nom, $_SESSION['user']['id'], $nomComplet, $difference, "modification");
             }
         }
 
-        public function supprime(){
+        public function delete(){
         $pdo = Database::getPDO();
-        
         $delete = 'DELETE from article WHERE id = ?';
         $retour = $pdo->prepare($delete);
         $retour->execute(array($this->id));
-    }
-        public  function ajoutArticle(){
-            $pdo = Database::getPDO();
-            $insert = 'INSERT INTO article (nom, groupe, quantite, seuil) VALUES (:nom, :groupe, :quantite, :seuil)';
-            $retour = $pdo->prepare($insert);
-            $retour->execute(array(
-                'nom' => $this->nom,
-                'groupe' => $this->groupe,
-                'quantite' => $this->quantite,
-                'seuil' => $this->seuil
-            ));
-            $req = 'SELECT id FROM article Order By id Desc LIMIT 1';
-        	$reponse = $pdo->query($req);
-			$article = $reponse->fetch();
-            $this->id = $article['id'];
-            $nomComplet = $_SESSION['user']['prenom'] . " " . $_SESSION['user']['nom'] ;
-            self::insertTransaction($this->id, $_SESSION['user']['id'] , $nomComplet, $this->quantite, "création");
         }
 
         /**
@@ -87,7 +87,7 @@
          */
         public static function getList(){
             $pdo = Database::getPDO();
-            $req = 'SELECT id from article';
+            $req = 'SELECT id from article ORDER BY nom';
             $reponse = $pdo->query($req);
             $articles = array();
             while ($row = $reponse->fetch()){
@@ -111,6 +111,18 @@
             }  
             return $articles;
         }
+
+        public static function getListTransJournal($perpage, $offset){
+            $pdo = Database::getPDO();
+            $req = "SELECT * from transactions WHERE dateTrans = CURDATE() ORDER BY dateTrans DESC LIMIT $perpage OFFSET $offset";
+            $reponse = $pdo->query($req);
+            $articles = array();
+            while ($row = $reponse->fetch()){
+                $transaction = new Transaction($row['id']);
+                $transactions[] = $transaction;
+            }  
+            return $transactions;
+        }
     
         public static function getNbrArticle(){
             $pdo = Database::getPDO();
@@ -119,10 +131,18 @@
             $count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
              return  $count;
         }
+
+        public static function getNbrTransJournal(){
+			$pdo = Database::getPDO();
+			$req = "SELECT COUNT(id) FROM transactions WHERE dateTrans = CURDATE()";
+			$reponse = $pdo->query($req);
+			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
+			 return  $count;
+		}
         /**
          * 
          */
-        public static function insertTransaction($idArticle, $idBon, $numeroBon, $quantite, $typeTrans){
+        public static function insertTransaction($idArticle, $nomArticle, $idBon, $numeroBon, $quantite, $typeTrans){
             $numeroBon = $numeroBon . "";
             $pdo = Database::getPDO();
             if ($typeTrans == "entrée" OR $typeTrans == "sortie"){
@@ -135,10 +155,11 @@
                 ));
             }
 
-            $req  = "INSERT INTO transactions (dateTrans, idArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(), :idArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
+            $req  = "INSERT INTO transactions (dateTrans, idArticle, nomArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(), :idArticle, :nomArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
                 'idArticle' => $idArticle,
+                'nomArticle' => $nomArticle,
                 'idBon'     => $idBon,
                 'numeroBon' => $numeroBon,
                 'quantite'  => $quantite,
@@ -146,14 +167,15 @@
             ));
         }
 
-        public static function requireTransaction($idArticle){
+        public static function getTransactions($idArticle){
             $pdo = Database::getPDO();
-            $req = "SELECT id, DATE_FORMAT(dateTrans, '%d/%m/%Y') AS dateTrans, idArticle, idBon, numeroBon, quantite, typeTrans from transactions WHERE idArticle = ? ORDER BY id DESC";
+            $req = "SELECT id from transactions WHERE idArticle = ? ORDER BY id DESC";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($idArticle));
             $transactions = array();
             while ($row = $reponse->fetch()){
-                $transactions[] = $row;
+                $transaction = new transaction($row['id']);
+                $transactions[] = $transaction;
             }  
             return $transactions;
         }
@@ -173,6 +195,7 @@
                 'quantite'  => $quantite
             ));
         }
+
         /**
          * Annule la quantité précédente qui a été ajoutée ou supprimée par le bon qui est modifié
          */

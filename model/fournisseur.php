@@ -51,7 +51,7 @@
             $reponse->execute(array($this->id));
         }
 
-        public static function getList(){
+        public static function getListAll(){
             $pdo = Database::getPDO();
             $req = 'SELECT id from fournisseur ORDER BY nom';
             $reponse = $pdo->query($req);
@@ -62,4 +62,24 @@
             }
             return $fournisseurs;
         }
+
+        public static function getList($perpage, $offset) {
+			$pdo = Database::getPDO();
+            $req = "SELECT id FROM fournisseur ORDER BY nom LIMIT $perpage OFFSET $offset";
+            $reponse = $pdo->query($req);
+            $fournisseurs = array();
+            while ($row = $reponse->fetch()){
+                $fournisseur = new Fournisseur($row['id']);
+                $fournisseurs[] = $fournisseur;
+            }
+            return $fournisseurs;
+        }
+        
+        public static function getNbrFournisseur(){
+			$pdo = Database::getPDO();
+			$req = "SELECT COUNT(id) FROM fournisseur";
+			$reponse = $pdo->query($req);
+			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
+			 return  $count;
+		}
     }

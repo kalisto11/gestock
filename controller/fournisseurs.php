@@ -54,13 +54,22 @@
         public function render($notification = null){
             switch ($this->request->action){
                 case 'liste':
-                    $fournisseurs = Fournisseur::getList();
+                    $currentPage = (int)($_GET['page'] ?? 1) ? :1;
+                    $perpage = 10;
+                    $count = Fournisseur::getNbrFournisseur();
+                    $pages = ceil($count/$perpage);
+                    if ($currentPage > $pages){
+                        $message[] = "Cette page n'existe pas";
+                        $this->notification = new Notification("success", $message);
+                    }
+                    $offset = $perpage * ($currentPage - 1);
+                    $fournisseurs = Fournisseur::getList($perpage, $offset);
                     require_once VIEW . 'fournisseur/listefournisseurs.php';
                 break;
 
                 case 'consulter':
                     $fournisseur = new Fournisseur($this->request->id);
-                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
+                    $currentPage = (int)($_GET['page'] ?? 1) ? :1;
                     $perpage = 10;
                     $count = BonEntree::getNbrBonFournisseur($fournisseur->id);
                     $pages = ceil($count/$perpage);
@@ -78,7 +87,16 @@
                         $idFournisseur = intval($this->request->id);
                         $currentFournisseur = new Fournisseur($idFournisseur);
                     }
-                    $fournisseurs = Fournisseur::getList();
+                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
+                    $perpage = 10;
+                    $count = Fournisseur::getNbrFournisseur();
+                    $pages = ceil($count/$perpage);
+                    if ($currentPage > $pages){
+                        $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("success", $message);
+                    }
+                    $offset = $perpage * ($currentPage - 1);
+                    $fournisseurs = Fournisseur::getList($perpage, $offset);
                     require_once VIEW . 'fournisseur/listefournisseurs.php';
                 break;
             
@@ -99,7 +117,7 @@
                 $message[] = "Le nom du fournisseur ne doit pas être vide.";
             }
 
-            $fournisseurs = Fournisseur::getList();
+            $fournisseurs = Fournisseur::getListAll();
             if ($idFournisseur == null){ // cas ajout
                 foreach ($fournisseurs as $fournisseur){
                     if ($fournisseur->nom == $nomFournisseur){

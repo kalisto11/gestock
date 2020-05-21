@@ -23,47 +23,47 @@
        
         <?php foreach($transactions as $transaction):?>
           <tr>
-            <td><?= htmlspecialchars($transaction['typeTrans']) ?></td>
+            <td><?= htmlspecialchars($transaction->typeTrans) ?></td>
             <td>
-              <?php if ($transaction['typeTrans'] != "modification" AND $transaction['typeTrans'] != "création") : ?><a href="/gestock/<?php if ($transaction['typeTrans'] == "entrée"){echo 'bonsentree';}elseif($transaction['typeTrans'] == "sortie"){echo 'bonssortie';}else{echo 'home';} ?>/consulter/<?= $transaction['idBon'] ?>"><?php endif ; ?><?= htmlspecialchars($transaction['numeroBon']) ?><?php if ($transaction['typeTrans'] != "modification") : ?></a><?php endif ;?>
+              <?php if ($transaction->typeTrans != "modification" AND $transaction->typeTrans != "création") : ?><a href="/gestock/<?php if ($transaction->typeTrans == "entrée"){echo 'bonsentree';}elseif($transaction->typeTrans == "sortie"){echo 'bonssortie';}else{echo 'home';} ?>/consulter/<?= $transaction->idBon ?>"><?php endif ; ?><?= htmlspecialchars($transaction->numeroBon) ?><?php if ($transaction->typeTrans != "modification") : ?></a><?php endif ;?>
             </td>
             <td class="font-weight-bold text-<?php 
-                if ($transaction['typeTrans'] == "entrée"){
+                if ($transaction->typeTrans == "entrée"){
                   echo "success";
                 }
-                elseif($transaction['typeTrans'] == "sortie"){
+                elseif($transaction->typeTrans == "sortie"){
                   echo "danger";
                 } 
                 else{
-                  if ($transaction['quantite'] > 0){
+                  if ($transaction->quantite > 0){
                     echo "success";
                   }
-                  elseif ($transaction['quantite'] < 0){
+                  elseif ($transaction->quantite < 0){
                     echo "danger";
                   }
                 }
               ?>
               ">
               <?php 
-                if ($transaction['typeTrans'] == "entrée"){
+                if ($transaction->typeTrans == "entrée"){
                   echo '+';
                 }
-                else if ($transaction['typeTrans'] == "création"){
+                else if ($transaction->typeTrans == "création"){
                   echo '+';
                 }
-                else if ($transaction['typeTrans'] == "sortie"){
+                else if ($transaction->typeTrans == "sortie"){
                   echo '-';
                 }
-                else if ($transaction['typeTrans'] == "modification"){
-                  if ($transaction['quantite'] > 0){
+                else if ($transaction->typeTrans == "modification"){
+                  if ($transaction->quantite > 0){
                     echo '+';
                   }
                 }
-                echo $transaction['quantite'];
+                echo $transaction->quantite;
               ?>
             </td>
             <td> 
-            <?= $transaction['dateTrans'] ?>
+            <?= $transaction->dateTrans ?>
             </td>
           </tr>	
         <?php endforeach ?> 
