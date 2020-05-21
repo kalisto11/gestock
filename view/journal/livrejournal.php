@@ -67,6 +67,7 @@
 					<th class="th-sm" scope="col">N° bon</th>
 					<th class="td-sm">Quantité</th>
 					<th scope="col">Type transaction</th>
+					<th class="td-sm">Date transaction</th>
 				</tr>
 			</thead>
 			<?php foreach($transactions as $transaction):?>
@@ -109,6 +110,7 @@
 						?>
             		</td>
 					<td class="align-middle"><?=$transaction->typeTrans?></td>
+					<td class="align-middle"><?=$transaction->dateTrans?></td>
 				</tr>
 			<?php endforeach ;?>
 		</table>
