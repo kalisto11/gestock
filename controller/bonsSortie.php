@@ -132,12 +132,14 @@
                 }
             }
 
-            $bonssorties = BonSortie::getListAll();
-            foreach ($bonssorties as $bonsortie){
-                if ($bonsortie->reference == $_POST['reference']){
-                    $erreur = true;
-                    $message[] = "le numéro du bon est déja utilisé.";
-                    break;
+            if ($id == null){
+                $bonssorties = BonSortie::getListAll();
+                foreach ($bonssorties as $bonsortie){
+                    if ($bonsortie->reference == $_POST['reference']){
+                        $erreur = true;
+                        $message[] = "le numéro du bon est déja utilisé.";
+                        break;
+                    }
                 }
             }
 

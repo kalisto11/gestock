@@ -136,7 +136,8 @@
 					Article::removeQuantity($dotation->idArticle, $this->reference, "sortie");
 				}
 				Article::updateQuantity($dotation->idArticle,$dotation->quantite, "sortie");
-				Article::insertTransaction($dotation->idArticle, $dotation->nomArticle, $this->id, $this->reference, $dotation->quantite, "sortie");
+				$article = new Article($dotation->idArticle);
+				Article::insertTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "sortie");
 			}
 		}
 		/**

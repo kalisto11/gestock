@@ -17,7 +17,8 @@
         <tr>
           <th>Opération</th>
           <th>N° bon/Utilisateur</th>
-          <th>Quantité</th>
+          <th>Crédit/débit</th>
+          <th>Restant</th>
           <th>Date</th>
         </tr>
        
@@ -62,6 +63,7 @@
                 echo $transaction->quantite;
               ?>
             </td>
+            <td><?= $transaction->quantiteArticle ?></td>
             <td> 
             <?= $transaction->dateTrans ?>
             </td>

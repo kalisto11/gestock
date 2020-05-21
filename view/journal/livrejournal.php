@@ -59,13 +59,14 @@
 	</div>
 
 	<div class="col-lg-6">
-	<h4 class="text-center">Transactions</h4>
+	<h4 class="text-center">Transactions du jour</h4>
 		<table class="table table-striped table-borderless table-hover table-sm">
 			<thead>
 				<tr>
 					<th scope="col">Article</th>
 					<th class="th-sm" scope="col">N° bon</th>
 					<th class="td-sm">Quantité</th>
+					<th class="td-sm">Restant</th>
 					<th scope="col">Type transaction</th>
 					<th class="td-sm">Date transaction</th>
 				</tr>
@@ -108,7 +109,8 @@
 							}
 							echo $transaction->quantite;
 						?>
-            		</td>
+					</td>
+					<td class="align-middle"><?=$transaction->quantiteArticle?></td>
 					<td class="align-middle"><?=$transaction->typeTrans?></td>
 					<td class="align-middle"><?=$transaction->dateTrans?></td>
 				</tr>

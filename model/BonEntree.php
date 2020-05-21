@@ -148,20 +148,7 @@
 			}
 			return $bonsentrees;
 		}
-		/**
-		 * 
-		 */
-		public static function getListFournisseur($idFournisseur, $perpage, $offset) {
-			$pdo = Database::getPDO();
-			$req = "SELECT id from bon_entree WHERE fournisseur_id = $idFournisseur ORDER BY date DESC LIMIT $perpage OFFSET $offset";
-			$reponse = $pdo->query($req);
-			$bonsentrees = array();
-			while ($row = $reponse->fetch()){
-				$bonentree = new BonEntree($row['id']);
-				$bonsentrees[] = $bonentree;
-			}
-			return $bonsentrees;	
-		}
+
 		/**
 		 * 
 		 */
@@ -172,19 +159,7 @@
 			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
 			 return  $count;
 		}
-		/**
-		 * 
-		 */
-		public static function getNbrBonFournisseur($idFournisseur){
-			$pdo = Database::getPDO();
-			$req = "SELECT COUNT(id) FROM bon_entree WHERE fournisseur_id = $idFournisseur";
-			$reponse = $pdo->query($req);
-			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
-			 return  $count;
-		}
-		/**
-		 * 
-		 */
+		
 		public function saveArticles($statutBon){
 			$pdo = Database::getPDO();
 			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
@@ -200,11 +175,19 @@
 					'quantite'    => $dotation->quantite,
 					'prix'		=> $dotation->prix
 				   ));
+				$article = new Article($dotation->idArticle);
 				if($statutBon == 'old'){
-					Article::removeQuantity($dotation->idArticle, $this->reference, "entrée");
+					$article = new Article($dotation->idArticle);
+					
+					Article::removeArticleQuantity($dotation->idArticle, $this->reference, "entrée");
+					$article = new Article($dotation->idArticle);
+					Article::updateTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "entrée");
 				}
-				Article::updateQuantity($dotation->idArticle,$dotation->quantite, "entrée");
-				Article::insertTransaction($dotation->idArticle, $dotation->nomArticle, $this->id, $this->reference, $dotation->quantite, "entrée");			
+				else{
+					Article::insertTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "entrée");
+				}
+				
+				
         	}
 		}
 		/**
