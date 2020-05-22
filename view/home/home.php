@@ -116,15 +116,19 @@
                   <th class= "th-sm" scope="col">Fournisseur</th>
                 </tr>
               </thead>
-              <?php if($bonsentrees != null AND count($bonsentrees) >= 5): ?>
-              <?php for ($i = 0; $i < 5; $i++): ?>
+              <?php foreach ($bonsentrees as $bonentree): ?>
                 <tr>   
-                <td><?= $bonsentrees[$i]->reference ?> </td>
-                <td><?= $bonsentrees[$i]->date ?></td>
-                <td><?= $bonsentrees[$i]->nomFournisseur ?></td>
-              </tr>
-              <?php endfor; ?>
-              <?php endif ; ?>
+                  <td><?= $bonentree->reference ?> </td>
+                  <td><?= $bonentree->date ?></td>
+                  <td><?= $bonentree->nomFournisseur ?></td>
+                </tr>
+                <?php 
+                  $i = 0;
+                  if ($i == 5){
+                  break;
+                }
+                ?>
+              <?php endforeach; ?>
             </table>
           </div>
         </div>  
@@ -144,15 +148,19 @@
                   <th class= "th-sm" scope="col">Bénéficiaire</th>
                 </tr>
               </thead>
-              <?php if($bonssorties != null AND count($bonssorties) >= 5): ?>
-              <?php for ($i = 0; $i < 5; $i++): ?>
+              <?php foreach ($bonssorties as $bonsortie): ?>
                 <tr>   
-                <td><?= $bonssorties[$i]->reference ?> </td>
-                <td><?= $bonssorties[$i]->date ?></td>
-                <td><?= $bonssorties[$i]->nomBeneficiaire ?></td>
-              </tr>
-              <?php endfor; ?>
-              <?php endif ; ?>
+                  <td><?= $bonsortie->reference ?> </td>
+                  <td><?= $bonsortie->date ?></td>
+                  <td><?= $bonsortie->nomBeneficiaire ?></td>
+                </tr>
+                <?php 
+                  $i = 0;
+                  if ($i == 5){
+                  break;
+                }
+                ?>
+              <?php endforeach; ?>
             </table>
         </div>
       </div>  

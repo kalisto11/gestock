@@ -1,10 +1,10 @@
 <h2>Livre journal</h2>
 <div class="row">
-    <div class="col-lg-6">
-		<div class="mb-5">
+    <div class="col-lg-5">
+		<div class="mb-5 border rounded p-0 m-0">
 			<h4 class="text-center">Bons d'entrée du jour</h4>
 		
-			<table class="table table-striped table-borderless table-hover table-sm">
+			<table class="table table-striped table-borderless table-hover table-sm p-0 m-0">
 				<thead>
 				<tr>
 					<th class="th-sm" scope="col">Numéro</th>
@@ -29,9 +29,9 @@
 			</div>
 		</div>
 		
-		<div class="mt-5">
+		<div class="mt-5 border rounded p-0 m-0">
 			<h4 class="text-center">Bons de sortie du jour</h4>
-			<table class="table table-striped table-borderless table-hover table-sm">
+			<table class="table table-striped table-borderless table-hover table-sm p-0 m-0">
 				<thead>
 					<tr>
 						<th class="th-sm" scope="col">Numéro</th>
@@ -58,11 +58,11 @@
 
 	</div>
 
-	<div class="col-lg-6">
+	<div class="col-lg-7">
 
-		<div class="mb-5">
+		<div class="mb-5 border rounded p-0 m-0">
 			<h4 class="text-center">Somme des transactions du jour</h4>
-			<table class="table table-striped table-borderless table-hover table-sm">
+			<table class="table table-striped table-borderless table-hover table-sm p-0 m-0">
 				<thead>
 					<tr>
 						<th>Article</th>
@@ -83,9 +83,9 @@
 		</div>
 		
 		
-		<div class="mt-5">
+		<div class="mt-5 border rounded p-0 m-0">
 			<h4 class="text-center">Transactions du jour</h4>
-			<table class="table table-striped table-borderless table-hover table-sm">
+			<table class="table table-striped table-borderless table-hover table-sm p-0 m-0">
 				<thead>
 					<tr>
 						<th scope="col">Article</th>
