@@ -132,12 +132,14 @@
 					'quantite'    => $dotation->quantite,
 					'prix'    => $dotation->prix
 				));
-				if($statutBon == 'old'){
-					Article::removeQuantity($dotation->idArticle, $this->reference, "sortie");
-				}
-				Article::updateQuantity($dotation->idArticle,$dotation->quantite, "sortie");
 				$article = new Article($dotation->idArticle);
-				Article::insertTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "sortie");
+				if($statutBon == 'old'){
+					Article::removeArticleQuantity($dotation->idArticle, $this->reference, "sortie");
+					Article::updateTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "sortie");
+				}
+				else{
+					Article::insertTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "sortie");
+				}
 			}
 		}
 		/**

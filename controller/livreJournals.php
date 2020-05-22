@@ -25,6 +25,8 @@
                     }
                     $offset = $perpage * ($currentPage - 1);
                     $transactions = Article::getListTransJournal($perpage, $offset);
+                    sort($transactions);
+                    $entreesSorties = Article::getEntreeSortiesJournal();
                     require_once VIEW . 'journal/livrejournal.php';
                 break;
             }

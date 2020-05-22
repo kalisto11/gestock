@@ -52,9 +52,6 @@
                 else if ($transaction->typeTrans == "création"){
                   echo '+';
                 }
-                else if ($transaction->typeTrans == "sortie"){
-                  echo '-';
-                }
                 else if ($transaction->typeTrans == "modification"){
                   if ($transaction->quantite > 0){
                     echo '+';

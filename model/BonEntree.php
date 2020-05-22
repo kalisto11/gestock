@@ -178,16 +178,12 @@
 				$article = new Article($dotation->idArticle);
 				if($statutBon == 'old'){
 					$article = new Article($dotation->idArticle);
-					
 					Article::removeArticleQuantity($dotation->idArticle, $this->reference, "entrée");
-					$article = new Article($dotation->idArticle);
 					Article::updateTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "entrée");
 				}
 				else{
 					Article::insertTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "entrée");
 				}
-				
-				
         	}
 		}
 		/**

@@ -147,14 +147,21 @@
             $pdo = Database::getPDO();
             $numeroBon = $numeroBon . "";
             $quantiteArticle = intval($quantiteArticle);
-            if ($typeTrans == "entrée" OR $typeTrans == "sortie"){
+            if ($typeTrans == "entrée"){
                 $quantiteArticle = $quantiteArticle + $quantite;
+            }
+            elseif($typeTrans == "sortie"){
+                $quantiteArticle = $quantiteArticle - $quantite;
             }
 
             $req = "SELECT count(id) as nbTrans FROM transactions";
             $reponse = $pdo->query($req);
             $resultat = $reponse->fetch();
             $numTrans = intval($resultat["nbTrans"]) + 1;
+
+            if ($typeTrans == "sortie"){
+                $quantite = - $quantite;
+            }
 
             $req  = "INSERT INTO transactions (dateTrans, numeroTrans, idArticle, nomArticle, quantiteArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(), :numeroTrans, :idArticle, :nomArticle, :quantiteArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
             $reponse = $pdo->prepare($req);
@@ -204,6 +211,11 @@
                 'typeTrans' =>$typeTrans
             ));
 
+            
+            if ($typeTrans == "sortie"){
+                $quantite = - $quantite;
+            }
+            
             $req  = "INSERT INTO transactions (dateTrans, numeroTrans, idArticle, nomArticle, quantiteArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(), :numeroTrans, :idArticle, :nomArticle, :quantiteArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
@@ -235,10 +247,6 @@
                 }
                 $currentIdTrans = $idsTrans[$i];
                 $previousIdTrans = $idsTrans[$j];
-
-                //var_dump($currentIdTrans);
-                //var_dump($previousIdTrans);
-                //exit;
 
                 $req  = "SELECT quantite FROM transactions WHERE id = $currentIdTrans";
                 $reponse = $pdo->query($req);
@@ -285,23 +293,6 @@
             }
             return $transactions;
         }
-        /**
-         * 
-         */
-       /* public static function updateQuantity($idArticle, $quantite, $typeTrans){
-            
-            $pdo = Database::getPDO();
-            if($typeTrans =="entrée"){
-                $req  = "UPDATE article SET quantite = quantite + :quantite WHERE id= :idArticle";
-            }elseif($typeTrans == "sortie"){
-                $req  = "UPDATE article SET  quantite = quantite - :quantite WHERE id= :idArticle";
-            }
-            $reponse = $pdo->prepare($req);
-            $reponse->execute(array(
-                'idArticle' => $idArticle,
-                'quantite'  => $quantite
-            ));
-        } */
 
         /**
          * Annule la quantité précédente qui a été ajoutée ou supprimée par le bon qui est modifié
@@ -327,4 +318,40 @@
                 'idArticle' => $dotationIdArticle
             ));
         }
+
+        public static function getEntreeSortiesJournal(){
+            $pdo = Database::getPDO();
+            $req = "SELECT DISTINCT(idArticle) FROM transactions WHERE dateTrans = CURDATE()";
+            $reponse = $pdo->query($req);
+            $transactions = array();
+            $rows = $reponse->fetchAll();
+            foreach ($rows as $row){
+                $transaction = new Transaction($row['idArticle']);
+                $transactions[] = $transaction;
+            }
+            $tabTrans = [];
+            foreach ($transactions as $transaction){
+                $transact = [
+                    'nomArticle' => $transaction->nomArticle,
+                    'sommePositive' => self::getSumArticle($transaction->idArticle, $transaction->nomArticle, "entrée"),
+                    'sommeNegative' => self::getSumArticle($transaction->idArticle, $transaction->nomArticle, "sortie")
+                ];
+                $tabTrans[] = $transact;
+            }
+            return $tabTrans;
+        }
+
+        public static function getSumArticle($idArticle, $nomArticle, $typeTrans){
+            $pdo = Database::getPDO();
+            $req  = "SELECT SUM(quantite) as somme FROM transactions WHERE idArticle = :idArticle AND typeTrans = :typeTrans GROUP BY idArticle";
+            $reponse = $pdo->prepare($req);
+            $reponse->execute(array(
+                'idArticle' => $idArticle,
+                'typeTrans' => $typeTrans
+            ));
+            $row = $reponse->fetch();
+            $somme = intval($row["somme"]);
+            return $somme;
+        }
+
     }//fin de la classe Article
