@@ -121,7 +121,8 @@ footer p{
   font-size: 14px;
   padding: 13px;
   margin: auto;
-  margin-bottom: 0px;
+  margin-top: 0px;
+  margin-bottom: 20px;
   border-radius: 10px;
 }
 
@@ -146,7 +147,7 @@ footer p{
 }
 
 .row-color:nth-child(odd) {
-  background-color:rgba(157, 205, 238, 0.4);
+  background-color:rgba(23, 162, 184, 0.2);
   border-radius: 10px;
 }
 
@@ -201,12 +202,11 @@ input[disabled]{
 
 #notification{
   position: absolute;
-  top: -20px;
+  top: -10px;
   right: 0px;
   left: 0px;
-  margin-left: 50px;
-  margin-right: 20px;
-  border: 2px solid black;
+  margin-right: 50px;
+  border: 2px solid rgba(180, 173, 173, 0.5);
   z-index: 999;
   opacity: 0.9;
   font-weight: bold;
@@ -240,4 +240,16 @@ text-decoration: none;
 
 #passwordMsg{
   height: 25px;
+}
+
+.text-sm{
+  font-size: 14px;
+}
+
+.text-sm a:hover{
+  color: #fff;
+}
+
+.text-md{
+  font-size: 20px;
 }

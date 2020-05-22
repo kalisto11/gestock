@@ -28,7 +28,7 @@
                     if($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $idArticle = intval($this->request->id);
                         $article = new Article($idArticle);
-                        $article->supprime(); 
+                        $article->delete(); 
                         $message[] = "L'article a été supprimé avec succès.";
                         $this->notification = new Notification("success", $message);
                     } 
@@ -130,7 +130,7 @@
                     $article->groupe = strip_tags($groupeArticle);
                     $article->quantite = intval($quantiteArticle);   
                     $article->seuil = intval($seuilArticle);                                           
-                    $article->ajoutArticle();
+                    $article->save();
                     $message[] = "L'article a été ajouté avec succès.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'liste';
@@ -142,7 +142,7 @@
                     $article->groupe = strip_tags($groupeArticle);
                     $article->quantite = intval($quantiteArticle);   
                     $article->seuil = intval($seuilArticle); 
-                    $article->modif();
+                    $article->update();
                     $message[] = "L'article a été modifié avec succès.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'liste';

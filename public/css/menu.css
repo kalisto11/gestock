@@ -1,11 +1,11 @@
 .nav-side-menu {
-  overflow: auto;
+  
   font-family: verdana;
   font-size: 16px;
   background-color: #2e353d;
   position: fixed;
   top: 0px;
-  width: 220px;
+  width: 15%;
   height: 100%;
   color: #e1ffff;
   padding: 0px;
@@ -78,7 +78,7 @@
 .nav-side-menu li > a {
   text-decoration: none;
   color: #e1ffff;
-  padding-left: 30px;
+  padding-left: 20px;
   width: 30px;
   padding-right: 20px;
 }

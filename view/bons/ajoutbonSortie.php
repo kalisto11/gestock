@@ -6,7 +6,7 @@
     
     <div class="form-group">
       <label for="reference">Référence</label>
-      <input type="text" name="reference" id="reference" class="form-control form-control-sm" placeholder="référence du bon de sortie" required>
+      <input type="text" name="reference" id="reference" class="form-control form-control-sm" placeholder="référence du bon de sortie"  <?php if (isset($bonsortie)) : ?> value="<?= $bonsortie->reference ?>" <?php endif ; ?> required>
     </div>
 
     <div class="form-group mt-3">
@@ -14,7 +14,7 @@
       <select name="beneficiaire" id="beneficiaire" class="form-control form-control-sm">
         <option value="null">Choisir un bénéficiare</option>
         <?php foreach($personnels as $personnel): ?>
-        <option value="<?= $personnel->id ?>">  <?= $personnel->prenom?>  <?= $personnel->nom ?></option>
+        <option value="<?= $personnel->id ?>" <?php if (isset($bonsortie) AND $bonsortie->beneficiaire == $personnel->id){echo 'selected="selected"' ;} ?>>  <?= $personnel->prenom?>  <?= $personnel->nom ?></option>
         <?php endforeach ; ?>
       </select>
     </div>
@@ -77,5 +77,3 @@
     </div>    
   </form>
 </div>
-
-

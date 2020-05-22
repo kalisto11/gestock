@@ -13,8 +13,8 @@
                             case 'traitement-bonentree':
                             switch ($_POST['operation']){
                                 case 'ajouter':
-                                    $this->traiterBonEntree($_POST['reference'], $_POST['numeroFacture'], $_POST['dateFacture'], $_POST['fournisseur']);
-                                    $this->render($this->notification);
+                                    $statutTraitement = $this->traiterBonEntree($_POST['reference'], $_POST['numeroFacture'], $_POST['dateFacture'], $_POST['fournisseur']);
+                                    $this->render($this->notification, $statutTraitement);
                                 break;                           
                                 case 'modifier':
                                     $this->traiterBonEntree($_POST['reference'], $_POST['numeroFacture'], $_POST['dateFacture'], $_POST['fournisseur'], $_POST['id']);
@@ -48,7 +48,7 @@
          * Permet d'afficher les vues du module bons d'entrée
          * @param Notification permet de stocker les messgaes de notification s à afficher dans la vue en cas de reussite ou d'echec d'une opération
         **/
-        public function render($notification = null){
+        public function render($notification = null, $statutTraitement = true){
             switch ($this->request->action){
 
                 case 'liste':
@@ -72,7 +72,14 @@
                 case 'ajouter':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $articles = Article::getList();
-                        $fournisseurs = Fournisseur::getList();
+                        $fournisseurs = Fournisseur::getListAll();
+                        if ($statutTraitement == false){
+                            $bonentree = new BonEntree();
+                            $bonentree->reference = $_POST['reference'];
+                            $bonentree->numeroFacture = $_POST['numeroFacture'];
+                            $bonentree->dateFacture = $_POST['dateFacture'];    
+                            $bonentree->fournisseur = $_POST['fournisseur'];  
+                        }
                         require_once VIEW . 'bons/ajoutbonentree.php';
                     }
                 break;
@@ -80,7 +87,7 @@
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $bonentree  = new BonEntree($this->request->id);
                         $articles = Article::getList();
-                        $fournisseurs = Fournisseur::getList();
+                        $fournisseurs = Fournisseur::getListAll();
                         require_once VIEW . 'bons/modifbonentree.php';
                     }
                 break;
@@ -92,7 +99,7 @@
         /**
          * 
          */
-        public function traiterBonEntree($reference, $numeroFacture, $dateFacture, $fournisseur, $id =null){
+        public function traiterBonEntree($reference, $numeroFacture, $dateFacture, $fournisseur, $id = null){
             $articles = $this->ajoutArticles($_POST['article1'], $_POST['quantite1'], $_POST['prix1'],
             $_POST['article2'], $_POST['quantite2'], $_POST['prix2'], $_POST['article3'], $_POST['quantite3'], $_POST['prix3'], $_POST['article4'], $_POST['quantite4'], $_POST['prix4'], $_POST['article5'], $_POST['quantite5'], $_POST['prix5'], $_POST['article6'], $_POST['quantite6'], $_POST['prix6'], $_POST['article7'], $_POST['quantite7'], $_POST['prix7'], $_POST['article8'], $_POST['quantite8'], $_POST['prix8'], $_POST['article9'], $_POST['quantite9'], $_POST['prix9'], $_POST['article10'], $_POST['quantite10'], $_POST['prix10']);
             $erreur = false;
@@ -132,6 +139,18 @@
                     $message[] = "Il y a eu doublon sur les articles choisis.";
                 }
             }
+
+            if ($id == null){
+                $bonsentrees = BonEntree::getListAll();
+                foreach ($bonsentrees as $bonentree){
+                    if ($bonentree->reference == $_POST['reference']){
+                        $erreur = true;
+                        $message[] = "le numéro du bon est déja utilisé.";
+                        break;
+                    }
+                }
+            }
+          
             if ($erreur == false){ // si pas d'erreur
                 if ($id == null){ // cas ajouter
                     $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];
@@ -144,7 +163,7 @@
                     $bonentree->idFournisseur = $fournisseur->id;
                     $bonentree->nomFournisseur = $fournisseur->nom;
                     $bonentree->idModificateur = $_SESSION['user']['id'];
-                    $bonentree->nomModificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];
+                    $bonentree->nomModificateur = $_SESSION['user']['prenom'] . ' ' . $_SESSION['user']['nom'];
                     $dotations = [];
                     foreach ($articles as $article){
                         $art = new Article($article['id']);
@@ -159,7 +178,7 @@
                     $this->request->id = $bonentree->id;
                 }
                 else{ // cas modifier 
-                    $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];// prenom et nom du créateur ou modificateur du bon
+                    $modificateur = $_SESSION['user']['prenom'] . ' ' . $_SESSION['user']['nom']; // prenom et nom du créateur ou modificateur du bon
                     $id = intval($id);
                     $idFournisseur = intval(strip_tags($fournisseur));
                     $fournisseur = new Fournisseur($idFournisseur);       
@@ -171,15 +190,15 @@
                     $bonentree->idFournisseur = $fournisseur->id;
                     $bonentree->nomFournisseur = $fournisseur->nom;
                     $bonentree->idModificateur = $_SESSION['user']['id'];
-                    $bonentree->nomModificateur =$modificateur ;
+                    $bonentree->nomModificateur = $modificateur ;
                     $dotations = [];
                     foreach ($articles as $article){
                         $art = new Article($article['id']);
                         $dotation = new Dotation($art->id, $art->nom, $article['quantite'], $article['prix']);
                         $dotations[] = $dotation;
                     }
-                    $bonentree->dotations =  $dotations;
-                    $bonentree->modify();
+                    $bonentree->dotations = $dotations;
+                    $bonentree->update();
                     $message[] = "Le bon a été bien modifié.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'consulter';
@@ -190,10 +209,12 @@
                 $this->notification = new Notification("danger", $message);
                 if ($id == null){
                     $this->request->action = 'ajouter';
+                    return false;
                 }
                 else{
                     $this->request->action = 'modifier';
                     $this->request->id = $id;
+                    return false;
                 }     
             }
         } // fin méthode traiterBonEntree

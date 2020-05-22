@@ -33,7 +33,7 @@
 		<a href=" /gestock/bonsentree/liste/?page=<?= $currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
 	<?php endif ?>
     <?php if ($currentPage < $pages):?>
-		<a href="/gestock/bonsentree/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante </a>
+		<a href="/gestock/bonsentree/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante</a>
 	<?php endif ?>
 </div>
 

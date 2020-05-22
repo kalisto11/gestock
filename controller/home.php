@@ -18,8 +18,8 @@
             $articles = Article::getList();
             $users = User::getList();
             $user = new User($_SESSION['user']['id']);
-            $bonsentrees = BonEntree::getListHome();
-            $bonssorties = BonSortie::getListHome();
+            $bonsentrees = BonEntree::getListAll();
+            $bonssorties = BonSortie::getListAll();
             require_once VIEW . 'home/home.php';
         }
     }

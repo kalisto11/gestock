@@ -12,12 +12,12 @@
                             case 'traitement-bonsortie':
                              switch ($_POST['operation']){
                                  case 'ajouter':
-                                    $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire']);
-                                    $this->render($this->notification);
+                                    $statutTraitement = $this->traiterBonSortie($_POST['reference'], $_POST['beneficiaire']);
+                                    $this->render($this->notification, $statutTraitement);
                                 break;
      
                                  case 'modifier': 
-                                    $this->traitementBon_sortie($_POST['reference'], $_POST['beneficiaire'], $_POST['id']);
+                                    $this->traiterBonSortie($_POST['reference'], $_POST['beneficiaire'], $_POST['id']);
                                     $this->render($this->notification);
                                 break;
      
@@ -49,7 +49,7 @@
          * Permet d'afficher les vues du module bons de sortie
          * @param array permet de stocker les messgaes de notification s à afficher dans la vue en cas de reussite ou d'echec d'une opération
         **/
-        public function render($notification = null){
+        public function render($notification = null, $statutTraitement = true){
             switch ($this->request->action){
                 case 'liste':
                     $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
@@ -72,6 +72,11 @@
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $articles = Article::getList();
                         $personnels = Personnel::getList();
+                        if ($statutTraitement == false){
+                            $bonsortie = new BonSortie();
+                            $bonsortie->reference = $_POST['reference'];
+                            $bonsortie->beneficiaire = $_POST['beneficiaire'];  
+                        }
                         require_once VIEW . 'bons/ajoutbonSortie.php';
                     }
                 break;
@@ -91,7 +96,7 @@
         /**
          * 
          */
-        public function traitementBon_sortie($reference, $beneficiaire, $id = null){
+        public function traiterBonSortie($reference, $beneficiaire, $id = null){
             $articles = $this->ajoutArticles($_POST['article1'], $_POST['quantite1'], $_POST['prix1'],
             $_POST['article2'], $_POST['quantite2'], $_POST['prix2'], $_POST['article3'], $_POST['quantite3'], $_POST['prix3'], $_POST['article4'], $_POST['quantite4'], $_POST['prix4'], $_POST['article5'], $_POST['quantite5'], $_POST['prix5'], $_POST['article6'], $_POST['quantite6'], $_POST['prix6'], $_POST['article7'], $_POST['quantite7'], $_POST['prix7'], $_POST['article8'], $_POST['quantite8'], $_POST['prix8'], $_POST['article9'], $_POST['quantite9'], $_POST['prix9'], $_POST['article10'], $_POST['quantite10'], $_POST['prix10']);
             $erreur = false;
@@ -99,6 +104,14 @@
                 $erreur = true;
                 $message[] = "Les valeurs négatives ou vides ne peuvent pas être utilisées.";
             }
+            foreach ($articles as $article){
+                $art = new Article($article['id']);
+                if ($art->quantite <= 0){
+                    $erreur = true;
+                    $message[] = "Un des articles choisis n'est plus disponible dans le stock: " . $art->nom;
+                }
+            }
+            
              // verifier si reference n'est pas vide
             if (empty($reference)){
                 $erreur = true;
@@ -126,6 +139,18 @@
                     $message[] = "Il y a eu doublon sur les articles choisis.";
                 }
             }
+
+            if ($id == null){
+                $bonssorties = BonSortie::getListAll();
+                foreach ($bonssorties as $bonsortie){
+                    if ($bonsortie->reference == $_POST['reference']){
+                        $erreur = true;
+                        $message[] = "le numéro du bon est déja utilisé.";
+                        break;
+                    }
+                }
+            }
+
             if ($erreur == false){ // cas sans erreur
                 if ($id == null){ // cas ajouter bon de sortie
                     $modificateur = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];
@@ -171,7 +196,7 @@
                         $dotations[] = $dotation;
                     }
                     $bonsortie->dotations =  $dotations;
-                    $bonsortie->modify();  
+                    $bonsortie->update();  
                     $message[] = "Le bon de sortie a été bien modifié.";
                     $this->notification = new Notification("success", $message);
                     $this->request->action = 'consulter';
@@ -182,13 +207,14 @@
                 $this->notification = new Notification("danger", $message);
                 if ($id == null){
                     $this->request->action = 'ajouter';
+                    return false;
                 }
                 else{
                     $this->request->action = 'modifier';
                     $this->request->id = $id;
                 }
             }
-        } // fin méthode traitementBon_sortie
+        } // fin méthode traiterBonSortie
         /**
          * 
          */

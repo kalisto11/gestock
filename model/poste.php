@@ -68,7 +68,7 @@
 
         public static function getListFree(){
             $pdo = Database::getPDO();
-            $req = 'SELECT id FROM poste LEFT JOIN personnel_poste ON poste.id = personnel_poste.id_poste WHERE personnel_poste.id_poste IS NULL AND personnel_poste.id_personnel IS NULL';
+            $req = 'SELECT id FROM poste LEFT JOIN personnel_poste ON poste.id = personnel_poste.id_poste WHERE personnel_poste.id_poste IS NULL AND personnel_poste.id_personnel IS NULL ORDER BY nom';
             $reponse = $pdo->query($req);
             $postes = array();
             while ($row = $reponse->fetch()){

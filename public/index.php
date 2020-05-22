@@ -5,15 +5,7 @@
 * toutes les requetes passent par cette page
 * qui charge les fichiers necessaires, appelle le dispatcher et affiche le template
 */  
-    ini_set('session.name', 'GESTOCK_SESSION');
-    ini_set('session.gc_maxlifetime', 2592000);
-    
-    $lifetime=1800;
-    session_set_cookie_params($lifetime, "/", "localhost");
     session_start();
-        
-    setcookie(session_name(), session_id(), time() + $lifetime);
-   
    
     // inclure le fichier de configuration
     require_once '../core/config.php';
@@ -31,7 +23,7 @@
         $content = ob_get_clean();
 
         // inclure le template par defaut
-        require 'default.php';
+        require '../view/templates/default.php';
     }
     else if(isset($_SESSION['id'])){
         $_SESSION['token'] = $_SESSION['id'];
