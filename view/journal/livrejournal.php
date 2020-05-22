@@ -68,14 +68,18 @@
 						<th>Article</th>
 						<th>Total entrées</th>
 						<th>Total sorties</th>
+						<th>Total création</th>
+						<th>Total modification</th>
 					</tr>
 				</thead>
 				<tbody>
 					<?php foreach ($entreesSorties as $entSort) : ?>
 					<tr>
-						<td><?= $entSort['nomArticle'] ?></td>
-						<td class="font-weight-bold text-success"><?= $entSort['sommePositive'] ?></td>
-						<td class="font-weight-bold text-danger"><?= $entSort['sommeNegative'] ?></td>
+						<td><?= $entSort['nom'] ?></td>
+						<td class="font-weight-bold text-success"><?= $entSort['sommeEntree'] ?></td>
+						<td class="font-weight-bold text-danger"><?= $entSort['sommeSortie'] ?></td>
+						<td class="font-weight-bold text-success"><?= $entSort['sommeCreation'] ?></td>
+						<td class="font-weight-bold text-danger"><?= $entSort['sommeModification'] ?></td>
 					</tr>
 					<?php endforeach ; ?>
 				</tbody>
@@ -140,7 +144,7 @@
 					</tr>
 				<?php endforeach ;?>
 			</table>
-			<div class="d-flex justify-content-between my-4">
+			<div class="d-flex justify-content-between px-4 m-0">
 				<?php if ($currentPage > 1):?>
 					<a href=" /gestock/livrejournals/?page=<?= $currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
 				<?php endif ?>

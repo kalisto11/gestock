@@ -325,23 +325,30 @@
             $reponse = $pdo->query($req);
             $transactions = array();
             $rows = $reponse->fetchAll();
+          
+
+            $idArticles = [];
             foreach ($rows as $row){
-                $transaction = new Transaction($row['idArticle']);
-                $transactions[] = $transaction;
+                $idArticle = $row['idArticle'];
+                $idArticles[] = $idArticle;
             }
-            $tabTrans = [];
-            foreach ($transactions as $transaction){
-                $transact = [
-                    'nomArticle' => $transaction->nomArticle,
-                    'sommePositive' => self::getSumArticle($transaction->idArticle, $transaction->nomArticle, "entrée"),
-                    'sommeNegative' => self::getSumArticle($transaction->idArticle, $transaction->nomArticle, "sortie")
-                ];
-                $tabTrans[] = $transact;
+
+            $entreesSorties = [];
+            foreach ($idArticles as $idArticle){
+                $art = new Article($idArticle);
+                $article['nom'] = $art->nom;
+                $article['sommeEntree'] = self::getSumArticle($idArticle, "entrée");
+                $article['sommeSortie'] = self::getSumArticle($idArticle, "sortie");
+                $article['sommeCreation'] = self::getSumArticle($idArticle, "création");
+                $article['sommeModification'] = self::getSumArticle($idArticle, "modification");
+                $entreesSorties[] = $article;
             }
-            return $tabTrans;
+            return $entreesSorties;
         }
 
-        public static function getSumArticle($idArticle, $nomArticle, $typeTrans){
+
+
+        public static function getSumArticle($idArticle, $typeTrans){
             $pdo = Database::getPDO();
             $req  = "SELECT SUM(quantite) as somme FROM transactions WHERE idArticle = :idArticle AND typeTrans = :typeTrans GROUP BY idArticle";
             $reponse = $pdo->prepare($req);
