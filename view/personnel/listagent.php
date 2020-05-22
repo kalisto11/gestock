@@ -41,7 +41,7 @@
         </div>
         <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
             <div class="mt-5">
-                <a class="btn btn-success" href="/gestock/personnels/ajouter"><img src="images/icones/ajout.png" class="menu-icone">  Ajouter un agent</a>
+                <a class="btn btn-success" href="/gestock/personnels/ajouter"><img src="images/icones/ajout.png" class="menu-icone">  Ajouter un Bénéficiaire</a>
             </div>
         <?php endif; ?>
           
