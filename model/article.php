@@ -117,6 +117,7 @@
             $req = "SELECT * from transactions WHERE dateTrans = CURDATE() ORDER BY id DESC LIMIT $perpage OFFSET $offset";
             $reponse = $pdo->query($req);
             $articles = array();
+            $transactions = [];
             while ($row = $reponse->fetch()){
                 $transaction = new Transaction($row['id']);
                 $transactions[] = $transaction;
