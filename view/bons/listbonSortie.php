@@ -12,7 +12,7 @@
         <tr>
             <td><?= $bonsortie->reference?></td>
             <td><?=$bonsortie->date?></td>
-            <td><a href="/gestock/personnels/consulter/<?= $bonsortie->idBeneficiaire ?>"><?=$bonsortie->nomBeneficiaire?></a></td>
+            <td><a href="/gestock/personnels/consulter/<?= $bonsortie->idBeneficiaire ?>" title="Consulter les informations du bénéficiaire"><?=$bonsortie->nomBeneficiaire?></a></td>
             <td>
                 <a class="btn btn-info btn-sm" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon de sortie"></a> 
                 <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>

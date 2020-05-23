@@ -9,11 +9,11 @@
           </tr>
           <?php foreach($articles as $article):?>
               <tr>
-                  <td class="align-middle"><?= $article->nom ?></td>
+                  <td class="align-middle"><a href="/gestock/grandlivres/consulter/<?=$article->id?>" title="Consulter l'historique des opérations"><?= $article->nom ?></a></td>
                   <td class="align-middle"><?= $article->quantite ?></td>
                   <td class="align-middle">
                       <a class="btn btn-info btn-sm" href="/gestock/grandlivres/consulter/<?=$article->id?>">
-                          <img src="images/icones/consult.png" class="menu-icone" alt="Consulter" title="Consulter">
+                          <img src="images/icones/consult.png" class="menu-icone" alt="Consulter" title="Consulter l'historique des opérations">
                       </a>
                     </td>   
               </tr>

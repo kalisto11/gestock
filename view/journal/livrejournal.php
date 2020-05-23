@@ -17,7 +17,7 @@
 					<tr>
 						<td class="align-middle"><?= $bonentree->reference?></td>
 						<td class="align-middle"><?=$bonentree->date?></td>
-						<td class="align-middle"><a href="/gestock/fournisseurs/consulter/<?=$bonentree->idFournisseur?>"><?=$bonentree->nomFournisseur?></a></td>					
+						<td class="align-middle"><a href="/gestock/fournisseurs/consulter/<?=$bonentree->idFournisseur?>" title="Consulter les informations du fournisseur"><?=$bonentree->nomFournisseur?></a></td>					
 						<td class="align-middle"> 
 							<a class="btn btn-info btn-sm" href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon d'entrée"></a>
 						</td>
@@ -44,7 +44,7 @@
 					<tr>
 						<td class="align-middle"><?= $bonsortie->reference?></td>
 						<td class="align-middle"><?=$bonsortie->date?></td>
-						<td class="align-middle"><a href="/gestock/personnels/consulter/<?= $bonsortie->idBeneficiaire ?>"><?=$bonsortie->nomBeneficiaire?></a></td>
+						<td class="align-middle"><a href="/gestock/personnels/consulter/<?= $bonsortie->idBeneficiaire ?>" title="Consulter les informations du bénéficiaire"><?=$bonsortie->nomBeneficiaire?></a></td>
 						<td class="align-middle">
 							<a class="btn btn-info btn-sm" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon de sortie"></a>
 						</td>
@@ -145,7 +145,7 @@
 				<?php endforeach ;?>
 			</table>
 		</div>
-		<div class="d-flex justify-content-between px-4 mt-3">
+		<div class="d-flex justify-content-between py-4 mt-3">
 				<?php if ($currentPage > 1):?>
 					<a href=" /gestock/livrejournals/?page=<?= $currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
 				<?php endif ?>

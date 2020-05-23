@@ -14,11 +14,14 @@
                         <td><a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>"><?= $fournisseur->nom ?></a></td>
                         <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
                             <td>
+                                <a class="btn btn-info btn-sm" href="/gestock/fournisseurs/consulter/<?=$fournisseur->id?>">
+                                    <img src="images/icones/consult.png" class="menu-icone" alt="Consulter les informations du fournisseur" title="Consulter les informations de l'agent">
+                                </a>
                                 <a class="btn btn-info btn-sm" href="/gestock/fournisseurs/modifier/<?= $fournisseur->id ?>">
-                                    <img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier">
+                                    <img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier les informations du fournisseur">
                                 </a>
                                 <a class="btn btn-info btn-sm suppr" href="/gestock/fournisseurs/supprimer/<?= $fournisseur->id ?>">
-                                    <img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer">
+                                    <img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer les informations du fournisseur">
                                 </a>
                             </td>
                         <?php endif; ?>

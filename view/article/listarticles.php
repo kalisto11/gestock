@@ -16,8 +16,11 @@
                         <td><?php if($article->groupe == 0){echo 'néant';}else{echo $article->groupe ;} ?></td>
                         <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
                         <td>
-                            <a class="btn btn-info btn-sm" href="/gestock/articles/modifier/<?= $article->id ?>"><img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier"></a>
-                            <a class="btn btn-info btn-sm suppr" href="/gestock/articles/supprimer/<?= $article->id ?>"><img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer"></a>                     
+                            <a class="btn btn-info btn-sm" href="/gestock/articles/consulter/<?=$article->id?>">
+                                <img src="images/icones/consult.png" class="menu-icone" alt="Consulter" title="Consulter les informations de l'article">
+                            </a>
+                            <a class="btn btn-info btn-sm" href="/gestock/articles/modifier/<?= $article->id ?>"><img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier les informations de l'article"></a>
+                            <a class="btn btn-info btn-sm suppr" href="/gestock/articles/supprimer/<?= $article->id ?>"><img src="images/icones/delete.png" class="menu-icone" alt="Supprimer" title="Supprimer l'article"></a>                     
                         </td>
                         <?php endif; ?>
                     </tr>

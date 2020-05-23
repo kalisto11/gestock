@@ -18,7 +18,7 @@
         
         <div>
             <h6>Bénéficiaire</h6>
-            <p class="zonegrise"><a href="/gestock/personnels/consulter/<?=$bonsortie->idBeneficiaire?>"><?= $bonsortie->nomBeneficiaire ?></a></p>        
+            <p class="zonegrise"><a href="/gestock/personnels/consulter/<?=$bonsortie->idBeneficiaire?>" title="Consulter les informations du bénéficiaire"><?= $bonsortie->nomBeneficiaire ?></a></p>        
         </div>
     </div>
     <div class="col-sm-9">
