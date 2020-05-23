@@ -61,7 +61,7 @@
 	<div class="col-lg-7">
 
 		<div class="mb-5 border rounded p-0 m-0">
-			<h4 class="text-center">Somme des transactions du jour</h4>
+			<h4 class="text-center">Somme des opérations du jour</h4>
 			<table class="table table-striped table-borderless table-hover table-sm p-0 m-0">
 				<thead>
 					<tr>
@@ -88,7 +88,7 @@
 		
 		
 		<div class="mt-5 border rounded p-0 m-0">
-			<h4 class="text-center">Transactions du jour</h4>
+			<h4 class="text-center">Opérations du jour</h4>
 			<table class="table table-striped table-borderless table-hover table-sm p-0 m-0">
 				<thead>
 					<tr>
@@ -144,14 +144,14 @@
 					</tr>
 				<?php endforeach ;?>
 			</table>
-			<div class="d-flex justify-content-between px-4 m-0">
+		</div>
+		<div class="d-flex justify-content-between px-4 mt-3">
 				<?php if ($currentPage > 1):?>
 					<a href=" /gestock/livrejournals/?page=<?= $currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
 				<?php endif ?>
 				<?php if ($currentPage < $pages):?>
 					<a href="/gestock/livrejournals/?page=<?= $currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante </a>
 				<?php endif ?>
-			</div>
 		</div>
 
 	</div>

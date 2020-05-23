@@ -1,4 +1,4 @@
-<h2>Historique des transactions</h2>
+<h2>Historique des opérations</h2>
 <div class="container-fluid"> 
   <div class="row">
     <div class="col-sm-3">

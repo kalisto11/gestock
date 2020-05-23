@@ -186,6 +186,27 @@
 				}
         	}
 		}
+
+		public static function getNbrBonFournisseur($idFournisseur){
+			$pdo = Database::getPDO();
+			$req = "SELECT COUNT(id) FROM bon_entree WHERE fournisseur_id = $idFournisseur";
+			$reponse = $pdo->query($req);
+			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
+			 return  $count;
+		}
+
+		public static function getListFournisseur($idFournisseur, $perpage, $offset) {
+			$pdo = Database::getPDO();
+			$req = "SELECT id from bon_entree WHERE fournisseur_id = $idFournisseur ORDER BY date DESC LIMIT $perpage OFFSET $offset";
+			$reponse = $pdo->query($req);
+			$bonsentrees = array();
+			while ($row = $reponse->fetch()){
+				$bonentree = new BonEntree($row['id']);
+				$bonsentrees[] = $bonentree;
+			}
+			return $bonsentrees;
+			
+		}
 		/**
 		 * 
 		 */
