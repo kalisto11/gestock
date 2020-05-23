@@ -26,14 +26,18 @@
                     </tr>
                 <?php endforeach ; ?>
             </table>
+            
+            <?php if (isset($pagination->currentPage)) : ?>
             <div class="d-flex justify-content-between my-4">
-	<?php if ($currentPage > 1):?>
-		<a href=" /gestock/articles/liste/?page=<?= $currentPage - 1 ?>" class="btn btn-primary">Page précédente</a>
-	<?php endif ?>
-    <?php if ($currentPage < $pages):?>
-		<a href="/gestock/articles/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-primary ml-auto">Page suivante </a>
-	<?php endif ?>
-</div>
+            <?php if ($pagination->currentPage > 1):?>
+                <a href=" /gestock/articles/liste/?page=<?= $pagination->currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
+            <?php endif ?>
+            <?php if ($pagination->currentPage < $pagination->pages):?>
+                <a href="/gestock/articles/liste/?page=<?= $pagination->currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante </a>
+            <?php endif ?>
+            </div>
+            <?php endif ; ?>
+
         <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?></div><?php endif; ?>
         
         <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?> 

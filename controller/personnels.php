@@ -55,22 +55,31 @@
         public function render($notification = null){
             switch ($this->request->action){
                 case 'liste':
-                    $agents = Personnel::getList();
+                    $count = Personnel::getNbrAll();
+                    if ($count > 0){
+                        $pagination = self::Pagination($count);
+                        if (!$pagination){
+                            $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("danger", $message);
+                        }
+                        else{
+                            $agents = Personnel::getList($pagination->perPage, $pagination->offset);
+                        } 
+                    }
                     require_once VIEW . 'personnel/listagent.php';
                 break;
 
                 case 'consulter':
                     $agent = new Personnel($this->request->id);
-                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
-                    $perpage = 10;
                     $count = BonSortie::getNbrBonBeneficiaire($agent->id);
-                    $pages = ceil($count/$perpage);
-                    if ($currentPage > $pages){
-                        $message[] = "Cette page n'existe pas";
-                            $this->notification = new Notification("success", $message);
+                    if ($count > 0){
+                        $pagination = self::Pagination($count);
+                        if (!$pagination){
+                            $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("danger", $message);
+                        }
+                        $bonssorties = BonSortie::getListBeneficiaire($agent->id, $pagination->perPage, $pagination->offset);
                     }
-                    $offset = $perpage * ($currentPage - 1);
-                    $bonssorties = BonSortie::getListBeneficiaire($agent->id, $perpage, $offset);
                     require_once VIEW . 'personnel/infoagent.php';
                 break;
 

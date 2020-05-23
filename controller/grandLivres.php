@@ -14,16 +14,17 @@ class GrandLivres extends Controller{
     public function render($notification = null){
         switch ($this->request->action){
             case 'liste':
-                $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
-                $perpage = 10;
                 $count = Article::getNbrArticle();
-                $pages = ceil($count/$perpage);
-                if ($currentPage > $pages){
-                    $message[] = "Cette page n'existe pas";
-                    $this->notification = new Notification("success", $message);
+                if ($count > 0){
+                    $pagination = self::Pagination($count);
+                    if (!$pagination){
+                        $message[] = "Cette page n'existe pas";
+                        $this->notification = new Notification("danger", $message);
+                    }
+                    else{
+                        $articles = Article::getListTrans($pagination->perPage, $pagination->offset);
+                    }
                 }
-                $offset = $perpage * ($currentPage - 1);
-                $articles = Article::getListTrans($perpage, $offset);
                 require_once VIEW . 'journal/grand_livre.php';
             break;
             case 'consulter':

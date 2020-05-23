@@ -15,16 +15,17 @@
                 case 'liste':
                     $bonssentrees = BonEntree::getListJournal();
                     $bonssorties = BonSortie::getListJournal();
-                    $currentPage = (int)($_GET['page'] ?? 1) ? :1;
-                    $perpage = 10;
                     $count = Article::getNbrTransJournal();
-                    $pages = ceil($count/$perpage);
-                    if ($currentPage > $pages){
-                        $message[] = "Cette page n'existe pas";
-                        $this->notification = new Notification("success", $message);
+                    if ($count > 0){
+                        $pagination = self::Pagination($count);
+                        if (!$pagination){
+                            $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("danger", $message);
+                        }
+                        else{
+                            $transactions = Article::getListTransJournal($pagination->perPage, $pagination->offset);
+                        } 
                     }
-                    $offset = $perpage * ($currentPage - 1);
-                    $transactions = Article::getListTransJournal($perpage, $offset);
                     sort($transactions);
                     $entreesSorties = Article::getEntreeSortiesJournal();
                     require_once VIEW . 'journal/livrejournal.php';

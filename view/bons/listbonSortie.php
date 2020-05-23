@@ -8,31 +8,34 @@
             <th>Bénéficiaire</th>
             <th class="th-sm">Actions</th>
         </tr>
-        <?php foreach($bonssorties as $bonsortie):?>
-        <tr>
-            <td><?= $bonsortie->reference?></td>
-            <td><?=$bonsortie->date?></td>
-            <td><a href="/gestock/personnels/consulter/<?= $bonsortie->idBeneficiaire ?>" title="Consulter les informations du bénéficiaire"><?=$bonsortie->nomBeneficiaire?></a></td>
-            <td>
-                <a class="btn btn-info btn-sm" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon de sortie"></a> 
-                <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
-                    <a class="btn btn-info btn-sm" href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>"><img src="images/icones/pencil.png" class="menu-icone" title="Modifier les informations du bon de sortie"></a>
-                    <a class="btn btn-info btn-sm suppr" href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>"><img src="images/icones/delete.png" class="menu-icone" title="Supprimer le bon de sortie"></a>
-                <?php endif; ?>
-            </td>
-        </tr>
-        <?php endforeach ;?>
+        <?php if (isset($bonssorties)) : ?>
+            <?php foreach($bonssorties as $bonsortie):?>
+            <tr>
+                <td><?= $bonsortie->reference?></td>
+                <td><?=$bonsortie->date?></td>
+                <td><a href="/gestock/personnels/consulter/<?= $bonsortie->idBeneficiaire ?>" title="Consulter les informations du bénéficiaire"><?=$bonsortie->nomBeneficiaire?></a></td>
+                <td>
+                    <a class="btn btn-info btn-sm" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon de sortie"></a> 
+                    <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
+                        <a class="btn btn-info btn-sm" href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>"><img src="images/icones/pencil.png" class="menu-icone" title="Modifier les informations du bon de sortie"></a>
+                        <a class="btn btn-info btn-sm suppr" href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>"><img src="images/icones/delete.png" class="menu-icone" title="Supprimer le bon de sortie"></a>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <?php endforeach ;?>
+        <?php endif ; ?>
     </table>
 </div>
-
+<?php if (isset($pagination->currentPage)) : ?>
 <div class="d-flex justify-content-between my-4">
-	<?php if ($currentPage > 1):?>
-		<a href=" /gestock/bonssortie/liste/?page=<?= $currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
+	<?php if ($pagination->currentPage > 1):?>
+		<a href=" /gestock/bonssortie/liste/?page=<?= $pagination->currentPage - 1 ?>" title="Page précédente"><img src="images/icones/precedent.png" alt="Page précédente" class="page-icone"></a>
 	<?php endif ?>
-    <?php if ($currentPage < $pages):?>
-		<a href="/gestock/bonssortie/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante </a>
+    <?php if ($pagination->currentPage < $pagination->pages):?>
+		<a href="/gestock/bonssortie/liste/?page=<?= $pagination->currentPage + 1 ?>" class="ml-auto" title="Page suivante"><img src="images/icones/suivant.png" alt="Page suivante" class="page-icone"></a>
 	<?php endif ?>
 </div>
+<?php endif ; ?>
 
 <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
     <div class="mt-5">

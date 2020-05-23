@@ -52,23 +52,25 @@
             switch ($this->request->action){
 
                 case 'liste':
-                    case 'liste':
-                        $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
-                        $perpage = 10;
-                        $count = BonEntree::getNbrBon();
-                        $pages = ceil($count/$perpage);
-                        if ($currentPage > $pages){
+                    $count = BonEntree::getNbrBon();
+                    if ($count > 0){
+                        $pagination = self::Pagination($count);
+                        if (!$pagination){
                             $message[] = "Cette page n'existe pas";
-                            $this->notification = new Notification("success", $message);
+                            $this->notification = new Notification("danger", $message);
                         }
-                        $offset = $perpage * ($currentPage - 1);
-                        $bonsentrees = BonEntree::getList($perpage, $offset);
-                        require_once VIEW . 'bons/listbonentree.php';
+                        else{
+                            $bonsentrees = BonEntree::getList($pagination->perPage, $pagination->offset);
+                        }
+                    }
+                    require_once VIEW . 'bons/listbonentree.php';
                 break;
+
                 case 'consulter':
                     $bonentree = new BonEntree($this->request->id);  
                     require_once VIEW . 'bons/infobonentree.php';
                 break;
+
                 case 'ajouter':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $articles = Article::getList();
@@ -83,6 +85,7 @@
                         require_once VIEW . 'bons/ajoutbonentree.php';
                     }
                 break;
+
                 case 'modifier':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $bonentree  = new BonEntree($this->request->id);
@@ -91,6 +94,7 @@
                         require_once VIEW . 'bons/modifbonentree.php';
                     }
                 break;
+                
                 default: // gestion des erreurs au cas ou la valeur de action 
                     $currentController = new Erreur($this->request);
                     $currentController->process();

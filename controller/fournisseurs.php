@@ -54,16 +54,17 @@
         public function render($notification = null){
             switch ($this->request->action){
                 case 'liste':
-                    $currentPage = (int)($_GET['page'] ?? 1) ? :1;
-                    $perpage = 10;
                     $count = Fournisseur::getNbrFournisseur();
-                    $pages = ceil($count/$perpage);
-                    if ($currentPage > $pages){
-                        $message[] = "Cette page n'existe pas";
-                        $this->notification = new Notification("success", $message);
+                    if ($count > 0){
+                        $pagination = self::Pagination($count);
+                        if (!$pagination){
+                            $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("danger", $message);
+                        }
+                        else{
+                            $fournisseurs = Fournisseur::getList($pagination->perPage, $pagination->offset);
+                        }
                     }
-                    $offset = $perpage * ($currentPage - 1);
-                    $fournisseurs = Fournisseur::getList($perpage, $offset);
                     require_once VIEW . 'fournisseur/listefournisseurs.php';
                 break;
 

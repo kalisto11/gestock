@@ -38,6 +38,11 @@ body{
   margin: -5px;
 }
 
+.page-icone{
+  width: 50px;
+  margin: 0px;
+}
+
 .bouton{
   height: 15px;
   width: 15px;

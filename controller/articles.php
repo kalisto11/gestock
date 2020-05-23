@@ -45,18 +45,20 @@
              switch ($this->request->action){
                 // inclure les vues ici selon la valeur de $this->request->action
                 case 'liste':
-                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
-                    $perpage = 10;
                     $count = Article::getNbrArticle();
-                    $pages = ceil($count/$perpage);
-                    if ($currentPage > $pages){
+                    if ($count > 0){
+                        $pagination = self::Pagination($count);
+                        if (!$pagination){
                             $message[] = "Cette page n'existe pas";
-                            $this->notification = new Notification("success", $message);
+                            $this->notification = new Notification("danger", $message);
+                        }
+                        else{
+                            $articles = Article::getListTrans($pagination->perPage, $pagination->offset);
+                        }
                     }
-                    $offset = $perpage * ($currentPage - 1);
-                    $articles = Article::getListTrans($perpage, $offset);
                     require_once VIEW . 'article/listarticles.php';
                 break;
+
                 case 'modifier':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $idArticle = intval($this->request->id);
@@ -74,6 +76,7 @@
                     $articles = Article::getListTrans($perpage, $offset);
                     require_once VIEW . 'article/listarticles.php';
                 break;
+
                 case 'ajouter':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         require_once   VIEW . 'article/listarticles.php';
@@ -82,6 +85,7 @@
                 case 'supprimer':
                     require_once VIEW . 'article/listarticles.php';
                  break;
+                 
                 default: // gestion des erreurs au cas ou la valeur de action n'est pas valide
                 $currentController = new Erreur($this->request);
                 $currentController->process();

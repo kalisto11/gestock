@@ -52,26 +52,29 @@
         public function render($notification = null, $statutTraitement = true){
             switch ($this->request->action){
                 case 'liste':
-                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
-                    $perpage = 10;
                     $count = BonSortie::getNbrBon();
-                    $pages = ceil($count/$perpage);
-                    if ($currentPage > $pages){
-                        $message[] = "Cette page n'existe pas";
-                            $this->notification = new Notification("success", $message);
+                    if ($count){
+                        $pagination = self::Pagination($count);
+                        if (!$pagination){
+                            $message[] = "Cette page n'existe pas";
+                            $this->notification = new Notification("danger", $message);
+                        }
+                        else{
+                            $bonssorties = BonSortie::getList($pagination->perPage, $pagination->offset);
+                        } 
                     }
-                    $offset = $perpage * ($currentPage - 1);
-                    $bonssorties = BonSortie::getList($perpage, $offset);
-                    require_once VIEW . 'bons/listbonSortie.php';   
+                    require_once VIEW . 'bons/listbonSortie.php';  
                 break;
+
                 case 'consulter':
                     $bonsortie = new BonSortie($this->request->id);  
                     require_once VIEW . 'bons/infobonsortie.php';
                 break;
+
                 case 'ajouter':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $articles = Article::getList();
-                        $personnels = Personnel::getList();
+                        $personnels = Personnel::getListAll();
                         if ($statutTraitement == false){
                             $bonsortie = new BonSortie();
                             $bonsortie->reference = $_POST['reference'];
@@ -80,6 +83,7 @@
                         require_once VIEW . 'bons/ajoutbonSortie.php';
                     }
                 break;
+
                 case 'modifier':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $bonsortie  = new BonSortie($this->request->id);
@@ -88,6 +92,7 @@
                         require_once VIEW . 'bons/modifbonsortie.php';
                     }
                 break;
+
                 default: // gestion des erreurs au cas ou la valeur de action 
                     $currentController = new Erreur($this->request);
                     $currentController->process();

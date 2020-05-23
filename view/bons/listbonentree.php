@@ -9,33 +9,36 @@
             <th>Founisseur</th>
             <th class="th-sm">Actions</th>
         </tr>
-        <?php foreach($bonsentrees as $bonentree):?>
-        <tr>
-            <td><?= $bonentree->reference?></td>
-            <td><?=$bonentree->date?></td>
-            <td><a href="/gestock/fournisseurs/consulter/<?=$bonentree->idFournisseur?>" title="Consulter les informations du fournisseur"><?=$bonentree->nomFournisseur?></a></td>
-            
-            <td> 
-                <a class="btn btn-info btn-sm" href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon d'entrée"></a>
-                <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
-                    <a class="btn btn-info btn-sm" href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"><img src="images/icones/pencil.png" class=" menu-icone" title="Modifier les informations du bon d'entrée"></a>
-                    <a class="btn btn-info btn-sm suppr" href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"><img src="images/icones/delete.png" class=" menu-icone" title="Supprimer le bon d'entrée"></a>
-                <?php endif; ?>
-             </td>
-        </tr>
-        <?php endforeach ;?>
+        <?php if (isset($bonsentrees)) : ?>
+            <?php foreach($bonsentrees as $bonentree):?>
+            <tr>
+                <td><?= $bonentree->reference?></td>
+                <td><?=$bonentree->date?></td>
+                <td><a href="/gestock/fournisseurs/consulter/<?=$bonentree->idFournisseur?>" title="Consulter les informations du fournisseur"><?=$bonentree->nomFournisseur?></a></td>
+                
+                <td> 
+                    <a class="btn btn-info btn-sm" href="/gestock/bonsentree/consulter/<?= $bonentree->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon d'entrée"></a>
+                    <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
+                        <a class="btn btn-info btn-sm" href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>"><img src="images/icones/pencil.png" class=" menu-icone" title="Modifier les informations du bon d'entrée"></a>
+                        <a class="btn btn-info btn-sm suppr" href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>"><img src="images/icones/delete.png" class=" menu-icone" title="Supprimer le bon d'entrée"></a>
+                    <?php endif; ?>
+                </td>
+            </tr>
+            <?php endforeach ;?>
+        <?php endif ; ?>
     </table>
     
 </div>
-
+<?php if (isset($pagination->currentPage)) : ?>
 <div class="d-flex justify-content-between my-4">
-	<?php if ($currentPage > 1):?>
-		<a href=" /gestock/bonsentree/liste/?page=<?= $currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
+	<?php if ($pagination->currentPage > 1):?>
+		<a href=" /gestock/bonsentree/liste/?page=<?= $pagination->currentPage - 1 ?>" title="Page précédente"><img src="images/icones/precedent.png" alt="page précédente" class="page-icone"></a>
 	<?php endif ?>
-    <?php if ($currentPage < $pages):?>
-		<a href="/gestock/bonsentree/liste/?page=<?= $currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante</a>
+    <?php if ($pagination->currentPage < $pagination->pages):?>
+		<a href="/gestock/bonsentree/liste/?page=<?= $pagination->currentPage + 1 ?>" class="ml-auto" title="Page suivante"><img src="images/icones/suivant.png" alt="Page suivante" class="page-icone">/a>
 	<?php endif ?>
 </div>
+<?php endif ; ?>
 
 <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
     <div class="mt-5">

@@ -46,17 +46,18 @@
                             <a class="btn btn-info btn-sm" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon de sortie"></a>
                         </td>
                     </tr>
-                <?php endforeach ;?>
+                <?php endforeach ; ?>
             </table>
-
-            <div class="d-flex justify-content-between my-4">
-            <?php if ($currentPage > 1):?>
-                <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
-            <?php endif ?>
-            <?php if ($currentPage < $pages):?>
-                <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante </a>
-            <?php endif ?>
-            </div>
+            <?php if (isset($pagination->currentPage)) : ?>
+                <div class="d-flex justify-content-between my-4">
+                    <?php if ($pagination->currentPage > 1):?>
+                        <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $pagination->currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
+                    <?php endif ; ?>
+                    <?php if ($pagination->currentPage < $pagination->pages):?>
+                        <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $pagination->currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante </a>
+                    <?php endif; ?>
+                </div>
+            <?php endif ; ?>
         </div>
     </div>
 

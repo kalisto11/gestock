@@ -95,7 +95,20 @@
         $reponse = $pdo->prepare($sup);
         $reponse->execute(array($this->id));
     }
-    public static function getList(){ //Fonction permettant d'obtenir la liste du personnel
+
+    public static function getList($perpage, $offset) {
+        $pdo = Database::getPDO();
+        $req = "SELECT id from personnel ORDER BY nom DESC LIMIT $perpage OFFSET $offset";
+        $reponse = $pdo->query($req);
+        $personnels = array();
+        while ($row = $reponse->fetch()){
+            $personnel = new Personnel($row['id']);
+            $personnels[] = $personnel;
+        }
+        return $personnels;
+    }
+
+    public static function getListAll(){ //Fonction permettant d'obtenir la liste du personnel
         $pdo = Database::getPDO();
         $get = 'SELECT id from personnel ORDER BY nom';
         $reponse = $pdo->query($get);
@@ -105,6 +118,14 @@
             $personnels[] = $personnel;
         }
         return $personnels;
+    }
+
+    public static function getNbrAll(){
+        $pdo = Database::getPDO();
+        $req = "SELECT COUNT(id) FROM personnel";
+        $reponse = $pdo->query($req);
+        $count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
+        return  $count;
     }
 
 }
