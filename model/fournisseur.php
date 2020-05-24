@@ -63,9 +63,9 @@
             return $fournisseurs;
         }
 
-        public static function getList($perpage, $offset) {
+        public static function getList($perPage, $offset) {
 			$pdo = Database::getPDO();
-            $req = "SELECT id FROM fournisseur ORDER BY nom LIMIT $perpage OFFSET $offset";
+            $req = "SELECT id FROM fournisseur ORDER BY nom LIMIT $perPage OFFSET $offset";
             $reponse = $pdo->query($req);
             $fournisseurs = array();
             while ($row = $reponse->fetch()){

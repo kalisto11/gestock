@@ -73,7 +73,7 @@
 
                 case 'ajouter':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
-                        $articles = Article::getList();
+                        $articles = Article::getListAll();
                         $personnels = Personnel::getListAll();
                         if ($statutTraitement == false){
                             $bonsortie = new BonSortie();
@@ -87,8 +87,8 @@
                 case 'modifier':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $bonsortie  = new BonSortie($this->request->id);
-                        $articles = Article::getList();
-                        $personnels = Personnel::getList();
+                        $articles = Article::getListAll();
+                        $personnels = Personnel::getListAll();
                         require_once VIEW . 'bons/modifbonsortie.php';
                     }
                 break;

@@ -2,6 +2,7 @@
 
 <h2>Information sur le bon d'entrée</h2>
 <div class="container-fluid"> 
+<?php if (isset($bonentree)) : ?>
   <div class="row">
     <div class="col-sm-3">
       <div>
@@ -71,5 +72,12 @@
     </div>
   </div>
 </div>
+<?php else : ?>
+<div>
+<?php echo "Le bon n'existe plus"; ?>
+</div>
+<a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des bons d'entrée</a>
+<?php endif ; ?>
+
 
 

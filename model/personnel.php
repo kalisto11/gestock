@@ -70,7 +70,6 @@
         'id'     => $this->id
         ));
 
-
        $sup = 'DELETE FROM personnel_poste WHERE id_personnel = ?';
        $reponse = $pdo->prepare($sup);
        $reponse->execute(array($this->id));

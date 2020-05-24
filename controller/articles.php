@@ -53,7 +53,7 @@
                             $this->notification = new Notification("danger", $message);
                         }
                         else{
-                            $articles = Article::getListTrans($pagination->perPage, $pagination->offset);
+                            $articles = Article::getList($pagination->perPage, $pagination->offset);
                         }
                     }
                     require_once VIEW . 'article/listarticles.php';
@@ -73,7 +73,7 @@
                             $this->notification = new Notification("success", $message);
                     }
                     $offset = $perpage * ($currentPage - 1);
-                    $articles = Article::getListTrans($perpage, $offset);
+                    $articles = Article::getList($perpage, $offset);
                     require_once VIEW . 'article/listarticles.php';
                 break;
 

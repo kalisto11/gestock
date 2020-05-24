@@ -25,7 +25,7 @@
     <?php if (isset($pagination->currentPage)) : ?>
     <div class="d-flex justify-content-between my-4">
         <?php if ($pagination->currentPage > 1):?>
-            <a href=" /gestock/grandlivres/liste/?page=<?= $pagination->currentPage - 1 ?>" title="Page précédente"><img src="images/icones/precedent.png" alt="Page précédente" class="page-icone"></a>
+            <a href="/gestock/grandlivres/liste/?page=<?= $pagination->currentPage - 1 ?>" title="Page précédente"><img src="images/icones/precedent.png" alt="Page précédente" class="page-icone"></a>
         <?php endif ?>
         <?php if ($pagination->currentPage < $pagination->pages):?>
             <a href="/gestock/grandlivres/liste/?page=<?= $pagination->currentPage + 1 ?>" class="ml-auto" title="Page suivante"><img src="images/icones/suivant.png" alt="Page suivante" class="page-icone"></a>

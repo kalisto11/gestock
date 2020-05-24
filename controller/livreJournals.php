@@ -15,7 +15,7 @@
                 case 'liste':
                     $bonssentrees = BonEntree::getListJournal();
                     $bonssorties = BonSortie::getListJournal();
-                    $count = Article::getNbrTransJournal();
+                    $count = Transaction::getNbrTransJournal();
                     if ($count > 0){
                         $pagination = self::Pagination($count);
                         if (!$pagination){
@@ -23,10 +23,10 @@
                             $this->notification = new Notification("danger", $message);
                         }
                         else{
-                            $transactions = Article::getListTransJournal($pagination->perPage, $pagination->offset);
+                            $transactions = Transaction::getList($pagination->perPage, $pagination->offset);
+                            sort($transactions);
                         } 
                     }
-                    sort($transactions);
                     $entreesSorties = Article::getEntreeSortiesJournal();
                     require_once VIEW . 'journal/livrejournal.php';
                 break;

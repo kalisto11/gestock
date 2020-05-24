@@ -73,7 +73,7 @@
 
                 case 'ajouter':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
-                        $articles = Article::getList();
+                        $articles = Article::getListAll();
                         $fournisseurs = Fournisseur::getListAll();
                         if ($statutTraitement == false){
                             $bonentree = new BonEntree();
@@ -89,7 +89,7 @@
                 case 'modifier':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $bonentree  = new BonEntree($this->request->id);
-                        $articles = Article::getList();
+                        $articles = Article::getListAll();
                         $fournisseurs = Fournisseur::getListAll();
                         require_once VIEW . 'bons/modifbonentree.php';
                     }

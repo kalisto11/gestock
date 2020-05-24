@@ -1,7 +1,8 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
 <h2>Information sur le bon de sortie</h2>
-<div class="container-fluid"> 
+<div class="container-fluid">
+<?php if ($bonsortie->id != null) : ?> 
   <div class="row">
     <div class="col-sm-3">
         <div>
@@ -67,3 +68,10 @@
     </div>      
   </div>
 </div>
+<?php else : ?>
+<div>
+<?php echo "Le bon n'existe plus"; ?>
+</div>
+<a class="btn btn-secondary float-right" href="/gestock/bonssortie/liste">Voir la liste des bons de sortie</a>
+<?php endif ; ?>
+

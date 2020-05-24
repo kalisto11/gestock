@@ -135,10 +135,10 @@
 				$article = new Article($dotation->idArticle);
 				if($statutBon == 'old'){
 					Article::removeArticleQuantity($dotation->idArticle, $this->reference, "sortie");
-					Article::updateTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "sortie");
+					Transaction::updateTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "sortie");
 				}
 				else{
-					Article::insertTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "sortie");
+					Transaction::insertTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "sortie");
 				}
 			}
 		}
@@ -167,8 +167,8 @@
 				$bonssorties[] = $bonsortie;
 			}
 			return $bonssorties;
-			
 		}
+
 		/**
 		 * 
 		 */
@@ -183,6 +183,7 @@
 			}
 			return $bonssorties;
 		}
+
 		/**
 		 * 
 		 */
@@ -195,9 +196,9 @@
 				$bonsortie = new BonSortie($row['id']);
 				$bonssorties[] = $bonsortie;
 			}
-			return $bonssorties;
-			
+			return $bonssorties;	
 		}
+
 		/**
 		 * 
 		 */
@@ -208,6 +209,7 @@
 			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
 			 return  $count;
 		}
+		
 		/**
 		 * 
 		 */

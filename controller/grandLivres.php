@@ -22,15 +22,24 @@ class GrandLivres extends Controller{
                         $this->notification = new Notification("danger", $message);
                     }
                     else{
-                        $articles = Article::getListTrans($pagination->perPage, $pagination->offset);
+                        $articles = Article::getList($pagination->perPage, $pagination->offset);
                     }
                 }
                 require_once VIEW . 'journal/grand_livre.php';
             break;
             case 'consulter':
+                $count = Transaction::getNbrTransactionByArticle($this->request->id);
+                if ($count > 0){
+                    $pagination = self::Pagination($count);
+                    if (!$pagination){
+                        $message[] = "Cette page n'existe pas";
+                        $this->notification = new Notification("danger", $message);
+                    }
+                    else{
+                        $transactions = Transaction::getListByArticle($this->request->id, $pagination->perPage, $pagination->offset);
+                    }
+                }
                 $article = new Article($this->request->id);
-                $transactions = Article::getTransactions($this->request->id);
-                
                 require_once VIEW . 'journal/inventaire.php';
             break;
             default: // gestion des erreurs au cas ou la valeur de action 

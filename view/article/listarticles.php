@@ -16,7 +16,7 @@
                         <td><?php if($article->groupe == 0){echo 'néant';}else{echo $article->groupe ;} ?></td>
                         <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
                         <td>
-                            <a class="btn btn-info btn-sm" href="/gestock/articles/consulter/<?=$article->id?>">
+                            <a class="btn btn-info btn-sm" href="/gestock/grandlivres/consulter/<?=$article->id?>">
                                 <img src="images/icones/consult.png" class="menu-icone" alt="Consulter" title="Consulter les informations de l'article">
                             </a>
                             <a class="btn btn-info btn-sm" href="/gestock/articles/modifier/<?= $article->id ?>"><img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier les informations de l'article"></a>
@@ -29,12 +29,12 @@
             
             <?php if (isset($pagination->currentPage)) : ?>
             <div class="d-flex justify-content-between my-4">
-            <?php if ($pagination->currentPage > 1):?>
-                <a href=" /gestock/articles/liste/?page=<?= $pagination->currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
-            <?php endif ?>
-            <?php if ($pagination->currentPage < $pagination->pages):?>
-                <a href="/gestock/articles/liste/?page=<?= $pagination->currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante </a>
-            <?php endif ?>
+                <?php if ($pagination->currentPage > 1):?>
+                    <a href="/gestock/articles/liste/?page=<?= $pagination->currentPage - 1 ?>" title="Page précédente"><img src="images/icones/precedent.png" alt="Page précédente" class="page-icone"></a>
+                <?php endif ?>
+                <?php if ($pagination->currentPage < $pagination->pages):?>
+                    <a href="/gestock/articles/liste/?page=<?= $pagination->currentPage + 1 ?>" class="ml-auto" title="Page suivante"><img src="images/icones/suivant.png" alt="Page suivante" class="page-icone"></a>
+                <?php endif ?>
             </div>
             <?php endif ; ?>
 

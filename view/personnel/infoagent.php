@@ -38,15 +38,17 @@
                         <th class="th-sm" scope="col">Actions</th>
                     </tr>
                 </thead>
-                <?php foreach($bonssorties as $bonsortie):?>
-                    <tr>
-                        <td><?= $bonsortie->reference?></td>
-                        <td><?=$bonsortie->date?></td>
-                        <td>
-                            <a class="btn btn-info btn-sm" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon de sortie"></a>
-                        </td>
-                    </tr>
-                <?php endforeach ; ?>
+                <?php if (isset($bonssorties)) : ?>
+                    <?php foreach($bonssorties as $bonsortie):?>
+                        <tr>
+                            <td><?= $bonsortie->reference?></td>
+                            <td><?=$bonsortie->date?></td>
+                            <td>
+                                <a class="btn btn-info btn-sm" href="/gestock/bonssortie/consulter/<?= $bonsortie->id ?>"><img src="images/icones/consult.png" class="menu-icone" title="Consulter les informations du bon de sortie"></a>
+                            </td>
+                        </tr>
+                    <?php endforeach ; ?>   
+                <?php endif ; ?>
             </table>
             <?php if (isset($pagination->currentPage)) : ?>
                 <div class="d-flex justify-content-between my-4">

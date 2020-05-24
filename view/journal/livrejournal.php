@@ -75,7 +75,7 @@
 				<tbody>
 					<?php foreach ($entreesSorties as $entSort) : ?>
 					<tr>
-						<td><?= $entSort['nom'] ?></td>
+						<td><a href="/gestock/grandlivres/consulter/<?=$entSort['id'] ?>" title="Consulter l'historique de l'article"><?= $entSort['nom'] ?></td>
 						<td class="font-weight-bold text-success"><?= $entSort['sommeEntree'] ?></td>
 						<td class="font-weight-bold text-danger"><?= $entSort['sommeSortie'] ?></td>
 						<td class="font-weight-bold text-success"><?= $entSort['sommeCreation'] ?></td>
@@ -100,49 +100,49 @@
 						<th class="td-sm">Date transaction</th>
 					</tr>
 				</thead>
-				<?php if ($transactions != null) : ?>
-				<?php endif ; ?>
-				<?php foreach($transactions as $transaction):?>
-					<tr>
-						<td class="align-middle"><a href="/gestock/grandlivres/consulter/<?=$transaction->idArticle?>" title="Consulter l'historique de l'article"><?=$transaction->nomArticle?></a></td>
-						<td><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?><a href="/gestock/<?php if ($transaction->typeTrans == "entrée"){echo 'bonsentree';}elseif($transaction->typeTrans == "sortie"){echo 'bonssortie';}?>/consulter/<?=$transaction->idArticle?>" title="Consulter le bon"><?php endif ; ?><?=$transaction->numeroBon?><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?></a><?php endif ; ?></td>
-						<td class=" align-middle font-weight-bold text-<?php 
-							if ($transaction->typeTrans == "entrée"){
-							echo "success";
-							}
-							elseif($transaction->typeTrans == "sortie"){
-							echo "danger";
-							} 
-							else{
-							if ($transaction->quantite > 0){
-								echo "success";
-							}
-							elseif ($transaction->quantite < 0){
-								echo "danger";
-							}
-							}
-							?>
-							">
-							<?php 
+				<?php if (isset($transactions)) : ?>
+					<?php foreach($transactions as $transaction):?>
+						<tr>
+							<td class="align-middle"><a href="/gestock/grandlivres/consulter/<?=$transaction->idArticle?>" title="Consulter l'historique de l'article"><?=$transaction->nomArticle?></a></td>
+							<td><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?><a href="/gestock/<?php if ($transaction->typeTrans == "entrée"){echo 'bonsentree';}elseif($transaction->typeTrans == "sortie"){echo 'bonssortie';}?>/consulter/<?=$transaction->idBon?>" title="Consulter le bon"><?php endif ; ?><?=$transaction->numeroBon?><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?></a><?php endif ; ?></td>
+							<td class=" align-middle font-weight-bold text-<?php 
 								if ($transaction->typeTrans == "entrée"){
-									echo '+';
+								echo "success";
 								}
-								else if ($transaction->typeTrans == "création"){
-									echo '+';
+								elseif($transaction->typeTrans == "sortie"){
+								echo "danger";
+								} 
+								else{
+								if ($transaction->quantite > 0){
+									echo "success";
 								}
-								else if ($transaction->typeTrans == "modification"){
-									if ($transaction->quantite > 0){
+								elseif ($transaction->quantite < 0){
+									echo "danger";
+								}
+								}
+								?>
+								">
+								<?php 
+									if ($transaction->typeTrans == "entrée"){
 										echo '+';
 									}
-								}
-								echo $transaction->quantite;
-							?>
-						</td>
-						<td class="align-middle"><?=$transaction->quantiteArticle?></td>
-						<td class="align-middle"><?=$transaction->typeTrans?></td>
-						<td class="align-middle"><?=$transaction->dateTrans?></td>
-					</tr>
-				<?php endforeach ;?>
+									else if ($transaction->typeTrans == "création"){
+										echo '+';
+									}
+									else if ($transaction->typeTrans == "modification"){
+										if ($transaction->quantite > 0){
+											echo '+';
+										}
+									}
+									echo $transaction->quantite;
+								?>
+							</td>
+							<td class="align-middle"><?=$transaction->quantiteArticle?></td>
+							<td class="align-middle"><?=$transaction->typeTrans?></td>
+							<td class="align-middle"><?=$transaction->dateTrans?></td>
+						</tr>	
+					<?php endforeach ;?>
+				<?php endif ; ?>
 			</table>
 		</div>
 
