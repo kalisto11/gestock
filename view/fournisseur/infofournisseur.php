@@ -60,10 +60,6 @@
                 <?php endif ?>
                 </div>
             <?php endif ; ?>
-
-            <div class="text-right">
-                <a class="btn btn-secondary" href="/gestock/fournisseurs/iventaire/<?= $fournisseur->id ?>">Quantité d'articles fournis</a>
-            </div>
             
         </div>
     </div>

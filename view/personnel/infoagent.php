@@ -71,10 +71,6 @@
                 </div>
             <?php endif ; ?>
 
-            <div class="text-right">
-                <a class="btn btn-secondary" href="/gestock/personnels/iventaire/<?= $agent->id ?>">Quantité d'articles attribués</a>
-            </div>
-
         </div>
 
     </div>
