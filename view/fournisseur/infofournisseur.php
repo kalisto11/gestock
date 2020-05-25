@@ -22,6 +22,11 @@
                 </div>
                 <?php endif; ?>
             </div>
+
+            <div class="mt-5">
+                <a class="btn btn-secondary float-right" href="/gestock/fournisseurs/liste">Voir la liste des fournisseurs</a>
+            </div>
+
         </div>
 
         <div class="col-sm-8"> 
@@ -44,23 +49,23 @@
                     </tr>
                 <?php endforeach ;?>
             </table>
+            <?php if (isset($pagination->currentPage)) : ?>
+                <div class="text-center m-0">De <?= $pagination->offset + 1 ?> à <?= $pagination->offset + $pagination->perPage ?></div>
+                <div class="d-flex justify-content-between my-0 mx-4">
+                <?php if ($currentPage > 1):?>
+                    <a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>/?page=<?= $currentPage - 1 ?>" title="Page précédente"><img src="images/icones/precedent.png" alt="Page précédente" class="page-icone"></a>
+                <?php endif ?>
+                <?php if ($currentPage < $pages):?>
+                    <a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>/?page=<?= $currentPage + 1 ?>" class="ml-auto" title="Page suivante"><img src="images/icones/suivant.png" alt="Page suivante" class="page-icone"></a>
+                <?php endif ?>
+                </div>
+            <?php endif ; ?>
 
-            <div class="d-flex justify-content-between my-4">
-            <?php if ($currentPage > 1):?>
-                <a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>/?page=<?= $currentPage - 1 ?>" title="Page précédente"><img src="images/icones/precedent.png" alt="Page précédente" class="page-icone"></a>
-            <?php endif ?>
-            <?php if ($currentPage < $pages):?>
-                <a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>/?page=<?= $currentPage + 1 ?>" class="ml-auto" title="Page suivante"><img src="images/icones/suivant.png" alt="Page suivante" class="page-icone"></a>
-            <?php endif ?>
+            <div class="text-right">
+                <a class="btn btn-secondary" href="/gestock/fournisseurs/iventaire/<?= $fournisseur->id ?>">Quantité d'articles fournis</a>
             </div>
             
         </div>
-    </div>
-
-    <div class="mt-5">
-        <p>
-            <a class="btn btn-secondary float-right" href="/gestock/fournisseurs/liste">Voir la liste des fournisseurs</a>
-        </p>
     </div>
 </div>
     

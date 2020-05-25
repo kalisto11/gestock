@@ -4,10 +4,10 @@
       <div class="row">
         <div class="col-lg-3 m-lg-0 mb-sm-5">
           <div class="card">
-            <div class="card-header text-center text-light font-weight-bold bg-info p-0 m-0">
-            <h5 class="text-center font-weight-bold p-0 m-0">Mon compte</h5>
+            <div class="card-header text-center p-0 m-0">
+            <h5 class="text-center p-0 m-0">Mon compte</h5>
             </div>
-            <div class="card-body p-0 font-weight-bold"> 
+            <div class="card-body p-0"> 
               <p class="mx-0 mt-2 px-3">Prénom : <?= $user->prenom ?></p>
               <p class="mx-0 px-3">Nom : <?= $user->nom?></p>
               <p class="mx-0 px-3">
@@ -29,8 +29,8 @@
         
         <div class="col-lg-4 m-lg-0 mb-sm-5">
           <div class="card"> 
-            <div class="card-header text-center text-light font-weight-bold bg-info p-0 m-0"">
-            <h5 class="text-center font-weight-bold p-0 m-0">Articles bientôt  en rupture</h5>
+            <div class="card-header text-center p-0 m-0"">
+            <h5 class="text-center p-0 m-0">Articles bientôt  en rupture</h5>
             </div>
             <div class="card-body p-0">
               <table class="table table-striped table-borderless table-hover table-sm m-0">
@@ -57,8 +57,8 @@
 
         <div class="col-lg-5 m-lg-0 mb-sm-5">
           <div class="card bg-light">
-            <div class="card-header text-center text-light font-weight-bold bg-info p-0 m-0"">
-            <h5 class="text-center font-weight-bold p-0 m-0">Utilisateurs</h5>
+            <div class="card-header text-center p-0 m-0"">
+            <h5 class="text-center p-0 m-0">Utilisateurs</h5>
             </div>
             <div class="card-body p-0">
               <table class="table table-striped table-borderless table-hover table-sm m-0">
@@ -104,8 +104,8 @@
 
       <div class="col-lg-6 m-lg-0 mb-sm-5">
         <div class="card">
-          <div class="card-header text-light bg-info p-0 m-0"">
-            <h5 class="text-center font-weight-bold p-0 m-0">Derniers bons d'entrée</h5>
+          <div class="card-header p-0 m-0"">
+            <h5 class="text-center p-0 m-0">Derniers bons d'entrée</h5>
           </div>
           <div class="card-body m-0 p-0">
             <table class="table table-striped table-borderless table-hover table-sm m-0" >
@@ -136,8 +136,8 @@
 
       <div class="col-lg-6">
         <div class="card ">
-          <div class="card-header text-light bg-info p-0 m-0"">
-            <h5 class="text-center font-weight-bold p-0 m-0">Derniers bons de sortie</h5>
+          <div class="card-header p-0 m-0"">
+            <h5 class="text-center p-0 m-0">Derniers bons de sortie</h5>
           </div>
           <div class="card-body m-0 p-0">
             <table class="table table-striped table-borderless table-hover table-sm m-0" >
