@@ -26,8 +26,10 @@
         <?php endif ; ?>
     </table>
 </div>
+
 <?php if (isset($pagination->currentPage)) : ?>
-<div class="d-flex justify-content-between my-4">
+<div class="text-center m-0">De <?= $pagination->offset + 1 ?> à <?= $pagination->offset + $pagination->perPage ?></div>
+<div class="d-flex justify-content-between my-0 mx-4">
 	<?php if ($pagination->currentPage > 1):?>
 		<a href=" /gestock/bonssortie/liste/?page=<?= $pagination->currentPage - 1 ?>" title="Page précédente"><img src="images/icones/precedent.png" alt="Page précédente" class="page-icone"></a>
 	<?php endif ?>
@@ -36,6 +38,16 @@
 	<?php endif ?>
 </div>
 <?php endif ; ?>
+<div class="zonegrise font-weight-bold px-4 w-50  text-center my-0">
+    <div class="row">
+        <div class="col-sm-8 text-left">
+            <h5>Total de bons de sorties : </h5>
+        </div>
+        <div class="col-sm-4 text-right">
+        <h5><?= $count ?></h5>
+        </div>
+    </div>
+</div>
 
 <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
     <div class="mt-5">

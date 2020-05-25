@@ -31,6 +31,10 @@
                 </div>
                 <?php endif; ?>
             </div>
+
+            <div class="mt-5">
+                <a class="btn btn-secondary float-right" href="/gestock/personnels/liste">Voir la liste du Personnel</a>
+            </div>
         </div>
 
         <div class="col-sm-8"> 
@@ -56,7 +60,8 @@
                 <?php endif ; ?>
             </table>
             <?php if (isset($pagination->currentPage)) : ?>
-                <div class="d-flex justify-content-between my-4">
+                <div class="text-center m-0">De <?= $pagination->offset + 1 ?> à <?= $pagination->offset + $pagination->perPage ?></div>
+                <div class="d-flex justify-content-between my-0 mx-4">
                     <?php if ($pagination->currentPage > 1):?>
                         <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $pagination->currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
                     <?php endif ; ?>
@@ -65,13 +70,13 @@
                     <?php endif; ?>
                 </div>
             <?php endif ; ?>
-        </div>
-    </div>
 
-    <div class="mt-5">
-        <p>
-            <a class="btn btn-secondary float-right" href="/gestock/personnels/liste">Voir la liste du Personnel</a>
-        </p>
+            <div class="text-right">
+                <a class="btn btn-secondary" href="/gestock/personnels/iventaire/<?= $agent->id ?>">Quantité d'articles attribués</a>
+            </div>
+
+        </div>
+
     </div>
 </div>
     

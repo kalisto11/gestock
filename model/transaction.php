@@ -35,6 +35,14 @@
             }
         }
 
+        /**
+         * Retourne les opérations effectuées sur l'article dont l'id est fourni en paramètre par lot
+         * dont le nombre est défini par $perpage
+         * @param Int $idArticle : id de l'article dont on veut récupérer les opérations
+         * @param Int $perPage : le nombre d'opérations par lot
+         * @param Int $offset : valeur de départ de chaque lot
+         * @return Transaction[] $transactions : liste des transactions
+         */
         public static function getListByArticle($idArticle, $perPage, $offset){
             $pdo = Database::getPDO();
            
@@ -49,6 +57,12 @@
             return $transactions;
         }
 
+        /**
+         * Retourne la liste de toutes les opérations par lot dont le nombre est défini par $perPage
+         * @param Int $perPage : le nombre d'opérations par lot
+         * @param Int $offset : valeur de départ de chaque lot
+         * @return Transaction[] $transactions : liste des transactions
+         */
         public static function getList($perpage, $offset){
             $pdo = Database::getPDO();
             $req = "SELECT * from transactions WHERE dateTrans = CURDATE() ORDER BY id DESC LIMIT $perpage OFFSET $offset";
@@ -62,6 +76,10 @@
             return $transactions;
         }
 
+        /**
+         * Retourne le nombre d'opérations effectuées aujourd'hui
+         * @return Int $count : nombre d'opérations
+         */
         public static function getNbrTransJournal(){
             $pdo = Database::getPDO();
             $req = "SELECT COUNT(id) FROM transactions WHERE dateTrans = CURDATE()";
@@ -71,11 +89,18 @@
         }
 
         /**
-         * 
+         * insère une opération dans la base de données
+         * @param Int $idArticle : id de l'article dont on veut insérer une opération
+         * @param String $nomArticle : nom de l'article dont on veut insérer une opération
+         * @param Int $quantiteArticle : quantité (somme totale) de l'article dans la base
+         * @param Int $idBon : id du bon qui effectue l'opération sur l'article
+         * @param Int $numeroBon : numéro du bon qui effectue l'opération  
+         * @param Int $quantite : nouvelle quantité de l'article à enregistrer
+         * @param String $typeTrans : type de l'opération (entrée ou sortie)
          */
         public static function insertTransaction($idArticle, $nomArticle, $quantiteArticle, $idBon, $numeroBon, $quantite, $typeTrans){
             $pdo = Database::getPDO();
-            $numeroBon = $numeroBon . "";
+            $numeroBon = $numeroBon . ""; // parsage en string car le chanmp doit aussi stocker le nom du modificateur, s'il y a une modification de la quantité de l'aticle directement par l'utilisateur
             $quantiteArticle = intval($quantiteArticle);
             if ($typeTrans == "entrée"){
                 $quantiteArticle = $quantiteArticle + $quantite;
@@ -84,15 +109,18 @@
                 $quantiteArticle = $quantiteArticle - $quantite;
             }
 
+            // récupérer le dernier numéro des opérations pour insérer un nouveau pour l'opération en cours de création
             $req = "SELECT count(id) as nbTrans FROM transactions";
             $reponse = $pdo->query($req);
             $resultat = $reponse->fetch();
             $numTrans = intval($resultat["nbTrans"]) + 1;
 
+            // Si l'opération est effectuée par un bon de sortie, la quantité de l'article dans le bon est déduite de la quantité totale de l'article
             if ($typeTrans == "sortie"){
                 $quantite = - $quantite;
             }
 
+            // Insertion de l'opération dans la base
             $req  = "INSERT INTO transactions (dateTrans, numeroTrans, idArticle, nomArticle, quantiteArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(), :numeroTrans, :idArticle, :nomArticle, :quantiteArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
@@ -105,6 +133,8 @@
                 'quantite'  => $quantite,
                 'typeTrans' =>$typeTrans
             ));
+
+            // mise à jour de la quantité totale de l'article dans la base
             $req  = "SELECT SUM(quantite) as somme FROM transactions WHERE idArticle = ?";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($idArticle));
@@ -116,13 +146,23 @@
                 'quantite' => $resultat,
                 'idArticle'     => $idArticle,
             ));
-        } 
+        } // fin méthode insertTrasaction
         
+        /**
+         * Met à jour une opération existant
+         * @param Int $idArticle : id de l'article dont on veut insérer une opération
+         * @param String $nomArticle : nom de l'article dont on veut insérer une opération
+         * @param Int $quantiteArticle : quantité (somme totale) de l'article dans la base
+         * @param Int $idBon : id du bon qui effectue l'opération sur l'article
+         * @param Int $numeroBon : numéro du bon qui effectue l'opération  
+         * @param Int $quantite : nouvelle quantité de l'article à enregistrer
+         * @param String $typeTrans : type de l'opération (entrée ou sortie)
+         */
         public static function updateTransaction($idArticle, $nomArticle, $quantiteArticle, $idBon, $numeroBon, $quantite, $typeTrans){
             $pdo = Database::getPDO();
-            $numeroBon = $numeroBon . "";
-         
+            $numeroBon = $numeroBon . ""; // parsage en string car le chanmp doit aussi stocker le nom du modificateur, s'il y a une modification de la quantité de l'aticle directement par l'utilisateur
 
+            // Récupration du numéro de l'opération à modifier
             $req = "SELECT numeroTrans FROM transactions WHERE idArticle = :idArticle AND idBon = :idBon AND typeTrans = :typeTrans";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
@@ -133,6 +173,7 @@
             $row = $reponse->fetch();
             $numTrans = $row['numeroTrans'];
 
+            // suppression de l'ancienne opération de la base
             $req = "DELETE FROM transactions WHERE idArticle = :idArticle AND idBon = :idBon AND typeTrans = :typeTrans";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
@@ -141,11 +182,12 @@
                 'typeTrans' =>$typeTrans
             ));
 
-            
+            // si le bon qui modifie l'opération est un bon de sortie on doit déduire la quantité de la somme totale de l'article
             if ($typeTrans == "sortie"){
                 $quantite = - $quantite;
             }
             
+            // Insertion à nouveau de l'opération avec les nouvelles valeurs
             $req  = "INSERT INTO transactions (dateTrans, numeroTrans, idArticle, nomArticle, quantiteArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(), :numeroTrans, :idArticle, :nomArticle, :quantiteArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
@@ -159,6 +201,7 @@
                 'typeTrans' => $typeTrans
             ));
 
+            // Mise à jour de la quantité de l'article pour chaque opération
             $req = "SELECT id FROM transactions WHERE idArticle = :idArticle";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
@@ -197,19 +240,25 @@
                 ));
             }
 
+            // Mise à jour de la somme totale de l'article en faisant la somme de toutes les opérations ayant comme $idArticle l'id de l'article concerné
             $req  = "SELECT SUM(quantite) as somme FROM transactions WHERE idArticle = ?";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array($idArticle));
             $row = $reponse->fetch();
-            $resultat = intval($row["somme"]);
+            $somme = intval($row["somme"]);
             $req  = "UPDATE article SET quantite = :quantite WHERE id = :idArticle";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
-                'quantite' => $resultat,
+                'quantite' => $somme,
                 'idArticle'     => $idArticle,
             ));
-        }
+        } // fin méthode updateTransaction
 
+        /**
+         * retourne le nombre d'opérations effectuées sur l'article dont l'id est fourni en paramètre
+         * @param int $idArticle : l'id de l'article dont on veut connaitre le nombre d'opérations
+         * @return Int $count : nombre d'opérations sur l'article
+         */
         public static function getNbrTransactionByArticle($idArticle){
 			$pdo = Database::getPDO();
 			$req = "SELECT COUNT(id) FROM transactions WHERE idArticle = ?";
@@ -217,6 +266,24 @@
             $reponse->execute(array($idArticle));
 			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
 			return  $count;
-		}
+        }
+        
+        public static function getSommeArticleBeneficiaire($idBeneficiaire){
+            $pdo = Database::getPDO();
 
-    }
+            $idsBonEntree = BonEntree::getIdsBonBeneficiaire($idBeneficiaire);
+            $idsBonEntree = BonSortie::getIdsBonBeneficiaire($idBeneficiaire);
+
+            foreach ($idsBon as $idBon){
+                $req = "SELECT SUM(quantite) FROM transactions WHERE idArticle = $idArticle AND idBon = $idBon";
+            }
+			
+            $reponse = $pdo->prepare($req);
+            $reponse->execute(array(
+                'idArticle' => $idArticle,
+                'idBon' => $idBon
+            ));
+			$somme = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
+			return  $somme;
+		}
+    } // fin class Transaction
