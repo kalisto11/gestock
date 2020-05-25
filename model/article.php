@@ -204,7 +204,7 @@
          */
         public static function getSumArticle($idArticle, $typeTrans){
             $pdo = Database::getPDO();
-            $req  = "SELECT SUM(quantite) as somme FROM transactions WHERE idArticle = :idArticle AND typeTrans = :typeTrans GROUP BY idArticle";
+            $req  = "SELECT SUM(quantite) as somme FROM transactions WHERE idArticle = :idArticle AND typeTrans = :typeTrans AND dateTrans = CURDATE() GROUP BY idArticle";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
                 'idArticle' => $idArticle,
