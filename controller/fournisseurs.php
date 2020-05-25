@@ -56,7 +56,7 @@
                 case 'liste':
                     $count = Fournisseur::getNbrFournisseur();
                     if ($count > 0){
-                        $pagination = self::Pagination($count);
+                        $pagination = new Pagination($count);
                         if (!$pagination){
                             $message[] = "Cette page n'existe pas";
                             $this->notification = new Notification("danger", $message);

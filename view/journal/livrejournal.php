@@ -76,10 +76,10 @@
 					<?php foreach ($entreesSorties as $entSort) : ?>
 					<tr>
 						<td><a href="/gestock/grandlivres/consulter/<?=$entSort['id'] ?>" title="Consulter l'historique de l'article"><?= $entSort['nom'] ?></td>
-						<td class="font-weight-bold text-success"><?= $entSort['sommeEntree'] ?></td>
-						<td class="font-weight-bold text-danger"><?= $entSort['sommeSortie'] ?></td>
-						<td class="font-weight-bold text-success"><?= $entSort['sommeCreation'] ?></td>
-						<td class="font-weight-bold text-danger"><?= $entSort['sommeModification'] ?></td>
+						<td class="font-weight-bold text-success align-middle"><?= $entSort['sommeEntree'] ?></td>
+						<td class="font-weight-bold text-danger align-middle"><?= $entSort['sommeSortie'] ?></td>
+						<td class="font-weight-bold text-success align-middle"><?= $entSort['sommeCreation'] ?></td>
+						<td class="font-weight-bold text-danger align-middle"><?= $entSort['sommeModification'] ?></td>
 					</tr>
 					<?php endforeach ; ?>
 				</tbody>
@@ -88,12 +88,12 @@
 		
 		
 		<div class="mt-5 border rounded p-0 m-0">
-			<h4 class="text-center">Opérations du jour</h4>
+			<h4 class="text-center">Détails des opérations du jour</h4>
 			<table class="table table-striped table-borderless table-hover table-sm p-0 m-0">
 				<thead>
 					<tr>
 						<th scope="col">Article</th>
-						<th class="th-sm" scope="col">N° bon</th>
+						<th class="td-sm" scope="col">N° bon</th>
 						<th class="td-sm">Quantité</th>
 						<th class="td-sm">Restant</th>
 						<th scope="col">Type transaction</th>
@@ -104,7 +104,7 @@
 					<?php foreach($transactions as $transaction):?>
 						<tr>
 							<td class="align-middle"><a href="/gestock/grandlivres/consulter/<?=$transaction->idArticle?>" title="Consulter l'historique de l'article"><?=$transaction->nomArticle?></a></td>
-							<td><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?><a href="/gestock/<?php if ($transaction->typeTrans == "entrée"){echo 'bonsentree';}elseif($transaction->typeTrans == "sortie"){echo 'bonssortie';}?>/consulter/<?=$transaction->idBon?>" title="Consulter le bon"><?php endif ; ?><?=$transaction->numeroBon?><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?></a><?php endif ; ?></td>
+							<td class="align-middle"><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?><a href="/gestock/<?php if ($transaction->typeTrans == "entrée"){echo 'bonsentree';}elseif($transaction->typeTrans == "sortie"){echo 'bonssortie';}?>/consulter/<?=$transaction->idBon?>" title="Consulter le bon"><?php endif ; ?><?=$transaction->numeroBon?><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?></a><?php endif ; ?></td>
 							<td class=" align-middle font-weight-bold text-<?php 
 								if ($transaction->typeTrans == "entrée"){
 								echo "success";

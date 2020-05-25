@@ -47,7 +47,7 @@
                 case 'liste':
                     $count = Article::getNbrArticle();
                     if ($count > 0){
-                        $pagination = self::Pagination($count);
+                        $pagination = new Pagination($count);
                         if (!$pagination){
                             $message[] = "Cette page n'existe pas";
                             $this->notification = new Notification("danger", $message);
@@ -59,29 +59,31 @@
                     require_once VIEW . 'article/listarticles.php';
                 break;
 
+                case 'ajouter':
+                    if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
+                        require_once   VIEW . 'article/listarticles.php';
+                    }
+                break;
+
                 case 'modifier':
                     if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
                         $idArticle = intval($this->request->id);
                         $currentArticle = new Article($idArticle);
                     }  
-                    $currentPage = (int)( $_GET['page'] ?? 1) ? :1;
-                    $perpage = 10;
                     $count = Article::getNbrArticle();
-                    $pages = ceil($count/$perpage);
-                    if ($currentPage > $pages){
+                    if ($count > 0){
+                        $pagination = new Pagination($count);
+                        if (!$pagination){
                             $message[] = "Cette page n'existe pas";
-                            $this->notification = new Notification("success", $message);
+                            $this->notification = new Notification("danger", $message);
+                        }
+                        else{
+                            $articles = Article::getList($pagination->perPage, $pagination->offset);
+                        }
                     }
-                    $offset = $perpage * ($currentPage - 1);
-                    $articles = Article::getList($perpage, $offset);
                     require_once VIEW . 'article/listarticles.php';
                 break;
 
-                case 'ajouter':
-                    if ($_SESSION['user']['niveau'] == GESTIONNAIRE){
-                        require_once   VIEW . 'article/listarticles.php';
-                    }
-                 break;
                 case 'supprimer':
                     require_once VIEW . 'article/listarticles.php';
                  break;
@@ -102,7 +104,7 @@
                 $erreurs = true;
                 $message[] = "Le nom de l'article ne doit pas être vide.";
             }
-            $articles = Article::getList();
+            $articles = Article::getListAll();
             if ($idArticle == null){ // cas ajout
                 foreach ($articles as $article){
                     if ($article->nom == $nomArticle){

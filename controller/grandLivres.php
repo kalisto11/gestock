@@ -16,7 +16,7 @@ class GrandLivres extends Controller{
             case 'liste':
                 $count = Article::getNbrArticle();
                 if ($count > 0){
-                    $pagination = self::Pagination($count);
+                    $pagination = new Pagination($count);
                     if (!$pagination){
                         $message[] = "Cette page n'existe pas";
                         $this->notification = new Notification("danger", $message);
@@ -30,7 +30,7 @@ class GrandLivres extends Controller{
             case 'consulter':
                 $count = Transaction::getNbrTransactionByArticle($this->request->id);
                 if ($count > 0){
-                    $pagination = self::Pagination($count);
+                    $pagination = new Pagination($count);
                     if (!$pagination){
                         $message[] = "Cette page n'existe pas";
                         $this->notification = new Notification("danger", $message);

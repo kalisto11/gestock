@@ -15,8 +15,8 @@
          * @param Notification notification : objet contenant le type et le message de notification à afficher en cas d'echec ou de reussite d'une opération
          */
         public function render($notification = null){
-            $articles = Article::getList();
-            $users = User::getList();
+            $articles = Article::getListAll();
+            $users = User::getListAll();
             $user = new User($_SESSION['user']['id']);
             $bonsentrees = BonEntree::getListAll();
             $bonssorties = BonSortie::getListAll();

@@ -23,7 +23,7 @@ class User{
         $this->niveau = $user['niveau'];
         $this->changePassword = $user['changePassword'];
     }
-    public static function getList(){
+    public static function getListAll(){
         $pdo = Database::getPDO();
         $req = 'SELECT * from users';
         $reponse = $pdo->query($req);

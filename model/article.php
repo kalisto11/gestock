@@ -34,6 +34,9 @@
             }
         }
 
+        /**
+         * Sauvegarde l'article qui l'appelle dans la base de données
+         */
         public  function save(){
             $pdo = Database::getPDO();
             $insert = 'INSERT INTO article (nom, groupe, quantite, seuil) VALUES (:nom, :groupe, :quantite, :seuil)';
@@ -49,9 +52,12 @@
 			$article = $reponse->fetch();
             $this->id = $article['id'];
             $nomComplet = $_SESSION['user']['prenom'] . " " . $_SESSION['user']['nom'] ;
-            self::insertTransaction($this->id, $this->nom, $this->quantite, $_SESSION['user']['id'] , $nomComplet, $this->quantite, "création");
+            Transaction::insertTransaction($this->id, $this->nom, $this->quantite, $_SESSION['user']['id'] , $nomComplet, $this->quantite, "création");
         }
 
+        /**
+         * Met à jour les modifications de l'article qui l'appelle dans la base de données
+         */
         public function update(){
             $pdo = Database::getPDO();
 
@@ -71,10 +77,13 @@
             ));
             if ($difference != 0){
                 $nomComplet = $_SESSION['user']['prenom']. ' ' .$_SESSION['user']['nom'];  
-                self::insertTransaction($this->id, $this->nom, $this->quantite, $_SESSION['user']['id'], $nomComplet, $difference, "modification");
+                Transaction::insertTransaction($this->id, $this->nom, $this->quantite, $_SESSION['user']['id'], $nomComplet, $difference, "modification");
             }
         }
 
+        /**
+         * Supprime l'article qui l'appelle de la base de données
+         */
         public function delete(){
         $pdo = Database::getPDO();
         $delete = 'DELETE FROM article WHERE id = ?';
@@ -98,11 +107,14 @@
         }
 
         /**
-         * retourne la liste des articles par lots definis par $perpage
+         * Retourne la liste des articles par lots definis par $perpage et $offset
+         * @param Int $perPage : nombre d'articles affichés par page
+         * @param Int $offset : valeur de départ pour récuperer le lot d'articles dans la base
+         * @return Article $articles : liste d'articles dont le nombre est la valeur de $perPage
          */
-        public static function getList($perpage, $offset){
+        public static function getList($perPage, $offset){
             $pdo = Database::getPDO();
-            $req = "SELECT id from article ORDER BY nom LIMIT $perpage OFFSET $offset";
+            $req = "SELECT id from article ORDER BY nom LIMIT $perPage OFFSET $offset";
             $reponse = $pdo->query($req);
             $articles = array();
             while ($row = $reponse->fetch()){
@@ -111,7 +123,11 @@
             }  
             return $articles;
         }
-    
+        
+        /**
+         * retourne le nombre d'articles présents dans la base de données
+         * @return Int $cout : nombre d'articles enregistrées dans la base
+         */
         public static function getNbrArticle(){
             $pdo = Database::getPDO();
             $req = "SELECT COUNT(id) FROM  article";
@@ -121,7 +137,10 @@
         }
 
         /**
-         * Annule la quantité précédente qui a été ajoutée ou supprimée par le bon qui est modifié
+         * Annule la quantité de l'article qui a été ajoutée ou supprimée par le bon qui l'appelle
+         * @param Int $dotationIdArticle : l'ID de l'article dont la quantité doit etre modifiée
+         * @param Int $referenceBon : l'ID du bon qui a modifié la quantié de l'article
+         * @param String $typeTrans : type du bon qui a modifié la quantité de l'article
          */
         public static function removeArticleQuantity($dotationIdArticle, $referenceBon, $typeTrans){
             $pdo = Database::getPDO();
@@ -145,7 +164,11 @@
             ));
         }
 
-        public static function getEntreeSortiesJournal(){
+        /**
+         * Recupère les articles et leur somme dont la quantité a été modifiée aujourd'hui 
+         * @return Array $entreesSorties : tableau des articles et la somme de leur quantité modifiées
+         */
+        public static function getSommeJournal(){
             $pdo = Database::getPDO();
             $req = "SELECT DISTINCT(idArticle) FROM transactions WHERE dateTrans = CURDATE()";
             $reponse = $pdo->query($req);
@@ -173,8 +196,12 @@
             return $entreesSorties;
         }
 
-
-
+        /**
+         * Retourne la somme de la quantité de l'article dont l'id est passé en paramètre
+         * @param Int $idArticle : l'ID de l'article dont on veut récupérer la somme
+         * @param String $typeTrans : type des transactions qui ont modifié la quantité de l'article concerné
+         * @return Int $somme : somme de la quantité de l'article dont l'ID est $idArticle
+         */
         public static function getSumArticle($idArticle, $typeTrans){
             $pdo = Database::getPDO();
             $req  = "SELECT SUM(quantite) as somme FROM transactions WHERE idArticle = :idArticle AND typeTrans = :typeTrans GROUP BY idArticle";

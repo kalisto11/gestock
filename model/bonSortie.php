@@ -54,8 +54,9 @@
 				$this->dateModification = null;	
 			}
 		}
+
 		/**
-		 * 
+		 * sauvegarde l'objet qui l'appelle dans la base de données
 		 */
 		public function save() {// Méthode permettant d'insérer un bon de sortie
 			$pdo = Database::getPDO();
@@ -77,9 +78,9 @@
 		}
 	
 		/**
-		 * 
+		 * Met à jour les informations de l'obejt qui l'appelle dans la base de données
 		 */
-		public function update() {//Méthode permettant de modifier le bon de sortie
+		public function update() {
 			$pdo = Database::getPDO();
             $req = 'UPDATE bon_sortie SET reference = :reference, beneficiaire_id = :idBeneficiaire, beneficiaire_nom = :nomBeneficiaire, modificateur_id = :idModificateur, modificateur_nom = :nomModificateur, date_modification = CURDATE() WHERE id = :id';
             $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
@@ -101,9 +102,9 @@
 		}
 
 		/**
-		 * 
+		 * Supprime l'objet qui l'appelle de la base données
 		 */
-		public function delete() { //Méthode qui permet de supprimer un bon de sortie
+		public function delete() {
 			$pdo = Database::getPDO();
 			$req = 'DELETE FROM bon_sortie WHERE id = ?';
 			$reponse = $pdo->prepare($req);
@@ -115,13 +116,17 @@
 		}
 
 		/**
-		 * 
+		 * sauveagarde les articles du bon qui l'appelle dans la base de données
+		 * @param String $statutBon : détermine si c'est un nouveau bon ajouté ou un ancien bon modifié
 		 */
 		public function saveArticles($statutBon){
 			$pdo = Database::getPDO();
-			$req = 'DELETE FROM sortie_article WHERE id_bon_sortie = ?';
-			$reponse = $pdo->prepare($req);
-			$reponse->execute(array($this->id));
+			if ($statutBon == 'old'){
+				$req = 'DELETE FROM sortie_article WHERE id_bon_sortie = ?';
+				$reponse = $pdo->prepare($req);
+				$reponse->execute(array($this->id));
+			}
+			
 			foreach ($this->dotations as $dotation){
 				$req = 'INSERT INTO sortie_article (id_bon_sortie, id_article, nom_article, quantite, prix) VALUES (:id_bon_sortie, :id_article, :nom_article, :quantite, :prix)';
 				$reponse = $pdo->prepare($req);
@@ -132,7 +137,9 @@
 					'quantite'    => $dotation->quantite,
 					'prix'    => $dotation->prix
 				));
+				
 				$article = new Article($dotation->idArticle);
+				
 				if($statutBon == 'old'){
 					Article::removeArticleQuantity($dotation->idArticle, $this->reference, "sortie");
 					Transaction::updateTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "sortie");
@@ -142,12 +149,16 @@
 				}
 			}
 		}
+
 		/**
-		  * permet de récupérer la liste des bons de sortie
+		  * permet de récupérer la liste des bons de sortie par lot dont le nombre est détéerminé par $perPage
+		  * @param Int $perPage : nombre de bons affichés par page
+		  * @param Int $offset : valeur de départ pour récupérer les bons par lot
+		  * @return BonSortie[] $bonsorties : liste des bons de sorties par lot dont le nombre est défini par la valeur de $perPage  
 		  */ 
-		public static function getList($perpage, $offset) {
+		public static function getList($perPage, $offset) {
 			$pdo = Database::getPDO();
-			$req = "SELECT id from bon_sortie ORDER BY id DESC LIMIT $perpage OFFSET $offset";
+			$req = "SELECT id from bon_sortie ORDER BY id DESC LIMIT $perPage OFFSET $offset";
 			$reponse = $pdo->query($req);
 			$bonssorties = array();
 			while ($row = $reponse->fetch()){
@@ -157,6 +168,11 @@
 			return $bonssorties;
 			
 		}
+
+		/**
+		 * Retourne la liste de tous les bons de sorties
+		 * @return BonSortie[] $bonssorties : liste de tous les bons de sorties présents dans la base
+		 */
 		public static function getListAll() {
 			$pdo = Database::getPDO();
 			$req = "SELECT id from bon_sortie ORDER BY date DESC";
@@ -170,7 +186,8 @@
 		}
 
 		/**
-		 * 
+		 * Retourne la liste des bons de sorties créés aujourd'hui
+		 * @return BonSortie[] $bonssorties : liste des bons de sortie d'aujourd'hui
 		 */
 		public static function getListJournal() {
 			$pdo = Database::getPDO();
@@ -185,7 +202,11 @@
 		}
 
 		/**
-		 * 
+		 * Retourne la liste de bons attribués à l'utiliateur dont l'id est fourni en paramètre
+		 * @param Int $idBeneficiaire : l'id du bénéficaire des bons
+		 * @param Int $perPage : nombre de bons affichés par page
+		 * @param Int $offset : valeur de départ pour récupérer les bons par lot
+		 * @return BonSortie[] $bonsorties : liste des bons de sorties du bénéficiaire par lot dont le nombre est défini par la valeur de $perPage  
 		 */
 		public static function getListBeneficiaire($idBeneficiaire, $perpage, $offset) {
 			$pdo = Database::getPDO();
@@ -200,25 +221,29 @@
 		}
 
 		/**
-		 * 
+		 * Retourne le nombre de bons présents dans la base
+		 * @return Int $count : nombre de bons d sortie présent dans la base
 		 */
 		public static function getNbrBon(){
 			$pdo = Database::getPDO();
 			$req = "SELECT COUNT(id) FROM bon_sortie";
 			$reponse = $pdo->query($req);
 			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
-			 return  $count;
+			return  $count;
 		}
 		
 		/**
-		 * 
+		 * Retourne le nombre de bons du bénéficiaire dont l'id est fourni en paramètre
+		 * @param Int $idBeneficiaire : l'id du bénéficiaire dont on veut récupérer le nombre de bons attribués
+		 * @return Int $couunt : le nombre de bons attribués au bénéficiaire
 		 */
 		public static function getNbrBonBeneficiaire($idBeneficiaire){
 			$pdo = Database::getPDO();
-			$req = "SELECT COUNT(id) FROM bon_sortie WHERE beneficiaire_id = $idBeneficiaire";
-			$reponse = $pdo->query($req);
+			$req = "SELECT COUNT(id) FROM bon_sortie WHERE beneficiaire_id = ?";
+			$reponse = $pdo->prepare($req);
+			$reponse->execute(array($idBeneficiaire));
 			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
-			 return  $count;
+			return  $count;
 		}
 		
 	}// fin class

@@ -57,7 +57,7 @@
                 case 'liste':
                     $count = Personnel::getNbrAll();
                     if ($count > 0){
-                        $pagination = self::Pagination($count);
+                        $pagination = new Pagination($count);
                         if (!$pagination){
                             $message[] = "Cette page n'existe pas";
                             $this->notification = new Notification("danger", $message);
@@ -73,7 +73,7 @@
                     $agent = new Personnel($this->request->id);
                     $count = BonSortie::getNbrBonBeneficiaire($agent->id);
                     if ($count > 0){
-                        $pagination = self::Pagination($count);
+                        $pagination = new Pagination($count);
                         if (!$pagination){
                             $message[] = "Cette page n'existe pas";
                             $this->notification = new Notification("danger", $message);
@@ -100,7 +100,7 @@
                         require_once VIEW . 'personnel/ajoutagent.php';
                     }
                     else{
-                        $agents = Personnel::getList();
+                        $agents = Personnel::getListAll();
                         require_once VIEW . 'personnel/listagent.php';
                     }
                 break;

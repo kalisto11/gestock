@@ -25,6 +25,9 @@
             }
         }
 
+        /**
+         * sauvegarde l'aobjet appelant dans la base de données
+         */
         public function save(){
             $pdo = Database::getPDO();
             $req = 'INSERT INTO fournisseur (nom) VALUES (:nom)';
@@ -34,6 +37,9 @@
             ));
         }
 
+        /**
+         * Met à jour dans la base les infos de l'objet appelant la méthode
+         */
         public function update(){
             $pdo = Database::getPDO();
             $req = 'UPDATE fournisseur SET nom = :nom WHERE id = :id';
@@ -44,6 +50,9 @@
             ));
         }
 
+        /**
+         * Supprime de la base l'objet appelant
+         */
         public function delete(){
             $pdo = Database::getPDO();
             $req = 'DELETE from fournisseur WHERE id = ?';
@@ -51,6 +60,10 @@
             $reponse->execute(array($this->id));
         }
 
+        /**
+         * Retourne la liste de tous les fournisseurs
+         * @return Fournisseur[] $fournisseurs : liste de tous les fournisseurs
+         */
         public static function getListAll(){
             $pdo = Database::getPDO();
             $req = 'SELECT id from fournisseur ORDER BY nom';
@@ -63,6 +76,12 @@
             return $fournisseurs;
         }
 
+        /**
+         * Retourne la liste des fournisseurs par le lot dont le nombre est défini par la valeur de $perPage
+         * @param Int $perPage : nombre de fournisseurs affichés par page
+         * @param int $offset : valeur de début du lot récupéré
+         * @return Fournisseur[] $fournisseurs : liste des fournisseurs par lot
+         */
         public static function getList($perPage, $offset) {
 			$pdo = Database::getPDO();
             $req = "SELECT id FROM fournisseur ORDER BY nom LIMIT $perPage OFFSET $offset";
@@ -74,7 +93,11 @@
             }
             return $fournisseurs;
         }
-        
+
+        /**
+         * retiurne le nombre de fournisseurs présent dans la base
+         * @return Int $count : nombre de fournisseurs
+         */
         public static function getNbrFournisseur(){
 			$pdo = Database::getPDO();
 			$req = "SELECT COUNT(id) FROM fournisseur";

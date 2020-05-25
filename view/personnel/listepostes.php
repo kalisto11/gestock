@@ -7,13 +7,15 @@
             <table class="table table-striped table-borderless table-hover table-sm">
                 <tr>
                     <th class="th-md">Poste</th>
+                    <th class="th-sm">Statut</th>
                     <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?><th class="th-sm">Action</th><?php endif; ?>
                 </tr>
                 <?php foreach($postes as $poste): ?>
                     <tr>
                         <td><?= $poste->nom ?></td>
+                        <td><?= $poste->statut ?></td>
                         <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
-                            <td>
+                            <td class="th-sm">
                                 <a class="btn btn-info btn-sm" href="/gestock/postes/modifier/<?= $poste->id ?>">
                                     <img src="images/icones/pencil.png" class="menu-icone" alt="Modifier" title="Modifier">
                                 </a>

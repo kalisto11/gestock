@@ -10,6 +10,11 @@
             </div>
 
             <div>
+            <h6>Nombre de bon fourni</h6>
+            <p class="zonegrise"><?= $count ?></p>
+            </div>
+
+            <div>
                 <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
                 <div class="text-right mt-5">
                     <a href="/gestock/fournisseurs/modifier/<?= $fournisseur->id ?>" class="btn btn-info">Modifier</a>

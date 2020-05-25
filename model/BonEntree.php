@@ -59,7 +59,10 @@
 			}
 		}
 
-		public function save() {// Méthode permettant d'insérer un bon d'entrée
+		/**
+		 * Permet de sauvegarder le bon d'entrée qui l'appelle
+		 */
+		public function save() {
 			$pdo = Database::getPDO();
             $req = 'INSERT INTO bon_entree (reference, numero_facture, date_facture, date, fournisseur_id, fournisseur_nom, modificateur_id, modificateur_nom, date_modification) VALUES (:reference, :numeroFacture, :dateFacture, CURDATE(), :idFournisseur, :nomFournisseur, :idModificateur, :nomModificateur, CURDATE())';
             $reponse = $pdo->prepare($req);
@@ -81,8 +84,10 @@
 		 }
 
 		
-
-		public function update() {//Méthode permettant de modifier le bon d'entrée
+		/**
+		 * Modifie les informations dans la base de données du bon d'netrée qui l'appelle
+		 */
+		public function update() {
 			$pdo = Database::getPDO();
             $req = 'UPDATE bon_entree SET reference = :reference, numero_facture = :numeroFacture, date_facture = :dateFacture, fournisseur_id = :idFournisseur, fournisseur_nom = :nomFournisseur, modificateur_id = :idModificateur, modificateur_nom = :nomModificateur, date_modification = CURDATE() WHERE id = :id';
             $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
@@ -100,7 +105,10 @@
 			$this->saveArticles($statutBon);
 		}
 
-		public function delete() { //Méthode qui permet de supprimer un bon d'entrée
+		/**
+		 * Supprime le bon d'netrée qui l'appelle de la base de données
+		 */
+		public function delete() {
 			$pdo = Database::getPDO();
 			$req = 'DELETE FROM bon_entree WHERE id = ?';
 			$reponse = $pdo->prepare($req);
@@ -111,11 +119,14 @@
 		}
 
 		/**
-		  * permet de récupérer la liste des bons d'entrée
+		  * permet de récupérer la liste des bons d'entrée par lot dont le nombre est défini par $perPage
+		  * @param Int $perPage : nombre de bons par page
+		  * @param Int $offset : valeur de départ pour chaque lot
+		  * @return BonEntree[] : liste des bons d'entrée dont le nombre est égal à $perPage
 		  */
-		public static function getList($perpage, $offset) {
+		public static function getList($perPage, $offset) {
 			$pdo = Database::getPDO();
-			$req = "SELECT id from bon_entree ORDER BY id DESC LIMIT $perpage OFFSET $offset";
+			$req = "SELECT id from bon_entree ORDER BY id DESC LIMIT $perPage OFFSET $offset";
 			$reponse = $pdo->query($req);
 			$bonsentrees = array();
 			while ($row = $reponse->fetch()){
@@ -125,6 +136,10 @@
 			return $bonsentrees;
 		}
 		
+		/**
+		 * Retourne la liste de tous les bons d'entrée par ordre décroissant selon la date
+		 * @return BonEntree[] $bonsentrees : liste de tous les bons d'entrées
+		 */
 		public static function getListAll() {
 			$pdo = Database::getPDO();
 			$req = "SELECT id from bon_entree ORDER BY date DESC";
@@ -137,6 +152,10 @@
 			return $bonsentrees;
 		}
 		
+		/**
+		 * Retourne la liste des bons d'entrée qui ont été créés aujourd'hui
+		 * @return BonEntree[] $bonsentrees : liste des bons d'entrée créés aujourd'hui
+		 */
 		public static function getListJournal() {
 			$pdo = Database::getPDO();
 			$req = "SELECT id from bon_entree WHERE date = CURDATE()";
@@ -150,7 +169,8 @@
 		}
 
 		/**
-		 * 
+		 * Retourne le nombre de bons d'entrée présent dans la base
+		 * @return Int $count : nombre de bons d'entrée
 		 */
 		public static function getNbrBon(){
 			$pdo = Database::getPDO();
@@ -160,11 +180,19 @@
 			 return  $count;
 		}
 		
+		/**
+		 * sauvegarde dans la base la liste des articles choisis dans le bon d'entrée
+		 * @param String $statutBon : type du bon (old/new)
+		 */
 		public function saveArticles($statutBon){
 			$pdo = Database::getPDO();
-			$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
-			$reponse = $pdo->prepare($req);
-			$reponse->execute(array($this->id));
+
+			if ($statutBon == 'old'){
+				$req = 'DELETE FROM entree_article WHERE id_bon_entree = ?';
+				$reponse = $pdo->prepare($req);
+				$reponse->execute(array($this->id));
+			}
+		
 			foreach ($this->dotations as $dotation){
 				$req = 'INSERT INTO entree_article (id_bon_entree, id_article, nom_article, quantite, prix) VALUES (:id_bon_entree, :id_article, :nom_article, :quantite, :prix)';
 				$reponse = $pdo->prepare($req);
@@ -175,9 +203,10 @@
 					'quantite'    => $dotation->quantite,
 					'prix'		=> $dotation->prix
 				   ));
+				
 				$article = new Article($dotation->idArticle);
+				
 				if($statutBon == 'old'){
-					$article = new Article($dotation->idArticle);
 					Article::removeArticleQuantity($dotation->idArticle, $this->reference, "entrée");
 					Transaction::updateTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "entrée");
 				}
@@ -187,6 +216,11 @@
         	}
 		}
 
+		/**
+		 * Retourne le nombre de bon du fournisseur dont l'ID est fourni en paramètre
+		 * @param Int $idFournisseur : l'id du fournisseur dont on veut récupérer les bons
+		 * @return Int $count : nombre de bons d'entrée du fournisseur
+		 */
 		public static function getNbrBonFournisseur($idFournisseur){
 			$pdo = Database::getPDO();
 			$req = "SELECT COUNT(id) FROM bon_entree WHERE fournisseur_id = $idFournisseur";
@@ -195,6 +229,13 @@
 			 return  $count;
 		}
 
+		/**
+		 * retourne les bons du fournisseur dont l'id est fourni en paramètre
+		 * @param Int $idFournisseur : l'id du fournisseur dont on veut récupérer ses bons
+		 * @param Int $perPage : nombre de bons affichés par page
+		 * @param Int $offset : valeur de départ pour récupere les bons
+		 * @return BonEntree[] : tableau des bons d'entrées du fournisseur dont l'id est fourni
+		 */
 		public static function getListFournisseur($idFournisseur, $perpage, $offset) {
 			$pdo = Database::getPDO();
 			$req = "SELECT id from bon_entree WHERE fournisseur_id = $idFournisseur ORDER BY date DESC LIMIT $perpage OFFSET $offset";
@@ -207,8 +248,12 @@
 			return $bonsentrees;
 			
 		}
+		
 		/**
-		 * 
+		 * formatte la date au format français en format anglais pour etre compatible avec le champ date du formulaire
+		 * de modification du bon d'entrée
+		 * @param Date $dateFR : la date du bon au format français
+		 * @return Date $dateEN : la date du bon au format anglais
 		 */
 		public function formatDateEng($dateFR){
 			$tab = trim($dateFR, "/");

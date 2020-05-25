@@ -19,6 +19,11 @@
             </div>
 
             <div>
+                <h6>Nombre de bon attribué</h6>
+                <p class="zonegrise"><?= $count ?></p>
+            </div>
+
+            <div>
                 <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
                 <div class="text-right mt-5">
                     <a href="/gestock/personnels/modifier/<?= $agent->id ?>"class="btn btn-info">Modifier</a>

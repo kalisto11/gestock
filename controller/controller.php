@@ -12,16 +12,4 @@
             $this->request = $request;
             $this->message = array();
         }
-
-        public function pagination($count){
-            $currentPage = (int)($_GET['page'] ?? 1) ? :1;
-            $perPage = 10;
-            $pages = ceil($count / $perPage);
-            if ($currentPage > $pages){
-                return false;
-            }
-            $offset = $perPage * ($currentPage - 1);
-            $pagination = new Pagination($pages, $currentPage, $perPage, $offset);
-            return $pagination;
-        }
     }

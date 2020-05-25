@@ -54,7 +54,7 @@
                 case 'liste':
                     $count = BonSortie::getNbrBon();
                     if ($count){
-                        $pagination = self::Pagination($count);
+                        $pagination = new Pagination($count);
                         if (!$pagination){
                             $message[] = "Cette page n'existe pas";
                             $this->notification = new Notification("danger", $message);

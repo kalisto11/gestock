@@ -55,7 +55,7 @@
         public function render($notification = null){
             switch ($this->request->action){
                 case 'liste':
-                    $postes = Poste::getList();
+                    $postes = Poste::getListAll();
                     require_once VIEW . 'personnel/listepostes.php';
                 break;
 
@@ -64,7 +64,7 @@
                         $idPoste = intval($this->request->id);
                         $currentPoste = new Poste($idPoste);
                     }
-                    $postes = Poste::getList();
+                    $postes = Poste::getListAll();
                     require_once VIEW . 'personnel/listepostes.php';
                 break;
             
@@ -85,7 +85,7 @@
                 $message[] = "Le nom du poste ne doit pas être vide.";
             }
 
-            $postes = Poste::getList();
+            $postes = Poste::getListAll();
             if ($idPoste == null){ // cas ajout
                 foreach ($postes as $poste){
                     if ($poste->nom == $nomPoste){

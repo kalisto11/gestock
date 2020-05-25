@@ -5,7 +5,7 @@ class Auths extends Controller{
 
     public function process(){
         if ($this->request->method === 'POST'){
-            $users = User::getList();
+            $users = User::getListAll();
             foreach ($users as $user){
                 if ($_POST['username'] == $user->username && sha1($_POST['password']) == $user->pasword ){
                     if ($user->changePassword == false){

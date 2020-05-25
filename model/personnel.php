@@ -9,7 +9,6 @@
     public $poste;
 
     public function __construct($id = null){
-       
         if ($id != null){
             $this->id = $id;
             $pdo = Database::getPDO();
@@ -37,6 +36,10 @@
             $this->poste  = null;
         }
     }
+
+    /**
+     * sauvegarde l'objet appelant dans la base
+     */
     public function save(){ // fonction d'ajout d'un agent
         $pdo = Database::getPDO();
         $req = 'INSERT INTO personnel (prenom, nom) VALUES (:prenom, :nom)';
@@ -46,7 +49,7 @@
             'nom'    => $this->nom
         ));
 
-        $req = 'SELECT id FROM personnel Order By ID Desc LIMIT 1';
+        $req = 'SELECT id FROM personnel ORDER BY id DESC LIMIT 1';
         $reponse = $pdo->query($req);
         $personnel = $reponse->fetch();
         $this->id = $personnel['id'];
@@ -60,7 +63,10 @@
         }
     }
     
-    public function update(){ //fonction permettant de modifier les données d'un agent
+    /**
+     * Met à jour les infos de l'objet appelant
+     */
+    public function update(){
         $pdo = Database::getPDO();
         $req = 'UPDATE personnel SET prenom = :prenom, nom = :nom WHERE id = :id';
         $reponse = $pdo->prepare($req) OR die(print_r($pdo->errorinfo()));
@@ -83,8 +89,10 @@
         }
     }  
 
-    public function delete(){ //Fonction de suppresssion d'un agent
-
+    /** 
+     * supprime l'objet appelant de la base de données
+    */
+    public function delete(){
         $pdo = Database::getPDO();
         $sup = 'DELETE from personnel WHERE id = ?';
         $reponse = $pdo->prepare($sup);
@@ -95,9 +103,14 @@
         $reponse->execute(array($this->id));
     }
 
-    public static function getList($perpage, $offset) {
+    /**
+     * retourne la liste du personnel par lot dont le nombre est défini par $perPage
+     * @param Int $perPage : définit le nombre de personnel affiché par page
+     * @param Int $offset : valeur de départ pour récuperer un lot dans la base
+     */
+    public static function getList($perPage, $offset) {
         $pdo = Database::getPDO();
-        $req = "SELECT id from personnel ORDER BY nom DESC LIMIT $perpage OFFSET $offset";
+        $req = "SELECT id from personnel ORDER BY nom LIMIT $perPage OFFSET $offset";
         $reponse = $pdo->query($req);
         $personnels = array();
         while ($row = $reponse->fetch()){
@@ -107,6 +120,10 @@
         return $personnels;
     }
 
+    /**
+     * Retourne la liste de tous le personnel
+     * @param Personnel[] $personnel : lot de liste du personnel
+     */
     public static function getListAll(){ //Fonction permettant d'obtenir la liste du personnel
         $pdo = Database::getPDO();
         $get = 'SELECT id from personnel ORDER BY nom';
@@ -119,6 +136,10 @@
         return $personnels;
     }
 
+    /**
+     * Retourne le nombre de personnel présent dans la base de données
+     * @param Int $count : nombre de personnel
+     */
     public static function getNbrAll(){
         $pdo = Database::getPDO();
         $req = "SELECT COUNT(id) FROM personnel";
@@ -126,5 +147,4 @@
         $count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
         return  $count;
     }
-
-}
+} // fin classe Personnel

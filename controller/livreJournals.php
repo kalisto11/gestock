@@ -17,7 +17,7 @@
                     $bonssorties = BonSortie::getListJournal();
                     $count = Transaction::getNbrTransJournal();
                     if ($count > 0){
-                        $pagination = self::Pagination($count);
+                        $pagination = new Pagination($count);
                         if (!$pagination){
                             $message[] = "Cette page n'existe pas";
                             $this->notification = new Notification("danger", $message);
@@ -27,7 +27,7 @@
                             sort($transactions);
                         } 
                     }
-                    $entreesSorties = Article::getEntreeSortiesJournal();
+                    $entreesSorties = Article::getSommeJournal();
                     require_once VIEW . 'journal/livrejournal.php';
                 break;
             }
