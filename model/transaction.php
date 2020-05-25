@@ -209,14 +209,4 @@
                 'idArticle'     => $idArticle,
             ));
         }
-
-        public static function getNbrTransactionByArticle($idArticle){
-			$pdo = Database::getPDO();
-			$req = "SELECT COUNT(id) FROM transactions WHERE idArticle = ?";
-            $reponse = $pdo->prepare($req);
-            $reponse->execute(array($idArticle));
-			$count = (int) $reponse->fetch(PDO::FETCH_NUM)[0];
-			return  $count;
-		}
-
     }
