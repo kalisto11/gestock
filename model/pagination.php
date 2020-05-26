@@ -12,7 +12,7 @@
          */
         public function __construct($count){
             $currentPage = (int)($_GET['page'] ?? 1) ? :1;
-            $perPage = 2;
+            $perPage = 20;
             $pages = ceil($count / $perPage);
             if ($currentPage > $pages){
                 return false;

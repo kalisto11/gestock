@@ -49,32 +49,40 @@
                                 <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel
                             </li>
                             <ul class="sub-menu" id="personnel">
-                                <li><a href="/gestock/personnels/liste"><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white menu-icone">Bénéficiaires</a></li>
-                                <li><a href="/gestock/postes/liste"><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</a></li>
+                                <a href="/gestock/personnels/liste">
+                                    <li><img src="images/icones/personnel.png" class="mr-2 ml-2 bg-white menu-icone">Bénéficiaires</li>
+                                </a>
+                                <a href="/gestock/postes/liste">
+                                    <li><img src="images/icones/poste.jpg" class="mr-2 ml-2 bg-white menu-icone">Postes</li>
+                                </a>
                             </ul>
                             <li data-toggle="collapse" data-target="#bons" class="collapsed bg-info">
                                 <img src="images/icones/bon.png"class="mr-2 ml-2 bg-white menu-icone">Bons
                             </li>  
                             <ul class="sub-menu" id="bons">
-                                <li>
-                                    <a href="/gestock/fournisseurs/liste"><img src="images/icones/fournisseur.png" class="bg-white mr-2 ml-2 menu-icone">Fournisseurs</a>
-                                </li>
-                                <li>
-                                    <a href="/gestock/articles/liste"><img src="images/icones/article.png" class="bg-white mr-2 ml-2 menu-icone">Articles</a>
-                                </li>
-                                <li>
-                                    <a href="/gestock/bonsentree/liste"><img src="images/icones/entree.JPG" class="mr-2 ml-2 menu-icone">Bon d'entrée</a>
-                                </li>
-                                <li>
-                                    <a href="/gestock/bonssortie/liste"><img src="images/icones/sortie.JPG" class="mr-2 ml-2 menu-icone">Bon de sortie</a>
-                                </li>
+                                <a href="/gestock/fournisseurs/liste">
+                                    <li><img src="images/icones/fournisseur.png" class="bg-white mr-2 ml-2 menu-icone">Fournisseurs</li>
+                                </a>
+                                <a href="/gestock/articles/liste">
+                                    <li><img src="images/icones/article.png" class="bg-white mr-2 ml-2 menu-icone">Articles</li>
+                                </a>
+                                <a href="/gestock/bonsentree/liste">
+                                    <li><img src="images/icones/entree.JPG" class="mr-2 ml-2 menu-icone">Bon d'entrée</li>
+                                </a>
+                                <a href="/gestock/bonssortie/liste">
+                                    <li><img src="images/icones/sortie.JPG" class="mr-2 ml-2 menu-icone">Bon de sortie</li>
+                                </a>
                             </ul>
                             <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">
                                 <img src="images/icones/dossier.png" class="mr-2 ml-2 bg-white menu-icone">Journal
                             </li>
                             <ul class="sub-menu" id="journal">
-                                <li><a href="/gestock/livrejournals/liste"><img src="images/icones/livre journal.JPG" class="mr-2 menu-icone">Livre Journal</a></li>
-                                <li><a href="/gestock/grandlivres/liste"><img src="images/icones/grand livre.JPG" class="mr-2 menu-icone">Grand Livre</a></li>
+                                <a href="/gestock/livrejournals/liste">
+                                    <li><img src="images/icones/livre journal.JPG" class="mr-2 ml-2 menu-icone">Livre Journal</li>
+                                </a>
+                                <a href="/gestock/grandlivres/liste">
+                                    <li><img src="images/icones/grand livre.JPG" class="mr-2 ml-2 menu-icone">Grand Livre</li>
+                                </a>
                             </ul>
                         </ul>
                     </div>
