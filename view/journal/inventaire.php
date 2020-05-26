@@ -16,18 +16,16 @@
       <table class="table table-striped table-borderless table-hover table-sm">
         <tr>
           <th>Opération</th>
-          <th>N° bon/Utilisateur</th>
           <th>Crédit/débit</th>
           <th>Restant</th>
+          <th>N° bon/Utilisateur</th>
           <th>Date</th>
         </tr>
        
         <?php foreach($transactions as $transaction):?>
           <tr>
             <td><?= htmlspecialchars($transaction->typeTrans) ?></td>
-            <td>
-              <?php if ($transaction->typeTrans != "modification" AND $transaction->typeTrans != "création") : ?><a href="/gestock/<?php if ($transaction->typeTrans == "entrée"){echo 'bonsentree';}elseif($transaction->typeTrans == "sortie"){echo 'bonssortie';}else{echo 'home';} ?>/consulter/<?= $transaction->idBon ?>" title ="Consulter les informatiions du bon"><?php endif ; ?><?= htmlspecialchars($transaction->numeroBon) ?><?php if ($transaction->typeTrans != "modification") : ?></a><?php endif ;?>
-            </td>
+          
             <td class="font-weight-bold text-<?php 
                 if ($transaction->typeTrans == "entrée"){
                   echo "success";
@@ -61,6 +59,11 @@
               ?>
             </td>
             <td><?= $transaction->quantiteArticle ?></td>
+            
+            <td>
+              <?php if ($transaction->typeTrans != "modification" AND $transaction->typeTrans != "création") : ?><a href="/gestock/<?php if ($transaction->typeTrans == "entrée"){echo 'bonsentree';}elseif($transaction->typeTrans == "sortie"){echo 'bonssortie';}else{echo 'home';} ?>/consulter/<?= $transaction->idBon ?>" title ="Consulter les informatiions du bon"><?php endif ; ?><?= htmlspecialchars($transaction->numeroBon) ?><?php if ($transaction->typeTrans != "modification") : ?></a><?php endif ;?>
+            </td>
+
             <td> 
             <?= $transaction->dateTrans ?>
             </td>

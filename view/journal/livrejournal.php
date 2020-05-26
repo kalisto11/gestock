@@ -93,18 +93,18 @@
 				<thead>
 					<tr>
 						<th scope="col">Article</th>
-						<th class="td-sm" scope="col">N° bon</th>
 						<th class="td-sm">Quantité</th>
 						<th class="td-sm">Restant</th>
-						<th scope="col">Type transaction</th>
-						<th class="td-sm">Date transaction</th>
+						<th class="td-sm" scope="col">N° bon</th>
+						<th scope="col">Type opération</th>
+						<th class="td-sm">Date opération</th>
 					</tr>
 				</thead>
 				<?php if (isset($transactions)) : ?>
 					<?php foreach($transactions as $transaction):?>
 						<tr>
 							<td class="align-middle"><a href="/gestock/grandlivres/consulter/<?=$transaction->idArticle?>" title="Consulter l'historique de l'article"><?=$transaction->nomArticle?></a></td>
-							<td class="align-middle"><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?><a href="/gestock/<?php if ($transaction->typeTrans == "entrée"){echo 'bonsentree';}elseif($transaction->typeTrans == "sortie"){echo 'bonssortie';}?>/consulter/<?=$transaction->idBon?>" title="Consulter le bon"><?php endif ; ?><?=$transaction->numeroBon?><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?></a><?php endif ; ?></td>
+							
 							<td class=" align-middle font-weight-bold text-<?php 
 								if ($transaction->typeTrans == "entrée"){
 								echo "success";
@@ -137,7 +137,11 @@
 									echo $transaction->quantite;
 								?>
 							</td>
+							
 							<td class="align-middle"><?=$transaction->quantiteArticle?></td>
+
+							<td class="align-middle"><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?><a href="/gestock/<?php if ($transaction->typeTrans == "entrée"){echo 'bonsentree';}elseif($transaction->typeTrans == "sortie"){echo 'bonssortie';}?>/consulter/<?=$transaction->idBon?>" title="Consulter le bon"><?php endif ; ?><?=$transaction->numeroBon?><?php if ($transaction->typeTrans != "création" AND $transaction->typeTrans != "modification") : ?></a><?php endif ; ?></td>
+
 							<td class="align-middle"><?=$transaction->typeTrans?></td>
 							<td class="align-middle"><?=$transaction->dateTrans?></td>
 						</tr>	

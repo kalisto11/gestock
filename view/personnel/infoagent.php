@@ -63,10 +63,10 @@
                 <div class="text-center m-0">De <?= $pagination->offset + 1 ?> à <?= $pagination->offset + $pagination->perPage ?></div>
                 <div class="d-flex justify-content-between my-0 mx-4">
                     <?php if ($pagination->currentPage > 1):?>
-                        <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $pagination->currentPage - 1 ?>" class="btn btn-info">Page précédente</a>
+                        <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $pagination->currentPage - 1 ?>" title="Page précédente"><img src="images/icones/precedent.png" alt="Page précédente" class="page-icone"></a>
                     <?php endif ; ?>
                     <?php if ($pagination->currentPage < $pagination->pages):?>
-                        <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $pagination->currentPage + 1 ?>" class="btn btn-info ml-auto">Page suivante </a>
+                        <a href="/gestock/personnels/consulter/<?= $agent->id ?>/?page=<?= $pagination->currentPage + 1 ?>" title="Page suivante" class="ml-auto"><img src="images/icones/suivant.png" alt="Page suivante" class="page-icone"></a>
                     <?php endif; ?>
                 </div>
             <?php endif ; ?>
