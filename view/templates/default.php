@@ -42,9 +42,11 @@
 
                     <div class="menu-list">
                         <ul id="menu-content" class="menu-content collapse out">
-                            <li class="collapsed bg-info">
-                                <a href="/gestock/home/"><img src="images/icones/accueil.JPG"class="mr-2 ml-2 bg-white menu-icone">Accueil</a>
-                            </li> 
+                            <a href="/gestock/home/" id="accueil">
+                                <li class="collapsed bg-info">
+                                    <img src="images/icones/accueil.JPG"class="mr-2 ml-2 bg-white menu-icone">Accueil
+                                </li>
+                            </a>
                             <li  data-toggle="collapse" data-target="#personnel" class="collapsed bg-info">
                                 <img src="images/icones/personnel.jpg"class="mr-2 ml-2 menu-icone">Personnel
                             </li>
