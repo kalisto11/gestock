@@ -67,10 +67,10 @@
                                     <li><img src="images/icones/article.png" class="bg-white mr-2 ml-2 menu-icone">Articles</li>
                                 </a>
                                 <a href="/gestock/bonsentree/liste">
-                                    <li><img src="images/icones/entree.JPG" class="mr-2 ml-2 menu-icone">Bon d'entrée</li>
+                                    <li><img src="images/icones/entree.JPG" class="mr-2 ml-2 menu-icone">Bons d'entrée</li>
                                 </a>
                                 <a href="/gestock/bonssortie/liste">
-                                    <li><img src="images/icones/sortie.JPG" class="mr-2 ml-2 menu-icone">Bon de sortie</li>
+                                    <li><img src="images/icones/sortie.JPG" class="mr-2 ml-2 menu-icone">Bons de sortie</li>
                                 </a>
                             </ul>
                             <li data-toggle="collapse" data-target="#journal" class="collapsed bg-info">

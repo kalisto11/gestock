@@ -10,7 +10,7 @@
     </head>
     <body>
         <h2 class="ml-3 mt-3"><img src="images/icones/education.png" class="icone  mr-2">IA KAFFRINE</h2>
-        <h1 class="blanc">GESTION DE STOCK</h1>
+        <h1 class="blanc">GESTION MATERIELLE</h1>
         
         <div  class="text-justify p-4 w-50 container justify-content-center align-items-center connexion"> 
             <h4 class="text-center mb-4">Changement de mot de passe</h4>
