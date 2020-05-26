@@ -10,6 +10,7 @@
                     <th class="th-sm">Statut</th>
                     <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?><th class="th-sm">Action</th><?php endif; ?>
                 </tr>
+                <?php if (!empty($postes)) : ?>
                 <?php foreach($postes as $poste): ?>
                     <tr>
                         <td><?= $poste->nom ?></td>
@@ -26,6 +27,7 @@
                         <?php endif; ?>
                     </tr>
                 <?php endforeach ; ?>
+                <?php endif ; ?>
             </table>
         <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?></div><?php endif; ?>  
 

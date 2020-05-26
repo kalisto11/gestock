@@ -100,7 +100,7 @@
 						<th class="td-sm">Date opération</th>
 					</tr>
 				</thead>
-				<?php if (isset($transactions)) : ?>
+				<?php if (!empty($transactions)) : ?>
 					<?php foreach($transactions as $transaction):?>
 						<tr>
 							<td class="align-middle"><a href="/gestock/grandlivres/consulter/<?=$transaction->idArticle?>" title="Consulter l'historique de l'article"><?=$transaction->nomArticle?></a></td>

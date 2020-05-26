@@ -9,6 +9,7 @@
                     <th>Postes</th>
                     <th class="th-sm">Action</th>
                 </tr>
+                <?php if (!empty($agents)) : ?>
                 <?php foreach($agents as $agent):?>
                     <tr>
                         <td class="align-middle"><a href="/gestock/personnels/consulter/<?=$agent->id?>" title="Consulter les informations de l'agent"><?= $agent->prenom ?></a></td>
@@ -37,6 +38,7 @@
                         </td>   
                     </tr>
                 <?php endforeach ;?>
+                <?php endif ; ?>
             </table>
 
             <?php if (isset($pagination->currentPage)) : ?>
@@ -64,7 +66,7 @@
 
             <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?>
             <div class="mt-5">
-                <a class="btn btn-success" href="/gestock/personnels/ajouter"><img src="images/icones/ajout.png" class="menu-icone">  Ajouter un Bénéficiaire</a>
+                <a class="btn btn-success" href="/gestock/personnels/ajouter"><img src="images/icones/ajout.png" class="menu-icone">  Ajouter un bénéficiaire</a>
             </div>
             <?php endif; ?>
         </div>

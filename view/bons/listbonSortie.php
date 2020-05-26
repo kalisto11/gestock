@@ -8,7 +8,7 @@
             <th>Bénéficiaire</th>
             <th class="th-sm">Actions</th>
         </tr>
-        <?php if (isset($bonssorties)) : ?>
+        <?php if (!empty($bonssorties)) : ?>
             <?php foreach($bonssorties as $bonsortie):?>
             <tr>
                 <td><?= $bonsortie->reference?></td>

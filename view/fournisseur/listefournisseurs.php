@@ -9,6 +9,7 @@
                     <th class="th-md">Fournisseur</th>
                     <?php if($_SESSION['user']['niveau'] >= GESTIONNAIRE) : ?><th class="th-sm">Action</th><?php endif; ?>
                 </tr>
+                <?php if (!empty($fournisseurs)) : ?>
                 <?php foreach($fournisseurs as $fournisseur): ?>
                     <tr>
                         <td><a href="/gestock/fournisseurs/consulter/<?= $fournisseur->id ?>"><?= $fournisseur->nom ?></a></td>
@@ -27,6 +28,7 @@
                         <?php endif; ?>
                     </tr>
                 <?php endforeach ; ?>
+                <?php endif ; ?>
             </table>
             
             <?php if (isset($pagination->currentPage)) : ?>

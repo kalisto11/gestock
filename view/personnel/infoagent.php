@@ -1,6 +1,6 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
 
-<h2>Information sur l'agent</h2>
+<h2>Information sur le bénéficiaire</h2>
 <div class="container-fluid">
     <div class="row">
         <div class="col-sm-4">
@@ -33,7 +33,7 @@
             </div>
 
             <div class="mt-5">
-                <a class="btn btn-secondary float-right" href="/gestock/personnels/liste">Voir la liste du Personnel</a>
+                <a class="btn btn-secondary float-right" href="/gestock/personnels/liste">Voir la liste des bénéficiaires</a>
             </div>
         </div>
 

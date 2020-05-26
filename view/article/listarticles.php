@@ -10,6 +10,7 @@
                     <th class="th-sm">Groupes</th>
                     <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?><th class="th-sm">Action</th> <?php endif; ?>
                 </tr>
+                <?php if(!empty($articles)) : ?>
                 <?php foreach($articles as $article): ?>
                     <tr>
                     <td><a href="/gestock/grandlivres/consulter/<?= $article->id ?>"><?= $article->nom ?></a></td>
@@ -25,6 +26,7 @@
                         <?php endif; ?>
                     </tr>
                 <?php endforeach ; ?>
+                <?php endif ; ?>
             </table>
             
             <?php if (isset($pagination->currentPage)) : ?>
