@@ -9,7 +9,7 @@
             <th>Founisseur</th>
             <th class="th-sm">Actions</th>
         </tr>
-        <?php if (isset($bonsentrees)) : ?>
+        <?php if (!empty($bonsentrees)) : ?>
             <?php foreach($bonsentrees as $bonentree):?>
             <tr>
                 <td><?= $bonentree->reference?></td>
