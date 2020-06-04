@@ -104,8 +104,7 @@
          * 
          */
         public function traiterBonEntree($reference, $numeroFacture, $dateFacture, $fournisseur, $id = null){
-            $articles = $this->ajoutArticles($_POST['article1'], $_POST['quantite1'], $_POST['prix1'],
-            $_POST['article2'], $_POST['quantite2'], $_POST['prix2'], $_POST['article3'], $_POST['quantite3'], $_POST['prix3'], $_POST['article4'], $_POST['quantite4'], $_POST['prix4'], $_POST['article5'], $_POST['quantite5'], $_POST['prix5'], $_POST['article6'], $_POST['quantite6'], $_POST['prix6'], $_POST['article7'], $_POST['quantite7'], $_POST['prix7'], $_POST['article8'], $_POST['quantite8'], $_POST['prix8'], $_POST['article9'], $_POST['quantite9'], $_POST['prix9'], $_POST['article10'], $_POST['quantite10'], $_POST['prix10']);
+            $articles = $this->ajoutArticles($_POST);
             $erreur = false;
             if ($articles == false){
                 $erreur = true;
@@ -225,8 +224,37 @@
         /**
          * 
          */
-        public function ajoutArticles($article1, $quantite1, $prix1, $article2, $quantite2, $prix2, $article3, $quantite3, $prix3, $article4, $quantite4, $prix4, $article5, $quantite5, $prix5, $article6, $quantite6, $prix6, $article7, $quantite7, $prix7, $article8, $quantite8, $prix8, $article9, $quantite9, $prix9, $article10, $quantite10, $prix10){
+        public function ajoutArticles($post){
+            $inputs = [];
+            foreach ($_POST as $post){
+                $inputs[] = $post;
+            }
+
             $articles = [];
+            $tailleTab = count($inputs) - 2;
+            $i = 4;
+            while ($i < $tailleTab){
+                $id = $inputs[$i];
+                $quantite = $inputs[$i + 1];
+                $prix = $inputs[$i + 2];
+                if (!empty($quantite) AND !empty($prix)){
+                    $articles[] = [
+                        'id' => intval(strip_tags($id)),
+                        'quantite' => intval(strip_tags($quantite)),
+                        'prix' => intval(strip_tags($prix)),
+                        'total' => intval($quantite * $prix) 
+                    ];
+                }
+                if ($i > ($tailleTab - 3)){
+                    break;
+                }
+                else{
+                    $i += 3;
+                }
+            }
+            //var_dump($articles);
+            //exit;
+           /* $articles = [];
             $varArticle = "article";
             $varQuantite = "quantite";
             $varPrix = "prix";
@@ -245,7 +273,7 @@
                         'total' => intval(${$varQuantite . $i} * ${$varPrix . $i}) 
                     ];
                 } 
-            }
+            } */
             return $articles;
         }//Fin méthode ajoutArticles!!!
     } // fin class
