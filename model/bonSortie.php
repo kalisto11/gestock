@@ -30,7 +30,7 @@
 				$this->idModificateur = $bonsortie['modificateur_id'];
 				$this->nomModificateur = $bonsortie['modificateur_nom'];
 				$this->dateModification = $bonsortie['date_modification'];
-				$req = 'SELECT * FROM article RIGHT JOIN sortie_article ON article.id = sortie_article.id_article WHERE sortie_article.id_bon_sortie = ?';
+				$req = 'SELECT * FROM article RIGHT JOIN sortie_article ON article.id = sortie_article.id_article WHERE sortie_article.id_bon_sortie = ? ORDER BY id';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));
 				$dotations = [];

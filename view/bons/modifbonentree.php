@@ -38,96 +38,65 @@
         </div>
       
       </div>
-      
+      <h6>Dotations</h6>
+      <div id="dotations">
 
-      <?php 
-      $i = 1;
-      foreach ($bonentree->dotations as $dotation) : ?>
-        <div class="row row-color">
+        <?php 
+        $i = 1;
+        foreach ($bonentree->dotations as $dotation) : ?>
+          <div class="row row-color m-2">
 
-          <div class="col">
-            <div class="form-group">
-              <label for="article<?= $i ?>">Article</label>
-              <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control form-control-sm">
-                <option value="null">Choisir un article</option>
-                <?php foreach($articles as $article): ?>
-                <option value="<?= $article->id ?>" <?php if ($article->id == $dotation->idArticle){echo 'selected="selected"';} ?>><?= $article->nom ?></option>
-                <?php endforeach ; ?>
-              </select>
-            </div> 
-          </div>
-
-          <div class="col">
-            <div class="form-group">
-              <label for="quantite<?= $i ?>">Quantité</label>
-              <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" value="<?= $dotation->quantite ?>" class="form-control form-control-sm" placeholder="Quantité de l'article">
-            </div>
-          </div>
-        
-          <div class="col">
-            <div class="form-group">
-              <label for="prix<?= $i ?>">Prix unitaire</label>
-              <input type="number" name="prix<?= $i ?>" id="prix<?= $i ?>" value="<?= $dotation->prix ?>" class="form-control form-control-sm" placeholder="Saisir le prix unitaire de l'article">
-            </div>
-          </div>
-        
-          <div class="col">
-            <div class="form-group">
-              <label for="total<?= $i ?>">Total</label>
-              <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" value="<?= $dotation->total ?>" class="form-control form-control-sm" disabled>
-            </div>
-          </div>
-        <!-- fin row -->
-        </div> 
-
-      <?php 
-      $i++;
-      endforeach ; ?>
-
-      <?php if ($i < 10){
-        for ($i = $i ; $i <= 10; $i ++) : ?>
-          <div class="row row-color">
-
-            <div class="col-sm-3">
+            <div class="col-3">
               <div class="form-group">
                 <label for="article<?= $i ?>">Article</label>
                 <select name="article<?= $i ?>" id="article<?= $i ?>" class="form-control form-control-sm">
                   <option value="null">Choisir un article</option>
                   <?php foreach($articles as $article): ?>
-                  <option value="<?= $article->id ?>"><?= $article->nom ?></option>
+                  <option value="<?= $article->id ?>" <?php if ($article->id == $dotation->idArticle){echo 'selected="selected"';} ?>><?= $article->nom ?></option>
                   <?php endforeach ; ?>
                 </select>
               </div> 
             </div>
 
-            <div class="col-sm-3">
+            <div class="col-3">
               <div class="form-group">
                 <label for="quantite<?= $i ?>">Quantité</label>
-                <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" class="form-control form-control-sm" placeholder="Saisir un nombre">
+                <input type="number" name="quantite<?= $i ?>" id="quantite<?= $i ?>" value="<?= $dotation->quantite ?>" class="form-control form-control-sm quantiteArticle" placeholder="Quantité de l'article">
               </div>
             </div>
           
-            <div class="col-sm-3">
+            <div class="col-3">
               <div class="form-group">
                 <label for="prix<?= $i ?>">Prix unitaire</label>
-                <input type="number" name="prix<?= $i ?>" id="prix<?= $i ?>" class="form-control form-control-sm" placeholder="Saisir le prix unitaire">
+                <input type="number" name="prix<?= $i ?>" id="prix<?= $i ?>" value="<?= $dotation->prix ?>" class="form-control form-control-sm prixArticle" placeholder="Saisir le prix unitaire de l'article">
               </div>
             </div>
-
-            <div class="col-sm-3">
+          
+            <div class="col-2">
               <div class="form-group">
                 <label for="total<?= $i ?>">Total</label>
-                <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" class="form-control form-control-sm" value="0" disabled>
+                <input type="text" name="total<?= $i ?>" id="total<?= $i ?>" value="<?= $dotation->total ?>" class="form-control form-control-sm totalArticle" disabled>
               </div>
             </div>
 
-        </div> 
-        <?php endfor ;
-      }
-      ?>
+            <div class="col-1 d-flex align-items-center">
+            <button type="button" class="btn btnSuppr"><img src="images/icones/delete.png" alt="" class="menu-icone" title="Supprimer l'article"></button>
+            </div>
+         
+          </div>  <!-- fin row -->
+        <?php 
+        $i++;
+        endforeach ; ?>
 
-      <div class="row zonegrise">
-        <div class="col-sm-8">
+      </div>
+     
+
+    <div class="mb-3 text-right">
+        <button  type="button" class="btn btn-info" id="btnAdd">Ajouter un article</button>
+    </div>
+
+      <div class="row zonegrise w-25">
+        <div class="col-sm-8 text-left">
           <p>Total général</p>
         </div>
         <div class="col-sm-4 text-right">
@@ -144,3 +113,4 @@
       </div>    
     </form>
   </div>
+  <script src="js/bons.js"></script>

@@ -65,4 +65,4 @@
     </form>
   </div>
 
-<script src="js/form.js"></script>
+<script src="js/acces.js"></script>

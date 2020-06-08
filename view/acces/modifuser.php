@@ -70,5 +70,5 @@
 
     </form>
   </div>
-  <script src="js/form.js"></script>
+  <script src="js/access.js"></script>
 

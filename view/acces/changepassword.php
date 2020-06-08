@@ -53,7 +53,7 @@
         <script src="bootstrap/js/jquery.min.js"></script>
         <script src="bootstrap/js/propper.min.js"></script>
         <script src="bootstrap/js/bootstrap.min.js"></script>
-        <script src="js/form.js"></script>
+        <script src="js/access.js"></script>
     </body>
 </html>
 
