@@ -194,7 +194,8 @@
 			}
 		
 			foreach ($this->dotations as $dotation){
-				$req = 'INSERT INTO entree_article (id_bon_entree, id_article, nom_article, quantite, prix) VALUES (:id_bon_entree, :id_article, :nom_article, :quantite, :prix)';
+				try{
+					$req = 'INSERT INTO entree_article (id_bon_entree, id_article, nom_article, quantite, prix) VALUES (:id_bon_entree, :id_article, :nom_article, :quantite, :prix)';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array(
 					'id_bon_entree' => $this->id,
@@ -203,9 +204,13 @@
 					'quantite'    => $dotation->quantite,
 					'prix'		=> $dotation->prix
 				   ));
+				}
+				catch (PDOException $e) {
+					echo $e;
+				}
+				
 				
 				$article = new Article($dotation->idArticle);
-				
 				if($statutBon == 'old'){
 					Article::removeArticleQuantity($dotation->idArticle, $this->reference, "entrée");
 					Transaction::updateTransaction($dotation->idArticle, $dotation->nomArticle, $article->quantite, $this->id, $this->reference, $dotation->quantite, "entrée");

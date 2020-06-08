@@ -80,10 +80,10 @@
             </div>
 
             <div class="col-1 d-flex align-items-center">
-            <button type="button" class="btn btn-info btnSuppr"><img src="images/icones/delete.png" alt="" class="menu-icone"></button>
+            <button type="button" class="btn btnSuppr"><img src="images/icones/delete.png" alt="" class="menu-icone" title="Supprimer l'article"></button>
             </div>
-          <!-- fin row -->
-          </div> 
+         
+          </div>  <!-- fin row -->
         <?php 
         $i++;
         endforeach ; ?>
@@ -91,12 +91,12 @@
       </div>
      
 
-    <div class="mb-3">
+    <div class="mb-3 text-right">
         <button  type="button" class="btn btn-info" id="btnAdd">Ajouter un article</button>
     </div>
 
-      <div class="row zonegrise">
-        <div class="col-sm-8">
+      <div class="row zonegrise w-25">
+        <div class="col-sm-8 text-left">
           <p>Total général</p>
         </div>
         <div class="col-sm-4 text-right">
@@ -113,4 +113,4 @@
       </div>    
     </form>
   </div>
-  <script src="js/form.js"></script>
+  <script src="js/bons.js"></script>

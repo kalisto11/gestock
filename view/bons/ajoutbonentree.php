@@ -67,7 +67,7 @@
         <div class="col-3">
           <div class="form-group">
             <label for="prix1">Prix unitaire</label>
-            <input type="number" name="prix1" id="prix1" class="form-control form-control-sm prixArticle" class="text-center font-weight-bold">
+            <input type="number" name="prix1" id="prix1" class="form-control form-control-sm prixArticle" class="text-center font-weight-bold" value="0">
           </div>
         </div>
 
@@ -79,17 +79,17 @@
         </div>
 
         <div class="col-1 d-flex align-items-center">
-          <button type="button" class="btn btn-info btnSuppr"><img src="images/icones/delete.png" alt="" class="menu-icone"></button>
+          <button type="button" class="btn btnSuppr"><img src="images/icones/delete.png" alt="" class="menu-icone" title="Supprimer l'article"></button>
         </div>
         
       </div>
      
     </div>
-    <div class="mb-3">
+    <div class="mb-3 text-right">
         <button  type="button" class="btn btn-info" id="btnAdd">Ajouter un article</button>
     </div>
 
-    <div class="row zonegrise">
+    <div class="row zonegrise w-25">
       <div class="col-sm-8 text-left">
         <p>Total général</p>
       </div>
@@ -105,4 +105,4 @@
     </div>
   </form>
 </div>
-<script src="js/form.js"></script>
+<script src="js/bons.js"></script>

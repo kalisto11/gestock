@@ -171,36 +171,49 @@
                 'typeTrans' =>$typeTrans
             ));
             $row = $reponse->fetch();
-            $numTrans = $row['numeroTrans'];
+            $numTrans = intval($row['numeroTrans']);
 
-            // suppression de l'ancienne opération de la base
-            $req = "DELETE FROM transactions WHERE idArticle = :idArticle AND idBon = :idBon AND typeTrans = :typeTrans";
-            $reponse = $pdo->prepare($req);
-            $reponse->execute(array(
-                'idArticle' => $idArticle,
-                'idBon'     => $idBon,
-                'typeTrans' =>$typeTrans
-            ));
+            if ($numTrans != null){
+                // suppression de l'ancienne opération de la base
+                $req = "DELETE FROM transactions WHERE numeroTrans = :numeroTrans";
+                $reponse = $pdo->prepare($req);
+                $reponse->execute(array(
+                    'numeroTrans' => $numTrans
+                ));
+            }
+            else{
+                // récupérer le dernier numéro des opérations pour insérer un nouveau pour l'opération en cours de création
+                $req = "SELECT count(id) as nbTrans FROM transactions";
+                $reponse = $pdo->query($req);
+                $resultat = $reponse->fetch();
+                $numTrans = intval($resultat["nbTrans"]) + 1;
+            }
 
-            // si le bon qui modifie l'opération est un bon de sortie on doit déduire la quantité de la somme totale de l'article
+             // si le bon qui modifie l'opération est un bon de sortie on doit déduire la quantité de la somme totale de l'article
             if ($typeTrans == "sortie"){
                 $quantite = - $quantite;
             }
-            
-            // Insertion à nouveau de l'opération avec les nouvelles valeurs
-            $req  = "INSERT INTO transactions (dateTrans, numeroTrans, idArticle, nomArticle, quantiteArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(), :numeroTrans, :idArticle, :nomArticle, :quantiteArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
-            $reponse = $pdo->prepare($req);
-            $reponse->execute(array(
-                'numeroTrans' => $numTrans,
-                'idArticle' => $idArticle,
-                'nomArticle' => $nomArticle,
-                'quantiteArticle' => $quantiteArticle,
-                'idBon'     => $idBon,
-                'numeroBon' => $numeroBon,
-                'quantite'  => $quantite,
-                'typeTrans' => $typeTrans
-            ));
 
+            try{
+                  // Insertion à nouveau de l'opération avec les nouvelles valeurs
+                $req  = "INSERT INTO transactions (dateTrans, numeroTrans, idArticle, nomArticle, quantiteArticle, idBon, numeroBon, quantite, typeTrans) VALUES (CURDATE(), :numeroTrans, :idArticle, :nomArticle, :quantiteArticle, :idBon, :numeroBon, :quantite, :typeTrans)";
+                $reponse = $pdo->prepare($req);
+                $reponse->execute(array(
+                    'numeroTrans' => $numTrans,
+                    'idArticle' => $idArticle,
+                    'nomArticle' => $nomArticle,
+                    'quantiteArticle' => $quantiteArticle,
+                    'idBon'     => $idBon,
+                    'numeroBon' => $numeroBon,
+                    'quantite'  => $quantite,
+                    'typeTrans' => $typeTrans
+                ));
+    
+            }
+            catch (PDOException $e) {
+                echo $e;
+            }
+           
             // Mise à jour de la quantité de l'article pour chaque opération
             $req = "SELECT id FROM transactions WHERE idArticle = :idArticle";
             $reponse = $pdo->prepare($req);

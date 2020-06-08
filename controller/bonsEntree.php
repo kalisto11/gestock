@@ -100,6 +100,7 @@
                     $currentController->process();
             }
         } //fin méthode render
+        
         /**
          * 
          */
@@ -221,8 +222,11 @@
                 }     
             }
         } // fin méthode traiterBonEntree
+
         /**
-         * 
+         * retourne les artciles du formulaires
+         * @param Array $post : données issues du formulaire
+         * @return Array $articles : liste des articles avec l'id, la quantité et le prix
          */
         public function ajoutArticles($post){
             $inputs = [];
@@ -237,14 +241,21 @@
                 $id = $inputs[$i];
                 $quantite = $inputs[$i + 1];
                 $prix = $inputs[$i + 2];
-                if (!empty($quantite) AND !empty($prix)){
-                    $articles[] = [
-                        'id' => intval(strip_tags($id)),
-                        'quantite' => intval(strip_tags($quantite)),
-                        'prix' => intval(strip_tags($prix)),
-                        'total' => intval($quantite * $prix) 
-                    ];
+                if ($id == "null" OR $quantite <= 0 OR $prix <= 0){
+                    return false;
                 }
+
+                if (empty($quantite) OR empty($prix)){
+                   return false;
+                }
+
+                $articles[] = [
+                    'id' => intval(strip_tags($id)),
+                    'quantite' => intval(strip_tags($quantite)),
+                    'prix' => intval(strip_tags($prix)),
+                    'total' => intval($quantite * $prix) 
+                ];
+
                 if ($i > ($tailleTab - 3)){
                     break;
                 }
@@ -252,28 +263,6 @@
                     $i += 3;
                 }
             }
-            //var_dump($articles);
-            //exit;
-           /* $articles = [];
-            $varArticle = "article";
-            $varQuantite = "quantite";
-            $varPrix = "prix";
-            for ($i = 1; $i <= 10; $i++){
-                if (${$varPrix . $i} < 0 OR ${$varQuantite . $i} < 0){
-                    return false;
-                }
-                if (empty(${$varPrix . $i})){
-                    ${$varPrix . $i} = 0 ;
-                }
-                if (${$varArticle . $i} != 'null' AND !empty(${$varQuantite . $i})){
-                    $articles[] = [
-                        'id' => intval(strip_tags(${$varArticle . $i})),
-                        'quantite' => intval(strip_tags(${$varQuantite . $i})),
-                        'prix' => intval(strip_tags(${$varPrix . $i})),
-                        'total' => intval(${$varQuantite . $i} * ${$varPrix . $i}) 
-                    ];
-                } 
-            } */
             return $articles;
         }//Fin méthode ajoutArticles!!!
     } // fin class
