@@ -32,7 +32,7 @@
 				$this->idModificateur = $bonentree['modificateur_id'];
 				$this->nomModificateur = $bonentree['modificateur_nom'];
 				$this->dateModification = $bonentree['date_modification'];
-				$req = 'SELECT * FROM article RIGHT JOIN entree_article ON article.id = entree_article.id_article WHERE entree_article.id_bon_entree = ?';
+				$req = 'SELECT * FROM article RIGHT JOIN entree_article ON article.id = entree_article.id_article WHERE entree_article.id_bon_entree = ? ORDER BY id';
 				$reponse = $pdo->prepare($req);
 				$reponse->execute(array($id));
 				$dotations = [];
