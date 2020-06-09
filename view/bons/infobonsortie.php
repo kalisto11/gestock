@@ -55,15 +55,16 @@
       </div> 
       <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
       <div class="text-right mt-5">
-        <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>" class="btn btn-info">Modifier</a>
-        <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>" class="btn btn-danger suppr">Supprimer</a>
+        <a href="/gestock/fpdf/printBonSortie.php?id=<?= $bonsortie->id ?>" class="btn btn-sm btn-secondary" target="_blank">Imprimer</a>
+        <a href="/gestock/bonssortie/modifier/<?= $bonsortie->id ?>" class="btn btn-sm btn-info">Modifier</a>
+        <a href="/gestock/bonssortie/supprimer/<?= $bonsortie->id ?>" class="btn btn-sm btn-danger suppr">Supprimer</a>
       </div>
       <?php endif; ?>
       <div class="mt-5">
         <?php if ($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
-        <a class="btn btn-success ml-5" href="/gestock/bonssortie/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon de sortie</a>
+        <a class="btn btn-sm btn-success ml-5" href="/gestock/bonssortie/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon de sortie</a>
         <?php endif ; ?>
-        <a class="btn btn-secondary float-right" href="/gestock/bonssortie/liste">Voir la liste des bons de sortie</a>
+        <a class="btn btn-sm btn-secondary float-right" href="/gestock/bonssortie/liste">Voir la liste des bons de sortie</a>
       </div>
     </div>      
   </div>

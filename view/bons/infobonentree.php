@@ -59,15 +59,16 @@
       </div>
       <?php if($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>  
       <div class="text-right mt-5">
-      <a href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>" class="btn btn-info">Modifier</a>
-      <a href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>" class="btn btn-danger suppr">Supprimer</a>
+      <a href="/gestock/fpdf/printBonEntree.php?id=<?= $bonentree->id ?>" class="btn btn-sm btn-secondary" target="_blank">Imprimer</a>
+      <a href="/gestock/bonsentree/modifier/<?= $bonentree->id ?>" class="btn btn-sm btn-info">Modifier</a>
+      <a href="/gestock/bonsentree/supprimer/<?= $bonentree->id ?>" class="btn btn-sm btn-danger suppr">Supprimer</a>
       </div>
       <?php endif ; ?>
       <div class="mt-5">
         <?php if ($_SESSION['user']['niveau'] == GESTIONNAIRE) : ?>
-        <a class="btn btn-success ml-5" href="/gestock/bonsentree/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon d'entrée</a>
+        <a class="btn btn-success btn-sm ml-5" href="/gestock/bonsentree/ajouter"><img src="images/icones/ajout.png" class=" menu-icone"> Ajouter un bon d'entrée</a>
         <?php endif ; ?>
-        <a class="btn btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des bons d'entrée</a>
+        <a class="btn btn-sm btn-secondary float-right" href="/gestock/bonsentree/liste">Voir la liste des bons d'entrée</a>
       </div>
     </div>
   </div>
