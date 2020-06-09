@@ -94,8 +94,7 @@ if (isset($_SESSION['user'])){
         $pdf->Ln(20);
         $pdf->SetFont('Times','BU',12);
         $pdf->Cell(20, 10);
-        $pdf->Cell(45, 10, "Le bénéficiaire", 0, "L");
-        $pdf->Cell(60, 10, "L'inspecteur d'académie", 0, "C");
+        $pdf->Cell(100, 10, "Le bénéficiaire", 0, "L");
         $pdf->Cell(60, 10, "Le comptable des matières", 0, "R");
         $pdf->Output();
     }
