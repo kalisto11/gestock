@@ -57,17 +57,17 @@
           </div>
 
           <div class="col-1 d-flex align-items-center">
-            <button type="button" class="btn btnSuppr"><img src="images/icones/delete.png" alt="" class="menu-icone" title="Supprimer l'article"></button>
+            <button type="button" class="btn btn-sm btnSuppr"><img src="images/icones/delete.png" alt="" class="menu-icone" title="Supprimer l'article"></button>
           </div>
 
         </div> 
     </div>
 
-    <div class="my-3 text-right">
-        <button type="button" class="btn btn-info" id="btnAdd">Ajouter un article</button>
-    </div>
-
     <input type="hidden" name="operation" value="ajouter">
+
+    <div class="my-3 text-right">
+        <button type="button" class="btn btn-sm btn-info" id="btnAdd">Ajouter un article</button>
+    </div>
 
     <div class="row zonegrise w-25">
       <div class="col-sm-8 text-left">
