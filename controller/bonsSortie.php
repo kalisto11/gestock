@@ -108,11 +108,14 @@
                 $erreur = true;
                 $message[] = "Les valeurs négatives ou vides ne peuvent pas être utilisées.";
             }
-            foreach ($articles as $article){
-                $art = new Article($article['id']);
-                if ($art->quantite <= 0){
-                    $erreur = true;
-                    $message[] = "Un des articles choisis n'est plus disponible dans le stock: " . $art->nom;
+
+            if($articles != false){
+                foreach ($articles as $article){
+                    $art = new Article($article['id']);
+                    if ($art->quantite <= 0){
+                        $erreur = true;
+                        $message[] = "Un des articles choisis n'est plus disponible dans le stock: " . $art->nom;
+                    }
                 }
             }
             
