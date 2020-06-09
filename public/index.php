@@ -6,7 +6,6 @@
 * qui charge les fichiers necessaires, appelle le dispatcher et affiche le template
 */  
     session_start();
-   
     // inclure le fichier de configuration
     require_once '../core/config.php';
     // chargement de l'autoload

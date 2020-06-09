@@ -241,7 +241,7 @@
                 $id = $inputs[$i];
                 $quantite = $inputs[$i + 1];
                 $prix = $inputs[$i + 2];
-                if ($id == "null" OR $quantite <= 0 OR $prix <= 0){
+                if ($id == "null" OR $quantite <= 0 OR $prix <= 0 OR $quantite == null OR $prix == null ){
                     return false;
                 }
 

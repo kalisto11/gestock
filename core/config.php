@@ -21,7 +21,7 @@ class Myautoload{
         define('SUPERVISEUR', 1);
         define('GESTIONNAIRE', 2);
         define('ADMINISTRATEUR', 3);
-        define('FPDF_FONTPATH', ROOT . 'font/');
+        define('FPDF_FONTPATH', ROOT . 'public/fpdf/font');
     }
 
     public static function autoload($class){
