@@ -3,7 +3,6 @@
 
         public static $pdo;  
         public function __construct(){
-           
         }
 
         /**

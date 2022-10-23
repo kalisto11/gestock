@@ -17,7 +17,7 @@
                 $pdo = Database::getPDO();
                 $req = 'SELECT * FROM article WHERE id= ?';
                 $reponse = $pdo->prepare($req);
-                $reponse -> execute(array($id));
+                $reponse->execute(array($id));
                 $article = $reponse->fetch();
                 $this->id = $article['id'];
                 $this->nom = $article['nom'];
@@ -207,7 +207,7 @@
             $req  = "SELECT SUM(quantite) as somme FROM transactions WHERE idArticle = :idArticle AND typeTrans = :typeTrans AND dateTrans = CURDATE() GROUP BY idArticle";
             $reponse = $pdo->prepare($req);
             $reponse->execute(array(
-                'idArticle' => $idArticle,
+                'idArticle' => $idArticle, 
                 'typeTrans' => $typeTrans
             ));
             $row = $reponse->fetch();

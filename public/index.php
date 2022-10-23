@@ -12,7 +12,7 @@
     Myautoload::start();
 
     if(isset($_SESSION['user'])){
-         // temporisation de la sortie
+        // temporisation de la sortie
         ob_start();
         
         // instanciation du dispatcher

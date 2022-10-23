@@ -1,4 +1,5 @@
 <?php
+// classe qui permet de traiter les types de requete
 class Request{
     public $url;
     public $method;
@@ -8,4 +9,3 @@ class Request{
         $this->method = $_SERVER['REQUEST_METHOD'];
     }
 }
-    
