@@ -1,5 +1,5 @@
 <?php require VIEW . 'infos/notifications.php'; ?>
-<h2>Donner l'accès à un nouvel utilisateur</h2>
+<h2>Donner l'accès à Gestock à un nouvel utilisateur</h2>
 <div class="container w-50"> 
     <form method="post" action="/gestock/acces/ajouter/">
         
